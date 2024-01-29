@@ -112,3 +112,12 @@ This action uses three secrets that must be configured in the repository:
 - DEPLOY_KEY: key to authenticate the user in the remote machine.
 
 Note that this action logs in the remote machine and downloads the docker-compose file from the repository and launches it. Obviously, previous actions have been executed which have uploaded the docker images to the GitHub Packages repository.
+
+### Members
+
+- Lucía Ruiz Núñez uo289267@uniovi.es
+- Mario Junquera Rojas uo287557@uniovi.es
+- Jorge Cano Martinez uo289845@uniovi.es
+- Laura Gómez Menéndez uo275725@uniovi.es
+- Ahmet Erdem Yabaci uo303561@uniovi.es
+- Daniel Sinne Argüelles uo282500@uniovi.es
