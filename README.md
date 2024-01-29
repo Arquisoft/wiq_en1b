@@ -115,9 +115,9 @@ Note that this action logs in the remote machine and downloads the docker-compos
 
 ### Members
 
-- Lucía Ruiz Núñez
-- Mario Junquera Rojas
-- Jorge Cano Martinez
-- Laura Gómez Menéndez
-- Ahmet Erdem Yabaci
-- Daniel Sinne Argüelles
+- Lucía Ruiz Núñez uo289267@uniovi.es
+- Mario Junquera Rojas uo287557@uniovi.es
+- Jorge Cano Martinez uo289845@uniovi.es
+- Laura Gómez Menéndez uo275725@uniovi.es
+- Ahmet Erdem Yabaci uo303561@uniovi.es
+- Daniel Sinne Argüelles uo282500@uniovi.es
