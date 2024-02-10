@@ -30,3 +30,31 @@ Refer to details in the following sections.
 See https://docs.arc42.org/section-4/[Solution Strategy] in the arc42 documentation.
 
 ****
+=== Technology decisions
+
+The technologies chosen for developing the WIQ web app are ::
+* **ReactJS** : A JavaScript library that facilitates the creation of interactive grafical interfaces.
+* **Sass** : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance. 
+* **TypeScript** : A superset of JavaScript that adds various features that can resolve code errors before running the actual code.
+* **SpringBoot** : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process.
+* **Wikidata access library** :
+* **Docker** :
+* **Oracle DBMS** : 
+* **Mongo DB** : 
+
+=== Top-level Decomposition
+
+To be updated along the development of the application where we will add the most important architectural and design patterns
+
+==== Architectural Patterns
+
+==== Design Patterns
+
+* **Façade** : Pattern used to communicate between different parts of the back-end of the web-application
+
+=== Decisions for achieving quality goals
+
+Will be updated whenever we find a new quality goal or we change the approach to achieve it
+
+=== Organizational Decisions
+
