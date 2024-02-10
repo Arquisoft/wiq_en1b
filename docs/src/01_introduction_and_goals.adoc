@@ -2,6 +2,7 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-introduction-and-goals]]
 == Introduction and Goals
+The objective of the project is to develop an aplication similar to the Spanish TV game "Saber y Ganar", a trivia type game with numerous questions and answers.
 
 [role="arc42help"]
 ****
@@ -16,6 +17,10 @@ These include
 ****
 
 === Requirements Overview
+The application is prepared to handle plenty of situations, so it must be able to:
+
+* Show the question and all the answers to the users
+* Tell the user if the chosen answer was the right one
 
 [role="arc42help"]
 ****
