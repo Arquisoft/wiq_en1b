@@ -458,7 +458,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_technical_context">3.2. Technical Context</a></li>
 </ul>
 </li>
-<li><a href="#section-solution-strategy">4. Solution Strategy</a></li>
+<li><a href="#section-solution-strategy">4. Solution Strategy</a>
+<ul class="sectlevel2">
+<li><a href="#_technology_decisions">4.1. Technology decisions</a></li>
+<li><a href="#_top_level_decomposition">4.2. Top-level Decomposition</a></li>
+<li><a href="#_decisions_for_achieving_quality_goals">4.3. Decisions for achieving quality goals</a></li>
+<li><a href="#_organizational_decisions">4.4. Organizational Decisions</a></li>
+</ul>
+</li>
 <li><a href="#section-building-block-view">5. Building Block View</a>
 <ul class="sectlevel2">
 <li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
@@ -798,40 +805,12 @@ The title of the table is the name of your system, the three columns contain the
 </div>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/3-BusinessContext.drawio.svg" alt="Business context diagram">
-</div>
+<div class="paragraph">
+<p><strong>&lt;Diagram or Table&gt;</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>Table for entities, inputs and outputs</strong></p>
+<p><strong>&lt;optionally: Explanation of external domain interfaces&gt;</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 44.4444%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Entity</th>
-<th class="tableblock halign-left valign-top">Inputs</th>
-<th class="tableblock halign-left valign-top">Outputs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>WIQ</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users interact with the web application through some graphical interface in order to play the game</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The questions will be presented to the user with a serious of answers where only one is correct and, once all questions have been answered, the results will be displayed</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Wikidata API</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Some part or topic related to the creation of a question</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Some concepts that will facilitate the creation of the question such as wrong answers</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
@@ -852,18 +831,14 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/3-TechnicalContext.drawio.svg" alt="Business context diagram">
-</div>
+<div class="paragraph">
+<p><strong>&lt;Diagram or Table&gt;</strong></p>
 </div>
 <div class="paragraph">
-<div class="title">User And Application interface<br></div>
-<p>The user will access the web application via the HTTPs protocol</p>
+<p><strong>&lt;optionally: Explanation of technical interfaces&gt;</strong></p>
 </div>
 <div class="paragraph">
-<div class="title">Application and Database interface<br></div>
-<p>The database will be accessed through HTTPs protocol too</p>
+<p><strong>&lt;Mapping Input/Output to Channels&gt;</strong></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -913,7 +888,74 @@ Refer to details in the following sections.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_technology_decisions">4.1. Technology decisions</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">The technologies chosen for developing the WIQ web app are </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ReactJS</strong> : A JavaScript library that facilitates the creation of interactive grafical interfaces.</p>
+</li>
+<li>
+<p><strong>Sass</strong> : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance.</p>
+</li>
+<li>
+<p><strong>TypeScript</strong> : A superset of JavaScript that adds various features that can resolve code errors before running the actual code.</p>
+</li>
+<li>
+<p><strong>SpringBoot</strong> : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process.</p>
+</li>
+<li>
+<p><strong>Wikidata access library</strong> :</p>
+</li>
+<li>
+<p><strong>Docker</strong> :</p>
+</li>
+<li>
+<p><strong>Oracle DBMS</strong> :</p>
+</li>
+<li>
+<p><strong>Mongo DB</strong> :</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_top_level_decomposition">4.2. Top-level Decomposition</h3>
+<div class="paragraph">
+<p>To be updated along the development of the application where we will add the most important architectural and design patterns</p>
+</div>
+<div class="sect3">
+<h4 id="_architectural_patterns">4.2.1. Architectural Patterns</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_design_patterns">4.2.2. Design Patterns</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Façade</strong> : Pattern used to communicate between different parts of the back-end of the web-application</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_decisions_for_achieving_quality_goals">4.3. Decisions for achieving quality goals</h3>
+<div class="paragraph">
+<p>Will be updated whenever we find a new quality goal or we change the approach to achieve it</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_organizational_decisions">4.4. Organizational Decisions</h3>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1835,7 +1877,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <div id="footer">
 <div id="footer-text">
 Version 8.2 EN<br>
-Last updated 2024-02-07 19:20:22 +0100
+Last updated 2024-02-07 19:00:35 +0100
 </div>
 </div>
 </body>
