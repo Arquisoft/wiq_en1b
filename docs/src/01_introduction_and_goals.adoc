@@ -47,6 +47,13 @@ See https://docs.arc42.org/section-1/[Introduction and Goals] in the arc42 docum
 
 === Quality Goals
 
+[options="header",cols="1,2"]
+|===
+|Quality attribute|Scenario
+| _<quality-1>_ | _<description-1>_ 
+| _<quality-2>_ | _<description-2>_ 
+|===
+
 [role="arc42help"]
 ****
 .Contents
