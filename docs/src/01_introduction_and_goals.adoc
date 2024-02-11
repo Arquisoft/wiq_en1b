@@ -17,10 +17,9 @@ These include
 ****
 
 === Requirements Overview
-The application is prepared to handle plenty of situations, so it must be able to:
-
-* Show the question and all the answers to the users
-* Tell the user if the chosen answer was the right one
+The system will follow the functionality of the "Saber y Ganar" TV program, and so it will allow the users to select an answer between some options.
+The questions and answers will be automatically generated using the WikiData API, that will also determine which of the answers is in fact the correct one.
+The system will also store the historical data of the users and will be accesible through the web.
 
 [role="arc42help"]
 ****
