@@ -48,9 +48,11 @@ To be updated along the development of the application where we will add the mos
 
 ==== Architectural Patterns
 
+* **Microservices** : Selected as our main architecture. We will have various small independent services that interact between them to support all the fuctionalities of the web application
+
 ==== Design Patterns
 
-* **Façade** : Pattern used to communicate between different parts of the back-end of the web-application
+* **Façade** : Pattern used to communicate between different parts of the whole application (APIs)
 
 === Decisions for achieving quality goals
 
