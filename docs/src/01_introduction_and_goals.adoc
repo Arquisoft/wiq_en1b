@@ -102,6 +102,8 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Development team | Lucía Ruiz Núñez, Mario Junquera Rojas, Jorge Cano Martinez, Laura Gómez Menéndez, Ahmet Erdem Yabaci, Daniel Sinne Argüelles | A working, tested and well documented application
+| Professors | Pablo González | Provide guidance and help during the whole development, as well as evaluate the final product
+| RTVE | RTVE | A working and robust application that the users can enjoy using
+| Users | Users | A working and enjoyable application to play with
 |===
