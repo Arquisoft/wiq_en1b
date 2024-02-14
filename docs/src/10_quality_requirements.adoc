@@ -54,23 +54,22 @@ In any case the tree should include links to the scenarios of the following sect
 | Quality | Scenario 
 
 | Usability
-| The application must be easy to use
+| The application must be easy to use and usable in a computer.
 
 | Accessibility
 | The application must be usable by people with disabilities.
 
 | Integrity
-| The personal information of a user will only be viewable by him/her.
+| The personal information of a user will only be viewable by him/her and user data must be stored securely.
 
 | Performance
-| The application must not have slow response times.
+| The application must not have fast response times.
 
 | Robustness
 | The application must answer as expected under all conditions.
 
 |===
-.Change scenarios
-* shs
+
 
 [role="arc42help"]
 ****
