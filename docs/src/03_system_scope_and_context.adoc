@@ -51,13 +51,16 @@ image::3-BusinessContext.drawio.svg["Business context diagram"]
 
 
 **Table for entities, inputs and outputs**
-[options="header",cols="1,4,4"] 
+
 |===  
 |Entity |Inputs | Outputs
 
-|*_WIQ_*
-|Users interact with the web application through some graphical interface in order to play the game
-|The questions will be presented to the user with a serious of answers where only one is correct and, once all questions have been answered, the results will be displayed
+|*_User Interface UI_*
+|Users request a question to be shown 
+|The question and the set of answers corresponding to that question are presented
+|*_Question Generation_*
+|User requests a question and the information extracted from wikidata
+|The question and the set of answers corresponding to that question are created
 |*_Wikidata API_*
 |Some part or topic related to the creation of a question
 |Some concepts that will facilitate the creation of the question such as wrong answers
@@ -83,6 +86,13 @@ image::3-TechnicalContext.drawio.svg["Business context diagram"]
 .User And Application interface +
 The user will access the web application via the HTTPs protocol
 
-.Application and Database interface +
-The database will be accessed through HTTPs protocol too
+.Home and Login interface +
+The home will allow user to be redirected to the login and authentication phase via the HTTPs protocol
+
+.Login and Question Generation interface +
+The login will allow the user to enter the game and so the question generation will start, this will happend through a redirect
+
+.Login and Database +
+The login will access the database directly via TCP/IP protocol
+
 
