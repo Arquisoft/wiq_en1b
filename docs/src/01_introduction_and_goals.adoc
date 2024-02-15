@@ -53,8 +53,9 @@ See https://docs.arc42.org/section-1/[Introduction and Goals] in the arc42 docum
 |Quality attribute|Scenario
 | Usability | The user must be able to understand the function of the application before the minute mark.
 | Performance | The application will be able to operate within reasonable response times, taking into account the already present waiting times (time to answer, between questions, etc). 
-| Integrity | The information stored about a user can only be accessed by said user, never others.
+| Security | The information stored about a user can only be accessed by said user, never others.
 | Robustness | The application will be able to handle any user error that could happen at runtime.
+| Accessibility | The application will be accessible by all users, even if the suffer from visual impediments such as colorblindness. 
 |===
 
 [role="arc42help"]
