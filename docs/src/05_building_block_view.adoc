@@ -62,16 +62,51 @@ Since there are so many ways to specify interfaces why do not provide a specific
 In the best case you will get away with examples or simple signatures.
 
 ****
+.Scope and Context
 
-_**<Overview Diagram>**_
+image::5-ScopeAndContext.svg["Scope and Context"]
 
 Motivation::
 
-_<text explanation>_
+In this level of descomposition of our system we present an overall view of it. This captures the whole system interaction at once without much detail.
 
 
 Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
+* *WIQ*: Resembles the whole system. Manages the interactions with the users and communicates with the outside services (wikidata).
+
+=== Level 1
+
+[role="arc42help"]
+****
+Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.
+
+You have to decide which building blocks of your system are important enough to justify such a detailed description.
+Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
+Leave out normal, simple, boring or standardized parts of your system
+****
+
+==== White Box _<building block 1>_
+
+[role="arc42help"]
+****
+...describes the internal structure of _building block 1_.
+****
+
+_<white box template>_
+
+==== White Box _<building block 2>_
+
+
+_<white box template>_
+
+...
+
+==== White Box _<building block m>_
+
+
+_<white box template>_
+
+
 
 Important Interfaces::
 _<Description of important interfaces>_
