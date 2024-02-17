@@ -47,5 +47,5 @@ See https://docs.arc42.org/section-12/[Glossary] in the arc42 documentation.
 |HTTPS (Hypertext Transfer Protocol Secure) is the secure version of HTTP, the protocol used for transferring data between a web browser and a website.
 
 |*Stakeholder*
-|Any one involved in the development process of the system, or that is affected by it somehow.
+|Anyone involved in the development process of the system, or that is affected by it somehow.
 |===
