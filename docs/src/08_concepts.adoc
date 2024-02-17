@@ -55,19 +55,56 @@ image::08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutti
 See https://docs.arc42.org/section-8/[Concepts] in the arc42 documentation.
 ****
 
+=== Domain concepts
+==== Domain model
 
-=== _<Concept 1>_
-
-_<explanation>_
+image::08-Domain-Model.png["model-diagram"]
 
 
+=== User experience concepts
 
-=== _<Concept 2>_
+==== Consistency
+Design elements should be consistent throuhgout the design so that the user does not get confused.
 
-_<explanation>_
+==== Progress indicators
+Provide the users with some sort of progress indicator within the quiz. This helps users understand their current position in the quiz.
 
-...
+==== Feedback on correct or incorrect answers
+Provide immediate feedback to users after they answer each question, indicating whether their response was correct or incorrect.
 
-=== _<Concept n>_
+==== Internationalization
+Provide other language options other than english.
 
-_<explanation>_
+
+=== Security and Safety concepts
+
+==== Secure storage
+Make sure to never store the user passwords in plain text, to secure the users data.
+
+==== Data encryption
+Utilize encryption techniques to secure data in any transmission between actors of owr application.
+
+
+=== Architecture and design patterns concepts
+
+==== Microservices
+The microservices pattern combines design patterns to create multiple services that work interdependently to create a larger application. Because each application is small, it's easier to update them when needed. We will be using this pattern during development.
+
+=== Under-the-hood concepts
+TBD
+
+=== Developement concepts
+
+==== Testing
+TBD
+
+==== Deployment
+TBD
+
+==== Task branching
+We should create 1 branch per task and merge them as soon as possible.
+
+=== Operational concepts
+TBD
+
+_<All concepts are subject to change>_
