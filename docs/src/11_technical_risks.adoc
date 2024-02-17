@@ -3,7 +3,6 @@ ifndef::imagesdir[:imagesdir: ../images]
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-
 [role="arc42help"]
 ****
 .Contents
@@ -23,3 +22,28 @@ List of risks and/or technical debts, probably including suggested measures to m
 See https://docs.arc42.org/section-11/[Risks and Technical Debt] in the arc42 documentation.
 
 ****
+
+In decision-making processes, we often face constraints. These constraints, known as risks and technical debt, are compromises made to achieve goals. Risk involves the possibility of not desired outcomes, while technical debt entails short-term solutions instead of long-term sustainability. Both are important considerations, as excessive acceptance can lead to future complications.
+
+### Risks
+
+There is the table of risks the team is taking for development purposes ordered by priority.
+
+.Risks
+[options="header",cols="^.^1,2,2"]
+|===
+|Risk|Explanation|Solution
+| *Insufficient knowledge of React* | None of our team members worked with React before. | The people who's going to work on React are going to learn it.
+| *Working with a team* | It might be difficult working with people on projects, as every person has their own way of doing things. | Have weekly meetings deciding on what's going to get solved, how and by whom, keeping bus factor in mind.
+| *Time* | It should be kept in mind that the team has deadlines with different requirements, demanding them to work regularly. | Have better time-management skills, keep track of and help each other to not waste any time on hard / complex parts of the project.
+|===
+
+### Technical debts
+
+There is the table of technical debt shortcuts the team is taking sacrificing long-term solutions.
+
+[options="header",cols="^.^1,3"]
+|===
+|Technical debt|Explanation
+| *Azure* | The team has experience with Microsoft Azure and decided to use it again. The full implementation is not planned yet.
+|===
