@@ -62,7 +62,7 @@ Since there are so many ways to specify interfaces why do not provide a specific
 In the best case you will get away with examples or simple signatures.
 
 ****
-.Scope and Context
+=== Scope and Context
 
 image::5-ScopeAndContext.svg["Scope and Context"]
 
@@ -76,6 +76,8 @@ Contained Building Blocks::
 
 === Level 1
 
+image::5-Level1.svg["Scope and Context"]
+
 [role="arc42help"]
 ****
 Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.
@@ -85,7 +87,15 @@ Please prefer relevance over completeness. Specify important, surprising, risky,
 Leave out normal, simple, boring or standardized parts of your system
 ****
 
-==== White Box _<building block 1>_
+Motivation::
+
+In this level of descomposition we separate the main services of our system showing how not every part of the system communicates with the exterior.
+
+
+Contained Building Blocks::
+* *WIQ _HOME_* : Service which will collect the user interaction and redirect it to the corresponding service.
+* *USER_MANAGMENT_* : Service that will manage the user information, login, authentication, etc.
+* *WIQ _QUESTION GAME_* Service that will generate and show the different questions for our game.
 
 [role="arc42help"]
 ****
