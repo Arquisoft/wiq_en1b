@@ -47,14 +47,29 @@ Alternatively (or additionally) you can use a table.
 The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
 
 ****
+image::3-BusinessContext.drawio.svg["Business context diagram"]
 
-**<Diagram or Table>**
 
-**<optionally: Explanation of external domain interfaces>**
+**Table for entities, inputs and outputs**
+
+|===  
+|Entity |Inputs | Outputs
+
+|*_User Interface UI_*
+|Users request a question to be shown 
+|The question and the set of answers corresponding to that question are presented
+|*_Question Generation_*
+|User requests a question and the information extracted from wikidata
+|The question and the set of answers corresponding to that question are created
+|*_Wikidata API_*
+|Some part or topic related to the creation of a question
+|Some concepts that will facilitate the creation of the question such as wrong answers
+|===
 
 === Technical Context
 
 [role="arc42help"]
+
 ****
 .Contents
 Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation which I/O uses which channel.
@@ -67,9 +82,17 @@ E.g. UML deployment diagram describing channels to neighboring systems,
 together with a mapping table showing the relationships between channels and input/output.
 
 ****
+image::3-TechnicalContext.drawio.svg["Business context diagram"]
+.User And Application interface +
+The user will access the web application via the HTTPs protocol
 
-**<Diagram or Table>**
+.Home and Login interface +
+The home will allow user to be redirected to the login and authentication phase via the HTTPs protocol
 
-**<optionally: Explanation of technical interfaces>**
+.Login and Question Generation interface +
+The login will allow the user to enter the game and so the question generation will start, this will happend through a redirect
 
-**<Mapping Input/Output to Channels>**
+.Login and Database +
+The login will access the database directly via TCP/IP protocol
+
+
