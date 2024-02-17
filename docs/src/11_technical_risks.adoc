@@ -29,7 +29,6 @@ In decision-making processes, we often face constraints. These constraints, know
 
 There is the table of risks the team is taking for development purposes ordered by priority.
 
-.Risks
 [options="header",cols="^.^1,2,2"]
 |===
 |Risk|Explanation|Solution
