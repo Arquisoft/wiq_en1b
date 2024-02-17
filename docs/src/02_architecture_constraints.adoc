@@ -12,6 +12,9 @@ Meetings:: There will be a meeting every week where will be discussions about pr
 Time:: There will be several deliveries and the entire project must be developed and finished in the semester of the course.
 Budget:: There will not be any financial support.
 
+=== Political constraints
+Data protection:: The private information of the users must be stored securely.
+
 === Conventions
 English:: As this course is taught in English, the project must be also developed in that language.
 ARC42:: The documentation must follow the arc42 template
