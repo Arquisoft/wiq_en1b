@@ -56,7 +56,7 @@ See https://docs.arc42.org/section-8/[Concepts] in the arc42 documentation.
 ****
 
 === Domain concepts
-====Domain model
+==== Domain model
 
 image::08-Domain-Model.png["model-diagram"]
 
@@ -91,12 +91,20 @@ Utilize encryption techniques to secure data in any transmission between actors 
 The microservices pattern combines design patterns to create multiple services that work interdependently to create a larger application. Because each application is small, it's easier to update them when needed. We will be using this pattern during development.
 
 === Under-the-hood concepts
-
+TBD
 
 === Developement concepts
 
+==== Testing
+TBD
+
+==== Deployment
+TBD
+
+==== Task branching
+We should create 1 branch per task and merge them as soon as possible.
 
 === Operational concepts
-
+TBD
 
 _<All concepts are subject to change>_
