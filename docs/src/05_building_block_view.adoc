@@ -81,6 +81,6 @@ Contained Building Blocks::
 * *_HOME_ GAMEMODE PAGE* : Microservice that will let the user start a game.
 * *_QUESTION GAME_ GAME CONFIGURATION* Microservice that will let the user customize some game parameters (amount of questions, time to respond a question, etc).
 * *_QUESTION GAME_ QUESTION RESTAPI* Microservice that will work as our open API allowing other systems to retrieve information like:
-  ** Random questions and corresponding answers 
+  ** Random questions and corresponding answers. 
 * *_QUESTION GAME_ QUESTION GENERATOR* Microservice that will generate the different questions for our game communicating with wikidata.
 * *_QUESTION GAME_ GAME* Microservice that will show the different questions for our game and manage the user answers in order to give a final score.
