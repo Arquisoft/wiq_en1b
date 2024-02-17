@@ -37,29 +37,141 @@ See https://docs.arc42.org/section-6/[Runtime View] in the arc42 documentation.
 
 ****
 
-=== <Runtime Scenario 1>
+=== Runtime Scenario: Retrieval of questions
 
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
+[plantuml,"Retrieval of questions",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database Wikidata
+User -> Frontend: next question
+Frontend -> Backend: get question
+Backend -> Wikidata: request data
+Wikidata -> Backend: receive data
+Backend -> Backend: generate question
+Backend -> Frontend: return question and answers
+Frontend -> User: show question
 ----
 
-=== <Runtime Scenario 2>
+=== Runtime Scenario: Answer questions
 
-=== ...
+[plantuml,"Answer questions",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: answer
+Frontend -> Backend: forward answer
+Backend -> Backend: process answer
+Backend -> DB: store result
+Backend -> Frontend: return correctness
+Frontend -> User: show correctness
+----
 
-=== <Runtime Scenario n>
+=== Runtime Scenario: Login successful
+
+[plantuml,"Login successful",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: send credentials
+Frontend -> Backend: forward credentials
+Backend -> DB: query for username
+DB -> Backend: retrieve user data
+Backend -> Backend: validate password
+Backend -> Frontend: login successful
+Frontend -> User: login successful
+----
+
+=== Runtime Scenario: Login failure
+
+[plantuml,"Login failure",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: send credentials
+Frontend -> Backend: forward credentials
+Backend -> DB: query for username
+DB -> Backend: retrieve user data
+Backend-> Backend: validate password
+Backend -> Frontend: wrong password
+Frontend -> User: ask for credentials
+User -> Frontend: send credentials
+Frontend -> Backend: ...
+----
+
+=== Runtime Scenario: Signup successful
+
+[plantuml,"Signup successful",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: send signup form
+Frontend -> Backend: forward signup form
+Backend -> DB: check if username exists
+DB -> Backend: answer
+Backend -> DB: insert data
+Backend -> Frontend: signup successful
+Frontend -> User: signup successful
+----
+
+=== Runtime Scenario: Signup failure
+
+[plantuml,"Signup failure",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: send signup form
+Frontend -> Backend: forward signup form
+Backend -> DB: check if username exists
+DB -> Backend: answer
+Backend -> Frontend: error: username in use
+Frontend -> User: username in use
+User -> Frontend: send new username
+Frontend -> Backend: forward new username
+Backend -> DB: ...
+----
+
+=== Runtime Scenario: Wikidata error
+
+[plantuml,"Wikidata error",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database Wikidata
+User -> Frontend: next question
+Frontend -> Backend: get question
+Backend -> Wikidata: request data
+Wikidata -> Backend: error
+Backend -> Backend: error handling
+Backend -> Frontend: wikidata error
+Frontend -> User: show error message
+----
+
+=== Runtime Scenario: DB error
+
+[plantuml,"DB error",png]
+----
+actor User
+entity Frontend as "Webapp Frontend"
+entity Backend as "Webapp Backend"
+database DB
+User -> Frontend: request
+Frontend -> Backend: request
+Backend -> DB: request
+DB -> Backend: error
+Backend -> Backend: error handling
+Backend -> Frontend: DB error
+Frontend -> User: show error message
+----

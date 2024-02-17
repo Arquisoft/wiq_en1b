@@ -26,6 +26,7 @@ See https://docs.arc42.org/section-10/[Quality Requirements] in the arc42 docume
 ****
 
 === Quality Tree
+image::10_quality_tree.jpg["Quality tree"]
 
 [role="arc42help"]
 ****
@@ -47,6 +48,27 @@ In any case the tree should include links to the scenarios of the following sect
 ****
 
 === Quality Scenarios
+
+|===
+| Quality | Scenario 
+
+| Usability
+| The application must be easy to use and usable in a computer.
+
+| Accessibility
+| The application must be usable by people with disabilities.
+
+| Integrity
+| The personal information of a user will only be viewable by him/her and user data must be stored securely.
+
+| Performance
+| The application must not have fast response times.
+
+| Robustness
+| The application must answer as expected under all conditions.
+
+|===
+
 
 [role="arc42help"]
 ****

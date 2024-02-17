@@ -2,8 +2,24 @@ ifndef::imagesdir[:imagesdir: ../images]
 
 [[section-architecture-constraints]]
 == Architecture Constraints
+=== Technical constraints
+Wikidata:: The information needed must be got from this central storage.
+GitHub:: All the communication and code-sharing will be done by GitHub, so all the work will be recorded there.
+API:: Give access about users and generated questions through an API.
 
+=== Organizational constraints
+Team size:: The team is formed by 6 people.
+Meetings:: There will be a meeting every week where will be discussions about problems we could have, make an overview about the work done and the work to be done among other things.
+Time:: There will be several deliveries and the entire project must be developed and finished in the semester of the course.
+Budget:: There will not be any financial support.
 
+=== Political constraints
+Data protection:: The private information of the users must be stored securely.
+
+=== Conventions
+English:: As this course is taught in English, the project must be also developed in that language.
+ARC42:: The documentation must follow the arc42 template
+ 
 [role="arc42help"]
 ****
 .Contents
