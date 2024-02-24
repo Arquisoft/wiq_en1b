@@ -22,7 +22,7 @@ The system will follow the functionality of the "Saber y Ganar" TV program, and 
 The questions and answers will be automatically generated using the WikiData API, that will also determine which of the answers is in fact the correct one.
 The system will also store the historical data of the users and will be accessible through the web, thanks to the login and registering service featured in the application. 
 The application will have at least English as available language. 
-Apart from being in GitHub the system will have an API responsible of handling the questions generated previously from WikiData.
+Apart from being in GitHub, the system will have an API responsible of handling the questions generated previously from WikiData.
 
 
 [role="arc42help"]
