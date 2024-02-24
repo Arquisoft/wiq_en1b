@@ -18,9 +18,13 @@ These include
 ****
 
 === Requirements Overview
-The system will follow the functionality of the "Saber y Ganar" TV program, and so it will allow the users to select an answer between some options.
-The questions and answers will be automatically generated using the WikiData API, that will also determine which of the answers is in fact the correct one.
-The system will also store the historical data of the users and will be accessible through the web.
+The system will follow the functionality of the "Saber y Ganar" TV program, and so it will allow the users to select an answer between some options. +
+The questions and answers will be automatically generated using the WikiData API, that will also determine which of the answers is in fact the correct one. +
+In adition to this, the system will also store the historical data of the users, thanks to the login and registering service featured in the application, and users will be able to access their information. +
+The application will have at least English as an available language. +
+Moreover, the project will be stored and deployed through GitHub. +
+Lastly, the system will give access to non sensitive user's information through a public API as well as another API for the questions generated.
+
 
 [role="arc42help"]
 ****
@@ -53,7 +57,7 @@ See https://docs.arc42.org/section-1/[Introduction and Goals] in the arc42 docum
 |Quality attribute|Scenario
 | Usability | The user must be able to understand the function of the application before the minute mark.
 | Performance | The application will be able to operate within reasonable response times, taking into account the already present waiting times (time to answer, between questions, etc). 
-| Security | The information stored about a user can only be accessed by said user, never others.
+| Security & Privacy | The information stored about a user can only be accessed by said user, never others.
 | Robustness | The application will be able to handle any user error that could happen at runtime.
 | Accessibility | The application will be accessible by all users, even if the suffer from visual impediments such as colorblindness. 
 |===
