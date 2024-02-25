@@ -62,7 +62,7 @@ actor User
 entity Frontend as "Webapp Frontend"
 entity Backend as "Webapp Backend"
 database DB
-User -> Frontend: answer
+User -> Frontend: answer\n(30s timelimit)
 Frontend -> Frontend: process answer
 Frontend -> Backend: forward result
 Backend -> DB: store result\n(1s timeout)
