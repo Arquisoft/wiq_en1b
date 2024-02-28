@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: purple;
   }
   
   .home-content {
@@ -13,9 +14,25 @@
   
   .home-button {
     margin-top: 20px;
+    background-color: aqua;
+
   }
   
   .home-link {
     margin-top: 20px;
   }
+
+  div {
+    text-align: center;
+    font: caption;
+  }
+
+ 
+
+
+
+
+  
+
+
   
