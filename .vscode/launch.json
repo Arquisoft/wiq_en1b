@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-WiqApplication<wiq>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wiq.wiq.WiqApplication",
+            "projectName": "wiq",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
