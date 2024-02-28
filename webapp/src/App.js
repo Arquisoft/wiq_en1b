@@ -1,16 +1,8 @@
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Navbar from './components/fragments/NavBar'; 
 
-
-function Navbar() {
-  return (
-      <Typography variant="h6" gutterBottom>
-        Know and Win!
-      </Typography>
-  );
-}
 
 function App() {
   return (
