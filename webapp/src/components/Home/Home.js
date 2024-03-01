@@ -2,16 +2,18 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from 'react-router-dom';
+import "./Home.css";
+
 
 import "./Home.css";
 
 function Home() {
 
   return (
-    <div>
-      <Typography variant="h3" align="center">
+    <div className="wrapper">
+      <h1 variant="h3" align="center">
         Welcome to WIQ!
-      </Typography>
+      </h1>
       <ButtonHowToPlay />
       <p></p>
       {/* Button to the login view */}
@@ -30,7 +32,7 @@ function Home() {
 function ButtonHowToPlay() {
   return (
     <Link to="/instructions" className="button-instructions">
-        <Button variant="contained">
+        <Button>
         How to play?
       </Button>
       </Link>
@@ -41,7 +43,7 @@ function ButtonHowToPlay() {
 function ButtonLogin() {
   return (
     <Link to="/login" className="button-login">
-        <Button variant="contained">Login</Button>
+        <Button>Login</Button>
       </Link>
   );
 
@@ -51,7 +53,7 @@ function LinkRegister() {
   return (
     <Link
         to="/addUser"
-        component="button"
+        component="button-register"
         variant="body2"
       >
         Don't have an account? Register here.
