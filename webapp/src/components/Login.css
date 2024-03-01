@@ -87,11 +87,13 @@
     font-weight: 700;
 }
 
-.wrapper2 .register-link{
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
-}
+.button-register {
+    color: aliceblue; 
+  }
+
+  .button-login {
+    color: aliceblue; 
+  }
 
 .register-link p a {
     color: white;

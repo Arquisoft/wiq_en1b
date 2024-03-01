@@ -2,6 +2,7 @@
 // import axios from "axios";
 import { FaUser, FaLock } from "react-icons/fa";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -58,17 +59,21 @@ const Login = () => {
 
           <button type="submit">Login</button>
 
-          <div className="register-link">
-            <p>
-              Don't have an account? <a href="#">Register</a>
-            </p>
-          </div>
+          <LinkRegister />
         </div>
       </form>
     </div>
   );
 };
 
+
+function LinkRegister() {
+  return (
+    <Link to="/AddUser" className="button-register" variant="body2">
+      Do you have an account? Login here.
+    </Link>
+  );
+}
 export default Login;
 
 // // src/components/Login.js
