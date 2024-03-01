@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Navbar from './components/fragments/NavBar';
 import Home from './components/Home/Home';
 import Login from './components/Login';
+import AddUser from './components/AddUser';
 import Instructions from './components/Instructions'; 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/instructions" element={<Instructions />} />
+          <Route path="/addUser" element={<AddUser />} />
+
         </Routes>
       </Container>
     </Router>
