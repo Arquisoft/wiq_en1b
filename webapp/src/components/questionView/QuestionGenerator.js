@@ -1,12 +1,12 @@
-import Question from 'Question.js';
+import Question from './Question.js';
 
 
 class QuestionGenerator{
 
     QuestionGenerator(){
-        apiUrl = "http://localhost:8090/test";
-        questions = [];
-        generateQuestions();
+        this.apiUrl = "http://localhost:8090/test";
+        this.questions = [];
+        this.generateQuestions();
     }
 
     generateQuestions(){
@@ -22,4 +22,6 @@ class QuestionGenerator{
     }
 
 }
+
+var q = new QuestionGenerator();
 
