@@ -70,7 +70,7 @@ const Login = () => {
 function LinkRegister() {
   return (
     <Link to="/AddUser" className="button-register" variant="body2">
-      Do you have an account? Login here.
+      Don't you have an account? Register here.
     </Link>
   );
 }
