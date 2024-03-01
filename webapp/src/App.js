@@ -1,17 +1,24 @@
-import Home from './components/Home/Home';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import Navbar from './components/fragments/NavBar'; 
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Navbar from './components/fragments/NavBar';
+import Home from './components/Home/Home';
 import Login from './components/Login';
-import AddUser from './components/AddUser';
-
+import Instructions from './components/Instructions'; 
 
 function App() {
   return (
-    <Container component="main" maxWidth="xl">
-      <Navbar /> 
-      <Home />
-    </Container>
+    <Router>
+      <Container component="main" maxWidth="xl">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />} /> 
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/instructions" element={<Instructions />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 

@@ -1,9 +1,10 @@
+// NavBar.js
+import React from 'react';
 import Typography from "@mui/material/Typography";
+import { Link } from 'react-router-dom';
 import "./NavBar.css";
-// import { Link } from 'react-router-dom';
 
 function Navbar() {
-
   return (
     <div className="navbar-container">
       <Profile />
@@ -21,9 +22,9 @@ function Profile() {
 
 function Help() {
   return (
-    <button className="help-button">
+    <Link to="/instructions" className="help-button">
       <img src="/help.png" alt="Help" />
-    </button>
+    </Link>
   );
 }
 
