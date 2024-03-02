@@ -24,7 +24,7 @@ public class TestClass {
         answers0.put("correct", "correct answer");
 
         // Crear un arreglo de respuestas incorrectas
-        String[] wrongAnswers = {"wrong1", "wrong2"};
+        String[] wrongAnswers = {"wrong1", "wrong2", "wrong3"};
         answers0.put("wrong", wrongAnswers);
 
         // Agregar las respuestas al objeto "0"

@@ -1,37 +1,59 @@
 import Question from './Question';
 import QuestionGenerator from './QuestionGenerator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const questionGenerator = new QuestionGenerator();
-var questions = questionGenerator.generateQuestions();
 
 function QuestionView(){
-    const [numQuestion, setnumQuestion] = useState(0);
+    const questionGenerator = new QuestionGenerator();
+    const [numQuestion, setnumQuestion] = useState(-1);
+    const [questions, setQuestions] = useState([]);
+
+    const generateQuestions = async (numQuestion) => {
+        if (numQuestion < 0) {
+            try {
+                var generatedQuestions = await questionGenerator.generateQuestions();
+                setQuestions(generatedQuestions);
+                setnumQuestion(0);
+            } catch (error) {
+                //Como hacer que funcione esto
+                console.log(error.response.data.error);
+            }
+            
+        }
+    }
 
     function handleClick(){
         setnumQuestion(numQuestion + 1);
     }
-    return (<div>
+
+    useEffect(() => {generateQuestions(numQuestion)}, []);
+    
+    return (
+    <div>
         {/*Nav*/}
-        <QuestionComponent numQuestion={numQuestion} handleClick={handleClick}/>
+        {numQuestion >= 0 ? 
+        <QuestionComponent questions={questions} numQuestion={numQuestion} handleClick={handleClick}/> :
+        <h1>Please Wait a bit</h1> }
+        
 
     </div>);
 }
 
-function QuestionComponent({numQuestion, handleClick}){
+function QuestionComponent({questions, numQuestion, handleClick}){
     return (
         <div>
-        <p>questions[numQuestion].getQuestion()</p>
+        <p>{questions[numQuestion].getQuestion()}</p>
         {questions[numQuestion].getAnswers().map((item, index) => (
             <Answer key={index} text={item} onClick={handleClick}/>
         ))}
+        <p>Question counter: {numQuestion}</p>
         </div>
     );
 }
 
-function Answer({text, handleClick}){
+function Answer({text, onClick}){
     return (
-        <button onClick={handleClick}>{text}</button>
+        <button onClick={onClick}>{text}</button>
     );
 }
 

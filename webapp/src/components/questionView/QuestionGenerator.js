@@ -6,19 +6,22 @@ class QuestionGenerator{
         
     }
 
-    generateQuestions(){
-        //Deberíamos recoger el json
-        fetch(this.apiUrl)
-            .then(response => response.json()) 
-            .then(receivedQuestions => { 
-                let i = 0;
-                var questions = [];
-                for(const question in receivedQuestions){//To have a condition, no legth or size
-                    questions[i] = new Question(receivedQuestions[i]);
-                    i += 1;
-                }
-                return questions;
-            });
+    async generateQuestions() {
+        try {
+            const response = await fetch(this.apiUrl);
+            const receivedQuestions = await response.json();
+            
+            let i = 0;
+            var questions = [];
+            for (const question in receivedQuestions) {
+                questions[i] = new Question(receivedQuestions[i]);
+                i += 1;
+            }
+            console.log(questions);
+            return questions;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
 }
