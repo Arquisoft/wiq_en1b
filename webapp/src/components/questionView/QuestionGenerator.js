@@ -1,26 +1,27 @@
+import Question from './Question';
 class QuestionGenerator{
 
     constructor(){
         this.apiUrl = "http://localhost:8090/test";
-        this.questions = [];
         
     }
 
     generateQuestions(){
         //Deberíamos recoger el json
         fetch(this.apiUrl)
-            .then(response => response.json()) // Convertir la respuesta a JSON
-            .then(receivedQuestions => { // La respuesta convertida a JSON se pasa como argumento
+            .then(response => response.json()) 
+            .then(receivedQuestions => { 
                 let i = 0;
+                var questions = [];
                 for(const question in receivedQuestions){//To have a condition, no legth or size
-                    this.questions[i] = new Question(receivedQuestions[i]);
+                    questions[i] = new Question(receivedQuestions[i]);
                     i += 1;
                 }
+                return questions;
             });
     }
 
 }
 
-var q = new QuestionGenerator();
-q.generateQuestions();
+export default QuestionGenerator;
 

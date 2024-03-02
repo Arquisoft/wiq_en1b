@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import QuestionView from './components/questionView/QuestionView';
 
 function App() {
   const [showLogin, setShowLogin] = useState(true);
@@ -14,6 +15,8 @@ function App() {
   };
 
   return (
+    <QuestionView />
+    /*
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Typography component="h1" variant="h5" align="center" sx={{ marginTop: 2 }}>
@@ -31,7 +34,7 @@ function App() {
           </Link>
         )}
       </Typography>
-    </Container>
+    </Container>*/
   );
 }
 
