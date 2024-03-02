@@ -1,7 +1,7 @@
 import Question from './Question';
 import QuestionGenerator from './QuestionGenerator';
 import { useEffect, useState } from 'react';
-
+import './QuestionView.css';
 
 function QuestionView(){
     const questionGenerator = new QuestionGenerator();
@@ -41,13 +41,15 @@ function QuestionView(){
 
 function QuestionComponent({questions, numQuestion, handleClick}){
     return (
-        <div>
+        <>
         <p>{questions[numQuestion].getQuestion()}</p>
+        <div>
         {questions[numQuestion].getAnswers().map((item, index) => (
             <Answer key={index} text={item} onClick={handleClick}/>
         ))}
         <p>Question counter: {numQuestion}</p>
         </div>
+        </>
     );
 }
 
