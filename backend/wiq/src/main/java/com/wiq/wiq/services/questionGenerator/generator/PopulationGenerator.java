@@ -10,10 +10,9 @@ public class PopulationGenerator extends AbstractGenerator {
 	
 	private final static String TEMPLATE = "What's the population of %s?";
 	private final static String PROPERTY = "P1082";
-
-	@Override
-	protected String getQuestion(String name) {
-		return String.format(TEMPLATE, name);
+	
+	public PopulationGenerator() {
+		super.setTemplate(TEMPLATE);
 	}
 
 	@Override

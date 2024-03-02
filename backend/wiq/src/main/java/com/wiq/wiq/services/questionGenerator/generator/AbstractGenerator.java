@@ -18,6 +18,8 @@ public abstract class AbstractGenerator {
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
 	private static final String LANGUAGE = "en";
 	
+	private String propertyId = "";
+	private String template = "";
 	
 	/**
 	 * 
@@ -64,8 +66,27 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
-	protected abstract String getQuestion(String name);
+	protected String getQuestion(String name) {
+		return String.format(template, name);
+	}
+
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
 	protected abstract List<String> getWrongAnswers(String rightAnswer);
+
+	public String getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(String propertyId) {
+		this.propertyId = propertyId;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
 
 }
