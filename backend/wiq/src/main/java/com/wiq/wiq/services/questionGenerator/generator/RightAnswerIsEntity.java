@@ -17,7 +17,14 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		String entity = getRightAnswerEntity(v.toString());
 		String answer = "";
 		try {
-			answer = getName(((ItemDocumentImpl) wbdf.getEntityDocument(entity)).getLabels());
+			ItemDocumentImpl idi = getAlreadyProcessedEntities().get(entity);
+			if(idi==null) {
+				idi = (ItemDocumentImpl) wbdf.getEntityDocument(entity);
+				answer = getName(idi.getLabels());
+				addItem(entity, idi);
+			}
+			else
+				answer = getName(idi.getLabels());
 		} catch (MediaWikiApiErrorException | IOException e) {
 			return null;
 		}

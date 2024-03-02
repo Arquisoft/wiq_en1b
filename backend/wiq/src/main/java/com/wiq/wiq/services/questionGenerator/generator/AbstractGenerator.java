@@ -98,4 +98,12 @@ public abstract class AbstractGenerator {
 		this.template = template;
 	}
 
+	public static Map<String, ItemDocumentImpl> getAlreadyProcessedEntities() {
+		return new HashMap<>(alreadyProcessedEntities);
+	}
+	
+	public static void addItem(String entity, ItemDocumentImpl item) {
+		alreadyProcessedEntities.put(entity, item);
+	}
+
 }
