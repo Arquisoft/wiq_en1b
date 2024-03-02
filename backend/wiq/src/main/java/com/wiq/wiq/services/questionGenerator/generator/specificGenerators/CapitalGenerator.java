@@ -1,6 +1,8 @@
-package com.wiq.wiq.services.questionGenerator.generator;
+package com.wiq.wiq.services.questionGenerator.generator.specificGenerators;
 
 import java.util.List;
+
+import com.wiq.wiq.services.questionGenerator.generator.RightAnswerIsEntity;
 
 public class CapitalGenerator extends RightAnswerIsEntity {
 	

@@ -1,10 +1,12 @@
-package com.wiq.wiq.services.questionGenerator.generator;
+package com.wiq.wiq.services.questionGenerator.generator.specificGenerators;
 
 import java.util.List;
 import java.util.Map;
 
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
+
+import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
 
 public class SizeGenerator extends AbstractGenerator {
 	

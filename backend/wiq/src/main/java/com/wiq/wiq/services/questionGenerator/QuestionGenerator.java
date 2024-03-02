@@ -1,10 +1,10 @@
 package com.wiq.wiq.services.questionGenerator;
 
 import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
-import com.wiq.wiq.services.questionGenerator.generator.CapitalGenerator;
-import com.wiq.wiq.services.questionGenerator.generator.LanguageGenerator;
-import com.wiq.wiq.services.questionGenerator.generator.PopulationGenerator;
-import com.wiq.wiq.services.questionGenerator.generator.SizeGenerator;
+import com.wiq.wiq.services.questionGenerator.generator.specificGenerators.CapitalGenerator;
+import com.wiq.wiq.services.questionGenerator.generator.specificGenerators.LanguageGenerator;
+import com.wiq.wiq.services.questionGenerator.generator.specificGenerators.PopulationGenerator;
+import com.wiq.wiq.services.questionGenerator.generator.specificGenerators.SizeGenerator;
 import com.wiq.wiq.services.questionGenerator.question.QuestionType;
 
 
