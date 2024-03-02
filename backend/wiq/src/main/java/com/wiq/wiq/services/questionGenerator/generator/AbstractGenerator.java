@@ -2,6 +2,7 @@ package com.wiq.wiq.services.questionGenerator.generator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ public abstract class AbstractGenerator {
 	
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
 	private static final String LANGUAGE = "en";
+
+	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
 	private String template = "";
@@ -28,18 +31,24 @@ public abstract class AbstractGenerator {
 	 */
 	public Question generate(String id)  {
 		//get the wikidata entity using the id
-		ItemDocumentImpl idi = null;
-		try {
-			idi = (ItemDocumentImpl) wbdf.getEntityDocument(id);
-		} catch (MediaWikiApiErrorException | IOException e) {
-			/*
-			 * * @throws MediaWikiApiErrorException
-			 *             if the API returns an error
-			 * @throws IOException
-			 * 			   if we encounter network issues or HTTP 500 errors from Wikibase
-			 */
-			return null;
+		ItemDocumentImpl idi = alreadyProcessedEntities.get(id);
+		
+		if(idi==null) {
+			try {
+				idi = (ItemDocumentImpl) wbdf.getEntityDocument(id);
+				alreadyProcessedEntities.put(id, idi);
+			} catch (MediaWikiApiErrorException | IOException e) {
+				/*
+				 * * @throws MediaWikiApiErrorException
+				 *             if the API returns an error
+				 * @throws IOException
+				 * 			   if we encounter network issues or HTTP 500 errors from Wikibase
+				 */
+				return null;
+			}
 		}
+
+		
 		String name = getName(idi.getLabels());
 		
 		//get the question
