@@ -9,25 +9,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		QuestionGenerator qg = new QuestionGenerator();
-//		String json = "";
-////		json = qg.generateQuestion(QuestionType.POPULATION);
-//		json = qg.generateQuestion(QuestionType.CAPITAL);
-//		System.out.println(json);
-//		run(qg);
-		
-//		System.out.println(qg.generateQuestion(QuestionType.LANGUAGE));
-		run(qg);
+		for(QuestionType t : types) {
+			run(qg, t);
+			System.out.println();
+		}
 
 	}
 	
-	private static void run(QuestionGenerator qg) {
-		for(QuestionType t : types) {
-			runTypes(qg, t);
-			System.out.println();
-		}
-	}
-	
-	private static void runTypes(QuestionGenerator qg, QuestionType type) {
+	private static void run(QuestionGenerator qg, QuestionType type) {
 		for(int i=0; i<3; i++) {
 			System.out.println(qg.generateQuestion(type));
 		}
