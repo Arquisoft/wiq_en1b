@@ -2,7 +2,6 @@ package com.wiq.wiq.services.questionGenerator.generator;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Math;
 import java.util.Random;
 import java.util.ArrayList;
 
