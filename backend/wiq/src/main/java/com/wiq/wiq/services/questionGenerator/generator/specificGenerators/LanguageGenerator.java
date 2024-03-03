@@ -10,9 +10,9 @@ public class LanguageGenerator extends RightAnswerIsEntity {
 	private final static String PROPERTY = "P37";
 	
 	public LanguageGenerator() {
-		super.setPropertyId(PROPERTY);
-		super.setTemplate(TEMPLATE);
+		super(PROPERTY, TEMPLATE);
 	}
+
 
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {

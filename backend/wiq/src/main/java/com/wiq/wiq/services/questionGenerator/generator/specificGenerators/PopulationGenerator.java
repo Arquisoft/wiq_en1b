@@ -16,7 +16,7 @@ public class PopulationGenerator extends AbstractGenerator {
 	private final static String PROPERTY = "P1082";
 	
 	public PopulationGenerator() {
-		super.setTemplate(TEMPLATE);
+		super(PROPERTY, TEMPLATE);
 	}
 
 	@Override

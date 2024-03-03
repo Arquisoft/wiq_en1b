@@ -10,8 +10,7 @@ public class CapitalGenerator extends RightAnswerIsEntity {
 	private final static String PROPERTY = "P36";
 	
 	public CapitalGenerator() {
-		super.setPropertyId(PROPERTY);
-		super.setTemplate(TEMPLATE);
+		super(PROPERTY, TEMPLATE);
 	}
 
 	@Override

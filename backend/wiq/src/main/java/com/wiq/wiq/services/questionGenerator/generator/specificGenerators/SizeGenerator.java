@@ -14,7 +14,7 @@ public class SizeGenerator extends AbstractGenerator {
 	private final static String PROPERTY = "P2046";
 	
 	public SizeGenerator() {
-		super.setTemplate(TEMPLATE);
+		super(PROPERTY, TEMPLATE);
 	}
 
 	@Override

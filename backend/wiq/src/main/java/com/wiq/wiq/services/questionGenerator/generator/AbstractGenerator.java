@@ -23,6 +23,11 @@ public abstract class AbstractGenerator {
 	
 	private String propertyId = "";
 	private String template = "";
+
+	public AbstractGenerator(String propertyId, String template) {
+		this.propertyId = propertyId;
+		this.template = template;
+	}
 	
 	/**
 	 * 

@@ -11,6 +11,10 @@ import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 public abstract class RightAnswerIsEntity extends AbstractGenerator {
 
+	public RightAnswerIsEntity(String propertyId, String template) {
+		super(propertyId, template);
+	}
+
 	@Override
 	protected String getRightAnswer(Map<String, List<Statement>> claims) {
 		Value v = claims.get(super.getPropertyId()).get(0).getValue();
