@@ -1,5 +1,6 @@
 package com.wiq.wiq.services.questionGenerator.generator.specificGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.wiq.wiq.services.questionGenerator.generator.RightAnswerIsEntity;
@@ -17,7 +18,7 @@ public class LanguageGenerator extends RightAnswerIsEntity {
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<String>();
 	}
 
 }

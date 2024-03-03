@@ -1,7 +1,6 @@
 package com.wiq.wiq.services.questionGenerator.generator;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,11 +62,7 @@ public abstract class AbstractGenerator {
 		String rightAnswer = getRightAnswer(idi.getJsonClaims());
 		
 		//get the wrong answers
-//		List<String> answers = getWrongAnswers(rightAnswer);
-		List<String> answers = new ArrayList<>();
-		answers.add("a");
-		answers.add("b");
-		answers.add("c");
+		List<String> answers = getWrongAnswers(rightAnswer);
 		
 		answers.add(0, rightAnswer);
 		//create and return the question

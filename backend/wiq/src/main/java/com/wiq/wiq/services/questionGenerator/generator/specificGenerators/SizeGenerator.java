@@ -1,5 +1,6 @@
 package com.wiq.wiq.services.questionGenerator.generator.specificGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class SizeGenerator extends AbstractGenerator {
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<String>();
 	}
 	
 	private String getRightAnswerEntity(String url) {
