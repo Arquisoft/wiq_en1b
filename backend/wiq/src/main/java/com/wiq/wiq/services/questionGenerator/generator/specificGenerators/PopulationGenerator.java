@@ -29,12 +29,11 @@ public class PopulationGenerator extends AbstractGenerator {
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		int number = 0;
 		// Check if it is a integer
-		if (rightAnswer.matches("\\d+")) {
-            // Convert the string to an integer
-            number = Integer.parseInt(rightAnswer);
-        } else {
-            //throw new NotAnInteger();
-        }
+		try {
+			number = Integer.parseInt(rightAnswer);
+		} catch(NumberFormatException e) {
+			//throw exception or maybe return null
+		}
 
 		List<String> wrongAnswers = new ArrayList<String>();
 
