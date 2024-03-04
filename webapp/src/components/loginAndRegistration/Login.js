@@ -1,36 +1,34 @@
-// import React, { useState } from "react";
-// import axios from "axios";
+import React from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import "./Login.css";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation("global");
 
-  //empieza
   return (
     <div className="wrapper">
       <form action="">
         <div className="wrapper2">
-          <h1> Login </h1>
+          <h1>{t("login.title")}</h1>
           <div className="input-box">
-            <input type="text" placeholder="Username" /*required*/ />
+            <input type="text" placeholder={t("login.username_placeholder")} />
             <FaUser className="icon" />
           </div>
           <div className="input-box">
-            <input type="password" placeholder="Password" /*required*/ />
+            <input type="password" placeholder={t("login.password_placeholder")} />
             <FaLock className="icon" />
           </div>
 
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" /> Remember me
+              <input type="checkbox" /> {t("login.remember_me")}
             </label>
-            <a href="#">Forgot password?</a>
+            <a href="#">{t("login.forgot_password")}</a>
           </div>
 
           <ButtonMenu />
-
           <LinkRegister />
         </div>
       </form>
@@ -38,25 +36,26 @@ const Login = () => {
   );
 };
 
-
 function ButtonMenu() {
+  const { t } = useTranslation("global");
   return (
     <Link to="/menu" className="button-menu">
-        <Button>
-        Login
-      </Button>
-      </Link>
-  );
-
-}
-function LinkRegister() {
-  return (
-    <Link to="/AddUser" className="button-register" variant="body2">
-      Don't you have an account? Register here.
+      <Button>{t("login.login_button")}</Button>
     </Link>
   );
 }
+
+function LinkRegister() {
+  const { t } = useTranslation("global");
+  return (
+    <Link to="/AddUser" className="button-register" variant="body2">
+      {t("login.register_link")}
+    </Link>
+  );
+}
+
 export default Login;
+
 
 // // src/components/Login.js
 // import React, { useState } from 'react';

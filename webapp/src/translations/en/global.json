@@ -1,0 +1,51 @@
+{
+    "home": {
+      "welcome": "Welcome to WIQ!",
+      "how_to_play": "How to play?",
+      "login": "Login",
+      "register": "Don't have an account? Register here."
+    },
+    "navBar": {
+      "title": "Know and win!"
+    },
+    "instructions": {
+        "title": "WIQ Instructions",
+        "objective": "Objective:",
+        "objective_p1": "The objective of the game is to answer as many questions correctly as possible.",
+        "how_to_play": "How to Play:",
+        "how_to_play_p1": "The game consists of a series of questions.",
+        "how_to_play_p2": "Read each question carefully.",
+        "how_to_play_p3": "Choose the correct answer from the options provided.",
+        "how_to_play_p4": "Click or tap on your selected answer to submit it.",
+        "scoring": "Scoring:",
+        "scoring_p1": "Each correct answer earns you x points.",
+        "scoring_p2": "Incorrect answers do not deduct points.",
+        "time_limit": "Time Limit:",
+        "time_limit_p1": "Some game modes may have a time limit for answering each question. Be quick and accurate to maximize your score.",
+        "have_fun": "Have Fun!:",
+        "have_fun_p1": "Enjoy the game and test your knowledge. Good luck!"
+    },
+    "login": {
+        "title": "Login",
+        "username_placeholder": "Username",
+        "password_placeholder": "Password",
+        "remember_me": "Remember me",
+        "forgot_password": "Forgot password?",
+        "login_button": "Login",
+        "register_link": "Don't you have an account? Register here."
+    },
+      "addUser": {
+        "title": "Register",
+        "username_placeholder": "Username",
+        "password_placeholder": "Password",
+        "repeat_password_placeholder": "Repeat password",
+        "register_button": "Register",
+        "login_link": "Do you have an account? Login here."
+      }
+}
+    
+    
+    
+    
+  
+  

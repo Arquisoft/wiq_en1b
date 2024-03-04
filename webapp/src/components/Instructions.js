@@ -1,54 +1,57 @@
 import React from 'react';
 import '../components/Instructions.css';
+import {useTranslation} from "react-i18next";
 
 
 
 function Instructions() {
 
+  const[t, i18n] = useTranslation("global");
+
   return (
     <div>
-      <h1>WIQ Instructions</h1>
+      <h1>{t("instructions.title")}</h1>
      <section>   
       <article>
-            <ul><p>Objetive:</p>
+            <ul><p>{t("instructions.objective")}</p>
               <li>
-              The objective of the game is to answer as many questions correctly as possible.
+              {t("instructions.objective_p1")}
               </li>
             </ul>
       </article>   
       <article>
-            <ul><p>How to Play:</p>
+            <ul><p>{t("instructions.how_to_play")}</p>
                     <li>
-                    The game consists of a series of questions.
+                    {t("instructions.how_to_play_p1")}
                     </li>
                     <li>
-                    Read each question carefully.
+                    {t("instructions.how_to_play_p2")}
                     </li>
                     <li>
-                    Choose the correct answer from the options provided.
+                    {t("instructions.how_to_play_p3")}
                     </li>
                     <li>
-                    Click or tap on your selected answer to submit it.
+                    {t("instructions.how_to_play_p4")}
                     </li>
             </ul>
       </article>   
       <article>
-      <ul><p>Scoring:</p><li>
-              Each correct answer earns you x points.</li>
+      <ul><p>{t("instructions.scoring")}</p><li>
+      {t("instructions.scoring_p1")}</li>
               <li>
-              Incorrect answers do not deduct points.
+              {t("instructions.scoring_p2")}
               </li>
             </ul>
       </article>
           <article>
-          <ul><p>Time Limit:</p><li>
-              Some game modes may have a time limit for answering each question. Be quick and accurate to maximize your score.
+          <ul><p>{t("instructions.time_limit")}</p><li>
+          {t("instructions.time_limit_p1")}
               </li></ul>
           </article>
             <article>
-            <ul><p>Have Fun!:</p>
+            <ul><p>{t("instructions.have_fun")}</p>
               <li>
-              Enjoy the game and test your knowledge. Good luck!
+              {t("instructions.have_fun_p1")}
               </li>
             </ul>
             </article>
