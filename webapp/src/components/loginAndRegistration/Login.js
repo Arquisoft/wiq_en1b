@@ -3,37 +3,9 @@
 import { FaUser, FaLock } from "react-icons/fa";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const Login = () => {
-
-  //todo esto de aquí lo dejo por si se necesita en el futuro, es el código base
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
-  // const [loginSuccess, setLoginSuccess] = useState(false);
-  // const [createdAt, setCreatedAt] = useState("");
-  // const [openSnackbar, setOpenSnackbar] = useState(false);
-  // const apiEndpoint =
-  //   process.env.REACT_APP_API_ENDPOINT || "http://localhost:8000";
-
-  // const loginUser = async () => {
-  //   try {
-  //     const response = await axios.post(`${apiEndpoint}/login`, {
-  //       username,
-  //       password,
-  //     });
-
-  //     // Extract data from the response
-  //     const { createdAt: userCreatedAt } = response.data;
-
-  //     setCreatedAt(userCreatedAt);
-  //     setLoginSuccess(true);
-
-  //     setOpenSnackbar(true);
-  //   } catch (error) {
-  //     setError(error.response.data.error);
-  //   }
-  // };
 
   //empieza
   return (
@@ -42,11 +14,11 @@ const Login = () => {
         <div className="wrapper2">
           <h1> Login </h1>
           <div className="input-box">
-            <input type="text" placeholder="Username" required />
+            <input type="text" placeholder="Username" /*required*/ />
             <FaUser className="icon" />
           </div>
           <div className="input-box">
-            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Password" /*required*/ />
             <FaLock className="icon" />
           </div>
 
@@ -57,7 +29,7 @@ const Login = () => {
             <a href="#">Forgot password?</a>
           </div>
 
-          <button type="submit">Login</button>
+          <ButtonMenu />
 
           <LinkRegister />
         </div>
@@ -67,6 +39,16 @@ const Login = () => {
 };
 
 
+function ButtonMenu() {
+  return (
+    <Link to="/menu" className="button-menu">
+        <Button>
+        Login
+      </Button>
+      </Link>
+  );
+
+}
 function LinkRegister() {
   return (
     <Link to="/AddUser" className="button-register" variant="body2">
