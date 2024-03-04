@@ -16,7 +16,7 @@ function QuestionView(){
                 setnumQuestion(0);
             } catch (error) {
                 //Como hacer que funcione esto
-                console.log(error.response.data.error);
+                console.log(error.response);
             }
             
         }

@@ -2,7 +2,7 @@ import Question from './Question';
 class QuestionGenerator{
 
     constructor(){
-        this.apiUrl = "http://localhost:8090/test";
+        this.apiUrl = "http://localhost:8090/question";
         
     }
 
@@ -13,8 +13,8 @@ class QuestionGenerator{
             
             let i = 0;
             var questions = [];
-            for (const question in receivedQuestions) {
-                questions[i] = new Question(receivedQuestions[i]);
+            for (const key in receivedQuestions) {
+                questions[i] = new Question(JSON.parse(receivedQuestions[key]));
                 i += 1;
             }
             console.log(questions);
