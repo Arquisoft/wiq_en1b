@@ -27,7 +27,11 @@ public class SizeGenerator extends AbstractGenerator {
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		// TODO Auto-generated method stub
-		return new ArrayList<String>();
+		List<String> result = new ArrayList<>();
+		result.add("a");
+		result.add("b");
+		result.add("c");
+		return result;
 	}
 	
 	private String getRightAnswerEntity(String url) {
