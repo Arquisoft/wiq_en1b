@@ -112,24 +112,24 @@ public abstract class AbstractGenerator {
 		languageCode = languageCode.toLowerCase();
 		switch (languageCode) {
 			case "en":{
-				this.language = "en";
-				this.localization = Locale.ENGLISH;
-				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				localize(languageCode);
 				break;
 			}
 			case "es":{
-				this.language = "es";
-				this.localization = new Locale("es");
-				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				localize(languageCode);
 				break;
 			}
 			default:{
-				this.language = "en";
-				this.localization = Locale.ENGLISH;
-				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				localize("en");
 				break;
 			}
 		}
+	}
+	
+	private void localize(String languageCode) {
+		this.language = languageCode;
+		this.localization = new Locale(languageCode);
+		this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
 	}
 
 }
