@@ -30,7 +30,8 @@ public abstract class AbstractGenerator {
 	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
 		localization = Locale.ENGLISH;
-		this.messages = ResourceBundle.getBundle("rsc/messages", localization);
+		this.messages = ResourceBundle.getBundle("com/wiq/wiq/services/questionGenerator/"+
+		"generator/rsc/messages", localization);
 	}
 	
 	/**
