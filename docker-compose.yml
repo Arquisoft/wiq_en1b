@@ -99,6 +99,17 @@ services:
     depends_on: 
       - prometheus
 
+  backend:
+    build:
+      context: ./backend/wiq
+      dockerfile: Dockerfile
+    container_name: backend_wiq-${teamname:-defaultASW}
+    profiles: ["dev", "prod"]
+    depends_on:
+      - gatewayservice
+    ports:
+      - 8090:8090
+
 
 volumes:
   mongodb_data:
