@@ -8,7 +8,7 @@ public class Main {
 		QuestionType.LANGUAGE};
 
 	public static void main(String[] args) {
-		QuestionGenerator qg = new QuestionGenerator();
+		QuestionGenerator qg = new QuestionGenerator("en");
 		for(QuestionType t : types) {
 			run(qg, t);
 			System.out.println();

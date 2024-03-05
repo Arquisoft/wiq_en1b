@@ -18,7 +18,7 @@ import com.wiq.wiq.services.questionGenerator.question.Question;
 public abstract class AbstractGenerator {
 	
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
-	private static final String LANGUAGE = "en";
+	private String language = "en";
 
 	private Locale localization = Locale.getDefault();
 	private ResourceBundle messages;
@@ -27,11 +27,14 @@ public abstract class AbstractGenerator {
 	
 	private String propertyId = "";
 
+	private static final String MESSAGES_PATH = "com/wiq/wiq/services/questionGenerator/"+
+				"generator/rsc/messages";
+
 	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
-		localization = Locale.ENGLISH;
-		this.messages = ResourceBundle.getBundle("com/wiq/wiq/services/questionGenerator/"+
-		"generator/rsc/messages", localization);
+		// localization = Locale.ENGLISH;
+		// this.messages = ResourceBundle.getBundle("com/wiq/wiq/services/questionGenerator/"+
+		// "generator/rsc/messages", localization);
 	}
 	
 	/**
@@ -77,7 +80,7 @@ public abstract class AbstractGenerator {
 	}
 	
 	protected String getName(Map<String, MonolingualTextValue> names) {
-		MonolingualTextValue mtv = names.get(LANGUAGE);
+		MonolingualTextValue mtv = names.get(language);
 		return mtv.getText();
 	}
 	
@@ -97,12 +100,36 @@ public abstract class AbstractGenerator {
 		alreadyProcessedEntities.put(entity, item);
 	}
 
-	public static String getLanguage() {
-		return LANGUAGE;
-	}
+	// public String getLanguage() {
+	// 	return language;
+	// }
 
 	public ResourceBundle getMessages() {
 		return messages;
+	}
+
+	public void setLocalization(String languageCode) {
+		languageCode = languageCode.toLowerCase();
+		switch (languageCode) {
+			case "en":{
+				this.language = "en";
+				this.localization = Locale.ENGLISH;
+				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				break;
+			}
+			case "es":{
+				this.language = "es";
+				this.localization = new Locale("es");
+				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				break;
+			}
+			default:{
+				this.language = "en";
+				this.localization = Locale.ENGLISH;
+				this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+				break;
+			}
+		}
 	}
 
 }

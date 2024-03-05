@@ -13,14 +13,20 @@ public class QuestionGenerator {
 	
 	private AbstractGenerator generator;
 	private String id;
+	private String languageCode;
 	
 	private static String[] POP_ENTITIES = {"Q14317", "Q12273", "Q14649"};
 	private static String[] CAP_ENTITIES = {"Q3934", "Q29", "Q43"};
 	private static String[] SIZE_ENTITIES = {"Q29", "Q12273", "Q3934"};
 	private static String[] LANG_ENTITIES = {"Q29", "Q43", "Q3934"};
+
+	public QuestionGenerator(String languageCode){
+		this.languageCode = languageCode;
+	}
 	
 	public String generateQuestion(QuestionType type) {
 		generatorFactory(type);
+		generator.setLocalization(languageCode);
 		String answer = generator.generate(id).getJSON().toString();
 		return answer;
 	}	
