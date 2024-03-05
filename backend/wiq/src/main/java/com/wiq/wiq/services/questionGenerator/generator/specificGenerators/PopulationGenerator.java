@@ -12,11 +12,17 @@ import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
 
 public class PopulationGenerator extends AbstractGenerator {
 	
-	private final static String TEMPLATE = "What's the population of %s?";
+	// private final static String TEMPLATE = "What's the population of %s?";
 	private final static String PROPERTY = "P1082";
 	
 	public PopulationGenerator() {
-		super(PROPERTY, TEMPLATE);
+		super(PROPERTY);
+	}
+
+	@Override
+	protected String getQuestion(String name) {
+		String q = getMessages().getString("question.population");
+		return String.format(q, name);
 	}
 
 	@Override

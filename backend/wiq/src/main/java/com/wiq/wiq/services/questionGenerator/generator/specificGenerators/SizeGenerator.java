@@ -11,11 +11,17 @@ import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
 
 public class SizeGenerator extends AbstractGenerator {
 	
-	private static final String TEMPLATE = "What's the size of %s?";
+	// private static final String TEMPLATE = "What's the size of %s?";
 	private final static String PROPERTY = "P2046";
 	
 	public SizeGenerator() {
-		super(PROPERTY, TEMPLATE);
+		super(PROPERTY);
+	}
+
+	@Override
+	protected String getQuestion(String name) {
+		String q = getMessages().getString("question.size");
+		return String.format(q, name);
 	}
 
 	@Override

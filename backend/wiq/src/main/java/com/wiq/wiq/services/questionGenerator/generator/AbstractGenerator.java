@@ -3,7 +3,9 @@ package com.wiq.wiq.services.questionGenerator.generator;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue;
@@ -18,14 +20,17 @@ public abstract class AbstractGenerator {
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
 	private static final String LANGUAGE = "en";
 
+	private Locale localization = Locale.getDefault();
+	private ResourceBundle messages;
+
 	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
-	private String template = "";
 
-	public AbstractGenerator(String propertyId, String template) {
+	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
-		this.template = template;
+		localization = Locale.ENGLISH;
+		this.messages = ResourceBundle.getBundle("rsc/messages", localization);
 	}
 	
 	/**
@@ -75,27 +80,12 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
-	protected String getQuestion(String name) {
-		return String.format(template, name);
-	}
-
+	protected abstract String getQuestion(String name);
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
 	protected abstract List<String> getWrongAnswers(String rightAnswer);
 
 	public String getPropertyId() {
 		return propertyId;
-	}
-
-	public void setPropertyId(String propertyId) {
-		this.propertyId = propertyId;
-	}
-
-	public String getTemplate() {
-		return template;
-	}
-
-	public void setTemplate(String template) {
-		this.template = template;
 	}
 
 	public static Map<String, ItemDocumentImpl> getAlreadyProcessedEntities() {
@@ -104,6 +94,14 @@ public abstract class AbstractGenerator {
 	
 	public static void addItem(String entity, ItemDocumentImpl item) {
 		alreadyProcessedEntities.put(entity, item);
+	}
+
+	public static String getLanguage() {
+		return LANGUAGE;
+	}
+
+	public ResourceBundle getMessages() {
+		return messages;
 	}
 
 }
