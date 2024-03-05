@@ -35,14 +35,14 @@ public class QuestionGenerator {
 		switch (type) {
 			case POPULATION: {
 				id = POP_ENTITIES[0];
-				generator = PopulationGenerator.getInstance();
+				generator = new PopulationGenerator();
 				moveUp(POP_ENTITIES);
 				POP_ENTITIES[POP_ENTITIES.length-1] = id;
 				break;
 			}
 			case CAPITAL: {
 				id = CAP_ENTITIES[0];
-				generator = CapitalGenerator.getInstance();
+				generator = new CapitalGenerator();
 				moveUp(CAP_ENTITIES);
 				CAP_ENTITIES[CAP_ENTITIES.length-1] = id;
 				break;
@@ -50,14 +50,14 @@ public class QuestionGenerator {
 			}
 			case SIZE: {
 				id = SIZE_ENTITIES[0];
-				generator = SizeGenerator.getInstance();
+				generator = new SizeGenerator();
 				moveUp(SIZE_ENTITIES);
 				SIZE_ENTITIES[SIZE_ENTITIES.length-1] = id;
 				break;
 			}
 			case LANGUAGE: {
 				id = LANG_ENTITIES[0];
-				generator = LanguageGenerator.getInstance();
+				generator = new LanguageGenerator();
 				moveUp(LANG_ENTITIES);
 				LANG_ENTITIES[LANG_ENTITIES.length-1] = id;
 				break;

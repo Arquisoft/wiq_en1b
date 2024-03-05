@@ -10,15 +10,20 @@ public class CapitalGenerator extends RightAnswerIsEntity {
 	// private final static String TEMPLATE = "What's the capital of %s?";
 	private final static String PROPERTY = "P36";
 	
-	private static CapitalGenerator capitalGenerator = null;
+	//This is for using as a singleton 
+	// private static CapitalGenerator capitalGenerator = null;
 	
-	public static CapitalGenerator getInstance() {
-		if(capitalGenerator == null)
-			capitalGenerator = new CapitalGenerator();
-		return capitalGenerator;
-	}
+	// public static CapitalGenerator getInstance() {
+	// 	if(capitalGenerator == null)
+	// 		capitalGenerator = new CapitalGenerator();
+	// 	return capitalGenerator;
+	// }
 	
-	private CapitalGenerator() {
+	// private CapitalGenerator() {
+	// 	super(PROPERTY);
+	// }
+
+	public CapitalGenerator(){
 		super(PROPERTY);
 	}
 
