@@ -1,8 +1,10 @@
 import './GameMenu.css';
+import { Link } from "react-router-dom";
+import QuestionView from '../questionView/QuestionView';
 export default function GameMenu() {
   return (
-    <div>
-      <h2>Game</h2>
+    <div className="divMenu">
+      <h2>Game Menu</h2>
       <ButtonHistoricalData />
       <ButtonNewGame />
     </div>
@@ -12,16 +14,18 @@ export default function GameMenu() {
   function ButtonHistoricalData() {
     function handleClick() {
       //ir a la vista de historical data
-      alert("Historical DAta");
+      alert("Historical Data");
     }
-    return <button onClick={handleClick}>Historical Data</button>;
+    return <button className="menuButton" onClick={handleClick}> View Historical Data</button>;
   }
   
   function ButtonNewGame() {
-    function handleClick() {
-      //ir a  la vista de la primera pregunta
-      alert("New game");
-    }
-    return <button onClick={handleClick}>Create New Game</button>;
+    return (
+      <>
+        <Link className="menuButton" to="/questions">
+        <button >Create New Game</button>
+        </Link>
+      </>
+      );
   }
   

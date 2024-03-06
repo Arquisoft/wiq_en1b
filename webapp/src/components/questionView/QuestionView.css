@@ -1,4 +1,4 @@
-button{
+.answerButton {
     width: 100%;
     height: 45px;
     background: darkblue;
@@ -12,7 +12,7 @@ button{
     font-weight: 700;
 }
 
-div {
+.answerPanel  {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     grid-template-rows: repeat(2, 1fr); /* 2 rows */
@@ -20,7 +20,7 @@ div {
 }
 
 /* Adjust width of child elements */
-div > * {
+.answerPanel div > * {
     width: 100%; /* Adjust as needed */
     margin:1em;
 }
