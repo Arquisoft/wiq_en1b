@@ -16,7 +16,7 @@ public class QuestionGeneratorService {
 		QuestionType.LANGUAGE};
 
 	public String getQuestions() {
-		QuestionGenerator qg = new QuestionGenerator();
+		QuestionGenerator qg = new QuestionGenerator("en");
 		List<String> toRet = new ArrayList<>();
 		for(QuestionType t : types) {
 			toRet.addAll(run(qg, t));

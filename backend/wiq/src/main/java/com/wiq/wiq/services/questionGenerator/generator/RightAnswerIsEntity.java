@@ -11,8 +11,8 @@ import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 public abstract class RightAnswerIsEntity extends AbstractGenerator {
 
-	public RightAnswerIsEntity(String propertyId, String template) {
-		super(propertyId, template);
+	public RightAnswerIsEntity(String propertyId) {
+		super(propertyId);
 	}
 
 	@Override

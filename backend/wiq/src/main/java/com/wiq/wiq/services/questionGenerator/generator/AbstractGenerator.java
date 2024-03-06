@@ -3,7 +3,9 @@ package com.wiq.wiq.services.questionGenerator.generator;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue;
@@ -16,16 +18,20 @@ import com.wiq.wiq.services.questionGenerator.question.Question;
 public abstract class AbstractGenerator {
 	
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
-	private static final String LANGUAGE = "en";
+	private String language = "en";
+
+	private Locale localization = Locale.getDefault();
+	private ResourceBundle messages;
 
 	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
-	private String template = "";
 
-	public AbstractGenerator(String propertyId, String template) {
+	private static final String MESSAGES_PATH = "com/wiq/wiq/services/questionGenerator/"+
+				"generator/rsc/messages";
+
+	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
-		this.template = template;
 	}
 	
 	/**
@@ -71,31 +77,16 @@ public abstract class AbstractGenerator {
 	}
 	
 	protected String getName(Map<String, MonolingualTextValue> names) {
-		MonolingualTextValue mtv = names.get(LANGUAGE);
+		MonolingualTextValue mtv = names.get(language);
 		return mtv.getText();
 	}
 	
-	protected String getQuestion(String name) {
-		return String.format(template, name);
-	}
-
+	protected abstract String getQuestion(String name);
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
 	protected abstract List<String> getWrongAnswers(String rightAnswer);
 
 	public String getPropertyId() {
 		return propertyId;
-	}
-
-	public void setPropertyId(String propertyId) {
-		this.propertyId = propertyId;
-	}
-
-	public String getTemplate() {
-		return template;
-	}
-
-	public void setTemplate(String template) {
-		this.template = template;
 	}
 
 	public static Map<String, ItemDocumentImpl> getAlreadyProcessedEntities() {
@@ -104,6 +95,37 @@ public abstract class AbstractGenerator {
 	
 	public static void addItem(String entity, ItemDocumentImpl item) {
 		alreadyProcessedEntities.put(entity, item);
+	}
+
+	public ResourceBundle getMessages() {
+		return messages;
+	}
+
+	public void setLocalization(String languageCode) {
+		if(languageCode==null)
+			languageCode = "en";
+		else
+			languageCode = languageCode.toLowerCase();
+		switch (languageCode) {
+			case "en":{
+				localize(languageCode);
+				break;
+			}
+			case "es":{
+				localize(languageCode);
+				break;
+			}
+			default:{
+				localize("en");
+				break;
+			}
+		}
+	}
+	
+	private void localize(String languageCode) {
+		this.language = languageCode;
+		this.localization = new Locale(languageCode);
+		this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
 	}
 
 }
