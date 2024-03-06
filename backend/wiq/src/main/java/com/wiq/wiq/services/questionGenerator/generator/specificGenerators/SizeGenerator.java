@@ -11,22 +11,7 @@ import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
 
 public class SizeGenerator extends AbstractGenerator {
 	
-	// private static final String TEMPLATE = "What's the size of %s?";
 	private final static String PROPERTY = "P2046";
-	
-	//This is for using as a singleton 
-	// private static SizeGenerator sizeGenerator = null;
-	
-	// public static SizeGenerator getInstance() {
-	// 	if(sizeGenerator==null)
-	// 		sizeGenerator = new SizeGenerator();
-	// 	return sizeGenerator;
-		
-	// }
-	
-	// private SizeGenerator() {
-	// 	super(PROPERTY);
-	// }
 
 	public SizeGenerator(){
 		super(PROPERTY);

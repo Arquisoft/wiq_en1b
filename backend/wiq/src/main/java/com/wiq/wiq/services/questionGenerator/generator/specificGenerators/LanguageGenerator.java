@@ -7,21 +7,7 @@ import com.wiq.wiq.services.questionGenerator.generator.RightAnswerIsEntity;
 
 public class LanguageGenerator extends RightAnswerIsEntity {
 	
-	// private static final String TEMPLATE = "What's the official language of %s?";
 	private final static String PROPERTY = "P37";
-	
-	//This is for using as a singleton 
-	// private static LanguageGenerator languageGenerator = null;
-	
-	// public static LanguageGenerator getInstance() {
-	// 	if(languageGenerator == null)
-	// 		languageGenerator = new LanguageGenerator();
-	// 	return languageGenerator;
-	// }
-	
-	// private LanguageGenerator() {
-	// 	super(PROPERTY);
-	// }
 
 	public LanguageGenerator(){
 		super(PROPERTY);

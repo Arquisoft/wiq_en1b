@@ -32,9 +32,6 @@ public abstract class AbstractGenerator {
 
 	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
-		// localization = Locale.ENGLISH;
-		// this.messages = ResourceBundle.getBundle("com/wiq/wiq/services/questionGenerator/"+
-		// "generator/rsc/messages", localization);
 	}
 	
 	/**
@@ -99,10 +96,6 @@ public abstract class AbstractGenerator {
 	public static void addItem(String entity, ItemDocumentImpl item) {
 		alreadyProcessedEntities.put(entity, item);
 	}
-
-	// public String getLanguage() {
-	// 	return language;
-	// }
 
 	public ResourceBundle getMessages() {
 		return messages;

@@ -7,21 +7,7 @@ import com.wiq.wiq.services.questionGenerator.generator.RightAnswerIsEntity;
 
 public class CapitalGenerator extends RightAnswerIsEntity {
 	
-	// private final static String TEMPLATE = "What's the capital of %s?";
 	private final static String PROPERTY = "P36";
-	
-	//This is for using as a singleton 
-	// private static CapitalGenerator capitalGenerator = null;
-	
-	// public static CapitalGenerator getInstance() {
-	// 	if(capitalGenerator == null)
-	// 		capitalGenerator = new CapitalGenerator();
-	// 	return capitalGenerator;
-	// }
-	
-	// private CapitalGenerator() {
-	// 	super(PROPERTY);
-	// }
 
 	public CapitalGenerator(){
 		super(PROPERTY);

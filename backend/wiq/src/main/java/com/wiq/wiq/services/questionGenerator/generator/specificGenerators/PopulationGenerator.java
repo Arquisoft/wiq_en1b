@@ -12,21 +12,7 @@ import com.wiq.wiq.services.questionGenerator.generator.AbstractGenerator;
 
 public class PopulationGenerator extends AbstractGenerator {
 	
-	// private final static String TEMPLATE = "What's the population of %s?";
 	private final static String PROPERTY = "P1082";
-	
-	//This is for using as a singleton 
-	// private static PopulationGenerator populationGenerator = null;
-	
-	// public static PopulationGenerator getInstance() {
-	// 	if(populationGenerator == null)
-	// 		populationGenerator = new PopulationGenerator();
-	// 	return populationGenerator;
-	// }
-	
-	// private PopulationGenerator() {
-	// 	super(PROPERTY);
-	// }
 
 	public PopulationGenerator(){
 		super(PROPERTY);
