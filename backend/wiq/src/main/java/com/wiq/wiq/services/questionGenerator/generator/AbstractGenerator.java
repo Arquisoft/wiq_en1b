@@ -109,7 +109,10 @@ public abstract class AbstractGenerator {
 	}
 
 	public void setLocalization(String languageCode) {
-		languageCode = languageCode.toLowerCase();
+		if(languageCode==null)
+			languageCode = "en";
+		else
+			languageCode = languageCode.toLowerCase();
 		switch (languageCode) {
 			case "en":{
 				localize(languageCode);
