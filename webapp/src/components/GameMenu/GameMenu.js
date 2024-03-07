@@ -1,29 +1,32 @@
 import './GameMenu.css';
 import { Link } from "react-router-dom";
-import QuestionView from '../questionView/QuestionView';
+import {useTranslation} from "react-i18next";
+
 export default function GameMenu() {
+  const[t, i18n] = useTranslation("global");
+
   return (
     <div className="divMenu">
-      <h2>Game Menu</h2>
-      <ButtonHistoricalData />
-      <ButtonNewGame />
+      <h2>{t("gameMenu.title")}</h2>
+      <ButtonHistoricalData t={t} />
+      <ButtonNewGame t={t}  />
     </div>
   );
   }
   
-  function ButtonHistoricalData() {
+  function ButtonHistoricalData({ t }) {
     function handleClick() {
       //ir a la vista de historical data
       alert("Historical Data");
     }
-    return <button className="menuButton" onClick={handleClick}> View Historical Data</button>;
+    return <button className="menuButton" onClick={handleClick}> {t("gameMenu.history_button")}</button>;
   }
   
-  function ButtonNewGame() {
+  function ButtonNewGame({t}) {
     return (
       <>
         <Link className="menuButton" to="/questions">
-        <button >Create New Game</button>
+        <h3> {t("gameMenu.new_game_button")}</h3>
         </Link>
       </>
       );

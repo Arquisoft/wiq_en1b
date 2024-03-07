@@ -41,6 +41,16 @@
         "repeat_password_placeholder": "Repeat password",
         "register_button": "Register",
         "login_link": "Do you have an account? Login here."
+      },
+      "gameMenu":{
+        "history_button":"View Historical Data",
+        "new_game_button":"Create New Game",
+        "title":"Game Menu"
+      },
+      "questionView":{
+        "seconds":"seconds",
+        "question_counter":"Question counter :",
+        "end_countdown":"Time's up!"
       }
 }
     
