@@ -22,13 +22,10 @@ export default function GameMenu() {
     return <button className="menuButton" onClick={handleClick}> {t("gameMenu.history_button")}</button>;
   }
   
-  function ButtonNewGame({t}) {
+  function ButtonNewGame({ t }) {
     return (
-      <>
-        <Link className="menuButton" to="/questions">
-        <h3> {t("gameMenu.new_game_button")}</h3>
-        </Link>
-      </>
-      );
+      <Link className="menuButton linkButton" to="/questions">
+        <h3>{t("gameMenu.new_game_button")}</h3>
+      </Link>
+    );
   }
-  
