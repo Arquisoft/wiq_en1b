@@ -1,3 +1,4 @@
+/*
 package com.wiq.wiq.services.questionGenerator;
 
 import com.wiq.wiq.services.questionGenerator.question.QuestionType;
@@ -23,3 +24,4 @@ public class Main {
 	}
 
 }
+*/

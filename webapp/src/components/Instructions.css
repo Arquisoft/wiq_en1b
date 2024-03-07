@@ -1,0 +1,21 @@
+
+main{
+    background-color: white;
+}  
+
+section {
+    text-align: justify;
+    background-color: white;
+}
+
+
+article ul p{
+    text-align: center;
+    background-color: lightblue;
+    font-size: large;
+}
+
+article ul li{
+    text-align: justify;
+    background-color: white;
+}

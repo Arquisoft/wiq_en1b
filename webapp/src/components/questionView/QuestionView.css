@@ -1,0 +1,29 @@
+button{
+    width: 100%;
+    height: 45px;
+    background: darkblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 10px; /* Adjust the gap between grid items */
+}
+
+/* Adjust width of child elements */
+div > * {
+    width: 100%; /* Adjust as needed */
+    margin:1em;
+}
+p{
+    text-align: center;
+}
