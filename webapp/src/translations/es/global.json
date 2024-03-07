@@ -45,6 +45,15 @@
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
           "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí."
+    },
+     "gameMenu":{
+      "history_button":"Ver Historial",
+      "new_game_button":"Crear nuevo juego",
+      "title":"Menú del Juego"
+    },"questionView":{
+      "seconds":"segundos",
+      "question_counter":"Número de pregunta : ",
+      "end_countdown":"¡Se acabó el tiempo!"
     }
       
     
