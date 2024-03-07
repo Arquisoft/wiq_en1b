@@ -3,6 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
+import "../../custom.css";
 
 const Login = () => {
   const { t } = useTranslation("global");

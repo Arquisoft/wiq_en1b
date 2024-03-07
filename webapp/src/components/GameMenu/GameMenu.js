@@ -1,6 +1,5 @@
-import './GameMenu.css';
+import "../../custom.css";
 import { Link } from "react-router-dom";
-import QuestionView from '../questionView/QuestionView';
 export default function GameMenu() {
   return (
     <div className="divMenu">
@@ -22,8 +21,8 @@ export default function GameMenu() {
   function ButtonNewGame() {
     return (
       <>
-        <Link className="menuButton" to="/questions">
-        <button >Create New Game</button>
+        <Link  to="/questions">
+          <button className='create-game'>Create New Game</button>
         </Link>
       </>
       );

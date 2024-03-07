@@ -1,11 +1,8 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from 'react-router-dom';
-import "./Home.css";
+import "../../custom.css";
 import {useTranslation} from "react-i18next";
-
-import "./Home.css";
 
 
 function Home() {

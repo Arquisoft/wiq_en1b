@@ -1,7 +1,6 @@
-import Question from './Question';
 import QuestionGenerator from './QuestionGenerator';
 import { useEffect, useState } from 'react';
-import './QuestionView.css';
+import "../../custom.css";
 
 
 function QuestionView(){
@@ -30,7 +29,7 @@ function QuestionView(){
     useEffect(() => {generateQuestions(numQuestion)}, []);
     
     return (
-    <div className="">
+    <div className="question-view-container">
         {/*Nav*/}
         {numQuestion >= 0 ? 
         <QuestionComponent questions={questions} numQuestion={numQuestion} handleClick={handleClick}/> :

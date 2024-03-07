@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/Instructions.css';
+import '../custom.css';
 import {useTranslation} from "react-i18next";
 
 
