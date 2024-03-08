@@ -29,19 +29,20 @@ public class QuestionGeneratorTests {
 	void testGenerateQuestionsEnglish() {
 
         String question;
-        JSONObject json;
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
                 question = qgEN.generateQuestion(t);
+                JSONObject json = null;
 
                 //Check correct format
                 try {
                     json = new JSONObject(question);
                 } catch (JSONException e) {
                     fail("Not a JSON");
-                    return;
                 }
+
+                assertNotNull(json, "JSONObject was not initialized");
 
                 //Check for expected fields
                 try {
@@ -73,19 +74,20 @@ public class QuestionGeneratorTests {
 	void testGenerateQuestionsSpanish() {
 
         String question;
-        JSONObject json;
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
                 question = qgES.generateQuestion(t);
+                JSONObject json = null;
 
                 //Check correct format
                 try {
                     json = new JSONObject(question);
                 } catch (JSONException e) {
                     fail("Not a JSON");
-                    return;
                 }
+
+                assertNotNull(json, "JSONObject was not initialized");
 
                 //Check for expected fields
                 try {
