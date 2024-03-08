@@ -8,6 +8,9 @@ import com.wiq.wiq.services.questionGenerator.question.QuestionType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +65,14 @@ public class QuestionGeneratorTests {
 
                     // Check if the array has size 4
                     assertEquals(4, answersArray.length(), "There aren't 4 answers");
+
+                    // Check for unique answers
+                    List<String> seenAnswers = new LinkedList<String>();
+                    for (int j = 0; j < answersArray.length(); j++) {
+                        String answer = answersArray.getString(j);
+                        assertFalse(seenAnswers.contains(answer), "Answer: " + answer + " is duplicated");
+                        seenAnswers.add(answer);
+                    }
                 } catch (JSONException e) {
                     fail("Exception occurred while parsing JSON: " + e.getMessage());
                 }
@@ -107,6 +118,14 @@ public class QuestionGeneratorTests {
 
                     // Check if the array has size 4
                     assertEquals(4, answersArray.length(), "There aren't 4 answers");
+
+                    // Check for unique answers
+                    List<String> seenAnswers = new LinkedList<String>();
+                    for (int j = 0; j < answersArray.length(); j++) {
+                        String answer = answersArray.getString(j);
+                        assertFalse(seenAnswers.contains(answer), "Answer: " + answer + " is duplicated");
+                        seenAnswers.add(answer);
+                    }
                 } catch (JSONException e) {
                     fail("Exception occurred while parsing JSON: " + e.getMessage());
                 }
