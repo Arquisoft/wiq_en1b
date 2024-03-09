@@ -46,8 +46,6 @@
       build: ./backend/wiq
       ports:
         - "8090:8090"
-      networks:
-        - mynetwork
 
     gatewayservice:
       container_name: gatewayservice-${teamname:-defaultASW}
