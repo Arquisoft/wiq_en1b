@@ -1,18 +1,18 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from 'react-router-dom';
-import "./Home.css";
+import "../../custom.css";
+import {useTranslation} from "react-i18next";
 
-
-import "./Home.css";
 
 function Home() {
+
+  const[t, i18n] = useTranslation("global");
 
   return (
     <div className="wrapper">
       <h1 variant="h3" align="center">
-        Welcome to WIQ!
+        {t("home.welcome")}
       </h1>
       <ButtonHowToPlay />
       <p></p>
@@ -26,24 +26,22 @@ function Home() {
   );
 
 
-}
+  function ButtonHowToPlay() {
+    return (
+      <Link to="/instructions" className="button-instructions">
+          <Button>
+          {t("home.how_to_play")}
+        </Button>
+        </Link>
+    );
+  
+  }
 
-
-function ButtonHowToPlay() {
-  return (
-    <Link to="/instructions" className="button-instructions">
-        <Button>
-        How to play?
-      </Button>
-      </Link>
-  );
-
-}
-
+  
 function ButtonLogin() {
   return (
     <Link to="/login" className="button-login">
-        <Button>Login</Button>
+        <Button> {t("home.login")}</Button>
       </Link>
   );
 
@@ -56,9 +54,12 @@ function LinkRegister() {
         component="button-register"
         variant="body2"
       >
-        Don't have an account? Register here.
+        {t("home.register")}
       </Link>
   );
 
 }
+}
+
+
 export default Home;

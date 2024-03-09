@@ -1,29 +1,31 @@
-// src/components/AddUser.js
-import React, { useState } from "react";
+import React from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import "./Login.css";
+import "../../custom.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const AddUser = () => {
+  const { t } = useTranslation("global");
+
   return (
     <div className="wrapper">
       <form action="">
         <div className="wrapper2">
-          <h1> Register </h1>
+          <h1>{t("addUser.title")}</h1>
           <div className="input-box">
-            <input type="text" placeholder="Username" required />
+            <input type="text" placeholder={t("addUser.username_placeholder")} required />
             <FaUser className="icon" />
           </div>
           <div className="input-box">
-            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder={t("addUser.password_placeholder")} required />
             <FaLock className="icon" />
           </div>
           <div className="input-box">
-            <input type="password" placeholder="Repeat password" required />
+            <input type="password" placeholder={t("addUser.repeat_password_placeholder")} required />
             <FaLock className="icon" />
           </div>
 
-          <button type="submit">Register</button>
+          <button type="submit">{t("addUser.register_button")}</button>
 
           <LinkLogin />
         </div>
@@ -33,12 +35,16 @@ const AddUser = () => {
 };
 
 function LinkLogin() {
+  const { t } = useTranslation("global");
   return (
     <Link to="/login" className="button-login" variant="body2" >
-      Do you have an account? Login here.
+      {t("addUser.login_link")}
     </Link>
   );
 }
+
+export default AddUser;
+
 //   const [username, setUsername] = useState('');
 //   const [password, setPassword] = useState('');
 //   const [error, setError] = useState('');
@@ -90,4 +96,3 @@ function LinkLogin() {
 //   );
 // };
 
-export default AddUser;

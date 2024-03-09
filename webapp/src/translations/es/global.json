@@ -1,0 +1,61 @@
+{
+    "home": {
+        "welcome": "¡Bienvenido a WIQ!",
+    "how_to_play": "¿Cómo jugar?",
+    "login": "Iniciar sesión",
+    "register": "¿No tienes una cuenta? Regístrate aquí."
+    },
+
+    "navBar": {
+        "title": "¡Saber y ganar!"
+      },
+
+      "instructions": {
+        "title": "Instrucciones de WIQ",
+        "objective": "Objetivo:",
+        "objective_p1": "El objetivo del juego es responder tantas preguntas correctamente como sea posible.",
+        "how_to_play": "Cómo Jugar:",
+        "how_to_play_p1": "El juego consiste en una serie de preguntas.",
+        "how_to_play_p2": "Lee cada pregunta cuidadosamente.",
+        "how_to_play_p3": "Elige la respuesta correcta de las opciones proporcionadas.",
+        "how_to_play_p4": "Haz clic o toca tu respuesta seleccionada para enviarla.",
+    
+        "scoring": "Puntuación:",
+        "scoring_p1": "Cada respuesta correcta te otorga x puntos.",
+        "scoring_p2": "Las respuestas incorrectas no restan puntos.",
+        "time_limit": "Límite de Tiempo:",
+        "time_limit_p1": "Algunos modos de juego pueden tener un límite de tiempo para responder cada pregunta. Sé rápido y preciso para maximizar tu puntuación.",
+        "have_fun": "¡Diviértete!",
+        "have_fun_p1": "¡Disfruta del juego y pon a prueba tus conocimientos. Buena suerte!"
+    },
+    "login": {
+        "title": "Inicio de sesión",
+        "username_placeholder": "Nombre de usuario",
+        "password_placeholder": "Contraseña",
+        "remember_me": "Recordarme",
+        "forgot_password": "¿Olvidaste tu contraseña?",
+        "login_button": "Iniciar sesión",
+        "register_link": "¿No tienes una cuenta? Regístrate aquí."
+      },
+    
+    "addUser": {
+          "title": "Registrar",
+          "username_placeholder": "Nombre de usuario",
+          "password_placeholder": "Contraseña",
+          "repeat_password_placeholder": "Repetir contraseña",
+          "register_button": "Registrarse",
+          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí."
+    },
+     "gameMenu":{
+      "history_button":"Ver Historial",
+      "new_game_button":"Crear nuevo juego",
+      "title":"Menú del Juego"
+    },"questionView":{
+      "seconds":"segundos",
+      "question_counter":"Número de pregunta : ",
+      "end_countdown":"¡Se acabó el tiempo!"
+    }
+      
+    
+  }
+  

@@ -1,0 +1,375 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  .App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .navbar-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: blue;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  main {
+    width: 100%;
+  }
+  
+  .navbar-container img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .navbar-text {
+    color: white;
+  }
+
+
+  .help-button {
+    border: none;
+    background: none;
+
+  }
+
+  .en-button, .es-button{
+    margin-right: 10px;
+    background: rgb(171, 171, 221);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    margin: 0.5em;
+  }
+
+  .right-nav{
+    display: flex;
+  }
+
+  
+  
+  .help-button img {
+    width: 40px; 
+    height: 40px;
+  }
+  
+
+  .menuButton {
+    width: 40%;
+    height: 45px;
+    background: darkblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    margin: 0.5em;
+    text-align: center;
+  }
+  
+  .countdown {
+    font-weight: 500;
+    margin: 3em;
+  }
+  
+  .topPanel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .divMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+ .menuButton{
+    width: 200px; 
+    height: 45px; 
+    background: darkblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    margin: 0.5em;
+    text-decoration: none;
+ }
+
+ .linkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 45px;
+  background: darkblue;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  margin: 0.5em;
+  text-decoration: none;
+}
+
+  
+
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .wrapper button{
+    width: 100%;
+    height: 45px;
+    background: darkblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+  }
+
+  .wrapper link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+  }
+
+  
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: lightblue;
+}
+
+.wrapper2{
+    width: 420px;
+    background-color: blue;
+    color: white;
+    border-style: 10px;
+    padding: 30px 40px;
+    border-radius: 15%;
+}
+
+.wrapper2 h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper2 .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: lightblue;
+    border: none;
+    outline: none;
+    border: 2px solid gray;
+    border-radius: 40px;
+    font-size: 14.5px;
+    color: black;
+}
+
+.input-box input::placeholder{
+    background-color: lightblue;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.wrapper2 .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input{
+    accent-color: white;
+    margin-right: 4px;
+}
+
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.wrapper2 button{
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 700;
+}
+
+.button-register {
+    color: aliceblue; 
+  }
+
+  .button-login {
+    color: aliceblue; 
+  }
+
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+.answerButton {
+    width: 100%;
+    height: 45px;
+    background: darkblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+.answerPanel  {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 10px; /* Adjust the gap between grid items */
+
+}
+
+/* Adjust width of child elements */
+.answerPanel div > * {
+    width: 100%; /* Adjust as needed */
+    margin:1em;
+}
+
+p{
+    text-align: center;
+}
+ 
+
+.question-view-container, .answerPanel {
+  background-color: lightblue; 
+  padding: 20px; 
+}
+
+.Instructions-container {
+  background-color: #eaf6ff; /* Cambia este valor al color de azul que prefieras */
+  padding: 20px; /* Añade un poco de espacio alrededor del contenido */
+}
+
+.instructions_title{
+  background-color: darkblue;
+  color: white;
+}
+
+.ins_ul p{
+  background-color: blue;
+  color: white;
+}
+
+.Instructions{
+  background-color: lightblue;
+}
+

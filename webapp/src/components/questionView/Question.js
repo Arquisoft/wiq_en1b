@@ -1,3 +1,5 @@
+import "../../custom.css";
+
 class Question{
     constructor(json){
         this.question = json.question;
