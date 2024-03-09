@@ -41,10 +41,13 @@
 
     backend:
       container_name: backend_wiq-${teamname:-defaultASW}
+      image: ghcr.io/arquisoft/wiq_en1b/backend:latest
       profiles: ["dev", "prod"]
       build: ./backend/wiq
       ports:
-        - 8090:8090
+        - "8090:8090"
+      networks:
+        - mynetwork
 
     gatewayservice:
       container_name: gatewayservice-${teamname:-defaultASW}
