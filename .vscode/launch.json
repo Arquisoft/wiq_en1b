@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.wiq.wiq.services.questionGenerator.Main",
+            "projectName": "wiq"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-WiqApplication<wiq>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

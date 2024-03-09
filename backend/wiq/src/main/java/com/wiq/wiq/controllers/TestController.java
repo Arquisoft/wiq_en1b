@@ -3,19 +3,23 @@ package com.wiq.wiq.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wiq.wiq.services.TestService;
+import com.wiq.wiq.services.QuestionGeneratorService;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class TestController {
-    private TestService t;
 
-    public TestController(TestService t){
-        this.t = t;
+    private QuestionGeneratorService questionGeneratorService;
+
+    public TestController(QuestionGeneratorService questionGeneratorService){
+        this.questionGeneratorService = questionGeneratorService;
     }
 
-
-    @RequestMapping("/test") //http://localhost:8090/test
-    public String getList() {
-    return t.getTest().getName();
+    @RequestMapping("/question")
+    public String requestMethodName() {
+        return questionGeneratorService.getQuestions();
     }
+    
 }

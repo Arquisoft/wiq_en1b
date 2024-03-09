@@ -1,6 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Container from '@mui/material/Container';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
@@ -9,6 +7,7 @@ import Login from './components/loginAndRegistration/Login';
 import AddUser from './components/loginAndRegistration/AddUser';
 import Instructions from './components/Instructions'; 
 import './custom.css';
+
 
 function App() {
   return (
