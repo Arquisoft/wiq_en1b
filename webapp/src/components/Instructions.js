@@ -10,17 +10,17 @@ function Instructions() {
 
   return (
     <div>
-      <h1>{t("instructions.title")}</h1>
+      <h1 className='instructions_title'>{t("instructions.title")}</h1>
      <section>   
       <article>
-            <ul><p>{t("instructions.objective")}</p>
+            <ul className='ins_ul'><p>{t("instructions.objective")}</p>
               <li>
               {t("instructions.objective_p1")}
               </li>
             </ul>
       </article>   
       <article>
-            <ul><p>{t("instructions.how_to_play")}</p>
+            <ul className='ins_ul'><p>{t("instructions.how_to_play")}</p>
                     <li>
                     {t("instructions.how_to_play_p1")}
                     </li>
@@ -36,7 +36,7 @@ function Instructions() {
             </ul>
       </article>   
       <article>
-      <ul><p>{t("instructions.scoring")}</p><li>
+      <ul className='ins_ul'><p>{t("instructions.scoring")}</p><li>
       {t("instructions.scoring_p1")}</li>
               <li>
               {t("instructions.scoring_p2")}
@@ -44,12 +44,12 @@ function Instructions() {
             </ul>
       </article>
           <article>
-          <ul><p>{t("instructions.time_limit")}</p><li>
+          <ul className='ins_ul'><p>{t("instructions.time_limit")}</p><li>
           {t("instructions.time_limit_p1")}
               </li></ul>
           </article>
             <article>
-            <ul><p>{t("instructions.have_fun")}</p>
+            <ul className='ins_ul'><p>{t("instructions.have_fun")}</p>
               <li>
               {t("instructions.have_fun_p1")}
               </li>

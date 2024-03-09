@@ -335,7 +335,6 @@ body {
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     grid-template-rows: repeat(2, 1fr); /* 2 rows */
     gap: 10px; /* Adjust the gap between grid items */
-   
 
 }
 
@@ -344,6 +343,7 @@ body {
     width: 100%; /* Adjust as needed */
     margin:1em;
 }
+
 p{
     text-align: center;
 }
@@ -354,15 +354,22 @@ p{
   padding: 20px; 
 }
 
+.Instructions-container {
+  background-color: #eaf6ff; /* Cambia este valor al color de azul que prefieras */
+  padding: 20px; /* Añade un poco de espacio alrededor del contenido */
+}
 
+.instructions_title{
+  background-color: darkblue;
+  color: white;
+}
 
+.ins_ul p{
+  background-color: blue;
+  color: white;
+}
 
+.Instructions{
+  background-color: lightblue;
+}
 
-  
-
-
-  
-
-
-  
-      
