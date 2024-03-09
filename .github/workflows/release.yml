@@ -56,22 +56,6 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ghcr.io
         workdir: users/userservice
-  docker-push-gatewayservice:
-    name: Push gateway service Docker Image to GitHub Packages
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-    - uses: actions/checkout@v4
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@v5
-      with:
-        name: arquisoft/wiq_en1b/gatewayservice
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: ghcr.io
-        workdir: gatewayservice
   docker-push-backend:
     name: Push backend Docker Image to GitHub Packages
     runs-on: ubuntu-latest
@@ -88,10 +72,26 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ghcr.io
         workdir: backend/wiq
-  deploy:
+  docker-push-gatewayservice:
+    name: Push gateway service Docker Image to GitHub Packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@v5
+      with:
+        name: arquisoft/wiq_en1b/gatewayservice
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ghcr.io
+        workdir: gatewayservice
+    deploy:
     name: Deploy over SSH
     runs-on: ubuntu-latest
-    needs: [docker-push-userservice,docker-push-authservice,docker-push-gatewayservice,docker-push-webapp,docker-push-backend]
+    needs: [docker-push-backend, docker-push-userservice,docker-push-authservice,docker-push-gatewayservice,docker-push-webapp]
     steps:
     - name: Deploy over SSH
       uses: fifsky/ssh-action@master

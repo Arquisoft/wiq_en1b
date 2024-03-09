@@ -42,9 +42,7 @@
     backend:
       container_name: backend_wiq-${teamname:-defaultASW}
       profiles: ["dev", "prod"]
-      build:
-        context: ./backend/wiq
-        dockerfile: Dockerfile
+      build: ./backend/wiq
       ports:
         - 8090:8090
 
