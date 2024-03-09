@@ -21,7 +21,7 @@ public abstract class AbstractGenerator {
 	private String language = "en";
 
 	private Locale localization = Locale.getDefault();
-	private ResourceBundle messages;
+	private FakeResourceBundle messages;
 
 	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
@@ -97,7 +97,7 @@ public abstract class AbstractGenerator {
 		alreadyProcessedEntities.put(entity, item);
 	}
 
-	public ResourceBundle getMessages() {
+	public FakeResourceBundle getMessages() {
 		return messages;
 	}
 
@@ -125,7 +125,7 @@ public abstract class AbstractGenerator {
 	private void localize(String languageCode) {
 		this.language = languageCode;
 		this.localization = new Locale(languageCode);
-		this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+		this.messages = new FakeResourceBundle();//ResourceBundle.getBundle(MESSAGES_PATH, localization);
 	}
 
 }

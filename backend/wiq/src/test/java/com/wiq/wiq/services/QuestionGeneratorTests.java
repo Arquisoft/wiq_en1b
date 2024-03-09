@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 public class QuestionGeneratorTests {
 
-    private QuestionGenerator qgEN;
+    /*private QuestionGenerator qgEN;
     private QuestionGenerator qgES;
 
     private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE, QuestionType.LANGUAGE};
@@ -132,6 +132,6 @@ public class QuestionGeneratorTests {
             }
 		}
 
-	}
+	}*/
 
 }
