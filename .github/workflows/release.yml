@@ -103,4 +103,4 @@ jobs:
           wget https://raw.githubusercontent.com/arquisoft/wiq_en1b/master-copy/docker-compose.yml -O docker-compose.yml
           wget https://raw.githubusercontent.com/arquisoft/wiq_en1b/master-copy/.env
           docker compose down
-          docker compose --profile prod up -d
+          docker compose --profile dev up --build
