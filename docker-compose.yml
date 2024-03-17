@@ -13,7 +13,7 @@
 
     questionGenerator:
       container_name: questionGenerator-${teamname:-defaultASW}
-      image: ghcr.io/arquisoft/wiq_en1b/questionGenerator:latest
+      image: ghcr.io/arquisoft/wiq_en1b/questiongenerator:latest
       profiles: ["dev", "prod"]
       build: ./questionGenerator
       depends_on:
