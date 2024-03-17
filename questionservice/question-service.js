@@ -12,10 +12,18 @@ mongoose.connect(mongoUri);
 app.get('/questions',  async (req, res) => {
     try {    
         // Find the question by it's number
-        const question = await Question.findOne({ number : '0' });
+        const questions = await Question.find({});
         //const question = await Question.find({number: { $in: ['0', '1']}}); And I can find many that way
 
-        res.json({question: question.question, answers: question.answers});
+        let jsonResult = {};
+        for (let i = 0; i < questions.length; i++) {
+            const question = questions[i];
+            jsonResult[i] = {
+                question : question.question,
+                answers : question.answers
+            }
+        }
+        res.json(jsonResult);
       } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
       }
