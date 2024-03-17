@@ -1,26 +1,47 @@
-// NavBar.js
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from "@mui/material/Typography";
 import { Link } from 'react-router-dom';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import "../../custom.css";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
 
-  const[t, i18n] = useTranslation("global");
+  const [t, i18n] = useTranslation("global");
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleLanguageMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLanguageMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+    handleLanguageMenuClose();
+  };
 
   return (
     <div className="navbar-container">
       <Profile />
       <Typography variant="h6" gutterBottom className="navbar-text">
-      {t("navBar.title")}
+        {t("navBar.title")}
       </Typography>
       <div className='right-nav'>
-        <button className="en-button" onClick={()=> i18n.changeLanguage("en")}>EN</button>
-        <button className="es-button" onClick={()=> i18n.changeLanguage("es")}>ES</button>
+        <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleLanguageMenuClose}
+        >
+          <MenuItem onClick={() => changeLanguage("en")}> {t("navBar.en")}</MenuItem>
+          <MenuItem onClick={() => changeLanguage("es")}>{t("navBar.es")}</MenuItem>
+        </Menu>
         <Help />
       </div>
-      
     </div>
   );
 }

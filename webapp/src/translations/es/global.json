@@ -7,7 +7,10 @@
     },
 
     "navBar": {
-        "title": "¡Saber y ganar!"
+        "title": "¡Saber y ganar!",
+        "en": "Inglés",
+        "es": "Español",
+        "language": "Idioma"
       },
 
       "instructions": {

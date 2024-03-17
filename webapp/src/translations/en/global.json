@@ -6,7 +6,10 @@
       "register": "Don't have an account? Register here."
     },
     "navBar": {
-      "title": "Know and win!"
+      "title": "Know and win!",
+      "en": "English",
+      "es": "Spanish",
+      "language": "Language"
     },
     "instructions": {
         "title": "WIQ Instructions",
