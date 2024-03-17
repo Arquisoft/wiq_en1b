@@ -11,6 +11,18 @@
       networks:
         - mynetwork
 
+    questiongenerator:
+      container_name: questiongenerator-${teamname:-defaultASW}
+      image: ghcr.io/arquisoft/wiq_en1b/questiongenerator:latest
+      profiles: ["dev", "prod"]
+      build: ./questiongenerator
+      depends_on:
+        - mongodb
+      networks:
+        - mynetwork
+      environment:
+        MONGODB_URI_QUESTIONS: mongodb://mongodb:27017/questions
+
     authservice:
       container_name: authservice-${teamname:-defaultASW}
       image: ghcr.io/arquisoft/wiq_en1b/authservice:latest
@@ -39,14 +51,19 @@
       environment:
         MONGODB_URI: mongodb://mongodb:27017/userdb
 
-    backend:
-      container_name: backend_wiq-${teamname:-defaultASW}
+    questionservice:
+      container_name: questionservice-${teamname:-defaultASW}
+      image: ghcr.io/arquisoft/wiq_en1b/questionservice:latest
       profiles: ["dev", "prod"]
-      build:
-        context: ./backend/wiq
-        dockerfile: Dockerfile
+      build: ./questionservice
+      depends_on:
+        - mongodb
       ports:
-        - 8090:8090
+        - "8003:8003"
+      networks:
+        - mynetwork
+      environment:
+        MONGODB_URI_QUESTIONS: mongodb://mongodb:27017/questions
 
     gatewayservice:
       container_name: gatewayservice-${teamname:-defaultASW}
@@ -57,7 +74,7 @@
         - mongodb
         - userservice
         - authservice
-        - backend
+        - questionservice
       ports:
         - "8000:8000"
       networks:
@@ -65,6 +82,7 @@
       environment:
         AUTH_SERVICE_URL: http://authservice:8002
         USER_SERVICE_URL: http://userservice:8001
+        QUESTION_SERVICE_URL: http://questionservice:8003
 
     webapp:
       container_name: webapp-${teamname:-defaultASW}

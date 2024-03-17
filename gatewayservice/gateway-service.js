@@ -8,7 +8,7 @@ const port = 8000;
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
-const backendServiceUrl = process.env.BACKEND_SERVICE_URL || 'http://localhost:8090';
+const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
 
 app.use(cors());
 app.use(express.json());
@@ -42,15 +42,15 @@ app.post('/adduser', async (req, res) => {
   }
 });
 
-/*app.get('/question', async (req, res) => {
+app.get('/questions', async (req, res) => {
   try {
-    // Forward the add backend request to the backend service
-    const backendResponse = await axios.get(backendServiceUrl+'/question', req.body);
-    res.json(backendResponse.data);
+    // Forward the question request to the quetion service
+    const quetionResponse = await axios.get(questionServiceUrl+'/questions', req.params);
+    res.send(quetionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }
-});*/
+});
 
 // Start the gateway service
 const server = app.listen(port, () => {
