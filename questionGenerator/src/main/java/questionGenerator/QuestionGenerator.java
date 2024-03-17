@@ -5,6 +5,7 @@ import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator
 import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
 import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
 import main.java.questionGenerator.generator.specificGenerators.SizeGenerator;
+import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 
@@ -24,11 +25,10 @@ public class QuestionGenerator {
 		this.languageCode = languageCode;
 	}
 	
-	public String generateQuestion(QuestionType type) {
+	public Question generateQuestion(QuestionType type) {
 		generatorFactory(type);
 		generator.setLocalization(languageCode);
-		String answer = generator.generate(id).getJSON().toString();
-		return answer;
+		return generator.generate(id);
 	}	
 	
 	private void generatorFactory(QuestionType type) {

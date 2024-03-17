@@ -1,7 +1,9 @@
 package main.java;
 
 import main.java.questionGenerator.QuestionGenerator;
+import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
+import main.java.questionGenerator.repository.QuestionRepository;
 
 public class Main {
 
@@ -9,7 +11,7 @@ public class Main {
 		QuestionType.LANGUAGE};
 
 	public static void main(String[] args) {
-		System.out.println("Ahora en Español");
+		System.out.println("Ahora en Espaï¿½ol");
 		QuestionGenerator qg = new QuestionGenerator("es");
 		for(QuestionType t : types) {
 			run(qg, t);
@@ -32,7 +34,10 @@ public class Main {
 	
 	private static void run(QuestionGenerator qg, QuestionType type) {
 		for(int i=0; i<3; i++) {
-			System.out.println(qg.generateQuestion(type));
+			Question question = qg.generateQuestion(type);
+			question.setNumber(i);
+			QuestionRepository.getInstance().insertOne(question.getJSON().toString());
+			System.out.println(question.getJSON().toString());
 		}
 	}
 

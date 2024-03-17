@@ -5,6 +5,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "main.java.Main",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "main.java.Main",
             "projectName": "questionGenerator"
         },
         {
