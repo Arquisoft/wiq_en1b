@@ -1,5 +1,4 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa";
 import "../../custom.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,28 +7,37 @@ const AddUser = () => {
   const { t } = useTranslation("global");
 
   return (
-    <div className="wrapper">
-      <form action="">
-        <div className="wrapper2">
+    <div className="card">
+      <div className="card2">
+        <form className="form">
           <h1>{t("addUser.title")}</h1>
           <div className="input-box">
-            <input type="text" placeholder={t("addUser.username_placeholder")} required />
-            <FaUser className="icon" />
+            <input
+              type="text"
+              placeholder={t("addUser.username_placeholder")}
+              required
+            />
           </div>
           <div className="input-box">
-            <input type="password" placeholder={t("addUser.password_placeholder")} required />
-            <FaLock className="icon" />
+            <input
+              type="password"
+              placeholder={t("addUser.password_placeholder")}
+              required
+            />
           </div>
           <div className="input-box">
-            <input type="password" placeholder={t("addUser.repeat_password_placeholder")} required />
-            <FaLock className="icon" />
+            <input
+              type="password"
+              placeholder={t("addUser.repeat_password_placeholder")}
+              required
+            />
           </div>
 
           <button type="submit">{t("addUser.register_button")}</button>
 
           <LinkLogin />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
@@ -37,7 +45,7 @@ const AddUser = () => {
 function LinkLogin() {
   const { t } = useTranslation("global");
   return (
-    <Link to="/login" className="button-login" variant="body2" >
+    <Link to="/login" className="button-login" variant="body2">
       {t("addUser.login_link")}
     </Link>
   );
@@ -95,4 +103,3 @@ export default AddUser;
 //     </Container>
 //   );
 // };
-

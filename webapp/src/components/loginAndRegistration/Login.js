@@ -11,30 +11,24 @@ const Login = () => {
     <div className="card">
       <div className="card2">
         <form className="form">
-          
-            <h1>{t("login.title")}</h1>
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder={t("login.username_placeholder")}
-              />
-            </div>
-            <div className="input-box">
-              <input
-                type="password"
-                placeholder={t("login.password_placeholder")}
-              />
-            </div>
+          <h1>{t("login.title")}</h1>
+          <div className="input-box">
+            <input type="text" placeholder={t("login.username_placeholder")} />
+          </div>
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder={t("login.password_placeholder")}
+            />
+          </div>
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" /> {t("login.remember_me")}
+            </label>
+          </div>
 
-            <div className="remember-forgot">
-              <label>
-                <input type="checkbox" /> {t("login.forgot_password")}
-              </label>
-              <a href="#">{t("login.remember_me")}</a>
-            </div>
-
-            <ButtonMenu />
-            <LinkRegister />
+          <ButtonMenu />
+          <LinkRegister />
         </form>
       </div>
     </div>
@@ -45,7 +39,7 @@ function ButtonMenu() {
   const { t } = useTranslation("global");
   return (
     <Link to="/menu" className="button-menu">
-      <Button>{t("login.login_button")}</Button>
+      <button type="submit">{t("login.login_button")}</button>
     </Link>
   );
 }
