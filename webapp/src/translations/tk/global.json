@@ -1,0 +1,67 @@
+{
+    "home": {
+      "welcome": "WIQ'e hoş geldiniz!",
+      "how_to_play": "Nasıl oynanır?",
+      "login": "Giriş yap",
+      "register": "Hesabınız yok mu? Buradan kaydolun."
+    },
+  
+    "navBar": {
+      "title": "Bil ve Kazan!",
+      "en": "İngilizce",
+      "es": "İspanyolca",
+      "tk": "Türkçe",
+      "language": "Dil"
+    },
+  
+    "instructions": {
+      "title": "WIQ Talimatları",
+      "objective": "Amaç:",
+      "objective_p1": "Oyunun amacı mümkün olduğunca çok soruyu doğru cevaplamaktır.",
+      "how_to_play": "Nasıl Oynanır:",
+      "how_to_play_p1": "Oyun bir dizi sorudan oluşur.",
+      "how_to_play_p2": "Her soruyu dikkatlice oku.",
+      "how_to_play_p3": "Verilen seçeneklerden doğru cevabı seç.",
+      "how_to_play_p4": "Seçtiğin cevabı göndermek için tıkla veya dokun.",
+      
+      "scoring": "Puanlama:",
+      "scoring_p1": "Her doğru cevap x puan kazandırır.",
+      "scoring_p2": "Yanlış cevaplar puanları düşürmez.",
+      "time_limit": "Zaman Sınırlaması:",
+      "time_limit_p1": "Bazı oyun modları her soruya cevap verme için bir zaman sınırlamasına sahip olabilir. Puanını maksimize etmek için hızlı ve doğru ol.",
+      "have_fun": "İyi Eğlenceler!",
+      "have_fun_p1": "Oyunun tadını çıkar ve bilgilerini test et. İyi şanslar!"
+    },
+    
+    "login": {
+      "title": "Giriş Yap",
+      "username_placeholder": "Kullanıcı adı",
+      "password_placeholder": "Şifre",
+      "remember_me": "Beni hatırla",
+      "forgot_password": "Şifrenizi mi unuttunuz?",
+      "login_button": "Giriş yap",
+      "register_link": "Hesabınız yok mu? Buradan kaydolun."
+    },
+  
+    "addUser": {
+      "title": "Kaydol",
+      "username_placeholder": "Kullanıcı adı",
+      "password_placeholder": "Şifre",
+      "repeat_password_placeholder": "Şifreyi tekrar girin",
+      "register_button": "Kaydol",
+      "login_link": "Zaten bir hesabınız mı var? Buradan giriş yapın."
+    },
+  
+    "gameMenu": {
+      "history_button": "Geçmişi Görüntüle",
+      "new_game_button": "Yeni oyun oluştur",
+      "title": "Oyun Menüsü"
+    },
+  
+    "questionView": {
+      "seconds": "saniye",
+      "question_counter": "Soru numarası: ",
+      "end_countdown": "Süre doldu!"
+    }
+  }
+  
