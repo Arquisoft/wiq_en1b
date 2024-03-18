@@ -3,7 +3,9 @@
       "welcome": "WIQ'e hoş geldiniz!",
       "how_to_play": "Nasıl oynanır?",
       "login": "Giriş yap",
-      "register": "Hesabınız yok mu? Buradan kaydolun."
+      "register": "Hesabınız yok mu? Buradan kaydolun.",
+      "language": "Dilin Türkçe olduğu değiştirilmiştir"
+
     },
   
     "navBar": {
@@ -23,6 +25,7 @@
       "how_to_play_p2": "Her soruyu dikkatlice oku.",
       "how_to_play_p3": "Verilen seçeneklerden doğru cevabı seç.",
       "how_to_play_p4": "Seçtiğin cevabı göndermek için tıkla veya dokun.",
+      
       
       "scoring": "Puanlama:",
       "scoring_p1": "Her doğru cevap x puan kazandırır.",

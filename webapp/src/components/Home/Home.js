@@ -1,12 +1,21 @@
-import React from "react";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import "../../custom.css";
 import { useTranslation } from "react-i18next";
-import { FaUser, FaLock } from "react-icons/fa"; // Importar los iconos necesarios
 
 function Home() {
-  const [t] = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
+  const [language, setLanguage] = useState("en"); 
+
+  const changeLanguage = () => {
+    const languages = ["en", "es", "tk"]; 
+    const currentIndex = languages.indexOf(language);
+    const nextIndex = (currentIndex + 1) % languages.length; 
+    const nextLanguage = languages[nextIndex]; 
+    i18n.changeLanguage(nextLanguage); 
+    setLanguage(nextLanguage); 
+    alert(`${t("home.language")}`);
+  };
 
   return (
     <div>
@@ -35,7 +44,12 @@ function Home() {
               <img src="/signup.png" alt="Add user" style={{ width: "100%", height: "100%" }} />
               </Link>
             </b>
-            
+            <b>
+              !
+              <Link>
+                <img src="/idioma.png" alt="Language" style={{ width: "100%", height: "100%" }} onClick={changeLanguage} />
+              </Link>
+            </b>
           </h1>
         </figcaption>
       </figure>
@@ -44,3 +58,4 @@ function Home() {
 }
 
 export default Home;
+

@@ -3,7 +3,8 @@
       "welcome": "Welcome to WIQ!",
       "how_to_play": "How to play?",
       "login": "Login",
-      "register": "Don't have an account? Register here."
+      "register": "Don't have an account? Register here.",
+      "language": "The language has been changed to English"
     },
     "navBar": {
       "title": "Know and win!",
