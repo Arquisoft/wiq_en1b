@@ -1,5 +1,6 @@
-/*---------------------------Navbar---------------------------*/
 
+
+/*---------------------------Navbar---------------------------*/
 .navbar-container {
     display: flex;
     justify-content: space-between; 
@@ -73,6 +74,94 @@
     margin: 0.5em;
     text-align: center;
   }
+
+/*---------------------------Login---------------------------*/
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+    transition: 0.4s ease-in-out;
+    align-items: center;
+  }
+  
+  .card {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 22px;
+    transition: all 0.3s;
+  }
+  
+  .card2 {
+    border-radius: 0;
+    transition: all 0.2s;
+  }
+  
+  .card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+  }
+  
+
+  .input-box input{
+    width: 100%;
+    height: 100%;
+    background: lightblue;
+    border: none;
+    outline: none;
+    border: 2px solid gray;
+    border-radius: 40px;
+    font-size: 14.5px;
+    color: black;
+}
+
+.input-box input::placeholder{
+    background-color: rgb(255, 255, 255);
+}
+
+  
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.button-menu {
+  text-decoration: none;
+}
+
+.button-menu Button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.button-menu Button:hover {
+  background-color: #0056b3;
+}
+
+.button-register {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.button-register:hover {
+  text-decoration: underline;
+}
+  
   
   /*---------------------------Home---------------------------*/
   /* Transitions aren't quite as smooth on firefox */
@@ -124,7 +213,7 @@ body {
   backface-visibility: hidden;
 }
 
-input {
+.input-home {
   display: none;
 }
 
@@ -919,12 +1008,6 @@ svg {
   }
 }
   
- 
-/* Estilos para el icono FaUser */
-.icon {
-  /* Agrega tus estilos personalizados aquí */
-  color: #fff; /* Cambia el color del icono a blanco */
-  font-size: 20px; /* Cambia el tamaño del icono */
-}
+
 
 

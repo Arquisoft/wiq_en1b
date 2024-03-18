@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Container component="main" className="main" maxWidth={false}>
-        {/* <Navbar /> */}
+      {/* <Navbar />  */}
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} /> 
           <Route path="/home" element={<Home />} />

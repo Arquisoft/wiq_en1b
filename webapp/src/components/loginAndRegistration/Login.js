@@ -1,5 +1,4 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
@@ -9,30 +8,35 @@ const Login = () => {
   const { t } = useTranslation("global");
 
   return (
-    <div className="wrapper">
-      <form action="">
-        <div className="wrapper2">
-          <h1>{t("login.title")}</h1>
-          <div className="input-box">
-            <input type="text" placeholder={t("login.username_placeholder")} />
-            <FaUser className="icon" />
-          </div>
-          <div className="input-box">
-            <input type="password" placeholder={t("login.password_placeholder")} />
-            <FaLock className="icon" />
-          </div>
+    <div className="card">
+      <div className="card2">
+        <form className="form">
+          
+            <h1>{t("login.title")}</h1>
+            <div className="input-box">
+              <input
+                type="text"
+                placeholder={t("login.username_placeholder")}
+              />
+            </div>
+            <div className="input-box">
+              <input
+                type="password"
+                placeholder={t("login.password_placeholder")}
+              />
+            </div>
 
-          <div className="remember-forgot">
-            <label>
-              <input type="checkbox" /> {t("login.remember_me")}
-            </label>
-            <a href="#">{t("login.forgot_password")}</a>
-          </div>
+            <div className="remember-forgot">
+              <label>
+                <input type="checkbox" /> {t("login.forgot_password")}
+              </label>
+              <a href="#">{t("login.remember_me")}</a>
+            </div>
 
-          <ButtonMenu />
-          <LinkRegister />
-        </div>
-      </form>
+            <ButtonMenu />
+            <LinkRegister />
+        </form>
+      </div>
     </div>
   );
 };
@@ -56,7 +60,6 @@ function LinkRegister() {
 }
 
 export default Login;
-
 
 // // src/components/Login.js
 // import React, { useState } from 'react';

@@ -10,8 +10,8 @@ function Home() {
 
   return (
     <div>
-      <input type="radio" name="toggle" id="toggleOpen" value="toggleOpen" />
-      <input type="radio" name="toggle" id="toggleClose" value="toggleClose" />
+      <input className='input-home' type="radio" name="toggle" id="toggleOpen" value="toggleOpen" />
+      <input className='input-home' type="radio" name="toggle" id="toggleClose" value="toggleClose" />
       <figure id="welcomeMessage">
         <figcaption>
           <h1>
