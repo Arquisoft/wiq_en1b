@@ -38,9 +38,8 @@ function Navbar() {
           onClose={handleLanguageMenuClose}
         >
           <MenuItem onClick={() => changeLanguage("en")}> {t("navBar.en")}</MenuItem>
-          <MenuItem onClick={() => changeLanguage("es")}>{t("navBar.es")}</MenuItem>
-          <MenuItem onClick={() => changeLanguage("tk")}>{t("navBar.tk")}</MenuItem>
-
+          <MenuItem onClick={() => changeLanguage("es")}> {t("navBar.es")}</MenuItem>
+          <MenuItem onClick={() => changeLanguage("tk")}> {t("navBar.tk")}</MenuItem>
         </Menu>
         <Help />
       </div>

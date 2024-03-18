@@ -14,8 +14,8 @@ import './custom.css';
 function App() {
   return (
     <Router>
-      <Container component="main" maxWidth="xl">
-        <Navbar />
+      <Container component="main" className="main" maxWidth={false}>
+        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} /> 
           <Route path="/home" element={<Home />} />

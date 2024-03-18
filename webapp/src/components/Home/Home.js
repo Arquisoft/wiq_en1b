@@ -2,69 +2,45 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from 'react-router-dom';
 import "../../custom.css";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
+import { FaUser, FaLock } from "react-icons/fa"; // Importar los iconos necesarios
 
 function Home() {
-
-  const[t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   return (
-    <div className="wrapper">
-      <h1 variant="h3" align="center" className="title-home">
-        {t("home.welcome")}
-      </h1>
-      <div className="buttons-home">
-        <ButtonHowToPlay />
-        <p></p>
-        {/* Button to the login view */}
-        <ButtonLogin />
-        <p></p>
-        {/* Link to the registration view */}
-        <LinkRegister />
-        <p></p>
-      </div>
-      
+    <div>
+      <input type="radio" name="toggle" id="toggleOpen" value="toggleOpen" />
+      <input type="radio" name="toggle" id="toggleClose" value="toggleClose" />
+      <figure id="welcomeMessage">
+        <figcaption>
+          <h1>
+            <label htmlFor="toggleOpen" title="Click to Open"></label>
+            <label htmlFor="toggleClose" title="Click to Close">✖</label>
+            <b>
+              W
+              <Link to="/instructions" title="How to play">
+                <img src="/instrucciones.png" alt="Instructions" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+            <b>
+              I
+              <Link to="/login" title="Login">
+              <img src="/login.png" alt="Login" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+            <b>
+              Q
+              <Link to="/addUser" title="Register">
+              <img src="/signup.png" alt="Add user" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+            
+          </h1>
+        </figcaption>
+      </figure>
     </div>
   );
-
-
-  function ButtonHowToPlay() {
-    return (
-      <Link to="/instructions" className="button-instructions">
-        <button class="button type1">
-          <span class="btn-txt">  {t("home.how_to_play")}</span>
-        </button>
-      </Link>
-    );
-  
-  }
-
-  
-function ButtonLogin() {
-  return (
-    <Link to="/login" className="button-login">
-        <button class="button type1">
-          <span class="btn-txt"> {t("home.login")}</span>
-        </button>
-      </Link>
-  );
-
 }
-
-function LinkRegister() {
-  return (
-    <Link
-        to="/addUser"
-        component="button-register"
-        variant="body2"
-      >
-        {t("home.register")}
-      </Link>
-  );
-
-}
-}
-
 
 export default Home;
