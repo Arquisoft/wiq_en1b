@@ -182,6 +182,48 @@ button[type="submit"]:hover {
   box-shadow: inset 0px 0px 25px #3700ff;
 }
 
+/*---------------------------Instructions---------------------------*/
+.instructions_title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #01f051, #00f2ff); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+
+.ins_ul {
+  list-style-type: none;
+  padding-left: 0;
+  background: linear-gradient(to bottom, #a276e4, #4aecce); 
+  border-radius: 5px; 
+  padding: 10px; 
+  text-align: center; 
+  color: black;
+  font-weight: bold;
+}
+
+/* Estilos para los elementos de la lista de instrucciones */
+.ins_ul li {
+  margin-bottom: 5px;
+  color: #000; /* Color de texto negro */
+  text-align: justify;
+  font-weight: lighter; 
+
+}
+
+
+.instructions_container {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+
+}
 
   /*---------------------------Home---------------------------*/
   /* Transitions aren't quite as smooth on firefox */
