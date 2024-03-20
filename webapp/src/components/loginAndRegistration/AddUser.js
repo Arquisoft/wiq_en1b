@@ -7,6 +7,7 @@ const AddUser = () => {
   const { t } = useTranslation("global");
 
   return (
+    <div className="general">
     <div className="card">
       <div className="card2">
         <form className="form">
@@ -38,6 +39,7 @@ const AddUser = () => {
           <LinkLogin />
         </form>
       </div>
+    </div>
     </div>
   );
 };
