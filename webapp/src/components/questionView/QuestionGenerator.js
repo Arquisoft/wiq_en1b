@@ -3,7 +3,7 @@ import "../../custom.css";
 class QuestionGenerator{
 
     constructor(){
-        this.apiUrl = "http://localhost:8090/question";
+        this.apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/questions";
         
     }
 
@@ -15,7 +15,7 @@ class QuestionGenerator{
             let i = 0;
             var questions = [];
             for (const key in receivedQuestions) {
-                questions[i] = new Question(JSON.parse(receivedQuestions[key]));
+                questions[i] = new Question(receivedQuestions[key]);
                 i += 1;
             }
             console.log(questions);

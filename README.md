@@ -6,6 +6,8 @@
 
 This is a base repo for the [Software Architecture course](http://arquisoft.github.io/) in [2023/2024 edition](https://arquisoft.github.io/course2324.html). 
 
+The project can be seing [here](http://4.231.170.30:3000)
+
 This repo is a basic application composed of several components.
 
 - **Gateway service**. Express service that is exposed to the public and serves as a proxy to the two previous ones.

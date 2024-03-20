@@ -4,6 +4,20 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "main.java.Main",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "main.java.Main",
+            "projectName": "questionGenerator"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "com.wiq.wiq.services.questionGenerator.Main",
             "projectName": "wiq"
         },
