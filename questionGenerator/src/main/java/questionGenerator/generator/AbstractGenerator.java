@@ -23,7 +23,7 @@ public abstract class AbstractGenerator {
 	private Locale localization = Locale.getDefault();
 	private ResourceBundle messages;
 
-	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
+	public static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
 

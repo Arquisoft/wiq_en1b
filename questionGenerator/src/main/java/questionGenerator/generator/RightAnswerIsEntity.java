@@ -35,6 +35,26 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		return answer;
 	}
 	
+	protected String getAnswer(String id){
+		ItemDocumentImpl idi = alreadyProcessedEntities.get(id);
+		
+		if(idi==null) {
+			try {
+				idi = (ItemDocumentImpl) wbdf.getEntityDocument(id);
+				alreadyProcessedEntities.put(id, idi);
+			} catch (MediaWikiApiErrorException | IOException e) {
+				/*
+				 * * @throws MediaWikiApiErrorException
+				 *             if the API returns an error
+				 * @throws IOException
+				 * 			   if we encounter network issues or HTTP 500 errors from Wikibase
+				 */
+				return null;
+			}
+		}
+		return getRightAnswer(idi.getJsonClaims());
+	}
+	
 	private String getRightAnswerEntity(String url) {
 		String[] split1 = url.split(" ");
 		String[] split2 = split1[0].split("/");
