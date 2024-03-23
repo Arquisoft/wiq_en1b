@@ -50,6 +50,20 @@
         - mynetwork
       environment:
         MONGODB_URI: mongodb://mongodb:27017/userdb
+    
+    recordservice:
+      container_name: recordservice-${teamname:-defaultASW}
+      image: ghcr.io/arquisoft/wiq_en1b/recordservice:latest
+      profiles: ["dev", "prod"]
+      build: ./users/recordservice
+      depends_on:
+        - mongodb
+      ports:
+        - "8004:8004"
+      networks:
+        - mynetwork
+      environment:
+        MONGODB_URI: mongodb://mongodb:27017/userdb
 
     questionservice:
       container_name: questionservice-${teamname:-defaultASW}
@@ -74,6 +88,7 @@
         - mongodb
         - userservice
         - authservice
+        - recordservice
         - questionservice
       ports:
         - "8000:8000"
@@ -83,6 +98,7 @@
         AUTH_SERVICE_URL: http://authservice:8002
         USER_SERVICE_URL: http://userservice:8001
         QUESTION_SERVICE_URL: http://questionservice:8003
+        RECORD_SERVICE_URL: http://recordservice:8004
 
     webapp:
       container_name: webapp-${teamname:-defaultASW}
