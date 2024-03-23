@@ -1,50 +1,80 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import "../../custom.css";
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/login";
   const { t } = useTranslation("global");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        const response = await axios.post(apiUrl, { username, password });
+        console.log("Hello " + response.username);
+        //Used to redirect to the menu to start playing
+        navigate('/menu');
+    } catch (error) {
+      console.error('Error adding user:', error);
+    }
+  };
 
   return (
-    <div className="wrapper">
-      <form action="">
-        <div className="wrapper2">
+    <div className="general">
+
+    <div className="card">
+      <div className="card2">
+        <form className="form" onSubmit={handleSubmit}>
           <h1>{t("login.title")}</h1>
           <div className="input-box">
-            <input type="text" placeholder={t("login.username_placeholder")} />
-            <FaUser className="icon" />
+              <input
+                type="text"
+                placeholder={t("addUser.username_placeholder")}
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
           </div>
           <div className="input-box">
-            <input type="password" placeholder={t("login.password_placeholder")} />
-            <FaLock className="icon" />
+              <input
+                type="password"
+                placeholder={t("addUser.password_placeholder")}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
           </div>
-
+          {//TODO: Study this option and see if it is viable
+          } 
           <div className="remember-forgot">
             <label>
               <input type="checkbox" /> {t("login.remember_me")}
             </label>
-            <a href="#">{t("login.forgot_password")}</a>
           </div>
 
-          <ButtonMenu />
+          <button type="submit">{t("login.login_button")}</button>
           <LinkRegister />
-        </div>
-      </form>
+        </form>
+      </div>
+    </div>
     </div>
   );
 };
 
-function ButtonMenu() {
-  const { t } = useTranslation("global");
-  return (
-    <Link to="/menu" className="button-menu">
-      <Button>{t("login.login_button")}</Button>
-    </Link>
-  );
-}
+// function ButtonMenu() {
+//   const { t } = useTranslation("global");
+//   return (
+//     <Link to="/menu" className="button-menu">
+      
+//     </Link>
+//   );
+// }
 
 function LinkRegister() {
   const { t } = useTranslation("global");
@@ -56,7 +86,6 @@ function LinkRegister() {
 }
 
 export default Login;
-
 
 // // src/components/Login.js
 // import React, { useState } from 'react';
