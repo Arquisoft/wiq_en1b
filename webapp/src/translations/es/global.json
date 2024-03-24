@@ -59,7 +59,8 @@
     },"questionView":{
       "seconds":"segundos",
       "question_counter":"Número de pregunta : ",
-      "end_countdown":"¡Se acabó el tiempo!"
+      "end_countdown":"¡Se acabó el tiempo!",
+      "finished_game":"¡El juego se ha terminado!"
     }
       
     

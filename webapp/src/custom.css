@@ -1093,7 +1093,32 @@ svg {
     font-size: 65%;
   }
 }
-  
+/*------------------------------Question--------------------------------------------*/
 
+.answerPanel {
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Divide en dos columnas de igual tamaño */
+  gap: 5px; /* Ajusta el espacio entre los botones */
+}
 
+.answerPanel button {
+  flex: 1 1 50%; /* Divide los botones en dos columnas */
+  margin: 5px; /* Ajusta el margen entre los botones según sea necesario */
+}
+
+.answerButton{
+  margin-right: 10px;
+    background: #9f97ff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #9f97ff;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    margin: 0.5em;
+}
 

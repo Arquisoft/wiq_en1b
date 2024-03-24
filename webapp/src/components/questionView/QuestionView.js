@@ -4,6 +4,7 @@ import "../../custom.css";
 import React from "react";
 import Countdown from "react-countdown";
 import {useTranslation} from "react-i18next";
+import $ from 'jquery'; 
 
 function QuestionView(){
     const questionGenerator = new QuestionGenerator();
@@ -25,8 +26,37 @@ function QuestionView(){
         }
     }
 
+    function revealColorsForAnswers(){
+        let colorCorrectAnswer='green';
+        let colorIncorrectAnswer='red'; 
+        $(document).ready(function() {
+            $('.answerButton').each(function() {
+                var dataValue = $(this).data('value');
+                if (dataValue === false || dataValue === "false")
+                    $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
+                else{
+                    $(this).css('background-color', colorCorrectAnswer);
+                }
+                });
+        });
+
+    }
+    function setColorsBackToNormal() {
+        let colorOriginal = '#9f97ff';
+        $(document).ready(function() {
+            $('.answerButton').each(function() {
+                $(this).css('background-color', colorOriginal);
+            });
+        });
+    }
+    
     function handleClick(){
-        setnumQuestion(numQuestion + 1);
+        revealColorsForAnswers();
+        setTimeout(function() {
+            setColorsBackToNormal();
+            setnumQuestion(numQuestion + 1);
+        }, 1000);
+        
     }
 
     useEffect(() => {generateQuestions(numQuestion)}, []);
@@ -35,15 +65,16 @@ function QuestionView(){
     <div className="question-view-container">
         {/*Nav*/}
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} /> :
         <h1>Please Wait a bit...</h1> }
     </div>);
 }
 
 function QuestionComponent({questions, numQuestion, handleClick, t}){
+
     const renderer = ({seconds, completed }) => {
         if (completed) {
-            
+            handleClick();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
@@ -52,26 +83,35 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
     
     return (
         <>
-        <div className='topPanel'>
-            <h2>{questions[numQuestion].getQuestion()}</h2>
-                <div className="countdown">
-                            <Countdown date={Date.now() + 10000} renderer={renderer} />
-                </div>
-        </div>
-        <div className="answerPanel">
-            {questions[numQuestion].getAnswers().map((item, index) => (
-                <Answer key={index} text={item} onClick={handleClick}/>
-            ))}
-                
-        </div>
-        <p>{t("questionView.question_counter")} {numQuestion}</p>
+            {numQuestion < questions.length ? (
+                <>
+                    <div className='topPanel'>
+                        <h2>{questions[numQuestion].getQuestion()}</h2>
+                        <div className="countdown">
+                            <Countdown date={Date.now() + 4000} renderer={renderer} />
+                        </div>
+                    </div>
+                    <div className="answerPanel">
+                        {questions[numQuestion].getAnswers().map((item, index) => (
+                            <Answer key={index} text={item} onClick={handleClick} dataValue={questions[numQuestion].isCorrect(item)}/>
+                        ))}
+                    </div>
+                    <p>{t("questionView.question_counter")} {numQuestion}</p>
+                </>
+            ) : (
+                <>
+                    <h2>{t("questionView.finished_game")} </h2>
+                    <p>500 Points</p>
+                </>
+            )}
         </>
     );
+    
 }
 
-function Answer({text, onClick}){
+function Answer({text, onClick, dataValue}){
     return (
-        <button className="answerButton" onClick={onClick}>{text}</button>
+        <button className="answerButton" onClick={onClick} data-value={dataValue}>{text}</button>
     );
 }
 

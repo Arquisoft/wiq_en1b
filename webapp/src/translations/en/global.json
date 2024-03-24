@@ -55,7 +55,8 @@
       "questionView":{
         "seconds":"seconds",
         "question_counter":"Question counter :",
-        "end_countdown":"Time's up!"
+        "end_countdown":"Time's up!",
+        "finished_game":"The game has finished!"
       }
 }
     
