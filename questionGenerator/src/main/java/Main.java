@@ -36,7 +36,7 @@ public class Main {
 		for(int i=0; i<3; i++) {
 			Question question = qg.generateQuestion(type);
 			question.setNumber(i);
-			QuestionRepository.getInstance().insertOne(question.getJSON().toString());
+			QuestionRepository.getInstance().insert(question.getJSON().toString());
 			System.out.println(question.getJSON().toString());
 		}
 	}
