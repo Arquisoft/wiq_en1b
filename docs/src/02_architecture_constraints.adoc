@@ -5,7 +5,7 @@ ifndef::imagesdir[:imagesdir: ../images]
 === Technical constraints
 Wikidata:: The information needed must be got from this central storage.
 GitHub:: All the communication and code-sharing will be done by GitHub, so all the work will be recorded there.
-API:: Give access about users and generated questions through an API.
+Open API:: Give access about users and generated questions through an open API.
 
 === Organizational constraints
 Team size:: The team is formed by 6 people.
