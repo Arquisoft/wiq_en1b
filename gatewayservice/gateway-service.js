@@ -53,10 +53,10 @@ app.get('/questions', async (req, res) => {
   }
 });
 
-app.get('/addrecord', async(req, res) => {
+app.post('/addrecord', async(req, res) => {
   try {
     // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl+'/addrecord');
+    const recordResponse = await axios.post(recordServiceUrl+'/addrecord', req.body);
     res.send(recordResponse.data);
   } catch (error) {
     res.send(error);
@@ -68,7 +68,7 @@ app.get('/records/:user', async(req, res)=>{
     const user = req.params.user;
     // Forward the record request to the record service
     const recordResponse = await axios.get(recordServiceUrl + '/records/' + user);
-    res.send(recordResponse.data);
+    res.send(recordResponse.record);
   } catch (error) {
     res.send(error);
   }

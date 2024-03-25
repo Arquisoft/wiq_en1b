@@ -14,12 +14,43 @@ app.use(bodyParser.json());
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
 mongoose.connect(mongoUri);
 
-app.get('/addrecord', async (req, res) => {
-    res.send({data:"hola"})
+//Fire and forget
+app.post('/addrecord', async (req, res) => {
+  const user = req.body.user;
+  const game = req.body.game;
+  console.log(game)
+  console.log(user)
+  let record = await Record.findOne({ username : user }); 
+  if(record){ //If it exits
+    record.games.push(game);
+  }
+  else{ //Lo creamos
+    record = new Record({
+      username:user,
+      games:[game]
+    });
+  }
+  
+  try {
+        const savedRecord = await record.save();
+        console.log("Record saved successfully:", savedRecord);
+    } catch (err) {
+        console.error("There was an error while saving the record:", err);
+    }
 });
 
-app.get('/records/:user', async(req, res)=> {
-    res.send({data:"Hola: "+ req.params.user})
+app.get('/records/:user', async (req, res) => {
+  try {
+    const record = await Record.findOne({ user: req.params.user });
+    
+    if (!record) {
+      res.json({ record: "No hay usuario" });
+    } else {
+      res.json(record);
+    }
+  } catch (err) {
+    res.status(500).json({ error: "undefined" });
+  }
 });
 
 const server = app.listen(port, () => {
