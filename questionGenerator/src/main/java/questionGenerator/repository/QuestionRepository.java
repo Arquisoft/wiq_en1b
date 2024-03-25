@@ -4,6 +4,12 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.InsertManyOptions;
+import com.mongodb.client.result.InsertManyResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 
 public class QuestionRepository {
@@ -22,7 +28,7 @@ public class QuestionRepository {
         return questionRepository;
     }
 
-    public boolean insertOne(String questionJSON){
+    public boolean insert(String questionJSON){
         try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
             MongoDatabase database = mongoClient.getDatabase("questions");
 
@@ -30,6 +36,26 @@ public class QuestionRepository {
         
             collection.insertOne(Document.parse(questionJSON));
             return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean insert(List<String> questionJSONList){
+        try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
+            MongoDatabase database = mongoClient.getDatabase("questions");
+
+            MongoCollection<Document> collection = database.getCollection("questions");
+        
+            List<Document> documents = new ArrayList<>();
+            for (String questionJSON : questionJSONList) {
+                documents.add(Document.parse(questionJSON));
+            }
+            
+            InsertManyResult result = collection.insertMany(documents, new InsertManyOptions().ordered(false)); //unordered write
+            // Check if all documents were inserted successfully
+            return result.wasAcknowledged() && result.getInsertedIds().size() == documents.size();
         } catch (Exception e) {
             System.out.println(e);
             return false;
