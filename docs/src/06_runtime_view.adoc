@@ -36,142 +36,149 @@ There are many notations for describing scenarios, e.g.
 See https://docs.arc42.org/section-6/[Runtime View] in the arc42 documentation.
 
 ****
+In this section we will focus on developing which views of the webapp uses which microservices from the WIQ Services.
+Mind that some of these processes works the same way when called from outside the system (look for them at the API docs)
 
-=== Runtime Scenario: Retrieval of questions
+=== Runtime Scenario: Signup
 
-[plantuml,"Retrieval of questions",png]
+[plantuml,"Signup",png]
+----
+entity Webapp as "Sign in view"
+entity Gateway_service as "Gateway service"
+entity Microservice as "Authentication service"
+database Users_database
+Webapp -> Gateway_service: Sends signup form
+Gateway_service -> Microservice: Forward the petition\nto the specific microservice 
+Microservice -> Microservice : Checks the petition
+alt data is valid
+  Microservice -> Users_database : Check if username or email exists
+  Users_database --> Microservice: Answers
+  alt email is not registered nor username
+    Microservice -> Microservice: Creates a respond with user's data
+    Microservice --> Gateway_service: Forwards the respond
+    Gateway_service --> Webapp : Responds to the petition
+    Webapp -> Webapp : Logs into the application
+  else email or username exists
+    Microservice --> Gateway_service: Responds with an error
+    Gateway_service --> Webapp : Forwards the petition
+    Webapp -> Webapp : Show the error
+  end
+else data is invalid
+  Microservice --> Gateway_service: Responds with some error(s)
+  Gateway_service --> Webapp: Forwards the respond
+  Webapp -> Webapp: Shows the error(s)
+end
+----
+=== Runtime Scenario: Login
+
+[plantuml,"Login",png]
+----
+entity Webapp as "Log in view"
+entity Gateway_service as "Gateway service"
+entity Microservice as "User service"
+database Users_database
+Webapp -> Gateway_service: Sends log in form
+Gateway_service -> Microservice: Forward the petition\nto the specific microservice 
+Microservice -> Microservice : Checks the petition
+alt data is valid
+  Microservice -> Users_database : Check if username exists
+  Users_database --> Microservice: Answers
+  alt users exists
+    Microservice -> Microservice: Creates a respond with user's data
+    Microservice --> Gateway_service: Forwards the respond
+    Gateway_service --> Webapp : Responds to the petition
+    Webapp -> Webapp : Logs into the application
+  else users does not exist 
+    Microservice --> Gateway_service: Responds with an error
+    Gateway_service --> Webapp : Forwards the petition
+    Webapp -> Webapp : Show the error
+  end
+else data is invalid
+  Microservice --> Gateway_service: Responds with some error(s)
+  Gateway_service --> Webapp: Forwards the respond
+  Webapp -> Webapp: Shows the error(s)
+end
+----
+
+=== Runtime Scenario: Generation of questions
+
+[plantuml,"Generation of questions",png]
+----
+entity Microservice as "Question generator"
+entity Wikidata as "Wikidata"
+database Questions_database
+
+group Repeats after some time
+  Microservice -> Wikidata : Asks for information\nto generate questions
+  alt Wikidata is working 
+    Wikidata --> Microservice : Returns the information
+    Microservice -> Microservice : Generates the question,\ncorrect answer and distractors
+    group Transaction
+      Microservice -> Questions_database : Removes questions that exist
+      Questions_database --> Microservice : Confirms remove operation
+      Microservice -> Questions_database : Saves the new questions 
+      Questions_database --> Microservice : Confirms add operation
+    end group
+  end alt
+  Microservice -> Microservice : Goes to sleep
+end group
+----
+
+=== Runtime Scenario: Play a game
+
+[plantuml,"Play a game",png]
 ----
 actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database Wikidata
-User -> Frontend: next question
-Frontend -> Backend: get question
-Backend -> Wikidata: request data\n(1s timeout)
-Wikidata -> Backend: receive data
-Backend -> Backend: generate question
-Backend -> Frontend: return question and answers
-Frontend -> User: show question
+entity Webapp as "Question game"
+entity Gateway_service as "Gateway service"
+entity Microservice1 as "Question service"
+entity Microservice2 as "Record service"
+database DB as "Questions database"
+database UDB as "Users database"
+
+Webapp -> Gateway_service: Sends a petition for questions\nwith some parameters
+Gateway_service -> Microservice1: Forwards the petition
+Microservice1 -> DB : Select some questions\nfor those parameters
+alt Database is working
+  DB --> Microservice1 : Retrieve some questions
+  Microservice1 -> Microservice1 : Formats the questions retrieved\ninto JSON format
+  Microservice1 --> Gateway_service: Responds with the JSON
+  Gateway_service --> Webapp : Forwards the respond
+  Webapp -> Webapp : Process the JSON and\nstarts the game
+  loop Till there are no more questions
+    alt Time has not run out
+      User -> Webapp : Clicks an answer
+      Webapp -> Webapp : Checks the answer
+    end alt
+    Webapp -> User : Show correct answer
+  end loop
+  Webapp -> User : Shows use the game statistics
+  Webapp -> Gateway_service : Sends the statistics of the game\nFire and forget
+  Gateway_service -> Microservice2 : Forwards the message
+  Microservice2 -> UDB : Saves the record
+  alt Users database is not working
+    Microservice2 -> Microservice2 : Saves the record\nwill try with next request\nto save both records
+  end alt
+else Database is not working
+  Microservice1 --> Gateway_service : Responds with an error
+  Gateway_service --> Webapp : Forwards the respond
+  Webapp -> Webapp : Process the error
+  Webapp --> User : Advise in a friendly way\n(Oven cannot bake\nquestions right now) 
+end 
 ----
 
-=== Runtime Scenario: Answer questions
-
-[plantuml,"Answer questions",png]
+=== Runtime Scenario: Accessing a record
+[plantuml,"Accessing a record",png]
 ----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: answer\n(30s timelimit)
-Frontend -> Frontend: process answer
-Frontend -> Backend: forward result
-Backend -> DB: store result\n(1s timeout)
-Backend -> Frontend: answer
-Frontend -> User: show correctness
-----
-
-=== Runtime Scenario: Login successful
-
-[plantuml,"Login successful",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: send credentials
-Frontend -> Backend: forward credentials
-Backend -> DB: query for username\n(1s timeout)
-DB -> Backend: retrieve user data
-Backend -> Backend: validate password
-Backend -> Frontend: login successful
-Frontend -> User: login successful
-----
-
-=== Runtime Scenario: Login failure
-
-[plantuml,"Login failure",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: send credentials
-Frontend -> Backend: forward credentials
-Backend -> DB: query for username\n(1s timeout)
-DB -> Backend: retrieve user data
-Backend-> Backend: validate password
-Backend -> Frontend: wrong password
-Frontend -> User: ask for credentials
-User -> Frontend: send credentials
-Frontend -> Backend: ...
-----
-
-=== Runtime Scenario: Signup successful
-
-[plantuml,"Signup successful",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: send signup form
-Frontend -> Backend: forward signup form
-Backend -> DB: check if username exists\n(1s timeout)
-DB -> Backend: answer
-Backend -> DB: insert data\n(1s timeout)
-Backend -> Frontend: signup successful
-Frontend -> User: signup successful
-----
-
-=== Runtime Scenario: Signup failure
-
-[plantuml,"Signup failure",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: send signup form
-Frontend -> Backend: forward signup form
-Backend -> DB: check if username exists\n(1s timeout)
-DB -> Backend: answer
-Backend -> Frontend: error: username in use
-Frontend -> User: username in use
-User -> Frontend: send new username
-Frontend -> Backend: forward new username
-Backend -> DB: ...
-----
-
-=== Runtime Scenario: Wikidata error
-
-[plantuml,"Wikidata error",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database Wikidata
-User -> Frontend: next question
-Frontend -> Backend: get question
-Backend -> Wikidata: request data
-Wikidata -> Backend: error/timeout
-Backend -> Backend: error handling
-Backend -> Frontend: wikidata error
-Frontend -> User: show error message
-----
-
-=== Runtime Scenario: DB error
-
-[plantuml,"DB error",png]
-----
-actor User
-entity Frontend as "Webapp Frontend"
-entity Backend as "Webapp Backend"
-database DB
-User -> Frontend: request
-Frontend -> Backend: request
-Backend -> DB: request
-DB -> Backend: error/timeout
-Backend -> Backend: error handling
-Backend -> Frontend: DB error
-Frontend -> User: show error message
+entity Webapp as "Record view"
+entity Gateway_service as "Gateway service"
+entity Microservice as "Record service"
+database DB as "Users_database"
+Webapp -> Gateway_service: Asks for the record\nof the logged user
+Gateway_service -> Microservice: Forward the petition\nto the specific microservice 
+Microservice -> DB : Finds the user's record 
+DB --> Microservice : Returns the user's record
+Microservice --> Gateway_service : Sends the respond
+Gateway_service --> Webapp : Forwards the respond
+Webapp -> Webapp : Parses the record\nand shows it
 ----
