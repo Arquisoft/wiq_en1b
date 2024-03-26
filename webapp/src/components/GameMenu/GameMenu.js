@@ -15,11 +15,11 @@ export default function GameMenu() {
   }
   
   function ButtonHistoricalData({ t }) {
-    function handleClick() {
-      //ir a la vista de historical data
-      alert("Historical Data");
-    }
-    return <button className="menuButton" onClick={handleClick}> {t("gameMenu.history_button")}</button>;
+    return (
+      <Link className="menuButton linkButton" to="/historical">
+        <h3>{t("gameMenu.history_button")}</h3>
+      </Link>
+    );
   }
   
   function ButtonNewGame({ t }) {

@@ -1122,3 +1122,23 @@ svg {
     margin: 0.5em;
 }
 
+/*------------------------------Historical--------------------------------------------*/
+.historicalButton{
+  color:white;
+  width:50em;
+  height:5em;
+  font-size: 0.85em;
+  border: 3px ridge #149CEA;
+  background-color: transparent;
+  border-radius: 0.3em;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+.centered-div {
+  display: block;
+  position: fixed; 
+  /* Center horizontally */
+  left: 50%;
+  transform: translateX(-50%);
+}

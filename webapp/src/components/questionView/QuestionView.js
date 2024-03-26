@@ -2,15 +2,17 @@ import QuestionGenerator from './QuestionGenerator';
 import { useEffect, useState } from 'react';
 import "../../custom.css";
 import React from "react";
-import Countdown from "react-countdown";
+import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 
 function QuestionView(){
     const questionGenerator = new QuestionGenerator();
+
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
     const[t, i18n] = useTranslation("global");
+
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -74,7 +76,6 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
-            handleClick();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
@@ -87,8 +88,8 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
                 <>
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
-                        <div className="countdown">
-                            <Countdown date={Date.now() + 4000} renderer={renderer} />
+                        <div  className="countdown">
+                            <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick} />
                         </div>
                     </div>
                     <div className="answerPanel">
@@ -102,6 +103,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
                 <>
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>500 Points</p>
+                    
                 </>
             )}
         </>
