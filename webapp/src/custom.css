@@ -1123,22 +1123,34 @@ svg {
 }
 
 /*------------------------------Historical--------------------------------------------*/
-.historicalButton{
-  color:white;
-  width:50em;
-  height:5em;
-  font-size: 0.85em;
+/* Estilos para los botones */
+.historicalButton {
+  color: white;
+  width: 50em;
+  height: 5em;
+  font-size: 1.5em; /* Font size ajustado a 1.5em */
   border: 3px ridge #149CEA;
   background-color: transparent;
   border-radius: 0.3em;
-  font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 0.2em; /* Agrega espacio entre los botones */
 }
-.centered-div {
-  display: block;
-  position: fixed; 
-  /* Center horizontally */
+
+/* Estilos para los divs dentro de centered-div */
+.centered-div > div {
+  display: flex;
+  flex-direction: column; /* Mostrar los botones en una columna */
+  align-items: center; /* Centrar horizontalmente los botones */
+  position: fixed;
+  /* Center horizontalmente */
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* Estilos para el contenedor globalHistoricalView */
+.globalHistoricalView {
+  display: flex;
+  flex-direction: column;
+}
+
