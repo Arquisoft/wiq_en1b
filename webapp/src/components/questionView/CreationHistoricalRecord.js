@@ -9,13 +9,15 @@ class CreationHistoricalRecord{
         };
     }
 
-    addQuestion(statement, answers, answerGiven, correctAnswer) {
-        this.record.game.questions.push({
-            question: statement,
-            answers: answers,
-            answerGiven: answerGiven,
-            correctAnswer: correctAnswer
-        });
+    addQuestion(statement, answers, answerGiven, correctAnswer, numQuestion) {
+        if(this.record.game.questions.length == numQuestion){
+            this.record.game.questions.push({
+                question: statement,
+                answers: answers,
+                answerGiven: answerGiven,
+                correctAnswer: correctAnswer
+            });
+        }
     }
 
     setPoints(points) {

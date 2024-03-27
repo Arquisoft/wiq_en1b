@@ -7,9 +7,11 @@ import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 
+
+const creationHistoricalRecord = new CreationHistoricalRecord();
+const questionGenerator = new QuestionGenerator();
+
 function QuestionView(){
-    const questionGenerator = new QuestionGenerator();
-    const creationHistoricalRecord = new CreationHistoricalRecord();
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
     const[t] = useTranslation("global");
@@ -52,13 +54,13 @@ function QuestionView(){
             });
         });
     }
-    
-    function handleClick(item){
+    function handleClick(text){
         //addQuestion(statement, answers, answerGiven, correctAnswer) {
         creationHistoricalRecord.addQuestion(questions[numQuestion].getQuestion(),
-                                             questions[numQuestion].getAnswers(),
-                                            item,
-                                            questions[numQuestion].getCorrectAnswer());
+                                        questions[numQuestion].getAnswers(),
+                                        text,
+                                        questions[numQuestion].getCorrectAnswer(),
+                                        numQuestion);
         console.log(creationHistoricalRecord.getRecord());
         revealColorsForAnswers();
         setTimeout(function() {
@@ -96,12 +98,12 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
                         <div  className="countdown">
-                            <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick("no-answer")} />
+                            <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
                     </div>
                     <div className="answerPanel">
                         {questions[numQuestion].getAnswers().map((item, index) => (
-                            <Answer key={index} text={item} onClick={handleClick(item)} dataValue={questions[numQuestion].isCorrect(item)}/>
+                            <Answer key={index} text={item} onClick={handleClick.bind(this,item)} dataValue={questions[numQuestion].isCorrect(item)}/>
                         ))}
                     </div>
                     <p>{t("questionView.question_counter")} {numQuestion}</p>
