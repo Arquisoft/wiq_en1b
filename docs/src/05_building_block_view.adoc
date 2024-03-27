@@ -79,10 +79,10 @@ Contained Building Blocks::
 * *_Webapp_ Log in and Register* : Views of the webapp that allow the user to get into the application.
 * *_Webapp_ Game menu* : Intermediate view between the records and the actual game.
 * *_Webapp_ User's games records* : View where the user will be able to see different statistics of the games played (Correct answers, points, total games).
-* *_Webapp_ Question Game* : Game view where the user will be able answer the random question by choosing 1 of 4 posibilities.
+* *_Webapp_ Question Game* : Game view where the user will be able answer the random question by choosing 1 of 4 possibilities.
 
 * *_WIQ Services_ Authentication service* : Microservice that will let the user log in a created account. 
 * *_WIQ Services_ User service* : Microservice that will let the user create an account.
-* *_WIQ Services_ Record service* : Microservice that will manage the records of all users and will let anyone get the records of an user.
-* *_WIQ Services_ Question service* Microservice that will get some random questions for an user game. It will also let anyone get random questions outside our system.
-* *_WIQ Services_ Question generator* Microservice that will generate the random questions accesing wikidate and load them into the system.
+* *_WIQ Services_ Record service* : Microservice that will manage the records of all users and will let anyone get the records of a user.
+* *_WIQ Services_ Question service* Microservice that will get some random questions for an user game. It will also let anyone get random questions from outside our system.
+* *_WIQ Services_ Question generator* Microservice that will generate the random questions accesing wikidata and load them into the system.

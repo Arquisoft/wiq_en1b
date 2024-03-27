@@ -36,8 +36,8 @@ There are many notations for describing scenarios, e.g.
 See https://docs.arc42.org/section-6/[Runtime View] in the arc42 documentation.
 
 ****
-In this section we will focus on developing which views of the webapp uses which microservices from the WIQ Services.
-Mind that some of these processes works the same way when called from outside the system (look for them at the API docs)
+In this section we will focus on developing which views of the webapp use which microservices from the WIQ Services.
+Mind that some of these processes work the same way when called from outside the system (look for them at the API docs)
 
 === Runtime Scenario: Signup
 
