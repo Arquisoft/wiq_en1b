@@ -3,9 +3,7 @@ export default function HistoricalView() {
       return (
         <div className='globalHistoricalView'>
           <HistoricalGameElement  />
-          <br />
           <HistoricalGameElement  />
-          <br />
           <HistoricalGameElement  />
         </div>
       )

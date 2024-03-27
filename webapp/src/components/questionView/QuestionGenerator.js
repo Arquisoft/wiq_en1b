@@ -1,5 +1,4 @@
 import Question from './Question';
-import "../../custom.css";
 class QuestionGenerator{
 
     constructor(){
