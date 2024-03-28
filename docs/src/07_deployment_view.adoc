@@ -57,7 +57,7 @@ For multiple environments or alternative deployments please copy and adapt this 
 ****
 
 [plantuml, "Deployed infrastructure", png]
----
+----
 component User as "User"
 cloud "WIQ" { 
    rectangle "Azure - Ubuntu - Docker"{
@@ -107,7 +107,7 @@ records -[#red]-> Records
 questions -[#red]-> Questions
 qg -[#red]-> Questions
 qg -[dotted]-> Wikidata
----
+----
 
 This diagram shows the infrastructure of our application when deployed.
 
