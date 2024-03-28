@@ -1590,59 +1590,10 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 </div>
-<hr>
-<div class="paragraph">
-<p>component User as "User"
-cloud "WIQ" {
-   rectangle "Azure - Ubuntu - Docker"{
-    component webapp as "Webapp"{
-      port 3000
-    }
-    rectangle "Internal network"{
-     database "MongoDB" {
-       folder "UsersDB" {
-        [Records]
-        [Users]
-       }
-       frame "QuestionsDB" {
-        [Questions]
-       }
-     }
-     component gs as "Gateway service"{
-       port 8000
-     }
-     component auths as "Authentication service"{
-       port 8002
-     }
-     component users as "User service"{
-       port 8001
-     }
-     component records as "Record service"{
-       port 8004
-     }
-     component questions as "Question service"{
-       port 8003
-     }
-     component qg as "Question generator"
-    }
-  }
-}
-cloud "Wikidata"</p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Deployed%20infrastructure.png" alt="Deployed infrastructure" width="1028" height="578">
 </div>
-<div class="paragraph">
-<p>User  -[dotted,#green,thickness=3]&#8594; 3000
-webapp -[#green,thickness=3]&#8594; 8000
-gs -[#red]&#8594; 8002
-gs -[#red]&#8594; 8001
-gs -[#red]&#8594; 8004
-gs -[#red]&#8594; 8003
-auths -[#red]&#8594; Users
-users -[#red]&#8594; Users
-records -[#red]&#8594; Records
-questions -[#red]&#8594; Questions
-qg -[#red]&#8594; Questions
-qg -[dotted]&#8594; Wikidata
----</p>
 </div>
 <div class="paragraph">
 <p>This diagram shows the infrastructure of our application when deployed.</p>
