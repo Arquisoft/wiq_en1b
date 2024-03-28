@@ -10,7 +10,7 @@ import $ from 'jquery';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
-
+var points = 0;
 function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
@@ -54,17 +54,32 @@ function QuestionView(){
             });
         });
     }
+    function computePointsForQuestion(correctAnswer, answerGiven){
+        if(answerGiven==correctAnswer){
+            points+=100;
+        }else if(points-50>=0){
+            points-=50;
+        }else{
+            points = 0;
+        }
+    }
     function handleClick(text){
-        //addQuestion(statement, answers, answerGiven, correctAnswer) {
+        //create the record to record the response
         creationHistoricalRecord.addQuestion(questions[numQuestion].getQuestion(),
                                         questions[numQuestion].getAnswers(),
                                         text,
                                         questions[numQuestion].getCorrectAnswer(),
                                         numQuestion);
+        //compute the points for the answer given
+        computePointsForQuestion(questions[numQuestion].getCorrectAnswer(), text);
+        
         console.log(creationHistoricalRecord.getRecord());
+        //reveal answer to user for 1 sec
         revealColorsForAnswers();
         setTimeout(function() {
+            //after one second set colors back to normal
             setColorsBackToNormal();
+            //sum one to the number of questions
             setnumQuestion(numQuestion + 1);
         }, 1000);
         
@@ -76,12 +91,12 @@ function QuestionView(){
     <div className="question-view-container">
         {/*Nav*/}
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} /> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points}/> :
         <h1>Please Wait a bit...</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points}){
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
@@ -110,9 +125,11 @@ function QuestionComponent({questions, numQuestion, handleClick, t}){
                 </>
             ) : (
                 <>
+                        {creationHistoricalRecord.setDate(Date.now())}
+                        {creationHistoricalRecord.setPoints(points)}
+                        {console.log(creationHistoricalRecord.getRecord())}
                     <h2>{t("questionView.finished_game")} </h2>
-                    <p>500 Points</p>
-                    
+                    <p>{points} {t("questionView.point")}</p>
                 </>
             )}
         </>

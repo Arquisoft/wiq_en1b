@@ -56,7 +56,8 @@
         "seconds":"seconds",
         "question_counter":"Question counter :",
         "end_countdown":"Time's up!",
-        "finished_game":"The game has finished!"
+        "finished_game":"The game has finished!",
+        "point":"Points"
       }
 }
     
