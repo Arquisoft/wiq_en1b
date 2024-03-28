@@ -483,11 +483,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_runtime_scenario_signup">6.1. Runtime Scenario: Signup</a></li>
-<li><a href="#_runtime_scenario_login">6.2. Runtime Scenario: Login</a></li>
-<li><a href="#_runtime_scenario_generation_of_questions">6.3. Runtime Scenario: Generation of questions</a></li>
-<li><a href="#_runtime_scenario_play_a_game">6.4. Runtime Scenario: Play a game</a></li>
-<li><a href="#_runtime_scenario_accessing_a_record">6.5. Runtime Scenario: Accessing a record</a></li>
+<li><a href="#_runtime_scenario_retrieval_of_questions">6.1. Runtime Scenario: Retrieval of questions</a></li>
+<li><a href="#_runtime_scenario_answer_questions">6.2. Runtime Scenario: Answer questions</a></li>
+<li><a href="#_runtime_scenario_login_successful">6.3. Runtime Scenario: Login successful</a></li>
+<li><a href="#_runtime_scenario_login_failure">6.4. Runtime Scenario: Login failure</a></li>
+<li><a href="#_runtime_scenario_signup_successful">6.5. Runtime Scenario: Signup successful</a></li>
+<li><a href="#_runtime_scenario_signup_failure">6.6. Runtime Scenario: Signup failure</a></li>
+<li><a href="#_runtime_scenario_wikidata_error">6.7. Runtime Scenario: Wikidata error</a></li>
+<li><a href="#_runtime_scenario_db_error">6.8. Runtime Scenario: DB error</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -661,7 +664,7 @@ If requirements documents exist this overview should refer to these documents.</
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user must be able to start playing a game before the minute mark.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user must be able to understand the function of the application before the minute mark.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
@@ -673,7 +676,7 @@ If requirements documents exist this overview should refer to these documents.</
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Robustness</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be able to handle any user or external systems (Wikidata) errors.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be able to handle any user error that could happen at runtime.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Accessibility</p></td>
@@ -804,9 +807,9 @@ These stakeholders determine the extent and the level of detail of your work and
 <dd>
 <p>All the communication and code-sharing will be done by GitHub, so all the work will be recorded there.</p>
 </dd>
-<dt class="hdlist1">Open API</dt>
+<dt class="hdlist1">API</dt>
 <dd>
-<p>Give access about users and generated questions through an open API.</p>
+<p>Give access about users and generated questions through an API.</p>
 </dd>
 </dl>
 </div>
@@ -976,13 +979,13 @@ The title of the table is the name of your system, the three columns contain the
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Question Generation</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">System requests a question and the information extracted from wikidata</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User requests a question and the information extracted from wikidata</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The question and the set of answers corresponding to that question are created</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><em>Wikidata API</em></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Topic to create a question</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correct anwser for the topic asked</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some part or topic related to the creation of a question</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Some concepts that will facilitate the creation of the question such as wrong answers</p></td>
 </tr>
 </tbody>
 </table>
@@ -1013,31 +1016,19 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 <div class="paragraph">
 <div class="title">User And Application interface<br></div>
-<p>The user will access the web application via the HTTP protocol</p>
+<p>The user will access the web application via the HTTPs protocol</p>
 </div>
 <div class="paragraph">
 <div class="title">Home and Login interface<br></div>
-<p>The home will allow user to be redirected to the login and authentication phase via the HTTP protocol</p>
+<p>The home will allow user to be redirected to the login and authentication phase via the HTTPs protocol</p>
 </div>
 <div class="paragraph">
-<div class="title">Login and Users Database<br></div>
-<p>The login will access the users database directly via an internal network</p>
+<div class="title">Login and Question Generation interface<br></div>
+<p>The login will allow the user to enter the game and so the question generation will start, this will happend through a redirect</p>
 </div>
 <div class="paragraph">
-<div class="title">Login and Game interface<br></div>
-<p>The login will allow the user to enter the game menu</p>
-</div>
-<div class="paragraph">
-<div class="title">Game and Users Database<br></div>
-<p>The game will access the users database directly via an internal network</p>
-</div>
-<div class="paragraph">
-<div class="title">Game and Questions Database<br></div>
-<p>The game will access the questions database directly via an internal network</p>
-</div>
-<div class="paragraph">
-<div class="title">Question Generator and Questions Database<br></div>
-<p>The question generator will access the question database directly via an internal network</p>
+<div class="title">Login and Database<br></div>
+<p>The login will access the database directly via TCP/IP protocol</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1099,13 +1090,13 @@ Refer to details in the following sections.</p>
 <p><strong>ReactJS</strong> : A JavaScript library that facilitates the creation of interactive grafical interfaces.</p>
 </li>
 <li>
-<p><strong>Sass</strong> : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance. (Not used)</p>
+<p><strong>Sass</strong> : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance.</p>
 </li>
 <li>
-<p><strong>TypeScript</strong> : A superset of JavaScript that adds various features that can resolve code errors before running the actual code. (Not used)</p>
+<p><strong>TypeScript</strong> : A superset of JavaScript that adds various features that can resolve code errors before running the actual code.</p>
 </li>
 <li>
-<p><strong>SpringBoot</strong> : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process. (Not used)</p>
+<p><strong>SpringBoot</strong> : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process.</p>
 </li>
 <li>
 <p><strong>Wikidata Toolkit</strong> : Wikidata Toolkit is a Java library for accessing Wikidata and other Wikibase installations. It can be used to create bots, to perform data extraction tasks (e.g., convert all data in Wikidata to a new format), and to do large-scale analyses that are too complex for using a simple SPARQL query service.</p>
@@ -1114,22 +1105,10 @@ Refer to details in the following sections.</p>
 <p><strong>Docker</strong> : Docker provides tools and a runtime environment to manage these containers efficiently, allowing developers to build, ship, and run applications consistently across different environments.</p>
 </li>
 <li>
-<p><strong>MySql</strong> : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data. (Not used)</p>
+<p><strong>MySql</strong> : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data.</p>
 </li>
 <li>
 <p><strong>Mongo DB</strong> : MongoDB is a popular open-source NoSQL database management system that stores data flexible, JSON-like documents with dynamic schemas.</p>
-</li>
-<li>
-<p><strong>Express</strong> : Express is a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications.</p>
-</li>
-<li>
-<p><strong>Nodejs</strong> : Node.js is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside of a web browser, allowing developers to build scalable network applications.</p>
-</li>
-<li>
-<p><strong>Java</strong> : Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is known for its portability, security features, and wide range of applications, from mobile to enterprise systems.</p>
-</li>
-<li>
-<p><strong>TO BE ORGANIZED</strong></p>
 </li>
 </ul>
 </div>
@@ -1147,13 +1126,7 @@ Refer to details in the following sections.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Microservices</strong> : Selected as our main architecture. We will have various small independent services that interact between them to support all the fuctionalities of the web application.</p>
-</li>
-<li>
-<p><strong>API Gateway</strong> : This API gateway serves as a centralized point for managing, securing, and routing requests between clients and multiple backend services or APIs. This is applied to centralized the calls to the different microservices.</p>
-</li>
-<li>
-<p><strong>Shared data</strong> : An architectural pattern used to communicate two services through a data repository. In our case, we will communicate the questions generator and the game through a database for a better efficiency and robustness.</p>
+<p><strong>Microservices</strong> : Selected as our main architecture. We will have various small independent services that interact between them to support all the fuctionalities of the web application</p>
 </li>
 </ul>
 </div>
@@ -1163,10 +1136,7 @@ Refer to details in the following sections.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Façade</strong> : Pattern used to communicate between different parts of the whole application (APIs).</p>
-</li>
-<li>
-<p><strong>Template</strong> : Pattern used to set some fixed steps of an algorithm. This was used for the different questions generators.</p>
+<p><strong>FaÃ§ade</strong> : Pattern used to communicate between different parts of the whole application (APIs)</p>
 </li>
 </ul>
 </div>
@@ -1332,13 +1302,13 @@ Thus it contains the white box description of selected building blocks of level 
 <div class="ulist">
 <ul>
 <li>
-<p><strong><em>Webapp</em></strong> : The web part of our application that will use the wiq services to let the user play.</p>
+<p><strong><em>WIQ</em> HOME</strong> : Service which will collect the user interaction and redirect it to the corresponding service.</p>
 </li>
 <li>
-<p><strong>Gateway service</strong> : Service that will redirect every call to our endpoints to the specific one.</p>
+<p><strong><em>WIQ</em> USER MANAGEMENT</strong> : Service that will manage the user information, login, authentication, etc.</p>
 </li>
 <li>
-<p><strong><em>WIQ Services</em></strong> : Our collection of endpoints that will attend any need of our Webapp as well as giving support to external calls.</p>
+<p><strong><em>WIQ</em> QUESTION GAME</strong> Service that will generate and show the different questions for our game.</p>
 </li>
 </ul>
 </div>
@@ -1357,41 +1327,42 @@ Thus it contains the white box description of selected building blocks of level 
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>In this level of descomposition of the system we identify the different views of the webapp and microservices of the WIQ services.</p>
+<p>In this level of descomposition of the system we start to identify the different microservices of the system.</p>
 </dd>
 <dt class="hdlist1">Contained Building Blocks</dt>
 <dd>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><em>Webapp</em> Home</strong> : First view of the webapp.</p>
+<p><strong><em>HOME</em> WELCOME PAGE</strong> : Microservice that will welcome the user giving a small explanation about the game and facilate the registration/login process.</p>
 </li>
 <li>
-<p><strong><em>Webapp</em> Log in and Register</strong> : Views of the webapp that allow the user to get into the application.</p>
+<p><strong><em>USER MANAGEMENT</em> USERSERVICE</strong> : Microservice that will allow the user create an account for the user and let him access the game.</p>
 </li>
 <li>
-<p><strong><em>Webapp</em> Game menu</strong> : Intermediate view between the records and the actual game.</p>
+<p><strong><em>USER MANAGEMENT</em> AUTHSERVICE</strong> : Microservice that will login the user in the system and let him access the game.</p>
 </li>
 <li>
-<p><strong><em>Webapp</em> User&#8217;s games records</strong> : View where the user will be able to see different statistics of the games played (Correct answers, points, total games).</p>
+<p><strong><em>HOME</em> GAMEMODE PAGE</strong> : Microservice that will let the user start a game.</p>
 </li>
 <li>
-<p><strong><em>Webapp</em> Question Game</strong> : Game view where the user will be able answer the random question by choosing 1 of 4 posibilities.</p>
+<p><strong><em>QUESTION GAME</em> GAME CONFIGURATION</strong> Microservice that will let the user customize some game parameters (amount of questions, time to respond a question, etc).</p>
 </li>
 <li>
-<p><strong><em>WIQ Services</em> Authentication service</strong> : Microservice that will let the user log in a created account.</p>
+<p><strong><em>QUESTION GAME</em> QUESTION RESTAPI</strong> Microservice that will work as our open API allowing other systems to retrieve information like:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Random questions and corresponding answers.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong><em>WIQ Services</em> User service</strong> : Microservice that will let the user create an account.</p>
+<p><strong><em>QUESTION GAME</em> QUESTION GENERATOR</strong> Microservice that will generate the different questions for our game communicating with wikidata.</p>
 </li>
 <li>
-<p><strong><em>WIQ Services</em> Record service</strong> : Microservice that will manage the records of all users and will let anyone get the records of an user.</p>
-</li>
-<li>
-<p><strong><em>WIQ Services</em> Question service</strong> Microservice that will get some random questions for an user game. It will also let anyone get random questions outside our system.</p>
-</li>
-<li>
-<p><strong><em>WIQ Services</em> Question generator</strong> Microservice that will generate the random questions accesing wikidate and load them into the system.</p>
+<p><strong><em>QUESTION GAME</em> GAME</strong> Microservice that will show the different questions for our game and manage the user answers in order to give a final score.</p>
 </li>
 </ul>
 </div>
@@ -1467,47 +1438,67 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>In this section we will focus on developing which views of the webapp uses which microservices from the WIQ Services.
-Mind that some of these processes works the same way when called from outside the system (look for them at the API docs)</p>
-</div>
 <div class="sect2">
-<h3 id="_runtime_scenario_signup">6.1. Runtime Scenario: Signup</h3>
+<h3 id="_runtime_scenario_retrieval_of_questions">6.1. Runtime Scenario: Retrieval of questions</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Signup.png" alt="Signup" width="716" height="800">
+<img src="./images/Retrieval%20of%20questions.png" alt="Retrieval of questions" width="467" height="425">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_login">6.2. Runtime Scenario: Login</h3>
+<h3 id="_runtime_scenario_answer_questions">6.2. Runtime Scenario: Answer questions</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Login.png" alt="Login" width="707" height="800">
+<img src="./images/Answer%20questions.png" alt="Answer questions" width="405" height="411">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_generation_of_questions">6.3. Runtime Scenario: Generation of questions</h3>
+<h3 id="_runtime_scenario_login_successful">6.3. Runtime Scenario: Login successful</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Generation%20of%20questions.png" alt="Generation of questions" width="505" height="565">
+<img src="./images/Login%20successful.png" alt="Login successful" width="442" height="425">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_play_a_game">6.4. Runtime Scenario: Play a game</h3>
+<h3 id="_runtime_scenario_login_failure">6.4. Runtime Scenario: Login failure</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Play%20a%20game.png" alt="Play a game" width="1189" height="1148">
+<img src="./images/Login%20failure.png" alt="Login failure" width="453" height="486">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_accessing_a_record">6.5. Runtime Scenario: Accessing a record</h3>
+<h3 id="_runtime_scenario_signup_successful">6.5. Runtime Scenario: Signup successful</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Accessing%20a%20record.png" alt="Accessing a record" width="600" height="441">
+<img src="./images/Signup%20successful.png" alt="Signup successful" width="489" height="428">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_scenario_signup_failure">6.6. Runtime Scenario: Signup failure</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Signup%20failure.png" alt="Signup failure" width="519" height="473">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_scenario_wikidata_error">6.7. Runtime Scenario: Wikidata error</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Wikidata%20error.png" alt="Wikidata error" width="426" height="409">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_runtime_scenario_db_error">6.8. Runtime Scenario: DB error</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/DB%20error.png" alt="DB error" width="424" height="409">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1599,6 +1590,63 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 </div>
+<hr>
+<div class="paragraph">
+<p>component User as "User"
+cloud "WIQ" {
+   rectangle "Azure - Ubuntu - Docker"{
+    component webapp as "Webapp"{
+      port 3000
+    }
+    rectangle "Internal network"{
+     database "MongoDB" {
+       folder "UsersDB" {
+        [Records]
+        [Users]
+       }
+       frame "QuestionsDB" {
+        [Questions]
+       }
+     }
+     component gs as "Gateway service"{
+       port 8000
+     }
+     component auths as "Authentication service"{
+       port 8002
+     }
+     component users as "User service"{
+       port 8001
+     }
+     component records as "Record service"{
+       port 8004
+     }
+     component questions as "Question service"{
+       port 8003
+     }
+     component qg as "Question generator"
+    }
+  }
+}
+cloud "Wikidata"</p>
+</div>
+<div class="paragraph">
+<p>User  -[dotted,#green,thickness=3]&#8594; 3000
+webapp -[#green,thickness=3]&#8594; 8000
+gs -[#red]&#8594; 8002
+gs -[#red]&#8594; 8001
+gs -[#red]&#8594; 8004
+gs -[#red]&#8594; 8003
+auths -[#red]&#8594; Users
+users -[#red]&#8594; Users
+records -[#red]&#8594; Records
+questions -[#red]&#8594; Questions
+qg -[#red]&#8594; Questions
+qg -[dotted]&#8594; Wikidata
+---</p>
+</div>
+<div class="paragraph">
+<p>This diagram shows the infrastructure of our application when deployed.</p>
+</div>
 <div class="paragraph">
 <p><strong>TBD</strong></p>
 </div>
@@ -1614,9 +1662,6 @@ when your infrastructure is more complex.</p>
 <p>Please copy the structure from level 1 for each selected element.</p>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p><strong>TBD</strong></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1829,9 +1874,29 @@ on this list.</p>
 <h2 id="section-design-decisions">9. Architecture Decisions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The application will be carried out following a Microservices architecture.<br>
-The Rest API in charge of comunicating with WikiData will be coded using Java.<br>
-<em>(More details to de added)</em></p>
+<p>The application will be carried out following a Microservices architecture.<br></p>
+</div>
+<div class="paragraph">
+<p>The service in charge of comunicating with WikiData will be coded using Java.
+As the generation of questions is a huge part of our application we will play it safe by using Java, a language where most of the team is "fluent" at.<br></p>
+</div>
+<div class="paragraph">
+<p>The backend will we develop using a combination of SpringBoot, for the question generation, and Express.
+The use of SpringBoot was a requirement in order to generate the questions in Java.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>10/03/24</strong></p>
+</div>
+<div class="paragraph">
+<p>We will apply a data share strategy where we will load the questions generated and access them when needed through the backend.
+This is done to increase the efficiency, as questions are not generated when needed, and robustness of the application, as we can give service even if Wikidata is down.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>14/03/24</strong></p>
+</div>
+<div class="paragraph">
+<p>We have done a redisign of the architecture of the project where we will implement the whole backend using Express.
+This was done to have a more homogeneus backend as we have de-coupled the question generation from the backend and we dont need all to be Java.<br></p>
 </div>
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -2052,7 +2117,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <div class="sect2">
 <h3 id="_risks">11.1. Risks</h3>
 <div class="paragraph">
-<p>There is the table of risks the team is taking for development purposes ordered by priority.</p>
+<p>There is the table of risks the team is taking for development purposes.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2069,9 +2134,9 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Insufficient knowledge of React</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None of our team members worked with React before.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The people who&#8217;s going to work on React are going to learn it.</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Insufficient knowledge of Tecnologies</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None of our team members worked with React nor Express nor MongoDB before.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The people who&#8217;s going to work on these technologies are going to learn it which trades time for a better application as we use stronger technologies (React instead of HTML).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Working with a team</strong></p></td>
@@ -2104,8 +2169,8 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Azure</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The team has experience with Microsoft Azure and decided to use it again. The full implementation is not planned yet.</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>CORS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The team has fully enabled CORS through the backend this is a risk as external users can access endpoints like adduser</p></td>
 </tr>
 </tbody>
 </table>
@@ -2183,6 +2248,10 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em><strong>Stakeholder</strong></em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Anyone involved in the development process of the system, or that is affected by it somehow.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em><strong>CORS</strong></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>CORS (Cross-Origin Resource Sharing) is a mechanism that allows resources on a web page to be requested from another domain outside the domain from which the resource originated.</em></p></td>
 </tr>
 </tbody>
 </table>
