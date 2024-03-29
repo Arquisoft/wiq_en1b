@@ -56,40 +56,41 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy and adapt this section of arc42 for all relevant environments.
 ****
 
-[plantuml, "Deployed infrastructure", png]
-----
+image::Deployed-Infrastructure.png["Deployed Infrastructure"]
+
+****
 component User as "User"
 cloud "WIQ" { 
-   rectangle "Azure - Ubuntu - Docker"{
+  rectangle "Azure - Ubuntu - Docker"{
     component webapp as "Webapp"{
       port 3000
     }
     rectangle "Internal network"{
-     database "MongoDB" {
-       folder "UsersDB" {
+    database "MongoDB" {
+      folder "UsersDB" {
         [Records]
         [Users]
-       }
-       frame "QuestionsDB" {
+      }
+      frame "QuestionsDB" {
         [Questions]
-       }
-     }
-     component gs as "Gateway service"{
-       port 8000
-     }
-     component auths as "Authentication service"{
-       port 8002
-     }
-     component users as "User service"{
-       port 8001
-     }
-     component records as "Record service"{
-       port 8004
-     }
-     component questions as "Question service"{
-       port 8003
-     }
-     component qg as "Question generator"
+      }
+    }
+    component gs as "Gateway service"{
+      port 8000
+    }
+    component auths as "Authentication service"{
+      port 8002
+    }
+    component users as "User service"{
+      port 8001
+    }
+    component records as "Record service"{
+      port 8004
+    }
+    component questions as "Question service"{
+      port 8003
+    }
+    component qg as "Question generator"
     }
   }
 }
@@ -107,8 +108,7 @@ records -[#red]-> Records
 questions -[#red]-> Questions
 qg -[#red]-> Questions
 qg -[dotted]-> Wikidata
-----
-
+****
 This diagram shows the infrastructure of our application when deployed.
 
 *TBD*
