@@ -30,7 +30,7 @@ public class CapitalGenerator extends RightAnswerIsEntity {
 		for(int i = 0; i < 3; i++){
 				int rndnum = rnd.nextInt(entities.length);
 				String wrong = getAnswer(entities[rndnum]);
-			if(wrong == rightAnswer || used.contains(rndnum))
+			if(wrong.equals(rightAnswer) || used.contains(rndnum))
 				i--;
 			else{
 				result.add(wrong);
