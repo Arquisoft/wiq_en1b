@@ -3,8 +3,23 @@ ifndef::imagesdir[:imagesdir: ../images]
 [[section-design-decisions]]
 == Architecture Decisions
 The application will be carried out following a Microservices architecture. +
-The Rest API in charge of comunicating with WikiData will be coded using Java. +
-_(More details to de added)_
+
+The service in charge of comunicating with WikiData will be coded using Java. 
+As the generation of questions is a huge part of our application we will play it safe by using Java, a language where most of the team is "fluent" at. +
+
+The backend will we develop using a combination of SpringBoot, for the question generation, and Express.
+The use of SpringBoot was a requirement in order to generate the questions in Java. +
+
+*10/03/24* 
+
+We will apply a data share strategy where we will load the questions generated and access them when needed through the backend.
+This is done to increase the efficiency, as questions are not generated when needed, and robustness of the application, as we can give service even if Wikidata is down. +
+
+*14/03/24*
+
+We have done a redisign of the architecture of the project where we will implement the whole backend using Express.
+This was done to have a more homogeneus backend as we have de-coupled the question generation from the backend and we dont need all to be Java. +
+
 
 [role="arc42help"]
 ****
