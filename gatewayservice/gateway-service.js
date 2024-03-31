@@ -68,7 +68,7 @@ app.get('/records/:user', async(req, res)=>{
     const user = req.params.user;
     // Forward the record request to the record service
     const recordResponse = await axios.get(recordServiceUrl + '/records/' + user);
-    res.send(recordResponse.record);
+    res.json(recordResponse.data);
   } catch (error) {
     res.send(error);
   }

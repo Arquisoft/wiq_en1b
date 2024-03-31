@@ -40,13 +40,13 @@ app.post('/addrecord', async (req, res) => {
 });
 
 app.get('/records/:user', async (req, res) => {
+  console.log(req.params.user);
   try {
-    const record = await Record.findOne({ user: req.params.user });
-    
-    if (!record) {
-      res.json({ record: "No hay usuario" });
+    const recordFound = await Record.findOne({ userIdentification: req.params.user }, 'games');
+    if (!recordFound) {
+      res.json({record: "No hay usuario" });
     } else {
-      res.json(record);
+      res.json({record : recordFound});
     }
   } catch (err) {
     res.status(500).json({ error: "undefined" });
