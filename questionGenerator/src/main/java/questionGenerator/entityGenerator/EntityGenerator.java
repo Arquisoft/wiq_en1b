@@ -16,7 +16,7 @@ public class EntityGenerator {
         + "list=backlinks&formatversion=2&";
 	
 	private static String property = "";
-	private static final String PROPERTY_URL = "bltitle=Property%3A";
+	private static final String PROPERTY_URL = "bltitle=Property%3AP";
 	
 	private static final String POST_URL = "&blnamespace=0&";
 	
