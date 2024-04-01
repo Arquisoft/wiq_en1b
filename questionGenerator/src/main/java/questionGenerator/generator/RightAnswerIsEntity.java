@@ -31,11 +31,11 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		String entity = getRightAnswerEntity(st.getValue().toString());
 		String answer = "";
 		try {
-			ItemDocumentImpl idi = getAlreadyProcessedEntities().get(entity);
+			ItemDocumentImpl idi = getAlreadyProcessedEntity(entity);
 			if(idi==null) {
 				idi = (ItemDocumentImpl) wbdf.getEntityDocument(entity);
 				answer = getName(idi.getLabels());
-				addItem(entity, idi);
+				addProcessedEntity(entity, idi);
 			}
 			else
 				answer = getName(idi.getLabels());
@@ -46,12 +46,12 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 	}
 	
 	protected String getAnswer(String id){
-		ItemDocumentImpl idi = alreadyProcessedEntities.get(id);
+		ItemDocumentImpl idi = getAlreadyProcessedEntity(id);
 		
 		if(idi==null) {
 			try {
 				idi = (ItemDocumentImpl) wbdf.getEntityDocument(id);
-				alreadyProcessedEntities.put(id, idi);
+				addProcessedEntity(id, idi);
 			} catch (MediaWikiApiErrorException | IOException e) {
 				/*
 				 * * @throws MediaWikiApiErrorException

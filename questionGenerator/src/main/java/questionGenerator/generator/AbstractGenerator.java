@@ -24,12 +24,13 @@ public abstract class AbstractGenerator {
 	private Locale localization = Locale.getDefault();
 	private ResourceBundle messages;
 
-	public static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
+	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
 	private QuestionType type;
 
 	private static final String MESSAGES_PATH = "messages";
+
 	public AbstractGenerator(String propertyId, QuestionType type) {
 		this.propertyId = propertyId;
 		this.type = type;
@@ -90,11 +91,11 @@ public abstract class AbstractGenerator {
 		return propertyId;
 	}
 
-	public static Map<String, ItemDocumentImpl> getAlreadyProcessedEntities() {
-		return new HashMap<>(alreadyProcessedEntities);
+	public static ItemDocumentImpl getAlreadyProcessedEntity(String id) {
+		return alreadyProcessedEntities.get(id);
 	}
 	
-	public static void addItem(String entity, ItemDocumentImpl item) {
+	public static void addProcessedEntity(String entity, ItemDocumentImpl item) {
 		alreadyProcessedEntities.put(entity, item);
 	}
 
