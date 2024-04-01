@@ -14,6 +14,7 @@ import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.question.Question;
+import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AbstractGenerator {
 	
@@ -29,7 +30,7 @@ public abstract class AbstractGenerator {
 	private QuestionType type;
 
 	private static final String MESSAGES_PATH = "messages";
-	public AbstractGenerator(String propertyId) {
+	public AbstractGenerator(String propertyId, QuestionType type) {
 		this.propertyId = propertyId;
 		this.type = type;
 	}

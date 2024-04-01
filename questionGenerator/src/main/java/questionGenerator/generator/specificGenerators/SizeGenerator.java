@@ -9,6 +9,7 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.question.QuestionType;
 
 public class SizeGenerator extends AbstractGenerator {
 	

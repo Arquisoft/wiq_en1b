@@ -1,6 +1,7 @@
 package main.java.questionGenerator.generator.specificGenerators;
 
 import main.java.questionGenerator.generator.RightAnswerIsEntity;
+import main.java.questionGenerator.question.QuestionType;
 
 public class LanguageGenerator extends RightAnswerIsEntity {
 	

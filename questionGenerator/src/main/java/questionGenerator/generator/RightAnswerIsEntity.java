@@ -11,10 +11,12 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
+import main.java.questionGenerator.question.QuestionType;
+
 public abstract class RightAnswerIsEntity extends AbstractGenerator {
 
-	public RightAnswerIsEntity(String propertyId) {
-		super(propertyId);
+	public RightAnswerIsEntity(String propertyId, QuestionType type) {
+		super(propertyId, type);
 	}
 
 	@Override

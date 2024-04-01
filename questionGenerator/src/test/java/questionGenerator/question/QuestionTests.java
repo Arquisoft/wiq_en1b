@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.java.questionGenerator.question.Question;
+import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionTests {
 
@@ -21,7 +22,7 @@ public class QuestionTests {
     @BeforeEach
     void setUp() {
         List<String> answers = Arrays.asList("A", "B", "C");
-        question = new Question("What is the capital of France?", answers);
+        question = new Question("What is the capital of France?", answers, "en", QuestionType.CAPITAL);
     }
 
     @Test
