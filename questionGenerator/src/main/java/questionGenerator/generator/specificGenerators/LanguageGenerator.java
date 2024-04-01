@@ -7,7 +7,7 @@ public class LanguageGenerator extends RightAnswerIsEntity {
 	private final static String PROPERTY = "P37";
 
 	public LanguageGenerator(){
-		super(PROPERTY);
+		super(PROPERTY, QuestionType.LANGUAGE);
 	}
 
 	@Override

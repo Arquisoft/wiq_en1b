@@ -7,7 +7,7 @@ public class CapitalGenerator extends RightAnswerIsEntity {
 	private final static String PROPERTY = "P36";
 
 	public CapitalGenerator(){
-		super(PROPERTY);
+		super(PROPERTY, QuestionType.CAPITAL);
 	}
 
 	@Override

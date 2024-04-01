@@ -26,10 +26,12 @@ public abstract class AbstractGenerator {
 	public static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
+	private QuestionType type;
 
 	private static final String MESSAGES_PATH = "messages";
 	public AbstractGenerator(String propertyId) {
 		this.propertyId = propertyId;
+		this.type = type;
 	}
 	
 	/**
@@ -71,7 +73,7 @@ public abstract class AbstractGenerator {
 		answers.add(0, rightAnswer);
 		//create and return the question
 		
-		return new Question(question, answers);
+		return new Question(question, answers, language, type);
 	}
 	
 	protected String getName(Map<String, MonolingualTextValue> names) {
