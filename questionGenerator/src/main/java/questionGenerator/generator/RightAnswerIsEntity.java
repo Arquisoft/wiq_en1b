@@ -8,7 +8,6 @@ import java.util.Random;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
-import org.wikidata.wdtk.datamodel.interfaces.Value;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.question.QuestionType;
@@ -19,10 +18,17 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		super(propertyId, type);
 	}
 
+	/**
+	 * This method acts as a wrapper because in some cases this is enough, but not in all of them,
+	 * so the rest are in charge of overriding it and modifying what they need
+	 */
 	@Override
 	protected String getRightAnswer(Map<String, List<Statement>> claims) {
-		Value v = claims.get(super.getPropertyId()).get(0).getValue();
-		String entity = getRightAnswerEntity(v.toString());
+		return processRightAnswer(claims.get(super.getPropertyId()).get(0));
+	}
+	
+	protected String processRightAnswer(Statement st) {
+		String entity = getRightAnswerEntity(st.getValue().toString());
 		String answer = "";
 		try {
 			ItemDocumentImpl idi = getAlreadyProcessedEntities().get(entity);
@@ -34,7 +40,7 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 			else
 				answer = getName(idi.getLabels());
 		} catch (MediaWikiApiErrorException | IOException e) {
-			return null;
+			
 		}
 		return answer;
 	}
@@ -59,7 +65,7 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		return getRightAnswer(idi.getJsonClaims());
 	}
 	
-	private String getRightAnswerEntity(String url) {
+	protected String getRightAnswerEntity(String url) {
 		String[] split1 = url.split(" ");
 		String[] split2 = split1[0].split("/");
 		return split2[split2.length-1];
