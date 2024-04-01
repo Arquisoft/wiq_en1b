@@ -16,7 +16,6 @@ const AddUser = () => {
             <p>{t("addUser.username_placeholder")}:</p>
             <input
               type="text"
-              placeholder={t("addUser.username_placeholder")}
               required
             />
           </div>
@@ -24,7 +23,6 @@ const AddUser = () => {
             <p>{t("addUser.password_placeholder")}:</p>
             <input
               type="password"
-              placeholder={t("addUser.password_placeholder")}
               required
             />
           </div>
@@ -32,7 +30,6 @@ const AddUser = () => {
             <p>{t("addUser.repeat_password_placeholder")}:</p>
             <input
               type="password"
-              placeholder={t("addUser.repeat_password_placeholder")}
               required
             />
           </div>

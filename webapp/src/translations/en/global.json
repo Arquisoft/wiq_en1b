@@ -1,11 +1,14 @@
 {
-    "home": {
-      "welcome": "Welcome to WIQ!",
-      "how_to_play": "How to play?",
-      "login": "Login",
-      "register": "Don't have an account? Register here.",
-      "language": "The language has been changed to English"
-    },
+  "home": {
+    "welcome": "Welcome to WIQ!",
+    "how_to_play": "How to Play?",
+    "login": "Log In",
+    "register": "Don't have an account? Sign up here.",
+    "language": "The language has been changed to English",
+    "msg1": "Welcome to the knowledge challenge! Get ready to test your mind and demonstrate your skills. In this exciting game, you will face a series of questions that will test your knowledge on a variety of topics.",
+    "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?"
+},
+
     "navBar": {
       "title": "Know and win!",
       "en": "English",

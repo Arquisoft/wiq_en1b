@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-
 import "../../custom.css";
 
-
-
 function Home() {
-
   const { t } = useTranslation("global");
+  const [textContainerVisible, setTextContainerVisible] = useState(true);
+
+  const handleToggleOpen = () => {
+    setTextContainerVisible(false);
+  };
+
+  const handleToggleClose = () => {
+    setTextContainerVisible(true);
+  };
+
   return (
-      <div className="general">
-      <input className='input-home' type="radio" name="toggle" id="toggleOpen" value="toggleOpen" />
-      <input className='input-home' type="radio" name="toggle" id="toggleClose" value="toggleClose" />
+    <div className="general">
+      <div className={`text-container ${textContainerVisible ? 'visible' : 'hidden'}`}>
+        <p>{t("home.msg1")}</p>
+        <p>{t("home.msg2")}</p>
+      </div>
+      <input className='input-home' type="radio" name="toggle" id="toggleOpen" value="toggleOpen" onChange={handleToggleOpen} />
+      <input className='input-home' type="radio" name="toggle" id="toggleClose" value="toggleClose" onChange={handleToggleClose} />
       <figure id="welcomeMessage">
         <figcaption>
           <h1>
@@ -39,10 +49,8 @@ function Home() {
           </h1>
         </figcaption>
       </figure>
-      </div>
-      
+    </div>
   );
 }
 
 export default Home;
-
