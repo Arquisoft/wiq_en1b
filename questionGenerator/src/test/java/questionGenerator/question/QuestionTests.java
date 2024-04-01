@@ -61,7 +61,9 @@ public class QuestionTests {
         try {
             JSONObject expectedJson = new JSONObject()
                     .put("question", "What is the capital of France?")
-                    .put("answers", new JSONArray().put("A").put("B").put("C"));
+                    .put("answers", new JSONArray().put("A").put("B").put("C"))
+                    .put("language", "en")
+                    .put("type", "CAPITAL");
             assertEquals(expectedJson.toString(), question.getJSON().toString());
         } catch (JSONException e) {
             fail("JSONException occurred: " + e.getMessage());
