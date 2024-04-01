@@ -379,23 +379,22 @@ h1::before
     transition: all 0.7s ease-in-out;
 }
 
-#welcomeMessage
-figcaption
-h1::before {
-  top: -4.3em;
-  right: 2em;
-  content: "Click to close";
-  font-weight: 400;
-  color: #666;
-  opacity: 0;
+@keyframes moveUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(5px); } /* Mover hacia abajo */
+  100% { transform: translateY(0); } /* Volver a la posición inicial */
 }
 
-#welcomeMessage
-figcaption
-h1::after {
+#welcomeMessage figcaption h1::after {
   bottom: -3em;
-  content: "Click to continue";
+  content: url('../public/click2.png');
   transition: all 0.3s ease-in-out;
+  animation: moveUpDown 2s infinite alternate; /* Alternar entre mover hacia arriba y hacia abajo cada 2 segundos */
+}
+
+
+#welcomeMessage figcaption h1:hover::after {
+  transform: translate(5px, 5px); 
 }
 
 #welcomeMessage

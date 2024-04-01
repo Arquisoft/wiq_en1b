@@ -22,11 +22,6 @@ const Login = () => {
               placeholder={t("login.password_placeholder")}
             />
           </div>
-          <div className="remember-forgot">
-            <label>
-              <input type="checkbox" /> {t("login.remember_me")}
-            </label>
-          </div>
 
           <ButtonMenu />
           <LinkRegister />
