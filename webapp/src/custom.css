@@ -381,7 +381,7 @@ h1::before
 
 @keyframes moveUpDown {
   0% { transform: translateY(0); }
-  50% { transform: translateY(5px); } /* Mover hacia abajo */
+  50% { transform: translateY(10px); } /* Mover hacia abajo */
   100% { transform: translateY(0); } /* Volver a la posición inicial */
 }
 
@@ -389,7 +389,7 @@ h1::before
   bottom: -3em;
   content: url('../public/click2.png');
   transition: all 0.3s ease-in-out;
-  animation: moveUpDown 2s infinite alternate; /* Alternar entre mover hacia arriba y hacia abajo cada 2 segundos */
+  animation: moveUpDown 1s infinite alternate; /* Alternar entre mover hacia arriba y hacia abajo cada 2 segundos */
 }
 
 
