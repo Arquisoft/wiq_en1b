@@ -80,6 +80,12 @@ public class QuestionGeneratorTests {
                 } catch (JSONException e) {
                     fail("Exception occurred while parsing JSON: " + e.getMessage());
                 }
+                
+                assertTrue(json.has("language"));
+                assertEquals(json.get("language"), "en");
+                
+                assertTrue(json.has("type"));
+                assertEquals(json.get("type"), t.toString());
             }
 		}
 
@@ -133,6 +139,12 @@ public class QuestionGeneratorTests {
                 } catch (JSONException e) {
                     fail("Exception occurred while parsing JSON: " + e.getMessage());
                 }
+                
+                assertTrue(json.has("language"));
+                assertEquals(json.get("language"), "es");
+                
+                assertTrue(json.has("type"));
+                assertEquals(json.get("type"), t.toString());
             }
 		}
 
