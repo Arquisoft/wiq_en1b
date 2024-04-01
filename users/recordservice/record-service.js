@@ -15,41 +15,40 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
 mongoose.connect(mongoUri);
 
 //Fire and forget
-app.post('/addrecord', async (req, res) => {
+app.post('/record', async (req, res) => {
   const user = req.body.user;
   const game = req.body.game;
-  console.log(game)
-  console.log(user)
-  let record = await Record.findOne({ username : user }); 
+  let record = await Record.findOne({ user : user }); 
+  console.log(record)
   if(record){ //If it exits
     record.games.push(game);
   }
   else{ //Lo creamos
     record = new Record({
-      username:user,
+      user:user,
       games:[game]
     });
   }
   
   try {
-        const savedRecord = await record.save();
-        console.log("Record saved successfully:", savedRecord);
+      const savedRecord = await record.save();
+      res.json({user:savedRecord.user});
     } catch (err) {
-        console.error("There was an error while saving the record:", err);
+      console.log(err);
+      res.status(500).json({error : 'Hubo un error en el servidor'});
     }
 });
 
-app.get('/records/:user', async (req, res) => {
-  console.log(req.params.user);
+app.get('/record/:user', async (req, res) => {
   try {
-    const recordFound = await Record.findOne({ userIdentification: req.params.user }, 'games');
+    const recordFound = await Record.findOne({ user: req.params.user }, 'games');
     if (!recordFound) {
-      res.json({record: "No hay usuario" });
+      res.json({record: "undefined" });
     } else {
       res.json({record : recordFound});
     }
   } catch (err) {
-    res.status(500).json({ error: "undefined" });
+    res.status(500).json({ error: "Hubo un error en el servidor" });
   }
 });
 
@@ -64,26 +63,3 @@ server.on('close', () => {
   });
 
 module.exports = server
-
-
-// Record.findOne({ username: "nombreDeUsuario" }, (err, record) => {
-//   if (err) {
-//       console.error("Error al recuperar el documento:", err);
-//       return;
-//   }
-
-//   if (!record) {
-//       console.log("No se encontró ningún documento para el nombre de usuario dado.");
-//       return;
-//   }
-
-//   record.games.push("nuevoJuego");
-
-//   record.save((err, updatedRecord) => {
-//       if (err) {
-//           console.error("Error al guardar el documento actualizado:", err);
-//           return;
-//       }
-//       console.log("Documento actualizado correctamente:", updatedRecord);
-//   });
-// });

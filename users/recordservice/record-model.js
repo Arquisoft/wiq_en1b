@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const recordSchema = new mongoose.Schema({
-    userIdentification: String,
+    user: String,
     games: [{
         questions: [{
             question: String,
