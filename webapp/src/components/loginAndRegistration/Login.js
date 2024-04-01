@@ -14,9 +14,11 @@ const Login = () => {
         <form className="form">
           <h1>{t("login.title")}</h1>
           <div className="input-box">
+            <p>{t("login.username_placeholder")}:</p>
             <input type="text" placeholder={t("login.username_placeholder")} />
           </div>
           <div className="input-box">
+          <p>{t("login.password_placeholder")}:</p>
             <input
               type="password"
               placeholder={t("login.password_placeholder")}
