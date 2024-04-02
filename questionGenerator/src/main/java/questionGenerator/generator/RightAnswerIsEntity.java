@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
+import org.wikidata.wdtk.datamodel.interfaces.Snak;
+import org.wikidata.wdtk.datamodel.interfaces.SnakGroup;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
@@ -14,21 +16,37 @@ import main.java.questionGenerator.question.QuestionType;
 
 public abstract class RightAnswerIsEntity extends AbstractGenerator {
 
-	public RightAnswerIsEntity(String propertyId, QuestionType type) {
+	private final String PROPERTY_TO_CHECK;
+
+	public RightAnswerIsEntity(String propertyId, QuestionType type, String propertyToCheck) {
 		super(propertyId, type);
+		this.PROPERTY_TO_CHECK = propertyToCheck;
 	}
 
-	/**
-	 * This method acts as a wrapper because in some cases this is enough, but not in all of them,
-	 * so the rest are in charge of overriding it and modifying what they need
-	 */
 	@Override
 	protected String getRightAnswer(Map<String, List<Statement>> claims) {
-		return processRightAnswer(claims.get(super.getPropertyId()).get(0));
+		for(Statement st : claims.get(super.getPropertyId())) {
+			boolean valid = true;
+			for(SnakGroup sg : st.getQualifiers()) {
+				for(Snak s : sg.getSnaks()) {
+					String value = getIdFromLink(s.getPropertyId().toString());
+					if(value.equals(PROPERTY_TO_CHECK)) {
+						valid = false;
+						break;
+					}
+				}
+				if(!valid)
+					break;
+			}
+			if(valid) {
+				return processRightAnswer(st);
+			}
+		}
+		return null;
 	}
 	
 	protected String processRightAnswer(Statement st) {
-		String entity = getRightAnswerEntity(st.getValue().toString());
+		String entity = getIdFromLink(st.getValue().toString());
 		String answer = "";
 		try {
 			ItemDocumentImpl idi = getAlreadyProcessedEntity(entity);
@@ -65,7 +83,7 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		return getRightAnswer(idi.getJsonClaims());
 	}
 	
-	protected String getRightAnswerEntity(String url) {
+	protected String getIdFromLink(String url) {
 		String[] split1 = url.split(" ");
 		String[] split2 = split1[0].split("/");
 		return split2[split2.length-1];
