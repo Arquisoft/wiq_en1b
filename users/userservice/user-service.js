@@ -19,6 +19,7 @@ mongoose.connect(mongoUri);
 
 // Function to validate required fields in the request body
 function validateRequiredFields(req, requiredFields) {
+  //TODO: Add more validations
     for (const field of requiredFields) {
       if (!(field in req.body)) {
         throw new Error(`Missing required field: ${field}`);
@@ -40,7 +41,7 @@ app.post('/adduser', async (req, res) => {
         });
 
         await newUser.save();
-        res.json(newUser);
+        res.json({username: newUser.username});
     } catch (error) {
         res.status(400).json({ error: error.message }); 
     }});
