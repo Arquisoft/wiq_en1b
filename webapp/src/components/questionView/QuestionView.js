@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HistoricalView from '../HistoricalData/HistoricalView';
-import ButtonHistoricalData from '../HistoricalData/HistoricalView';
+import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
@@ -135,9 +135,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                         {console.log(creationHistoricalRecord.getRecord())}
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
-                    <Switch>
-                        <Route path="/historical" element={<HistoricalView />} />
-                    </Switch>
+                    
                     <ButtonHistoricalData t={t} />
                 </>
             )}

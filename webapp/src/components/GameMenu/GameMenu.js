@@ -1,9 +1,10 @@
 import "../../custom.css";
 import { Link } from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 
 export default function GameMenu() {
-  const[t, i18n] = useTranslation("global");
+  const[t] = useTranslation("global");
 
   return (
     <div className="divMenu">
@@ -14,13 +15,6 @@ export default function GameMenu() {
   );
   }
   
-  function ButtonHistoricalData({ t }) {
-    return (
-      <Link className="menuButton linkButton" to="/historical">
-        <h3>{t("gameMenu.history_button")}</h3>
-      </Link>
-    );
-  }
   
   function ButtonNewGame({ t }) {
     return (
