@@ -16,20 +16,20 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.questionGenerator.QuestionGenerator;
+import main.java.questionGenerator.QuestionGeneratorMock;
 import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionGeneratorTests {
 
-    private QuestionGenerator qgEN;
-    private QuestionGenerator qgES;
+    private QuestionGeneratorMock qgEN;
+    private QuestionGeneratorMock qgES;
 
     private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE, QuestionType.LANGUAGE};
 
     @BeforeEach
     void setUp(){
-        qgEN = new QuestionGenerator("en");
-        qgES = new QuestionGenerator("es");
+        qgEN = new QuestionGeneratorMock("en");
+        qgES = new QuestionGeneratorMock("es");
     }
 
     @Test

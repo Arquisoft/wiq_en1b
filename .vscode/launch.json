@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainMock",
+            "request": "launch",
+            "mainClass": "main.java.MainMock",
+            "projectName": "questionGenerator"
+        },
+        {
+            "type": "java",
             "name": "MainRandomizer",
             "request": "launch",
             "mainClass": "main.java.MainRandomizer",
