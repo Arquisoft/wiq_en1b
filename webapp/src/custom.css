@@ -84,7 +84,7 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 0.4em;
@@ -115,31 +115,75 @@
   }
   
 
+  .input-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px; 
+  }
+  
+  .input-box p {
+    font-weight: bold;
+    margin-right: 10%; 
+    width: 150px; 
+    text-align: right; 
+  }
+  
   .input-box input {
-    width: 100%;
-    height: 100%; 
-    background: rgb(177, 233, 188);
-    border: none;
-    outline: none;
+    flex: 1; 
+    height: 40px; 
+    background: rgb(255, 255, 255);
     border: 2px solid gray;
-    border-radius: 40px;
-    font-size: 18px; 
+    border-radius: 10px; 
+    font-size: 18px;
     color: black;
+    padding: 10px; 
   }
   
-  .input-box input::placeholder {
-    background-color: rgb(255, 255, 255);
-    font-size: 18px; /* Ajustar el tamaño de la fuente del marcador de posición */
-  }
+    
+  .button-register, .button-login {
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #00fff2;
+    border-radius: 0.9375em;
+    box-sizing: border-box;
+    color: #ffffffbf;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 3.75em;
+    min-width: 0;
+    outline: none;
+    padding: 1em 2.3em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+   }
+   
+   .button-register:disabled, .button-login:disabled {
+    pointer-events: none;
+   }
+   
+   .button-register:hover, .button-login:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+   }
+   
+   .button-register:active, .button-login:active {
+    box-shadow: none;
+    transform: translateY(0);
+   }
   
-
-
-.remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
   
 
 button[type="submit"] {
@@ -246,7 +290,6 @@ button[type="submit"]:hover {
     height: 100vh; /* Toma el 100% del alto de la ventana */
   }
   
-  
 :root {
   --gradient: conic-gradient(
     from 240deg at 50% 50%,
@@ -266,6 +309,27 @@ button[type="submit"]:hover {
   overflow-y: auto; /* Permitir desplazamiento vertical */
 
 }
+
+.text-container{
+  position: absolute;
+  top: 15%;
+  width: 300%; /* Ajusta el ancho al 100% de la pantalla */
+  text-align: center; /* Centra el texto horizontalmente */
+  z-index: 2; /* Asegura que el texto esté encima del mensaje de bienvenida */
+  
+}
+
+.text-container p {
+  font-size: 1.5rem; /* Ajusta el tamaño del texto según sea necesario */
+}
+
+
+.text-container.hidden {
+  opacity: 0;
+  height: 0;
+}
+
+
 
 *
 , *::before
@@ -302,8 +366,10 @@ body {
 }
 
 #welcomeMessage {
+  position: relative; /* Cambia a posición relativa para que el z-index funcione correctamente */
   width: 100%; 
   max-width: 600px; 
+  z-index: 1; /* Asegura que el mensaje de bienvenida esté detrás del texto */
 }
 
 #welcomeMessage
@@ -379,23 +445,22 @@ h1::before
     transition: all 0.7s ease-in-out;
 }
 
-#welcomeMessage
-figcaption
-h1::before {
-  top: -4.3em;
-  right: 2em;
-  content: "Click to close";
-  font-weight: 400;
-  color: #666;
-  opacity: 0;
+@keyframes moveUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); } /* Mover hacia abajo */
+  100% { transform: translateY(0); } /* Volver a la posición inicial */
 }
 
-#welcomeMessage
-figcaption
-h1::after {
+#welcomeMessage figcaption h1::after {
   bottom: -3em;
-  content: "Click to continue";
+  content: url('../public/click2.png');
   transition: all 0.3s ease-in-out;
+  animation: moveUpDown 1s infinite alternate; /* Alternar entre mover hacia arriba y hacia abajo cada 2 segundos */
+}
+
+
+#welcomeMessage figcaption h1:hover::after {
+  transform: translate(5px, 5px); 
 }
 
 #welcomeMessage

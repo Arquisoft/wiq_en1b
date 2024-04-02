@@ -39,6 +39,7 @@ const AddUser = () => {
         <form className="form" onSubmit={handleSubmit}>
           <h1>{t("addUser.title")}</h1>
           <div className="input-box">
+            <p>{t("addUser.username_placeholder")}:</p>
             <input
                 type="text"
                 placeholder={t("addUser.username_placeholder")}
@@ -48,6 +49,7 @@ const AddUser = () => {
               />
           </div>
           <div className="input-box">
+            <p>{t("addUser.password_placeholder")}:</p>
             <input
                 type="password"
                 placeholder={t("addUser.password_placeholder")}
