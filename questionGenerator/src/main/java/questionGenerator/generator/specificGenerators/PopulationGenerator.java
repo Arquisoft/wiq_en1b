@@ -27,7 +27,8 @@ public class PopulationGenerator extends AbstractGenerator {
 
 	@Override
 	protected String getRightAnswer(Map<String, List<Statement>> claims) {
-		Value v = claims.get(PROPERTY).get(0).getValue();
+		List<Statement> statements = claims.get(PROPERTY);
+		Value v = statements.get(statements.size()-1).getValue();
 		return v.toString();
 	}
 
