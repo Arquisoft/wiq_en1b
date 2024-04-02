@@ -1158,7 +1158,101 @@ svg {
     font-size: 65%;
   }
 }
-  
+/*------------------------------Question--------------------------------------------*/
+.questionContainer {
+  display: grid;
+  grid-template-areas:
+    "topPanel"
+    "answerPanel";
+  gap: 1em;
+  width: fit-content;
+  width: 500px; /* Establecer un ancho fijo */
+}
 
+.answerPanel {
+  display: grid; /* Usamos display: grid para los elementos dentro de answerPanel */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  padding: 0.5em;
+  min-width: 0;
+}
 
+.topPanel {
+  min-width: 0;
+}
 
+.answerButton {
+  margin-right: 10px;
+  background: #9f97ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px #9f97ff;
+  cursor: pointer;
+  font-size: 21px;
+  color: black;
+  font-weight: 700;
+  margin: 0.5em;
+  width: 100%;
+  max-width: 200px;
+}
+
+.questionContainer p,  span{
+  font-size: 20px;
+}
+/*------------------------------Historical--------------------------------------------*/
+/* Estilos para los botones */
+.historicalButton {
+  color: white;
+  width: 50em;
+  height: 5em;
+  font-size: 1.5em; /* Font size ajustado a 1.5em */
+  border: 3px ridge #149CEA;
+  background-color: transparent;
+  border-radius: 0.3em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.2em; /* Agrega espacio entre los botones */
+}
+
+/* Estilos para los divs dentro de centered-div */
+.centered-div > div {
+  display: flex;
+  flex-direction: column; /* Mostrar los botones en una columna */
+  align-items: center; /* Centrar horizontalmente los botones */
+  position: fixed;
+  /* Center horizontalmente */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Estilos para el contenedor globalHistoricalView */
+.globalHistoricalView {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin:auto;
+}
+
+.linkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50em;
+  height: 45px;
+  background: #c285ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 700;
+  margin: 0.5em;
+  text-decoration: none;
+}
+
+h2{
+  text-align: center;
+}

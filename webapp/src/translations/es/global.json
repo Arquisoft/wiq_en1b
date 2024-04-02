@@ -60,8 +60,14 @@
       "title":"Menú del Juego"
     },"questionView":{
       "seconds":"segundos",
-      "question_counter":"Número de pregunta : ",
-      "end_countdown":"¡Se acabó el tiempo!"
+      "question_counter":"Pregunta nº ",
+      "end_countdown":"¡Se acabó el tiempo!",
+      "finished_game":"¡El juego se ha terminado!",
+      "point":"Puntos"
+    },
+    "historicalView":{
+      "game":"Partida",
+      "points":"puntos"
     }
       
     

@@ -9,6 +9,7 @@ import Instructions from './components/Instructions';
 import Container from '@mui/material/Container';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './custom.css';
+import HistoricalView from './components/HistoricalData/HistoricalView';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/addUser" element={<AddUser />} />
             <Route path="/menu" element={<GameMenu />} />
             <Route path="/questions" element={<QuestionView />} />
+            <Route path="/historical" element={<HistoricalView />} />
           </Routes>
         </Container>
       </div>

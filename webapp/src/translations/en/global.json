@@ -57,8 +57,14 @@
       },
       "questionView":{
         "seconds":"seconds",
-        "question_counter":"Question counter :",
-        "end_countdown":"Time's up!"
+        "question_counter":"Question number ",
+        "end_countdown":"Time's up!",
+        "finished_game":"The game has finished!",
+        "point":"Points"
+      },
+      "historicalView":{
+        "game":"Game",
+        "points":"points"
       }
 }
     

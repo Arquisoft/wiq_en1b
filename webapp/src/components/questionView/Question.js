@@ -14,6 +14,12 @@ class Question{
     getAnswers() {
         return this.answers;
     }
+    getCorrectAnswer(){
+        return this.correctAnswer;
+    }
+    isCorrect(answer){
+        return answer===this.correctAnswer;
+    }
     
 }
 
