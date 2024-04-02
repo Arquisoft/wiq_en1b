@@ -9,6 +9,7 @@ const port = 8000;
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
+const recordServiceUrl = process.env.RECORD_SERVICE_URL || 'http://localhost:8004';
 
 app.use(cors());
 app.use(express.json());
@@ -49,6 +50,27 @@ app.get('/questions', async (req, res) => {
     res.send(quetionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.post('/addrecord', async(req, res) => {
+  try {
+    // Forward the record request to the record service
+    const recordResponse = await axios.post(recordServiceUrl+'/addrecord', req.body);
+    res.send(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.get('/records/:user', async(req, res)=>{
+  try {
+    const user = req.params.user;
+    // Forward the record request to the record service
+    const recordResponse = await axios.get(recordServiceUrl + '/records/' + user);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
   }
 });
 
