@@ -10,10 +10,14 @@ public class Question {
 	private String question;
     private List<String> answers;
     private int number = -1;
+    private String language;
+    private QuestionType type;
 
-    public Question(String question, List<String> answers){
+    public Question(String question, List<String> answers, String language, QuestionType type){
         this.question = question;
         this.answers = new ArrayList<>(answers);
+        this.language = language;
+        this.type = type;
     }
     
     public Question() {
@@ -50,6 +54,8 @@ public class Question {
 		for(String s : answers)
 			json.accumulate("answers", s);
         if(number != -1) json.accumulate("number", number); //Para que los tests pasen
+        json.accumulate("language", language);
+        json.accumulate("type", type);
 		return json;
 	}
 

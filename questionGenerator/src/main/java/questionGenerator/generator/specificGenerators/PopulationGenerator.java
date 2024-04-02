@@ -9,13 +9,14 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.question.QuestionType;
 
 public class PopulationGenerator extends AbstractGenerator {
 	
 	private final static String PROPERTY = "P1082";
 
 	public PopulationGenerator(){
-		super(PROPERTY);
+		super(PROPERTY, QuestionType.POPULATION);
 	}
 
 	@Override
