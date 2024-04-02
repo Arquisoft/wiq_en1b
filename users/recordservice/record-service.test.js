@@ -17,6 +17,89 @@ afterAll(async () => {
 });
 
 describe('Record Service', () => {
+  it('should give a 400 with a bad requests on POST /record', async () => {
+    //Does not have neither user nor game
+    let newUser = {
+      bad:"testuser",
+      bad2:
+      {
+          "questions": [
+          {
+          "question": "¿Cuál es el río más largo del mundo?",
+          "answers": ["Nilo", "Amazonas", "Yangtsé", "Misisipi"],
+          "answerGiven": "Amazonas",
+          "correctAnswer": "Amazonas"
+          },
+          {
+          "question": "¿Cuál es el elemento más abundante en la corteza terrestre?",
+          "answers": ["Hierro", "Oxígeno", "Silicio", "Aluminio"],
+          "answerGiven": "Oxígeno",
+          "correctAnswer": "Oxígeno"
+          }
+          ],
+          "points": 2500,
+          "date": "02/02/24"
+      }
+    };
+
+    let response = await request(app).post('/record').send(newUser);
+    expect(response.status).toBe(400);
+
+    //Does not have game
+    newUser = {
+      user:"testuser",
+      bad:
+      {
+          "questions": [
+          {
+          "question": "¿Cuál es el río más largo del mundo?",
+          "answers": ["Nilo", "Amazonas", "Yangtsé", "Misisipi"],
+          "answerGiven": "Amazonas",
+          "correctAnswer": "Amazonas"
+          },
+          {
+          "question": "¿Cuál es el elemento más abundante en la corteza terrestre?",
+          "answers": ["Hierro", "Oxígeno", "Silicio", "Aluminio"],
+          "answerGiven": "Oxígeno",
+          "correctAnswer": "Oxígeno"
+          }
+          ],
+          "points": 2500,
+          "date": "02/02/24"
+      }
+    };
+
+    response = await request(app).post('/record').send(newUser);
+    expect(response.status).toBe(400);
+
+    //Does not have user
+    newUser = {
+      bad:"testuser",
+      game:
+      {
+          "questions": [
+          {
+          "question": "¿Cuál es el río más largo del mundo?",
+          "answers": ["Nilo", "Amazonas", "Yangtsé", "Misisipi"],
+          "answerGiven": "Amazonas",
+          "correctAnswer": "Amazonas"
+          },
+          {
+          "question": "¿Cuál es el elemento más abundante en la corteza terrestre?",
+          "answers": ["Hierro", "Oxígeno", "Silicio", "Aluminio"],
+          "answerGiven": "Oxígeno",
+          "correctAnswer": "Oxígeno"
+          }
+          ],
+          "points": 2500,
+          "date": "02/02/24"
+      }
+    };
+
+    response = await request(app).post('/record').send(newUser);
+    expect(response.status).toBe(400);
+
+  });
   it('should add a new record on POST /record', async () => {
     const newUser = {
         user:"testuser",

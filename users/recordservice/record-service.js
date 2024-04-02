@@ -18,25 +18,27 @@ mongoose.connect(mongoUri);
 app.post('/record', async (req, res) => {
   const user = req.body.user;
   const game = req.body.game;
-  let record = await Record.findOne({ user : user }); 
-  console.log(record)
-  if(record){ //If it exits
-    record.games.push(game);
-  }
-  else{ //Lo creamos
-    record = new Record({
-      user:user,
-      games:[game]
-    });
-  }
-  
-  try {
-      const savedRecord = await record.save();
-      res.json({user:savedRecord.user});
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({error : 'Hubo un error en el servidor'});
+  if(user && game){
+    let record = await Record.findOne({ user : user }); 
+    if(record){ //If it exits
+      record.games.push(game);
     }
+    else{ //Lo creamos
+      record = new Record({
+        user:user,
+        games:[game]
+      });
+    }
+    
+    try {
+        const savedRecord = await record.save();
+        res.json({user:savedRecord.user});
+      } catch (err) {
+        console.log(err);
+        res.status(500).send();
+      }
+  }
+  res.status(400).send();
 });
 
 app.get('/record/:user', async (req, res) => {
@@ -48,7 +50,7 @@ app.get('/record/:user', async (req, res) => {
       res.json({record : recordFound});
     }
   } catch (err) {
-    res.status(500).json({ error: "Hubo un error en el servidor" });
+    res.status(500).send();
   }
 });
 
