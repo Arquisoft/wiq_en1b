@@ -1,62 +1,25 @@
-// import React from 'react';
-// import { render, fireEvent, screen, waitFor, act } from '@testing-library/react';
-// import axios from 'axios';
-// import MockAdapter from 'axios-mock-adapter';
-// import Login from './Login';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Login from './Login';
+import { BrowserRouter as Router } from 'react-router-dom'; 
 
-// const mockAxios = new MockAdapter(axios);
+// Mocking useTranslation hook
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: key => key }),
+}));
 
-// describe('Login component', () => {
-//   beforeEach(() => {
-//     mockAxios.reset();
-//   });
+describe('<Login />', () => {
+  test('renders the Login component', () => {
+    render(
+      <Router>
+        <Login />
+      </Router>
+    );
 
-//   it('should log in successfully', async () => {
-//     render(<Login />);
-
-//     const usernameInput = screen.getByLabelText(/Username/i);
-//     const passwordInput = screen.getByLabelText(/Password/i);
-//     const loginButton = screen.getByRole('button', { name: /Login/i });
-
-//     // Mock the axios.post request to simulate a successful response
-//     mockAxios.onPost('http://localhost:8000/login').reply(200, { createdAt: '2024-01-01T12:34:56Z' });
-
-//     // Simulate user input
-//     await act(async () => {
-//         fireEvent.change(usernameInput, { target: { value: 'testUser' } });
-//         fireEvent.change(passwordInput, { target: { value: 'testPassword' } });
-//         fireEvent.click(loginButton);
-//       });
-
-//     // Verify that the user information is displayed
-//     expect(screen.getByText(/Hello testUser!/i)).toBeInTheDocument();
-//     expect(screen.getByText(/Your account was created on 1\/1\/2024/i)).toBeInTheDocument();
-//   });
-
-//   it('should handle error when logging in', async () => {
-//     render(<Login />);
-
-//     const usernameInput = screen.getByLabelText(/Username/i);
-//     const passwordInput = screen.getByLabelText(/Password/i);
-//     const loginButton = screen.getByRole('button', { name: /Login/i });
-
-//     // Mock the axios.post request to simulate an error response
-//     mockAxios.onPost('http://localhost:8000/login').reply(401, { error: 'Unauthorized' });
-
-//     // Simulate user input
-//     fireEvent.change(usernameInput, { target: { value: 'testUser' } });
-//     fireEvent.change(passwordInput, { target: { value: 'testPassword' } });
-
-//     // Trigger the login button click
-//     fireEvent.click(loginButton);
-
-//     // Wait for the error Snackbar to be open
-//     await waitFor(() => {
-//       expect(screen.getByText(/Error: Unauthorized/i)).toBeInTheDocument();
-//     });
-
-//     // Verify that the user information is not displayed
-//     expect(screen.queryByText(/Hello testUser!/i)).toBeNull();
-//     expect(screen.queryByText(/Your account was created on/i)).toBeNull();
-//   });
-// });
+    expect(screen.getByText('login.title')).toBeInTheDocument();
+    expect(screen.getByText('login.username_placeholder:')).toBeInTheDocument();
+    expect(screen.getByText('login.password_placeholder:')).toBeInTheDocument();
+    expect(screen.getByText('login.login_button')).toBeInTheDocument();
+    expect(screen.getByText('login.register_link')).toBeInTheDocument();
+  });
+});

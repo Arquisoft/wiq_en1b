@@ -12,7 +12,7 @@ const Login = () => {
     <div className="card">
       <div className="card2">
         <form className="form">
-          <h1>{t("login.title")}</h1>
+          <h1 className="title-login">{t("login.title")}</h1>
           <div className="input-box">
             <p>{t("login.username_placeholder")}:</p>
             <input type="text" />
