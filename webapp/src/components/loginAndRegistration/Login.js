@@ -67,15 +67,6 @@ const Login = () => {
   );
 };
 
-// function ButtonMenu() {
-//   const { t } = useTranslation("global");
-//   return (
-//     <Link to="/menu" className="button-menu">
-      
-//     </Link>
-//   );
-// }
-
 function LinkRegister() {
   const { t } = useTranslation("global");
   return (

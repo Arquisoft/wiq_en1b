@@ -6,10 +6,10 @@ import {useTranslation} from "react-i18next";
 
 function Instructions() {
 
-  const[t, i18n] = useTranslation("global");
+  const[t] = useTranslation("global");
 
   return (
-    <div>
+    <div className='instrucions_container'>
       <h1 className='instructions_title'>{t("instructions.title")}</h1>
      <section>   
       <article>

@@ -3,11 +3,17 @@
         "welcome": "¡Bienvenido a WIQ!",
     "how_to_play": "¿Cómo jugar?",
     "login": "Iniciar sesión",
-    "register": "¿No tienes una cuenta? Regístrate aquí."
+    "register": "¿No tienes una cuenta? Regístrate aquí.",
+    "language": "El idioma ha sido cambiado a español"
+
     },
 
     "navBar": {
-        "title": "¡Saber y ganar!"
+        "title": "¡Saber y ganar!",
+        "en": "Inglés",
+        "es": "Español",
+        "tk": "Turco",
+        "language": "Idioma"
       },
 
       "instructions": {
