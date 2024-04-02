@@ -1,5 +1,8 @@
 package main.java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import main.java.questionGenerator.QuestionGenerator;
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
@@ -33,12 +36,17 @@ public class Main {
 	}
 	
 	private static void run(QuestionGenerator qg, QuestionType type) {
+		List<String> questionJSONList = new ArrayList<>();
+
+		//Populate JSON list here
 		for(int i=0; i<3; i++) {
 			Question question = qg.generateQuestion(type);
 			question.setNumber(i);
-			QuestionRepository.getInstance().insertOne(question.getJSON().toString());
+			questionJSONList.add(question.getJSON().toString());
 			System.out.println(question.getJSON().toString());
 		}
+
+		QuestionRepository.getInstance().insert(questionJSONList);
 	}
 
 }

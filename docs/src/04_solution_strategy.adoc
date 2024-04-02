@@ -34,13 +34,24 @@ See https://docs.arc42.org/section-4/[Solution Strategy] in the arc42 documentat
 
 The technologies chosen for developing the WIQ web app are ::
 * **ReactJS** : A JavaScript library that facilitates the creation of interactive grafical interfaces.
-* **Sass** : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance. 
-* **TypeScript** : A superset of JavaScript that adds various features that can resolve code errors before running the actual code.
-* **SpringBoot** : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process.
+* **Sass** : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance. (Not used)
+* **TypeScript** : A superset of JavaScript that adds various features that can resolve code errors before running the actual code. (Not used)
+* **SpringBoot** : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process. (Not used)
 * **Wikidata Toolkit** : Wikidata Toolkit is a Java library for accessing Wikidata and other Wikibase installations. It can be used to create bots, to perform data extraction tasks (e.g., convert all data in Wikidata to a new format), and to do large-scale analyses that are too complex for using a simple SPARQL query service.
 * **Docker** : Docker provides tools and a runtime environment to manage these containers efficiently, allowing developers to build, ship, and run applications consistently across different environments.
-* **MySql** : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data.
+* **MySql** : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data. (Not used)
 * **Mongo DB** : MongoDB is a popular open-source NoSQL database management system that stores data flexible, JSON-like documents with dynamic schemas.
+
+* **Express** : Express is a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications.
+
+* **Nodejs** : Node.js is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside of a web browser, allowing developers to build scalable network applications.
+
+* **Java** : Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is known for its portability, security features, and wide range of applications, from mobile to enterprise systems.
+
+* **TO BE ORGANIZED**
+
+
+
 
 
 === Top-level Decomposition
@@ -49,11 +60,16 @@ To be updated along the development of the application where we will add the mos
 
 ==== Architectural Patterns
 
-* **Microservices** : Selected as our main architecture. We will have various small independent services that interact between them to support all the fuctionalities of the web application
+* **Microservices** : Selected as our main architecture. We will have various small independent services that interact between them to support all the fuctionalities of the web application.
+
+* **API Gateway** : This API gateway serves as a centralized point for managing, securing, and routing requests between clients and multiple backend services or APIs. This is applied to centralized the calls to the different microservices.
+
+* **Shared data** : An architectural pattern used to communicate two services through a data repository. In our case, we will communicate the questions generator and the game through a database for a better efficiency and robustness.
 
 ==== Design Patterns
 
-* **FaÃ§ade** : Pattern used to communicate between different parts of the whole application (APIs)
+* **Façade** : Pattern used to communicate between different parts of the whole application (APIs).
+* **Template** : Pattern used to set some fixed steps of an algorithm. This was used for the different questions generators.
 
 === Decisions for achieving quality goals
 
