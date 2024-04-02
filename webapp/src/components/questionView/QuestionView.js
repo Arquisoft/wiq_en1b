@@ -6,7 +6,9 @@ import React from "react";
 import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HistoricalView from '../HistoricalData/HistoricalView';
+import ButtonHistoricalData from '../HistoricalData/HistoricalView';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
@@ -34,23 +36,26 @@ function QuestionView(){
     function revealColorsForAnswers(){
         let colorCorrectAnswer='green';
         let colorIncorrectAnswer='red'; 
-        $(document).ready(function() {
-            $('.answerButton').each(function() {
-                var dataValue = $(this).data('value');
-                if (dataValue === false || dataValue === "false")
-                    $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
-                else{
-                    $(this).css('background-color', colorCorrectAnswer);
-                }
+        $('.answerButton').each(function() {
+            var dataValue = $(this).data('value');
+            if (dataValue === false || dataValue === "false")
+                $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
+
+            else{
+                $(this).css({
+                    'background-color': colorCorrectAnswer,
+                    'text-decoration': 'underline' // Underline the text of the button for correct answers
                 });
-        });
+            }
+            });
 
     }
     function setColorsBackToNormal() {
         let colorOriginal = '#9f97ff';
-        $(document).ready(function() {
-            $('.answerButton').each(function() {
-                $(this).css('background-color', colorOriginal);
+        $('.answerButton').each(function() {
+            $(this).css({
+                'background-color': colorOriginal,
+                'text-decoration': 'none' // Remove underline
             });
         });
     }
@@ -130,6 +135,10 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                         {console.log(creationHistoricalRecord.getRecord())}
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
+                    <Switch>
+                        <Route path="/historical" element={<HistoricalView />} />
+                    </Switch>
+                    <ButtonHistoricalData t={t} />
                 </>
             )}
         </>
