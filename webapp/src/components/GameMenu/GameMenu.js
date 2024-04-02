@@ -18,7 +18,7 @@ export default function GameMenu() {
   
   function ButtonNewGame({ t }) {
     return (
-      <Link className="menuButton linkButton" to="/questions">
+      <Link className="linkButton" to="/questions">
         <h3>{t("gameMenu.new_game_button")}</h3>
       </Link>
     );

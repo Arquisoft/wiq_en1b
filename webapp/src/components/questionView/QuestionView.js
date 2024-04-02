@@ -34,8 +34,8 @@ function QuestionView(){
     }
 
     function revealColorsForAnswers(){
-        let colorCorrectAnswer='green';
-        let colorIncorrectAnswer='red'; 
+        let colorCorrectAnswer='#6EF26E';//green
+        let colorIncorrectAnswer='#FF6666'; //red
         $('.answerButton').each(function() {
             var dataValue = $(this).data('value');
             if (dataValue === false || dataValue === "false")
@@ -114,10 +114,10 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
     return (
         <>
             {numQuestion < questions.length ? (
-                <>
+                <div className='questionContainer'>
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
-                        <div  className="countdown">
+                        <div className="countdown">
                             <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
                     </div>
@@ -126,21 +126,21 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                             <Answer key={index} text={item} onClick={handleClick.bind(this,item)} dataValue={questions[numQuestion].isCorrect(item)}/>
                         ))}
                     </div>
-                    <p>{t("questionView.question_counter")} {numQuestion}</p>
-                </>
+                    <p>{t("questionView.question_counter")} {numQuestion+1}</p>
+                </div> 
             ) : (
                 <>
-                        {creationHistoricalRecord.setDate(Date.now())}
-                        {creationHistoricalRecord.setPoints(points)}
-                        {console.log(creationHistoricalRecord.getRecord())}
+                    {creationHistoricalRecord.setDate(Date.now())}
+                    {creationHistoricalRecord.setPoints(points)}
+                    {console.log(creationHistoricalRecord.getRecord())}
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
-                    
                     <ButtonHistoricalData t={t} />
                 </>
             )}
         </>
     );
+    
     
 }
 
