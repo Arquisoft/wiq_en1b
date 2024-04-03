@@ -6,7 +6,9 @@
     "register": "Hesabınız yok mu? Buradan kaydolun.",
     "language": "Dil Türkçe olarak değiştirildi",
     "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizi test etmeye ve becerilerinizi göstermeye hazır olun. Bu heyecan verici oyunda, çeşitli konulardaki bilginizi test edecek bir dizi soruyla karşılaşacaksınız.",
-    "msg2": "Öyleyse ilerleyin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?"
+    "msg2": "Öyleyse ilerleyin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?",
+    "clickOpen": "Devamı için tıklayınız",
+    "clickClose": "Kapatmak için tıklayın"
 },
   
     "navBar": {
