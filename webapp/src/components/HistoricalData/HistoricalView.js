@@ -1,6 +1,8 @@
 import React, {useEffect, useState } from 'react';
 import {useTranslation} from "react-i18next";
 import HistoryRecordRetriever from './HistoryRecordRetriever';
+import RecordList from './RecordList';
+
 const retriever = new HistoryRecordRetriever();
 
 
@@ -38,21 +40,9 @@ function HistoricalGameElement({record,t}){
   
   return (
     <div className='centered-div'>
-      <button className="historicalButton" onClick={handleClick}>{t("historicalView.game")} : {record.date.toLocaleDateString()} - {record.points} {t("historicalView.points")} </button>
+      <button className="historicalButton" onClick={handleClick}>{t("historicalView.game")} : <em>{record.date.toLocaleDateString()} </em> - {record.points} {t("historicalView.points")} </button>
       <ul style={{ display: toggle ? 'block' : 'none' }}>
-      {record.questions.map((question, index) => (<li key={index}>
-            <p>{question.question}</p>
-            <ul>
-              {question.answers.map((answer, answerIndex) => (
-                <li key={answerIndex}>
-                  {answer}
-                  {question.answerGiven === answer && " 👈 "}
-                  {question.correctAnswer === answer && " ✅ "}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
+        <RecordList record={record}/>
       </ul>
     </div>
   );

@@ -1103,6 +1103,12 @@ svg {
   gap: 1em;
   width: fit-content;
   width: 500px; /* Establecer un ancho fijo */
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  position: fixed; /* Posición fija para centrar en la ventana */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Mover el elemento hacia atrás en la mitad de su tamaño */
 }
 
 .answerPanel {
@@ -1115,6 +1121,7 @@ svg {
 
 .topPanel {
   min-width: 0;
+  width: 100%;
 }
 
 .answerButton {
@@ -1129,13 +1136,19 @@ svg {
   color: black;
   font-weight: 700;
   margin: 0.5em;
-  width: 100%;
   max-width: 200px;
 }
 
 .questionContainer p,  span{
   font-size: 20px;
 }
+
+.bottomPanel{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
 /*------------------------------Historical--------------------------------------------*/
 /* Estilos para los botones */
 .historicalButton {
@@ -1148,7 +1161,7 @@ svg {
   border-radius: 0.3em;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 0.2em; /* Agrega espacio entre los botones */
+  margin: 1em; 
 }
 
 /* Estilos para los divs dentro de centered-div */
@@ -1168,6 +1181,16 @@ svg {
   flex-direction: column;
   align-self: center;
   margin:auto;
+}
+.divMenu {
+  display: flex;
+  flex-direction: column; /* Colocar los elementos en una columna */
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
+  position: fixed; /* Posición fija para centrar en la ventana */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Mover el elemento hacia atrás en la mitad de su tamaño */
 }
 
 .linkButton {
