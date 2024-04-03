@@ -14,15 +14,10 @@ import main.java.questionGenerator.question.QuestionType;
 public class SizeGenerator extends AbstractGenerator {
 	
 	private final static String PROPERTY = "P2046";
+	private final static String MESSAGE = "question.size";
 
-	public SizeGenerator(){
-		super(PROPERTY, QuestionType.SIZE);
-	}
-
-	@Override
-	protected String getQuestion(String name) {
-		String q = getMessages().getString("question.size");
-		return String.format(q, name);
+	public SizeGenerator() {
+		super(PROPERTY, QuestionType.SIZE, MESSAGE);
 	}
 
 	@Override

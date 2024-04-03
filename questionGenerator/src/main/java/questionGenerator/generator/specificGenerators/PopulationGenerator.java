@@ -14,15 +14,10 @@ import main.java.questionGenerator.question.QuestionType;
 public class PopulationGenerator extends AbstractGenerator {
 	
 	private final static String PROPERTY = "P1082";
+	private final static String MESSAGE = "question.population";
 
 	public PopulationGenerator(){
-		super(PROPERTY, QuestionType.POPULATION);
-	}
-
-	@Override
-	protected String getQuestion(String name) {
-		String q = getMessages().getString("question.population");
-		return String.format(q, name);
+		super(PROPERTY, QuestionType.POPULATION, MESSAGE);
 	}
 
 	@Override

@@ -31,9 +31,12 @@ public abstract class AbstractGenerator {
 
 	private static final String MESSAGES_PATH = "messages";
 
-	public AbstractGenerator(String propertyId, QuestionType type) {
+	private String message;
+	
+	public AbstractGenerator(String propertyId, QuestionType type, String message) {
 		this.propertyId = propertyId;
 		this.type = type;
+		this.message = message;
 	}
 	
 	/**
@@ -83,9 +86,15 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
-	protected abstract String getQuestion(String name);
+	
+	protected String getQuestion(String name) {
+		String q = getMessages().getString(message);
+		return String.format(q, name);
+	}
+
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
 	protected abstract List<String> getWrongAnswers(String rightAnswer);
+
 
 	public String getPropertyId() {
 		return propertyId;

@@ -18,8 +18,8 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 
 	private final String PROPERTY_TO_CHECK;
 
-	public RightAnswerIsEntity(String propertyId, QuestionType type, String propertyToCheck) {
-		super(propertyId, type);
+	public RightAnswerIsEntity(String propertyId, QuestionType type, String propertyToCheck, String message) {
+		super(propertyId, type, message);
 		this.PROPERTY_TO_CHECK = propertyToCheck;
 	}
 
