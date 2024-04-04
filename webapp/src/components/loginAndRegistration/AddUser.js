@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const AddUser = () => {
   const navigate = useNavigate();
   const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/adduser";
@@ -14,14 +15,15 @@ const AddUser = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       //TODO: Add more validations
       if(password === repeatPassword){ //User put the same password
         const response = await axios.post(apiUrl, { username, password });
-        console.log("Registered user: " + response.body.username);
-        navigate('/menu');
+        console.log("Registered user: " + response.data.username);
+        navigate('/login');
       }
       else{
         //TODO: Show some errors to the user
