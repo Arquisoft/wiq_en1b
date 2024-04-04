@@ -44,8 +44,8 @@ public class SizeGenerator extends AbstractGenerator {
 		int parameter = 50;
 		for(int i = 0; i < 3; i++){
 			float wrong = (number * (100 - parameter + rnd.nextInt(parameter * 2 + 1)) / 100);
-			// Checking if it creates the same answer
-			if(wrong == number)
+			// Checking if it creates the same answer as any other
+			if(wrong == number || result.contains(String.valueOf(wrong)))
 				i--;
 			else
 				result.add(String.valueOf(wrong));
