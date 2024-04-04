@@ -45,8 +45,20 @@ app.post('/adduser', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
+    
     // Forward the question request to the quetion service
-    const quetionResponse = await axios.get(questionServiceUrl+'/questions', req.params);
+    const quetionResponse = await axios.get(questionServiceUrl+'/questions');
+    res.send(quetionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/questions/:lang', async (req, res) => {
+  try {
+    const lang = req.params.lang;
+    // Forward the question request to the quetion service
+    const quetionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
     res.send(quetionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -63,11 +75,11 @@ app.post('/addrecord', async(req, res) => {
   }
 });
 
-app.get('/records/:user', async(req, res)=>{
+app.get('/record/:user', async(req, res)=>{
   try {
     const user = req.params.user;
     // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/records/' + user);
+    const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
     res.json(recordResponse.data);
   } catch (error) {
     res.send(error);

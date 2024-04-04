@@ -41,7 +41,6 @@ public class Main {
 		//Populate JSON list here
 		for(int i=0; i<3; i++) {
 			Question question = qg.generateQuestion(type);
-			question.setNumber(i);
 			questionJSONList.add(question.getJSON().toString());
 			System.out.println(question.getJSON().toString());
 		}
