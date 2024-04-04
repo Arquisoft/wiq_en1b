@@ -40,7 +40,13 @@ public abstract class AnswersAreNotEntites extends AbstractGenerator{
             //for integer values
             for(int i = 0; i < 3; i++){
                 long wrong = (inumber * (100 + rnd.nextInt(parameter * 2 + 1) - parameter) / 100);
-                // Checking if it creates the same answer as any other
+                // An extra check for the wrong answer to be same sign.
+                if((inumber > 0 && wrong < 0) || (inumber < 0 && wrong > 0))
+                {
+                    i--;
+                    continue;
+                }
+                // Checking if it creates the same answer as any other.
                 if(wrong == inumber || wrongAnswers.contains(String.valueOf(wrong)))
                     i--;
                 else
@@ -51,6 +57,12 @@ public abstract class AnswersAreNotEntites extends AbstractGenerator{
             //for float values
             for(int i = 0; i < 3; i++){
                 float wrong = (fnumber * (100 + rnd.nextInt(parameter * 2 + 1) - parameter) / 100);
+                // An extra check for the wrong answer to be same sign.
+                if((fnumber > 0 && wrong < 0) || (fnumber < 0 && wrong > 0))
+                {
+                    i--;
+                    continue;
+                }
                 // Checking if it creates the same answer as any other
                 if(wrong == fnumber || wrongAnswers.contains(String.valueOf(wrong)))
                     i--;
