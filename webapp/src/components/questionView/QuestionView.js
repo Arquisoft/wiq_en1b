@@ -16,13 +16,13 @@ var points = 0;
 function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
-    const[t] = useTranslation("global");
+    const[t, i18n] = useTranslation("global");
 
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions();
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
