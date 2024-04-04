@@ -31,6 +31,6 @@ public class Main {
 				question.setNumber(i);
 				System.out.println(question.getJSON().toString());
 			}
-			QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
+			//QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
 	}
 }
