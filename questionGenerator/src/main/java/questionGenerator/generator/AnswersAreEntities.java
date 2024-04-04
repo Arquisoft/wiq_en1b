@@ -17,7 +17,6 @@ import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator
 import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
 import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
 import main.java.questionGenerator.generator.specificGenerators.SizeGenerator;
-import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AnswersAreEntities extends AbstractGenerator {
@@ -122,22 +121,6 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 	
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer, QuestionType type) {
-		/* Random rnd = new Random();
-		String[] entities = {"Q142", "Q183", "Q16", "Q142", "Q30", "Q408", "Q668", "Q17", "Q38", "Q159",
-		 "Q79", "Q155", "Q884", "Q414", "Q41", "Q258", "Q96", "Q843", "Q148", "Q20"};
-		List<String> result = new ArrayList<>();
-		List<Integer> used = new ArrayList<>();
-		for(int i = 0; i < 3; i++){
-				int rndnum = rnd.nextInt(entities.length);
-				String wrong = getAnswer(entities[rndnum]);
-			if(wrong.equals(rightAnswer) || used.contains(rndnum))
-				i--;
-			else{
-				result.add(wrong);
-				used.add(rndnum);
-			}
-		}
-		return result; */
 		setGenerator(type);
 		generator.setLocalization(languageCode);
 		List<String> entites = new ArrayList<>();
