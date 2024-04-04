@@ -9,9 +9,10 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.generator.RightAnswerNotAnEntity;
 import main.java.questionGenerator.question.QuestionType;
 
-public class PopulationGenerator extends AbstractGenerator {
+public class PopulationGenerator extends RightAnswerNotAnEntity {
 	
 	private final static String PROPERTY = "P1082";
 	private final static String MESSAGE = "question.population";
@@ -27,7 +28,7 @@ public class PopulationGenerator extends AbstractGenerator {
 		return v.toString();
 	}
 
-	@Override
+	/* @Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		int number = 0;
 		// Check if it is a integer
@@ -53,6 +54,6 @@ public class PopulationGenerator extends AbstractGenerator {
 				wrongAnswers.add(String.valueOf(wrong));
 		}
 		return wrongAnswers;
-	}
+	} */
 
 }

@@ -9,9 +9,10 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.generator.RightAnswerNotAnEntity;
 import main.java.questionGenerator.question.QuestionType;
 
-public class SizeGenerator extends AbstractGenerator {
+public class SizeGenerator extends RightAnswerNotAnEntity {
 	
 	private final static String PROPERTY = "P2046";
 	private final static String MESSAGE = "question.size";
@@ -26,7 +27,7 @@ public class SizeGenerator extends AbstractGenerator {
 		return getRightAnswerEntity(v.toString());
 	}
 
-	@Override
+	/* @Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
 		float number = 0;
 		// Check if it is a float
@@ -51,7 +52,7 @@ public class SizeGenerator extends AbstractGenerator {
 				result.add(String.valueOf(wrong));
 		}
 		return result;
-	}
+	} */
 	
 	private String getRightAnswerEntity(String url) {
 		String[] split1 = url.split(" ");
