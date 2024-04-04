@@ -13,19 +13,17 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
-import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator;
-import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
-import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
-import main.java.questionGenerator.generator.specificGenerators.SizeGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AnswersAreEntities extends AbstractGenerator {
 
 	private final String PROPERTY_TO_CHECK;
+	private final QuestionType type;
 
 	public AnswersAreEntities(String propertyId, QuestionType type, String propertyToCheck, String message) {
 		super(propertyId, type, message);
 		this.PROPERTY_TO_CHECK = propertyToCheck;
+		this.type = type;
 	}
 
 	@Override
@@ -93,36 +91,9 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 		String[] split2 = split1[0].split("/");
 		return split2[split2.length-1];
 	}
-
-	private AbstractGenerator generator;
-	private String languageCode;
-	
-	private void setGenerator(QuestionType type) {
-		switch (type) {
-			case POPULATION: {
-				generator = new PopulationGenerator();
-				break;
-			}
-			case CAPITAL: {
-				generator = new CapitalGenerator();
-				break;
-				
-			}
-			case SIZE: {
-				generator = new SizeGenerator();
-				break;
-			}
-			case LANGUAGE: {
-				generator = new LanguageGenerator();
-				break;
-			}
-		}
-	}
 	
 	@Override
-	protected List<String> getWrongAnswers(String rightAnswer, QuestionType type) {
-		setGenerator(type);
-		generator.setLocalization(languageCode);
+	protected List<String> getWrongAnswers(String rightAnswer) {
 		List<String> entites = new ArrayList<>();
 		try {
 			entites = EntityGenerator.getEntities(type, 100);
@@ -130,22 +101,11 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 			e.printStackTrace();
 		}
 		Random rnd = new Random();
-		List<String> chosen = new ArrayList<>(); 
-		int size = entites.size();
-		int number = 0;
-		while(number<50) {
-			int index = rnd.nextInt(size);
-			String entity = entites.get(index);
-			if(!chosen.contains(entity)) {
-				chosen.add(entity);
-				number++;
-			}
-		}
 		List<String> result = new ArrayList<>();
 		List<Integer> used = new ArrayList<>();
 		for(int i = 0; i < 3; i++){
-				int rndnum = rnd.nextInt(chosen.size());
-				String wrong = getAnswer(chosen.get(rndnum));
+				int rndnum = rnd.nextInt(entites.size());
+				String wrong = getAnswer(entites.get(rndnum));
 			if(wrong == null || wrong.equals(rightAnswer) || used.contains(rndnum))
 				i--;
 			else{

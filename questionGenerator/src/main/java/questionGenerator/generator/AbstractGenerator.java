@@ -73,7 +73,7 @@ public abstract class AbstractGenerator {
 		String rightAnswer = getRightAnswer(idi.getJsonClaims());
 		
 		//get the wrong answers
-		List<String> answers = getWrongAnswers(rightAnswer, type);
+		List<String> answers = getWrongAnswers(rightAnswer);
 		
 		answers.add(0, rightAnswer);
 		//create and return the question
@@ -93,7 +93,7 @@ public abstract class AbstractGenerator {
 	}
 
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
-	protected abstract List<String> getWrongAnswers(String rightAnswer, QuestionType type);
+	protected abstract List<String> getWrongAnswers(String rightAnswer);
 
 
 	public String getPropertyId() {

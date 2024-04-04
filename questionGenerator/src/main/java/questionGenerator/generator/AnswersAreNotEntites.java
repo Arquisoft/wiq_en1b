@@ -14,7 +14,7 @@ public abstract class AnswersAreNotEntites extends AbstractGenerator{
     }
 
     @Override
-	protected List<String> getWrongAnswers(String rightAnswer, QuestionType type) {
+	protected List<String> getWrongAnswers(String rightAnswer) {
 		int inumber = 0;
         float fnumber = 0;
 		// Check if it is a float
