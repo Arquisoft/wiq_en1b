@@ -95,7 +95,6 @@ function QuestionView(){
     
     return (
     <div className="question-view-container">
-        {/*Nav*/}
         {numQuestion >= 0 ? 
         <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points}/> :
         <h1>Please Wait a bit...</h1> }
