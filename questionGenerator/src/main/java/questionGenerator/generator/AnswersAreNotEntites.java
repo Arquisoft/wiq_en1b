@@ -6,10 +6,10 @@ import java.util.Random;
 
 import main.java.questionGenerator.question.QuestionType;
 
-public abstract class RightAnswerNotAnEntity extends AbstractGenerator{
+public abstract class AnswersAreNotEntites extends AbstractGenerator{
 
     //Open to changes if needed.
-    public RightAnswerNotAnEntity(String propertyId, QuestionType type, String message) {
+    public AnswersAreNotEntites(String propertyId, QuestionType type, String message) {
         super(propertyId, type, message);
     }
 
@@ -39,7 +39,7 @@ public abstract class RightAnswerNotAnEntity extends AbstractGenerator{
         if(inumber != 0){
             //for integer values
             for(int i = 0; i < 3; i++){
-                int wrong = (inumber * (100 - parameter + rnd.nextInt(parameter * 2 + 1)) / 100);
+                long wrong = (inumber * (100 + rnd.nextInt(parameter * 2 + 1) - parameter) / 100);
                 // Checking if it creates the same answer as any other
                 if(wrong == inumber || wrongAnswers.contains(String.valueOf(wrong)))
                     i--;
@@ -50,7 +50,7 @@ public abstract class RightAnswerNotAnEntity extends AbstractGenerator{
         else{
             //for float values
             for(int i = 0; i < 3; i++){
-                float wrong = (fnumber * (100 - parameter + rnd.nextInt(parameter * 2 + 1)) / 100);
+                float wrong = (fnumber * (100 + rnd.nextInt(parameter * 2 + 1) - parameter) / 100);
                 // Checking if it creates the same answer as any other
                 if(wrong == fnumber || wrongAnswers.contains(String.valueOf(wrong)))
                     i--;

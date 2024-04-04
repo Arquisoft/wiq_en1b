@@ -14,11 +14,11 @@ import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.question.QuestionType;
 
-public abstract class RightAnswerIsEntity extends AbstractGenerator {
+public abstract class AnswersAreEntities extends AbstractGenerator {
 
 	private final String PROPERTY_TO_CHECK;
 
-	public RightAnswerIsEntity(String propertyId, QuestionType type, String propertyToCheck, String message) {
+	public AnswersAreEntities(String propertyId, QuestionType type, String propertyToCheck, String message) {
 		super(propertyId, type, message);
 		this.PROPERTY_TO_CHECK = propertyToCheck;
 	}
