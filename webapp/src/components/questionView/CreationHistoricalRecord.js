@@ -2,7 +2,6 @@ class CreationHistoricalRecord{
     
     constructor() {
         this.record = {
-            user: "a",
             game: {
                 questions: []
             }
@@ -31,6 +30,35 @@ class CreationHistoricalRecord{
     getRecord() {
         return this.record;
     }
+
+    
+    async sendRecord(user) {
+        const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
+      
+        const body = {
+          user:user,
+          game:this.record.game
+        }
+        console.log(body)
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          });
+      
+          if (!response.ok) {
+            throw new Error('Error al enviar el registro');
+          }
+      
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
 
 }
 export default CreationHistoricalRecord;

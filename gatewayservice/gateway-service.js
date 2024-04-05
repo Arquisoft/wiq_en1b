@@ -37,7 +37,6 @@ app.post('/adduser', async (req, res) => {
   try {
     // Forward the add user request to the user service
     const userResponse = await axios.post(userServiceUrl+'/adduser', req.body);
-    console.log(userResponse)
     res.json(userResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -66,10 +65,10 @@ app.get('/questions/:lang', async (req, res) => {
   }
 });
 
-app.post('/addrecord', async(req, res) => {
+app.post('/record', async(req, res) => {
   try {
     // Forward the record request to the record service
-    const recordResponse = await axios.post(recordServiceUrl+'/addrecord', req.body);
+    const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
     res.json(recordResponse.data);
   } catch (error) {
     res.send(error);

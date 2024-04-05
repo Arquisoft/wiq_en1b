@@ -9,6 +9,7 @@ import $ from 'jquery';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HistoricalView from '../HistoricalData/HistoricalView';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
+import { useUserContext } from '../loginAndRegistration/UserContext'; 
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
@@ -17,7 +18,7 @@ function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
     const[t, i18n] = useTranslation("global");
-
+    const {user} = useUserContext();
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -78,7 +79,6 @@ function QuestionView(){
         //compute the points for the answer given
         computePointsForQuestion(questions[numQuestion].getCorrectAnswer(), text);
         
-        console.log(creationHistoricalRecord.getRecord());
         //reveal answer to user for 1 sec
         revealColorsForAnswers();
         setTimeout(function() {
@@ -86,6 +86,13 @@ function QuestionView(){
             setColorsBackToNormal();
             //sum one to the number of questions
             setnumQuestion(numQuestion + 1);
+            
+            if(!(numQuestion < questions.length - 1)){
+                console.log("pasa")
+                creationHistoricalRecord.setDate(Date.now());
+                creationHistoricalRecord.setPoints(points);
+                creationHistoricalRecord.sendRecord(user.username);
+            }
         }, 1000);
         
     }
@@ -102,6 +109,7 @@ function QuestionView(){
 }
 
 function QuestionComponent({questions, numQuestion, handleClick, t, points}){
+
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
@@ -130,9 +138,6 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                 </div> 
             ) : (
                 <>
-                    {creationHistoricalRecord.setDate(Date.now())}
-                    {creationHistoricalRecord.setPoints(points)}
-                    {console.log(creationHistoricalRecord.getRecord())}
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
                     <ButtonHistoricalData t={t} />

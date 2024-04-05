@@ -18,6 +18,8 @@ mongoose.connect(mongoUri);
 app.post('/record', async (req, res) => {
   const user = req.body.user;
   const game = req.body.game;
+  console.log(user)
+  console.log(game)
   if(user && game){
     let record = await Record.findOne({ user : user }); 
     if(record){ //If it exits
@@ -34,11 +36,13 @@ app.post('/record', async (req, res) => {
         const savedRecord = await record.save();
         res.json({user:savedRecord.user});
       } catch (err) {
-        console.log(err);
         res.status(500).send();
       }
   }
-  res.status(400).send();
+  else{
+    res.status(400).send();
+  }
+  
 });
 
 app.get('/record/:user', async (req, res) => {
