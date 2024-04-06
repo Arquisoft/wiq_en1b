@@ -36,7 +36,7 @@ function QuestionView(){
         let colorCorrectAnswer='#6EF26E';//green
         let colorIncorrectAnswer='#FF6666'; //red
         $('.answerButton').each(function() {
-            var dataValue = $(this).data('value');
+            var dataValue = $(this).attr('data-value');
             if (dataValue === false || dataValue === "false")
                 $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
 
