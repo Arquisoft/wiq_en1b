@@ -56,6 +56,61 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy and adapt this section of arc42 for all relevant environments.
 ****
 
+image::Deployed-Infrastructure.png["Deployed Infrastructure"]
+
+****
+component User as "User"
+cloud "WIQ" { 
+  rectangle "Azure - Ubuntu - Docker"{
+    component webapp as "Webapp"{
+      port 3000
+    }
+    rectangle "Internal network"{
+    database "MongoDB" {
+      folder "UsersDB" {
+        [Records]
+        [Users]
+      }
+      frame "QuestionsDB" {
+        [Questions]
+      }
+    }
+    component gs as "Gateway service"{
+      port 8000
+    }
+    component auths as "Authentication service"{
+      port 8002
+    }
+    component users as "User service"{
+      port 8001
+    }
+    component records as "Record service"{
+      port 8004
+    }
+    component questions as "Question service"{
+      port 8003
+    }
+    component qg as "Question generator"
+    }
+  }
+}
+cloud "Wikidata"
+
+User  -[dotted,#green,thickness=3]-> 3000
+webapp -[#green,thickness=3]-> 8000
+gs -[#red]-> 8002
+gs -[#red]-> 8001
+gs -[#red]-> 8004
+gs -[#red]-> 8003
+auths -[#red]-> Users
+users -[#red]-> Users
+records -[#red]-> Records
+questions -[#red]-> Questions
+qg -[#red]-> Questions
+qg -[dotted]-> Wikidata
+****
+This diagram shows the infrastructure of our application when deployed.
+
 *TBD*
 
 === Infrastructure Level 2
@@ -67,4 +122,3 @@ Here you can include the internal structure of (some) infrastructure elements fr
 Please copy the structure from level 1 for each selected element.
 ****
 
-*TBD*

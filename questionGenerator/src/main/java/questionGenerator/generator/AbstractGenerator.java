@@ -14,6 +14,7 @@ import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.question.Question;
+import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AbstractGenerator {
 	
@@ -26,10 +27,13 @@ public abstract class AbstractGenerator {
 	private static Map<String, ItemDocumentImpl> alreadyProcessedEntities = new HashMap<>();
 	
 	private String propertyId = "";
+	private QuestionType type;
 
 	private static final String MESSAGES_PATH = "messages";
-	public AbstractGenerator(String propertyId) {
+
+	public AbstractGenerator(String propertyId, QuestionType type) {
 		this.propertyId = propertyId;
+		this.type = type;
 	}
 	
 	/**
@@ -71,7 +75,7 @@ public abstract class AbstractGenerator {
 		answers.add(0, rightAnswer);
 		//create and return the question
 		
-		return new Question(question, answers);
+		return new Question(question, answers, language, type);
 	}
 	
 	protected String getName(Map<String, MonolingualTextValue> names) {
@@ -87,11 +91,11 @@ public abstract class AbstractGenerator {
 		return propertyId;
 	}
 
-	public static Map<String, ItemDocumentImpl> getAlreadyProcessedEntities() {
-		return new HashMap<>(alreadyProcessedEntities);
+	public static ItemDocumentImpl getAlreadyProcessedEntity(String id) {
+		return alreadyProcessedEntities.get(id);
 	}
 	
-	public static void addItem(String entity, ItemDocumentImpl item) {
+	public static void addProcessedEntity(String entity, ItemDocumentImpl item) {
 		alreadyProcessedEntities.put(entity, item);
 	}
 

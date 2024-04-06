@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
+import { useUserContext } from '../loginAndRegistration/UserContext'; 
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
@@ -15,13 +16,13 @@ var points = 0;
 function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState([]);
-    const[t] = useTranslation("global");
-
+    const[t, i18n] = useTranslation("global");
+    const {user} = useUserContext();
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions();
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
@@ -79,7 +80,6 @@ function QuestionView(){
         //compute the points for the answer given
         computePointsForQuestion(questions[numQuestion].getCorrectAnswer(), text);
         
-        console.log(creationHistoricalRecord.getRecord());
         //reveal answer to user for 1 sec
         revealColorsForAnswers();
         setTimeout(function() {
@@ -87,6 +87,13 @@ function QuestionView(){
             setColorsBackToNormal();
             //sum one to the number of questions
             setnumQuestion(numQuestion + 1);
+            
+            //Last question sends the record
+            if(!(numQuestion < questions.length - 1)){
+                creationHistoricalRecord.setDate(Date.now());
+                creationHistoricalRecord.setPoints(points);
+                creationHistoricalRecord.sendRecord(user.username);
+            }
         }, 1000);
         
     }
@@ -97,11 +104,12 @@ function QuestionView(){
     <div className="question-view-container">
         {numQuestion >= 0 ? 
         <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points}/> :
-        <h1>Please Wait a bit...</h1> }
+        <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
 function QuestionComponent({questions, numQuestion, handleClick, t, points}){
+
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
@@ -119,7 +127,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
                         <div className="countdown">
-                            <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
+                            <Countdown key={numQuestion} date={Date.now()+20000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
                     </div>
                     <div className="answerPanel">
@@ -135,8 +143,6 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                 
             ) : (
                 <>
-                    {creationHistoricalRecord.setDate(Date.now())}
-                    {creationHistoricalRecord.setPoints(points)}
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
                     <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>

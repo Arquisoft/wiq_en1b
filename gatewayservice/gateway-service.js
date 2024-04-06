@@ -9,6 +9,7 @@ const port = 8000;
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
+const recordServiceUrl = process.env.RECORD_SERVICE_URL || 'http://localhost:8004';
 
 app.use(cors());
 app.use(express.json());
@@ -44,11 +45,44 @@ app.post('/adduser', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
+    
     // Forward the question request to the quetion service
-    const quetionResponse = await axios.get(questionServiceUrl+'/questions', req.params);
+    const quetionResponse = await axios.get(questionServiceUrl+'/questions');
     res.send(quetionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.get('/questions/:lang', async (req, res) => {
+  try {
+    const lang = req.params.lang;
+    // Forward the question request to the quetion service
+    const quetionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
+    res.send(quetionResponse.data);
+  } catch (error) {
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.post('/record', async(req, res) => {
+  try {
+    // Forward the record request to the record service
+    const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.get('/record/:user', async(req, res)=>{
+  try {
+    const user = req.params.user;
+    // Forward the record request to the record service
+    const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
   }
 });
 

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.java.questionGenerator.question.Question;
+import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionTests {
 
@@ -21,7 +22,7 @@ public class QuestionTests {
     @BeforeEach
     void setUp() {
         List<String> answers = Arrays.asList("A", "B", "C");
-        question = new Question("What is the capital of France?", answers);
+        question = new Question("What is the capital of France?", answers, "en", QuestionType.CAPITAL);
     }
 
     @Test
@@ -60,7 +61,9 @@ public class QuestionTests {
         try {
             JSONObject expectedJson = new JSONObject()
                     .put("question", "What is the capital of France?")
-                    .put("answers", new JSONArray().put("A").put("B").put("C"));
+                    .put("answers", new JSONArray().put("A").put("B").put("C"))
+                    .put("language", "en")
+                    .put("type", "CAPITAL");
             assertEquals(expectedJson.toString(), question.getJSON().toString());
         } catch (JSONException e) {
             fail("JSONException occurred: " + e.getMessage());

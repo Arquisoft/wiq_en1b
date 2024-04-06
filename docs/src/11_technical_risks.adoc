@@ -27,12 +27,12 @@ In decision-making processes, we often face constraints. These constraints, know
 
 ### Risks
 
-There is the table of risks the team is taking for development purposes ordered by priority.
+There is the table of risks the team is taking for development purposes.
 
 [options="header",cols="^.^1,2,2"]
 |===
 |Risk|Explanation|Solution
-| *Insufficient knowledge of React* | None of our team members worked with React before. | The people who's going to work on React are going to learn it.
+| *Insufficient knowledge of Tecnologies* | None of our team members worked with React nor Express nor MongoDB before. | The people who's going to work on these technologies are going to learn it which trades time for a better application as we use stronger technologies (React instead of HTML).
 | *Working with a team* | It might be difficult working with people on projects, as every person has their own way of doing things. | Have weekly meetings deciding on what's going to get solved, how and by whom, keeping bus factor in mind.
 | *Time* | It should be kept in mind that the team has deadlines with different requirements, demanding them to work regularly. | Have better time-management skills, keep track of and help each other to not waste any time on hard / complex parts of the project.
 |===
@@ -44,5 +44,5 @@ There is the table of technical debt shortcuts the team is taking sacrificing lo
 [options="header",cols="^.^1,3"]
 |===
 |Technical debt|Explanation
-| *Azure* | The team has experience with Microsoft Azure and decided to use it again. The full implementation is not planned yet.
+| *CORS* | The team has fully enabled CORS through the backend this is a risk as external users can access endpoints like adduser
 |===

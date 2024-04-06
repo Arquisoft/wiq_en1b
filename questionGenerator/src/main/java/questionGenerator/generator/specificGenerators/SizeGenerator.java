@@ -3,18 +3,20 @@ package main.java.questionGenerator.generator.specificGenerators;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.question.QuestionType;
 
 public class SizeGenerator extends AbstractGenerator {
 	
 	private final static String PROPERTY = "P2046";
 
 	public SizeGenerator(){
-		super(PROPERTY);
+		super(PROPERTY, QuestionType.SIZE);
 	}
 
 	@Override
@@ -31,11 +33,28 @@ public class SizeGenerator extends AbstractGenerator {
 
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
-		// TODO Auto-generated method stub
+		float number = 0;
+		// Check if it is a float
+		try {
+			number = Float.parseFloat(rightAnswer);
+		} catch(NumberFormatException e) {
+			//throw exception or maybe return null
+		}
+
 		List<String> result = new ArrayList<>();
-		result.add("a");
-		result.add("b");
-		result.add("c");
+		Random rnd = new Random();
+
+		// Gives values depending on parameter with percentage
+		// Example: If parameter is 50 value range is number*.5 and number*1.5
+		int parameter = 50;
+		for(int i = 0; i < 3; i++){
+			float wrong = (number * (100 - parameter + rnd.nextInt(parameter * 2 + 1)) / 100);
+			// Checking if it creates the same answer
+			if(wrong == number)
+				i--;
+			else
+				result.add(String.valueOf(wrong));
+		}
 		return result;
 	}
 	

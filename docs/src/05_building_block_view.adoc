@@ -61,9 +61,9 @@ In this level of descomposition we separate the main services of our system show
 
 
 Contained Building Blocks::
-* *_WIQ_ HOME* : Service which will collect the user interaction and redirect it to the corresponding service.
-* *_WIQ_ USER MANAGEMENT* : Service that will manage the user information, login, authentication, etc.
-* *_WIQ_ QUESTION GAME* Service that will generate and show the different questions for our game.
+* *_Webapp_* : The web part of our application that will use the wiq services to let the user play.
+* *Gateway service* : Service that will redirect every call to our endpoints to the specific one.
+* *_WIQ Services_* : Our collection of endpoints that will attend any need of our Webapp as well as giving support to external calls.
 
 === Level 2
 
@@ -71,16 +71,18 @@ image::5-Level2.svg["Level 2"]
 
 Motivation::
 
-In this level of descomposition of the system we start to identify the different microservices of the system.
+In this level of descomposition of the system we identify the different views of the webapp and microservices of the WIQ services.
 
 
 Contained Building Blocks::
-* *_HOME_ WELCOME PAGE* : Microservice that will welcome the user giving a small explanation about the game and facilate the registration/login process.
-* *_USER MANAGEMENT_ USERSERVICE* : Microservice that will allow the user create an account for the user and let him access the game.
-* *_USER MANAGEMENT_ AUTHSERVICE* : Microservice that will login the user in the system and let him access the game.
-* *_HOME_ GAMEMODE PAGE* : Microservice that will let the user start a game.
-* *_QUESTION GAME_ GAME CONFIGURATION* Microservice that will let the user customize some game parameters (amount of questions, time to respond a question, etc).
-* *_QUESTION GAME_ QUESTION RESTAPI* Microservice that will work as our open API allowing other systems to retrieve information like:
-  ** Random questions and corresponding answers. 
-* *_QUESTION GAME_ QUESTION GENERATOR* Microservice that will generate the different questions for our game communicating with wikidata.
-* *_QUESTION GAME_ GAME* Microservice that will show the different questions for our game and manage the user answers in order to give a final score.
+* *_Webapp_ Home* : First view of the webapp.
+* *_Webapp_ Log in and Register* : Views of the webapp that allow the user to get into the application.
+* *_Webapp_ Game menu* : Intermediate view between the records and the actual game.
+* *_Webapp_ User's games records* : View where the user will be able to see different statistics of the games played (Correct answers, points, total games).
+* *_Webapp_ Question Game* : Game view where the user will be able answer the random question by choosing 1 of 4 possibilities.
+
+* *_WIQ Services_ Authentication service* : Microservice that will let the user log in a created account. 
+* *_WIQ Services_ User service* : Microservice that will let the user create an account.
+* *_WIQ Services_ Record service* : Microservice that will manage the records of all users and will let anyone get the records of a user.
+* *_WIQ Services_ Question service* Microservice that will get some random questions for an user game. It will also let anyone get random questions from outside our system.
+* *_WIQ Services_ Question generator* Microservice that will generate the random questions accesing wikidata and load them into the system.

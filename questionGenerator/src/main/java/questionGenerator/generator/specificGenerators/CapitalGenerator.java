@@ -1,16 +1,21 @@
 package main.java.questionGenerator.generator.specificGenerators;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.wikidata.wdtk.datamodel.interfaces.Snak;
+import org.wikidata.wdtk.datamodel.interfaces.SnakGroup;
+import org.wikidata.wdtk.datamodel.interfaces.Statement;
 
 import main.java.questionGenerator.generator.RightAnswerIsEntity;
+import main.java.questionGenerator.question.QuestionType;
 
 public class CapitalGenerator extends RightAnswerIsEntity {
 	
 	private final static String PROPERTY = "P36";
 
 	public CapitalGenerator(){
-		super(PROPERTY);
+		super(PROPERTY, QuestionType.CAPITAL);
 	}
 
 	@Override
@@ -20,13 +25,25 @@ public class CapitalGenerator extends RightAnswerIsEntity {
 	}
 
 	@Override
-	protected List<String> getWrongAnswers(String rightAnswer) {
-		// TODO Auto-generated method stub
-		List<String> result = new ArrayList<>();
-		result.add("a");
-		result.add("b");
-		result.add("c");
-		return result;
+	protected String getRightAnswer(Map<String, List<Statement>> claims) {
+		for(Statement st : claims.get(super.getPropertyId())) {
+			boolean valid = true;
+			for(SnakGroup sg : st.getQualifiers()) {
+				for(Snak s : sg.getSnaks()) {
+					String value = getRightAnswerEntity(s.getPropertyId().toString());
+					if(value.equals("P582")) {
+						valid = false;
+						break;
+					}
+				}
+				if(!valid)
+					break;
+			}
+			if(valid) {
+				return processRightAnswer(st);
+			}
+		}
+		return null;
 	}
 
 }

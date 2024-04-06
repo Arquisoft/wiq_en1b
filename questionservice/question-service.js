@@ -12,8 +12,9 @@ mongoose.connect(mongoUri);
 app.get('/questions',  async (req, res) => {
     try {    
         // Find the question by it's number
-        const questions = await Question.find({});
-        //const question = await Question.find({number: { $in: ['0', '1']}}); And I can find many that way
+        const questions = await Question.aggregate([
+          {$sample: {size:5}} //5 random from the ones that fullfil the condition
+        ]);
 
         let jsonResult = {};
         for (let i = 0; i < questions.length; i++) {
@@ -27,6 +28,29 @@ app.get('/questions',  async (req, res) => {
       } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
       }
+});
+
+app.get('/questions/:lang',  async (req, res) => {
+  try {    
+      const lang = req.params.lang;
+
+      const questions = await Question.aggregate([
+        {$match: {language : lang}}, //Condition
+        {$sample: {size:5}} //5 random from the ones that fullfil the condition
+      ]);
+
+      let jsonResult = {};
+      for (let i = 0; i < questions.length; i++) {
+          const question = questions[i];
+          jsonResult[i] = {
+              question : question.question,
+              answers : question.answers
+          }
+      }
+      res.json(jsonResult);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 

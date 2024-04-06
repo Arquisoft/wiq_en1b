@@ -59,11 +59,11 @@ image::3-BusinessContext.drawio.svg["Business context diagram"]
 |Users request a question to be shown 
 |The question and the set of answers corresponding to that question are presented
 |*_Question Generation_*
-|User requests a question and the information extracted from wikidata
+|System requests a question and the information extracted from wikidata
 |The question and the set of answers corresponding to that question are created
 |*_Wikidata API_*
-|Some part or topic related to the creation of a question
-|Some concepts that will facilitate the creation of the question such as wrong answers
+|Topic to create a question
+|Correct anwser for the topic asked
 |===
 
 === Technical Context
@@ -84,15 +84,24 @@ together with a mapping table showing the relationships between channels and inp
 ****
 image::3-TechnicalContext.drawio.svg["Business context diagram"]
 .User And Application interface +
-The user will access the web application via the HTTPs protocol
+The user will access the web application via the HTTP protocol
 
 .Home and Login interface +
-The home will allow user to be redirected to the login and authentication phase via the HTTPs protocol
+The home will allow user to be redirected to the login and authentication phase via the HTTP protocol
 
-.Login and Question Generation interface +
-The login will allow the user to enter the game and so the question generation will start, this will happend through a redirect
+.Login and Users Database +
+The login will access the users database directly via an internal network
 
-.Login and Database +
-The login will access the database directly via TCP/IP protocol
+.Login and Game interface +
+The login will allow the user to enter the game menu
+
+.Game and Users Database +
+The game will access the users database directly via an internal network
+
+.Game and Questions Database +
+The game will access the questions database directly via an internal network
+
+.Question Generator and Questions Database +
+The question generator will access the question database directly via an internal network
 
 
