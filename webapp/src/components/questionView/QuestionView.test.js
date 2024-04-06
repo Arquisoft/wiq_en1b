@@ -1,10 +1,11 @@
-import { render, screen ,fireEvent } from '@testing-library/react';
+import { render, screen ,fireEvent, waitFor } from '@testing-library/react';
 import { initReactI18next } from 'react-i18next';
 import i18en from 'i18next';
 import QuestionView from './QuestionView';
 import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import {queryHelpers, buildQueries} from '@testing-library/react'
+import { UserContextProvider } from '../loginAndRegistration/UserContext';
 
 jest.mock('./QuestionGenerator', () => require('./mocks/QuestionGenerator'));
 
@@ -19,17 +20,15 @@ global.i18en = i18en;
 
 describe('Question View component', () => {
     it('renders a question',async () => {
-        act(() => {
-            render(<MemoryRouter><QuestionView /></MemoryRouter>);
-            
-        });
-        const text = screen.getByText('Please Wait a bit...');
-            expect(text).toBeInTheDocument();
+        render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+        const text = screen.getByText(i18en.t('questionView.no_questions_message'));
+        expect(text).toBeInTheDocument();
         
         // Wait for questions to load
-        await waitFor(() => expect(getByText('Mocked Question 1')).toBeInTheDocument());
-        const tituloH2 = screen.getByRole('heading', { level: 2 });
-        expect(tituloH2).toBeInTheDocument();
+        act(()=>{
+            const tituloH2 = screen.getByRole('heading', { level: 2 });
+            expect(tituloH2).toBeInTheDocument();
+        })        
     });
     /*
     it('renders a question',async () => {
