@@ -31,7 +31,7 @@ app.post('/login', async (req, res) => {
       validateRequiredFields(req, ['username', 'password']);
     }
     catch(error){
-      res.status(401).json({ error : error.message });
+      res.status(400).json({ error : error.message });
       return
     }
 
@@ -47,7 +47,7 @@ app.post('/login', async (req, res) => {
       // Respond with the token and user information
       res.json({ token: token, username: username, createdAt: user.createdAt });
     } else {
-      res.status(401).json({ error: 'Invalid credentials' });
+      res.status(400).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
