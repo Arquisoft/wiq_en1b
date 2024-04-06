@@ -6,8 +6,7 @@ import React from "react";
 import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HistoricalView from '../HistoricalData/HistoricalView';
+import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
 
@@ -37,17 +36,18 @@ function QuestionView(){
     function revealColorsForAnswers(){
         let colorCorrectAnswer='#6EF26E';//green
         let colorIncorrectAnswer='#FF6666'; //red
-        $('.answerButton').each(function() {        
-            let dataValue = $(this).attr('data-value');
+        $('.answerButton').each(function() {
+            var dataValue = $(this).attr('data-value');
             if (dataValue === false || dataValue === "false")
                 $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
 
             else{
                 $(this).css({
                     'background-color': colorCorrectAnswer,
-                    'text-decoration': 'underline' // Underline the text of the button for correct answers
+                    'text-decoration': 'underline'// Underline the text of the button for correct answers
                 });
             }
+            $(this).css('pointer-events', 'none');
             });
 
     }
@@ -56,7 +56,8 @@ function QuestionView(){
         $('.answerButton').each(function() {
             $(this).css({
                 'background-color': colorOriginal,
-                'text-decoration': 'none' // Remove underline
+                'text-decoration': 'none', // Remove underline
+                'pointer-events': 'auto'
             });
         });
     }
@@ -122,6 +123,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
         <>
             {numQuestion < questions.length ? (
                 <div className='questionContainer'>
+               
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
                         <div className="countdown">
@@ -133,12 +135,17 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                             <Answer key={index} text={item} onClick={handleClick.bind(this,item)} dataValue={questions[numQuestion].isCorrect(item)}/>
                         ))}
                     </div>
-                    <p>{t("questionView.question_counter")} {numQuestion+1}</p>
-                </div> 
+                    <div className='bottomPanel'>
+                        <p>{t("questionView.question_counter")} {numQuestion+1}</p>
+                        <p>{points} {t("questionView.point")}</p>
+                    </div>
+                 </div>
+                
             ) : (
                 <>
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
+                    <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>
                     <ButtonHistoricalData t={t} />
                 </>
             )}

@@ -4,6 +4,8 @@ import HistoryRecordRetriever from './HistoryRecordRetriever';
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
 
 
+import RecordList from './RecordList';
+
 const retriever = new HistoryRecordRetriever();
 
 
@@ -48,19 +50,7 @@ function HistoricalGameElement({record,t}){
       <button className="historicalButton" onClick={handleClick}>{t("historicalView.game")} : {
       (new Date(parseInt(record.date))).toLocaleDateString()} - {record.points} {t("historicalView.points")} </button>
       <ul style={{ display: toggle ? 'block' : 'none' }}>
-      {record.questions.map((question, index) => (<li key={index}>
-            <p>{question.question}</p>
-            <ul>
-              {question.answers.map((answer, answerIndex) => (
-                <li key={answerIndex}>
-                  {answer}
-                  {question.answerGiven === answer && " 👈 "}
-                  {question.correctAnswer === answer && " ✅ "}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
+        <RecordList record={record}/>
       </ul>
     </div>
   );

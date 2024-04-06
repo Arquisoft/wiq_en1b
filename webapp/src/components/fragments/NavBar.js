@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Typography from "@mui/material/Typography";
 import { Link } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -29,10 +28,10 @@ function Navbar() {
 
   return (
     <div className="navbar-container">
+      <div className='left-nav'>
       <Profile />
-      <Typography variant="h6" gutterBottom className="navbar-text">
-        {t("navBar.title")}
-      </Typography>
+        <h1 className='navbar-text'>{t("navBar.title")}</h1>
+      </div>
       <div className='right-nav'>
         <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
         <Menu
