@@ -45,9 +45,7 @@ function Navbar() {
         </Menu>
         <Help />
         {user != null ? (
-          <Typography variant="h6" gutterBottom className="navbar-text">
-            {user.username}
-          </Typography>
+          <p>{user.username}</p>
           ) : null}
       </div>
     </div>

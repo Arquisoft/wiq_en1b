@@ -39,7 +39,6 @@ class CreationHistoricalRecord{
           user:user,
           game:this.record.game
         }
-        console.log(body)
         try {
           const response = await fetch(apiUrl, {
             method: 'POST',

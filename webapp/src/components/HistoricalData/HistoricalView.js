@@ -17,7 +17,7 @@ export default function HistoricalView() {
     const getRecords = async ()=>{
       console.log("in")
           try {
-              var jsonRecords = await retriever.getRecords("M"); // Obtener el JSON de registros
+              var jsonRecords = await retriever.getRecords(user.username); 
               var recordsArray = jsonRecords.games;
               console.log(recordsArray)
               setRecords(recordsArray);
@@ -29,9 +29,9 @@ export default function HistoricalView() {
   useEffect(() => {getRecords()}, []);
   return (
     <div className='globalHistoricalView'>
-      {records.map((record, index) => (
+      {(records && records.length != 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
-      ))}
+      )): <p>No games played yet</p>}
     </div>
   )
 }
