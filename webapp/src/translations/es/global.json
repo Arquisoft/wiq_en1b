@@ -63,7 +63,8 @@
       "question_counter":"Pregunta nº ",
       "end_countdown":"¡Se acabó el tiempo!",
       "finished_game":"¡El juego se ha terminado!",
-      "point":"Puntos"
+      "point":"Puntos",
+      "no_questions_message":"Please wait a bit"
     },
     "historicalView":{
       "game":"Partida",

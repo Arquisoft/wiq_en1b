@@ -60,7 +60,8 @@
         "question_counter":"Question number ",
         "end_countdown":"Time's up!",
         "finished_game":"The game has finished!",
-        "point":"Points"
+        "point":"Points",
+        "no_questions_message":"Please wait a bit"
       },
       "historicalView":{
         "game":"Game",

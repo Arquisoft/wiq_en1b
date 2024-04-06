@@ -37,8 +37,8 @@ function QuestionView(){
     function revealColorsForAnswers(){
         let colorCorrectAnswer='#6EF26E';//green
         let colorIncorrectAnswer='#FF6666'; //red
-        $('.answerButton').each(function() {
-            var dataValue = $(this).data('value');
+        $('.answerButton').each(function() {        
+            let dataValue = $(this).attr('data-value');
             if (dataValue === false || dataValue === "false")
                 $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
 
@@ -101,10 +101,9 @@ function QuestionView(){
     
     return (
     <div className="question-view-container">
-        {/*Nav*/}
         {numQuestion >= 0 ? 
         <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points}/> :
-        <h1>Please Wait a bit...</h1> }
+        <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
@@ -126,7 +125,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
                         <div className="countdown">
-                            <Countdown key={numQuestion} date={Date.now()+4000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
+                            <Countdown key={numQuestion} date={Date.now()+20000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
                     </div>
                     <div className="answerPanel">

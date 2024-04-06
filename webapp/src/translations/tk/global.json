@@ -1,71 +1,69 @@
 {
   "home": {
-    "welcome": "WIQ'e hoş geldiniz!",
-    "how_to_play": "Nasıl Oynanır?",
-    "login": "Giriş Yap",
-    "register": "Hesabınız yok mu? Buradan kaydolun.",
-    "language": "Dil Türkçe olarak değiştirildi",
-    "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizi test etmeye ve becerilerinizi göstermeye hazır olun. Bu heyecan verici oyunda, çeşitli konulardaki bilginizi test edecek bir dizi soruyla karşılaşacaksınız.",
-    "msg2": "Öyleyse ilerleyin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?"
-},
-  
-    "navBar": {
+      "welcome": "WIQ'a hoş geldiniz!",
+      "how_to_play": "Nasıl Oynanır?",
+      "login": "Giriş yap",
+      "register": "Hesabınız yok mu? Buradan kaydolun.",
+      "language": "Dil İspanyolca olarak değiştirildi",
+      "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizin becerilerini ve bilginizi test etmeye hazırlanın. Bu heyecan verici oyununuzda, çeşitli konulardaki bilginizi sınayacak bir dizi soruyla karşılaşacaksınız.",
+      "msg2": "Öyleyse, kendinizi soruların efendisi olarak kanıtlamaya hazır mısınız? Meydan okumayı kabul etmeye hazır mısınız?"
+  },
+  "navBar": {
       "title": "Bil ve Kazan!",
       "en": "İngilizce",
       "es": "İspanyolca",
       "tk": "Türkçe",
       "language": "Dil"
-    },
-  
-    "instructions": {
+  },
+  "instructions": {
       "title": "WIQ Talimatları",
       "objective": "Amaç:",
       "objective_p1": "Oyunun amacı mümkün olduğunca çok soruyu doğru cevaplamaktır.",
       "how_to_play": "Nasıl Oynanır:",
       "how_to_play_p1": "Oyun bir dizi sorudan oluşur.",
-      "how_to_play_p2": "Her soruyu dikkatlice oku.",
-      "how_to_play_p3": "Verilen seçeneklerden doğru cevabı seç.",
-      "how_to_play_p4": "Seçtiğin cevabı göndermek için tıkla veya dokun.",
-      
-      
+      "how_to_play_p2": "Her soruyu dikkatlice okuyun.",
+      "how_to_play_p3": "Sağlanan seçeneklerden doğru cevabı seçin.",
+      "how_to_play_p4": "Seçtiğiniz cevabı göndermek için tıklayın veya dokunun.",
       "scoring": "Puanlama:",
-      "scoring_p1": "Her doğru cevap x puan kazandırır.",
-      "scoring_p2": "Yanlış cevaplar puanları düşürmez.",
-      "time_limit": "Zaman Sınırlaması:",
-      "time_limit_p1": "Bazı oyun modları her soruya cevap verme için bir zaman sınırlamasına sahip olabilir. Puanını maksimize etmek için hızlı ve doğru ol.",
-      "have_fun": "İyi Eğlenceler!",
-      "have_fun_p1": "Oyunun tadını çıkar ve bilgilerini test et. İyi şanslar!"
-    },
-    
-    "login": {
-      "title": "Giriş Yap",
+      "scoring_p1": "Her doğru cevap size x puan kazandırır.",
+      "scoring_p2": "Yanlış cevaplar puan kaybettirmez.",
+      "time_limit": "Zaman Sınırı:",
+      "time_limit_p1": "Bazı oyun modları her soruya cevap vermek için bir zaman sınırına sahip olabilir. En yüksek puanı almak için hızlı ve doğru olun.",
+      "have_fun": "İyi eğlenceler!",
+      "have_fun_p1": "Oyunun tadını çıkarın ve bilginizi sınamaktan keyif alın. İyi şanslar!"
+  },
+  "login": {
+      "title": "Giriş yap",
       "username_placeholder": "Kullanıcı adı",
       "password_placeholder": "Şifre",
       "remember_me": "Beni hatırla",
       "forgot_password": "Şifrenizi mi unuttunuz?",
       "login_button": "Giriş yap",
       "register_link": "Hesabınız yok mu? Buradan kaydolun."
-    },
-  
-    "addUser": {
-      "title": "Kaydol",
+  },
+  "addUser": {
+      "title": "Kayıt Ol",
       "username_placeholder": "Kullanıcı adı",
       "password_placeholder": "Şifre",
-      "repeat_password_placeholder": "Şifreyi tekrar girin",
-      "register_button": "Kaydol",
+      "repeat_password_placeholder": "Şifreyi tekrarlayın",
+      "register_button": "Kayıt ol",
       "login_link": "Zaten bir hesabınız mı var? Buradan giriş yapın."
-    },
-  
-    "gameMenu": {
+  },
+  "gameMenu": {
       "history_button": "Geçmişi Görüntüle",
-      "new_game_button": "Yeni oyun oluştur",
+      "new_game_button": "Yeni Oyun Oluştur",
       "title": "Oyun Menüsü"
-    },
-  
-    "questionView": {
+  },
+  "questionView": {
       "seconds": "saniye",
-      "question_counter": "Soru numarası: ",
-      "end_countdown": "Süre doldu!"
-    }
+      "question_counter": "Soru no. ",
+      "end_countdown": "Zaman doldu!",
+      "finished_game": "Oyun bitti!",
+      "point": "Puan",
+      "no_questions_message": "Lütfen biraz bekleyin"
+  },
+  "historicalView": {
+      "game": "Oyun",
+      "points": "puanlar"
   }
-  
+}
