@@ -27,7 +27,13 @@ function validateRequiredFields(req, requiredFields) {
 app.post('/login', async (req, res) => {
   try {
     // Check if required fields are present in the request body
-    validateRequiredFields(req, ['username', 'password']);
+    try{
+      validateRequiredFields(req, ['username', 'password']);
+    }
+    catch(error){
+      res.status(401).json({ error : error.message });
+      return
+    }
 
     const { username, password } = req.body;
 

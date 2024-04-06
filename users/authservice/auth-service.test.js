@@ -17,6 +17,7 @@ async function addUser(user){
   const newUser = new User({
     username: user.username,
     password: hashedPassword,
+    createdAt: new Date()
   });
 
   await newUser.save();
@@ -41,5 +42,17 @@ describe('Auth Service', () => {
     const response = await request(app).post('/login').send(user);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('username', 'testuser');
+  });
+  it('Should show missing field user /login', async () => {
+    const response = await request(app).post('/login').send();
+    expect(response.status).toBe(401);
+    console.log(response)
+    expect(response.body).toHaveProperty('error', 'Missing required field: username');
+  });
+  it('Should show invalid credentials /login', async () => {
+    const user2 = {username:"Hello", password:"world"}
+    const response = await request(app).post('/login').send(user2);
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('error', 'Invalid credentials');
   });
 });
