@@ -56,9 +56,9 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy and adapt this section of arc42 for all relevant environments.
 ****
 
-image::Deployed-Infrastructure.png["Deployed Infrastructure"]
-
 ****
+[plantuml, my-diagram.png, png]
+----
 component User as "User"
 cloud "WIQ" { 
   rectangle "Azure - Ubuntu - Docker"{
@@ -108,6 +108,8 @@ records -[#red]-> Records
 questions -[#red]-> Questions
 qg -[#red]-> Questions
 qg -[dotted]-> Wikidata
+----
+
 ****
 This diagram shows the infrastructure of our application when deployed.
 
