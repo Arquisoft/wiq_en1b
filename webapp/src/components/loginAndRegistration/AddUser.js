@@ -61,13 +61,14 @@ const AddUser = () => {
               />
           </div>
           <div className="input-box">
-              <input
-                type="password"
-                placeholder={t("addUser.repeat_password_placeholder")}
-                required
-                value={repeatPassword}
-                onChange={(e) => setRepeatPassword(e.target.value)}
-              />
+            <p>{t("addUser.repeat_password_placeholder")}:</p>
+            <input
+              type="password"
+              placeholder={t("addUser.repeat_password_placeholder")}
+              required
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+            />
           </div>
 
           <button type="submit">{t("addUser.register_button")}</button>

@@ -87,8 +87,8 @@ function QuestionView(){
             //sum one to the number of questions
             setnumQuestion(numQuestion + 1);
             
+            //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
-                console.log("pasa")
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
                 creationHistoricalRecord.sendRecord(user.username);
