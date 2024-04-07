@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 class HistoryRecordRetriever{
 
@@ -8,8 +9,8 @@ class HistoryRecordRetriever{
 
     async getRecords(user) {
         try {
-            const response = await fetch(this.apiUrl + '/' + user);
-            const receivedRecords = await response.json();
+            const response = await axios.get(this.apiUrl + '/' + user);
+            const receivedRecords = await response.data;
             return receivedRecords.record;
         } catch (error) {
             throw new Error(error);
