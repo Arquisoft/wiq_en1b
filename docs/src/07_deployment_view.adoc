@@ -113,8 +113,6 @@ qg -[dotted]-> Wikidata
 ****
 This diagram shows the infrastructure of our application when deployed.
 
-*TBD*
-
 === Infrastructure Level 2
 
 [role="arc42help"]
