@@ -27,7 +27,13 @@ function validateRequiredFields(req, requiredFields) {
 app.post('/login', async (req, res) => {
   try {
     // Check if required fields are present in the request body
-    validateRequiredFields(req, ['username', 'password']);
+    try{
+      validateRequiredFields(req, ['username', 'password']);
+    }
+    catch(error){
+      res.status(400).json({ error : error.message });
+      return
+    }
 
     const { username, password } = req.body;
 
@@ -39,9 +45,9 @@ app.post('/login', async (req, res) => {
       // Generate a JWT token
       const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
       // Respond with the token and user information
-      res.json({ token: token, username: username, createdAt: user.createdAt });
+      res.json({ token: token, username: username});
     } else {
-      res.status(401).json({ error: 'Invalid credentials' });
+      res.status(400).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });

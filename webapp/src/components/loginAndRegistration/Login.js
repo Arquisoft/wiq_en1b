@@ -5,6 +5,7 @@ import "../../custom.css";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from "./UserContext";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,12 +13,13 @@ const Login = () => {
   const { t } = useTranslation("global");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useUserContext();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
         const response = await axios.post(apiUrl, { username, password });
-        console.log("Hello " + response.username);
+        setUser({username : response.data.username, token : response.data.token})
         //Used to redirect to the menu to start playing
         navigate('/menu');
     } catch (error) {
@@ -31,11 +33,11 @@ const Login = () => {
     <div className="card">
       <div className="card2">
         <form className="form" onSubmit={handleSubmit}>
-          <h1>{t("login.title")}</h1>
+          <h1 className="title-login">{t("login.title")}</h1>
           <div className="input-box">
               <input
                 type="text"
-                placeholder={t("addUser.username_placeholder")}
+                placeholder={t("login.username_placeholder")}
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -44,7 +46,7 @@ const Login = () => {
           <div className="input-box">
               <input
                 type="password"
-                placeholder={t("addUser.password_placeholder")}
+                placeholder={t("login.password_placeholder")}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -66,15 +68,6 @@ const Login = () => {
     </div>
   );
 };
-
-// function ButtonMenu() {
-//   const { t } = useTranslation("global");
-//   return (
-//     <Link to="/menu" className="button-menu">
-      
-//     </Link>
-//   );
-// }
 
 function LinkRegister() {
   const { t } = useTranslation("global");

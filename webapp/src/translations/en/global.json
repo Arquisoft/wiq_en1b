@@ -1,12 +1,22 @@
 {
-    "home": {
-      "welcome": "Welcome to WIQ!",
-      "how_to_play": "How to play?",
-      "login": "Login",
-      "register": "Don't have an account? Register here."
-    },
+  "home": {
+    "welcome": "Welcome to WIQ!",
+    "how_to_play": "How to Play?",
+    "login": "Log In",
+    "register": "Don't have an account? Sign up here.",
+    "language": "The language has been changed to English",
+    "msg1": "Welcome to the knowledge challenge! Get ready to test your mind and demonstrate your skills. In this exciting game, you will face a series of questions that will test your knowledge on a variety of topics.",
+    "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?",
+    "clickOpen": "Click to continue",
+    "clickClose": "Click to close"
+  },
+
     "navBar": {
-      "title": "Know and win!"
+      "title": "Know and win!",
+      "en": "English",
+      "es": "Spanish",
+      "tk": "Turkish",
+      "language": "Language"
     },
     "instructions": {
         "title": "WIQ Instructions",
@@ -49,8 +59,16 @@
       },
       "questionView":{
         "seconds":"seconds",
-        "question_counter":"Question counter :",
-        "end_countdown":"Time's up!"
+        "question_counter":"Question number ",
+        "end_countdown":"Time's up!",
+        "finished_game":"The game has finished!",
+        "point":"Points",
+        "no_questions_message":"Please wait a bit"
+      },
+      "historicalView":{
+        "game":"Game",
+        "points":"points",
+        "no_games_played":"No games played yet"
       }
 }
     

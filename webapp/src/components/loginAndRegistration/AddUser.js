@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const AddUser = () => {
+  const navigate = useNavigate();
   const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/adduser";
   const { t } = useTranslation("global");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,7 +22,8 @@ const AddUser = () => {
       //TODO: Add more validations
       if(password === repeatPassword){ //User put the same password
         const response = await axios.post(apiUrl, { username, password });
-        console.log("Registered user: " + response.username);
+        console.log("Registered user: " + response.data.username);
+        navigate('/login');
       }
       else{
         //TODO: Show some errors to the user
@@ -34,38 +39,46 @@ const AddUser = () => {
     <div className="card">
       <div className="card2">
         <form className="form" onSubmit={handleSubmit}>
-            <h1>{t("addUser.title")}</h1>
-            <div className="input-box">
-              <input
+          <h1>{t("addUser.title")}</h1>
+          <div className="input-box">
+            <p>{t("addUser.username_placeholder")}:</p>
+            <input
+                name = "username"
                 type="text"
                 placeholder={t("addUser.username_placeholder")}
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-            </div>
-            <div className="input-box">
-              <input
+          </div>
+          <div className="input-box">
+            <p>{t("addUser.password_placeholder")}:</p>
+            <input
+                name = "password"
                 type="password"
                 placeholder={t("addUser.password_placeholder")}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
-            <div className="input-box">
-              <input
-                type="password"
-                placeholder={t("addUser.repeat_password_placeholder")}
-                required
-                value={repeatPassword}
-                onChange={(e) => setRepeatPassword(e.target.value)}
-              />
-            </div>
-            <button type="submit">{t("addUser.register_button")}</button>
-            <LinkLogin />
-        </form>
-      </div>
+          </div>
+          <div className="input-box">
+            <p>{t("addUser.repeat_password_placeholder")}:</p>
+            <input
+              name = "repeat_password"
+              type="password"
+              placeholder={t("addUser.repeat_password_placeholder")}
+              required
+              value={repeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
+            />
+          </div>
+
+          <button type="submit">{t("addUser.register_button")}</button>
+
+          <LinkLogin />
+      </form>
+    </div>
     </div>
     </div>
   );
