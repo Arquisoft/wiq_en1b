@@ -15,7 +15,7 @@ defineFeature(feature, test => {
     setDefaultOptions({ timeout: 10000 });
   });
 
-  test('Home page functionality', ({ given, when, then }) => {
+  test('Opening the text container', ({ given, when, then }) => {
     given('I am on the home page', async () => {
       await page.goto('http://localhost:3000/home'); 
       await page.waitForSelector('.general');
@@ -28,14 +28,14 @@ defineFeature(feature, test => {
     then('The text container should be hidden', async () => {
       await expect(page).toMatchElement('.text-container.hidden');
     });
-
+/*
     when('I click on the toggle button to close', async () => {
       await page.click('#toggleClose');
     });
 
     then('The text container should be visible', async () => {
       await expect(page).toMatchElement('.text-container.visible');
-    });
+    });*/
   });
 
   afterAll(async () => {

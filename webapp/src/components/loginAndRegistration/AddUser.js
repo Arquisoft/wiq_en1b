@@ -43,6 +43,7 @@ const AddUser = () => {
           <div className="input-box">
             <p>{t("addUser.username_placeholder")}:</p>
             <input
+                name = "username"
                 type="text"
                 placeholder={t("addUser.username_placeholder")}
                 required
@@ -53,6 +54,7 @@ const AddUser = () => {
           <div className="input-box">
             <p>{t("addUser.password_placeholder")}:</p>
             <input
+                name = "password"
                 type="password"
                 placeholder={t("addUser.password_placeholder")}
                 required
@@ -63,6 +65,7 @@ const AddUser = () => {
           <div className="input-box">
             <p>{t("addUser.repeat_password_placeholder")}:</p>
             <input
+              name = "repeat_password"
               type="password"
               placeholder={t("addUser.repeat_password_placeholder")}
               required

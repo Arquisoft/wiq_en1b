@@ -17,7 +17,7 @@ defineFeature(feature, test => {
     setDefaultOptions({ timeout: 10000 })
 
     await page
-      .goto("http://localhost:3000", {
+      .goto("http://localhost:3000/login", {
         waitUntil: "networkidle0",
       })
       .catch(() => {});
@@ -31,12 +31,13 @@ defineFeature(feature, test => {
     given('An unregistered user', async () => {
       username = "pablo"
       password = "pabloasw"
-      await expect(page).toClick("button", { text: "Don't have an account? Register here." });
+      await expect(page).toClick("a", { text: "Don't have an account? Register here." });
     });
 
     when('I fill the data in the form and press submit', async () => {
       await expect(page).toFill('input[name="username"]', username);
       await expect(page).toFill('input[name="password"]', password);
+      await expect(page).toFill('input[name="repeat_password"]', password);
       await expect(page).toClick('button', { text: 'Add User' })
     });
 
