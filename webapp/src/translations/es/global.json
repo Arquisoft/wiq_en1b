@@ -68,7 +68,8 @@
     },
     "historicalView":{
       "game":"Partida",
-      "points":"puntos"
+      "points":"puntos",
+      "no_games_played":"No has jugado todavía"
     }
       
     

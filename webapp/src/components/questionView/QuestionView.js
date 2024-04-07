@@ -127,7 +127,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                     <div className='topPanel'>
                         <h2>{questions[numQuestion].getQuestion()}</h2>
                         <div className="countdown">
-                            <Countdown key={numQuestion} date={Date.now()+20000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
+                            <Countdown key={numQuestion} date={Date.now()+10000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
                     </div>
                     <div className="answerPanel">
