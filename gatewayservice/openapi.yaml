@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: wiq_en1b API
   description: Our project's OpenAPI specification.
-  version: 0.1.1
+  version: 0.1.2
   contact:
     name: Project github
     url: https://github.com/Arquisoft/wiq_en1b
@@ -101,7 +101,7 @@ paths:
                   example: pass
       responses:
         '200':
-          description: Login successful. Returns user token, username, and creation date.
+          description: Login successful. Returns user token, and username.
           content:
             application/json:
               schema:
@@ -146,8 +146,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuestionResponse'
-                
+                $ref: '#/components/schemas/QuestionResponse'            
   /questions/{lang}:
     get:
       summary: Get 5 random questions from the system in the lang specified
@@ -165,6 +164,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QuestionResponse'
+  /record: 
+    post:
+      summary: Add a new record to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: string
+  /record/{user}:
+    get:
+      summary: Gets the records from a given user
+      parameters:
+        - name: user
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username for filtering records
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
 components:
   schemas:
     LoginRequest:
@@ -210,6 +245,38 @@ components:
               type: string
           correct_answer:
             type: string
+    Record:
+      type: object
+      properties:
+        user:
+          type: string
+        games:
+          type: array
+          items:
+            type: object
+            properties:
+              questions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    question:
+                      type: string
+                    answers:
+                      type: array
+                      items:
+                        type: string
+                    answerGiven:
+                      type: string
+                    correctAnswer:
+                      type: string
+              points:
+                type: number
+              date:
+                type: string
+      required:
+        - user
+        - games
     Error:
       type: object
       properties:
