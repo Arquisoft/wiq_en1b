@@ -5,13 +5,14 @@ import QuestionView from './QuestionView';
 import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import {queryHelpers, buildQueries} from '@testing-library/react';
-import { UserContextProvider } from '../loginAndRegistration/UserContext';
-
+import { UserContextProvider} from '../loginAndRegistration/UserContext';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 
 const mockAxios = new MockAdapter(axios);
+
+
 
 i18en.use(initReactI18next).init({
     resources: {},
