@@ -57,7 +57,7 @@ For multiple environments or alternative deployments please copy and adapt this 
 ****
 
 ****
-[plantuml, my-diagram.png, png]
+[plantuml, infrastructure.png, png]
 ----
 component User as "User"
 cloud "WIQ" { 
