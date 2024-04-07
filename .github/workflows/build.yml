@@ -10,15 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - uses: actions/setup-node@v4
       with:
         node-version: 20
+    - run: npm --prefix questionservice ci
+    - run: npm --prefix users/recordservice ci
     - run: npm --prefix users/authservice ci
     - run: npm --prefix users/userservice ci
     - run: npm --prefix gatewayservice ci
     - run: npm --prefix webapp ci
+    - run: npm --prefix questionservice test -- --coverage
+    - run: npm --prefix users/recordservice test -- --coverage
     - run: npm --prefix users/authservice test -- --coverage
     - run: npm --prefix users/userservice test -- --coverage
     - run: npm --prefix gatewayservice test -- --coverage
@@ -26,5 +28,5 @@ jobs:
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
