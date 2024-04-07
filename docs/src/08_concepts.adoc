@@ -58,8 +58,57 @@ See https://docs.arc42.org/section-8/[Concepts] in the arc42 documentation.
 === Domain concepts
 ==== Domain model
 
-image::08-Domain-Model.png["model-diagram"]
+[plantuml, my-diagram.png, png]
+----
+class User {
+    username : String
+    email : String
+    password : String
+}
 
+class Game {
+    questions : List<Question>
+}
+
+class Question {
+    question : String
+    answers : List<Answer>
+    correctAnswer : Answer
+    language : String
+    number : int
+    questionType : QuestionType
+}
+
+enum QuestionType {
+    POPULATION
+    CAPITAL
+    SIZE
+    LANGUAGE
+}
+
+class Answer {
+    text : String
+    language : String
+}
+
+class UserData {
+    answeredQuestion : Question
+    chosenAnswer : String
+}
+
+class GameOptions {
+    language : String
+}
+
+User -[#red]- Game
+User -[#red]- GameOptions
+Game -[#red]- GameOptions
+Game -[#red]-* Question
+Question -[#red]-> QuestionType
+Question -[#red]-* Answer
+Game -[#red]-> UserData
+User -[#red]-> UserData
+----
 
 === User experience concepts
 
