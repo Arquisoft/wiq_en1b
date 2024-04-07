@@ -40,7 +40,7 @@ describe('Historical View component', () => {
     it('renders Game Record Buttons', async () => {
         const user = { username: 'dummy' };
         mockAxios.onGet('http://localhost:8000/record/dummy').reply(200, 
-                                                                        [{user: "dummy",
+                                                                        {record : {user: "dummy",
                                                                         games: [{
                                                                             questions: [{
                                                                                 question: "What is the capital of Spain?",
@@ -50,7 +50,7 @@ describe('Historical View component', () => {
                                                                             }],
                                                                             points: "200",
                                                                             date: "1712344268728"
-                                                                        }]}]);
+                                                                        }]}});
 
         await act(async()=>
             await render(<UserContextProvider baseUser={user}><MemoryRouter><HistoricalView /></MemoryRouter></UserContextProvider>)

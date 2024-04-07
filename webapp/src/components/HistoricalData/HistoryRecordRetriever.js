@@ -11,7 +11,9 @@ class HistoryRecordRetriever{
         try {
             const response = await axios.get(this.apiUrl + '/' + user);
             const receivedRecords = await response.data;
-            return receivedRecords[0];
+            console.log(receivedRecords)
+            console.log(receivedRecords[0])
+            return receivedRecords.record;
         } catch (error) {
             console.log(error)
             throw new Error(error);
