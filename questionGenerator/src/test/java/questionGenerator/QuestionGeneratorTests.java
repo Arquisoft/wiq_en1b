@@ -16,20 +16,20 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.questionGenerator.QuestionGeneratorMock;
+import main.java.questionGenerator.QuestionGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionGeneratorTests {
 
-    private QuestionGeneratorMock qgEN;
-    private QuestionGeneratorMock qgES;
+    private QuestionGenerator qgEN;
+    private QuestionGenerator qgES;
 
     private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE, QuestionType.LANGUAGE};
 
     @BeforeEach
     void setUp(){
-        qgEN = new QuestionGeneratorMock("en");
-        qgES = new QuestionGeneratorMock("es");
+        qgEN = new QuestionGenerator("en");
+        qgES = new QuestionGenerator("es");
     }
 
     @Test
@@ -39,7 +39,7 @@ public class QuestionGeneratorTests {
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgEN.generateQuestion(t).getJSON().toString();
+                question = qgEN.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format
@@ -98,7 +98,7 @@ public class QuestionGeneratorTests {
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgES.generateQuestion(t).getJSON().toString();
+                question = qgES.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format
