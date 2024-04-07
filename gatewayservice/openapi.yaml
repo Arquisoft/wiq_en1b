@@ -1,8 +1,11 @@
 openapi: 3.0.0
 info:
-  title: Gatewayservice API
-  description: Gateway OpenAPI specification.
-  version: 0.2.0
+  title: wiq_en1b API
+  description: Our project's OpenAPI specification.
+  version: 0.1.2
+  contact:
+    name: Project github
+    url: https://github.com/Arquisoft/wiq_en1b
 servers:
   - url: http://localhost:8000
     description: Development server
@@ -38,24 +41,9 @@ paths:
                 properties:
                   username:
                     type: string
-                    description: User ID
-                  password:
-                    type: string
-                    description: Hashed password
-                    example: $2b$10$ZKdNYLWFQxzt5Rei/YTc/OsZNi12YiWz30JeUFHNdAt7MyfmkTuvC
-                  _id:
-                    type: string
-                    description: Identification
-                    example: 65f756db3fa22d227a4b7c7d
-                  createdAt:
-                    type: string
-                    description: Creation date.
-                    example: '2024-03-17T20:47:23.935Z'
-                  ___v:
-                    type: integer
-                    example: '0'                                        
+                    description: User ID                                      
         '400':
-          description: Failed to add user.
+          description: Failed to add user
           content:
             application/json:
               schema:
@@ -64,7 +52,18 @@ paths:
                   error:
                     type: string
                     description: Error information.
-                    example: getaddrinfo EAI_AGAIN mongodb
+                    example: Username already in use
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: Internal Server Error
   /health:
     get:
       summary: Check the health status of the service.
@@ -102,7 +101,7 @@ paths:
                   example: pass
       responses:
         '200':
-          description: Login successful. Returns user token, username, and creation date.
+          description: Login successful. Returns user token, and username.
           content:
             application/json:
               schema:
@@ -116,11 +115,7 @@ paths:
                     type: string
                     description: Username.
                     example: student
-                  createdAt:
-                    type: string
-                    description: Creation date.
-                    example: '2024-03-17T20:47:23.935Z'
-        '401':
+        '400':
           description: Invalid credentials.
           content:
             application/json:
@@ -142,3 +137,177 @@ paths:
                     type: string
                     description: Error information.
                     example: Internal Server Error
+  /questions:
+    get:
+      summary: Get 5 random questions from the system in any language
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'            
+  /questions/{lang}:
+    get:
+      summary: Get 5 random questions from the system in the lang specified
+      parameters:
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Language code for filtering questions must be es or en
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+  /record: 
+    post:
+      summary: Add a new record to the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: string
+  /record/{user}:
+    get:
+      summary: Gets the records from a given user
+      parameters:
+        - name: user
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username for filtering records
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordResponse'
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+      required:
+        - username
+        - email
+    UserResponse:
+      type: object
+      properties:
+        message:
+          type: string
+    QuestionResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          question:
+            type: string
+          answers:
+            type: array
+            items:
+              type: string
+          correct_answer:
+            type: string
+    Record:
+      type: object
+      properties:
+        user:
+          type: string
+        game:
+          type: object
+          properties:
+            questions:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    example: What is the capital of Oviedo?
+                  answers:
+                    type: array
+                    items:
+                      type: string
+                  answerGiven:
+                    type: string
+                  correctAnswer:
+                    type: string
+            points:
+              type: number
+            date:
+              type: string
+      required:
+        - user
+        - game
+    RecordResponse:
+      type: object
+      properties:
+        user:
+          type: string
+        games:
+          type: array
+          items:
+            type: object
+            properties:
+              questions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    question:
+                      type: string
+                      example: What is the capital of Oviedo?
+                    answers:
+                      type: array
+                      items:
+                        type: string
+                    answerGiven:
+                      type: string
+                    correctAnswer:
+                      type: string
+              points:
+                type: number
+              date:
+                type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
