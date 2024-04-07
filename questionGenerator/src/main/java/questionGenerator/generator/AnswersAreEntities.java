@@ -16,9 +16,9 @@ import main.java.questionGenerator.entityGenerator.EntityGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AnswersAreEntities extends AbstractGenerator {
-
+	
 	private final String PROPERTY_TO_CHECK;
-	private final QuestionType type;
+	private QuestionType type;
 
 	public AnswersAreEntities(String propertyId, QuestionType type, String propertyToCheck, String message) {
 		super(propertyId, type, message);
@@ -27,7 +27,11 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 	}
 
 	@Override
-	protected String getRightAnswer(Map<String, List<Statement>> claims) {
+	protected String getRightAnswer(Map<String, List<Statement>> claims) throws Exception {
+		if(claims.get(super.getPropertyId())==null) {
+			throw new Exception("Claims does not have the property " + super.getPropertyId());
+		}
+		
 		for(Statement st : claims.get(super.getPropertyId())) {
 			boolean valid = true;
 			for(SnakGroup sg : st.getQualifiers()) {
@@ -48,7 +52,7 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 		return null;
 	}
 	
-	protected String processRightAnswer(Statement st) {
+	private String processRightAnswer(Statement st) {
 		String entity = getIdFromLink(st.getValue().toString());
 		String answer = "";
 		try {
@@ -66,7 +70,7 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 		return answer;
 	}
 	
-	protected String getAnswer(String id){
+	private String getAnswer(String id) throws Exception{
 		ItemDocumentImpl idi = getAlreadyProcessedEntity(id);
 		
 		if(idi==null) {
@@ -93,7 +97,7 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 	}
 	
 	@Override
-	protected List<String> getWrongAnswers(String rightAnswer) {
+	protected List<String> getWrongAnswers(String rightAnswer) throws Exception {
 		List<String> entites = new ArrayList<>();
 		try {
 			entites = EntityGenerator.getEntities(type, 100);
@@ -102,15 +106,13 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 		}
 		Random rnd = new Random();
 		List<String> result = new ArrayList<>();
-		List<Integer> used = new ArrayList<>();
 		for(int i = 0; i < 3; i++){
 				int rndnum = rnd.nextInt(entites.size());
 				String wrong = getAnswer(entites.get(rndnum));
-			if(wrong == null || wrong.equals(rightAnswer) || used.contains(rndnum))
+			if(wrong == null || wrong.equals(rightAnswer) || result.contains(wrong))
 				i--;
 			else{
 				result.add(wrong);
-				used.add(rndnum);
 			}
 		}
 		return result;

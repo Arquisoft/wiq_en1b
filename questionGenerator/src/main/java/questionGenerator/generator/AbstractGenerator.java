@@ -30,7 +30,7 @@ public abstract class AbstractGenerator {
 	private QuestionType type;
 
 	private static final String MESSAGES_PATH = "messages";
-
+	
 	private String message;
 	
 	public AbstractGenerator(String propertyId, QuestionType type, String message) {
@@ -43,8 +43,9 @@ public abstract class AbstractGenerator {
 	 * 
 	 * @param id
 	 * @return question generated or null if wikidata gives an error
+	 * @throws Exception 
 	 */
-	public Question generate(String id)  {
+	public Question generate(String id) throws Exception  {
 		//get the wikidata entity using the id
 		ItemDocumentImpl idi = alreadyProcessedEntities.get(id);
 		
@@ -86,20 +87,19 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
+//	protected abstract String getQuestion(String name);
+	protected abstract String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
+	protected abstract List<String> getWrongAnswers(String rightAnswer) throws Exception;
 	
 	protected String getQuestion(String name) {
 		String q = getMessages().getString(message);
 		return String.format(q, name);
 	}
 
-	protected abstract String getRightAnswer(Map<String, List<Statement>> claims);
-	protected abstract List<String> getWrongAnswers(String rightAnswer);
-
-
 	public String getPropertyId() {
 		return propertyId;
 	}
-
+	
 	public static ItemDocumentImpl getAlreadyProcessedEntity(String id) {
 		return alreadyProcessedEntities.get(id);
 	}

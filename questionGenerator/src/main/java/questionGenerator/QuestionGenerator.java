@@ -15,8 +15,8 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionGenerator {
-
-    private AbstractGenerator generator;
+	
+	private AbstractGenerator generator;
 	private String languageCode;
 	
 	public QuestionGenerator(String languageCode){
@@ -33,19 +33,21 @@ public class QuestionGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Random rnd = new Random();
-		List<String> chosen = new ArrayList<>(); 
+		Random rnd = new Random(); 
 		int size = entites.size();
-		int number = 0;
-		while(number<amount) {
+		while(questions.size()<amount && size>0) {
 			int index = rnd.nextInt(size);
 			String entity = entites.get(index);
-			if(!chosen.contains(entity)) {
-				chosen.add(entity);
-				Question q = generator.generate(entity);
+			entites.remove(index);
+			Question q = null;
+			try {
+				q = generator.generate(entity);
 				questions.add(q);
-				number++;
+			} catch (Exception e) {
+				//If there's any problem generating the question we jump to the next one
+				System.err.println(e.getMessage());
 			}
+			size = entites.size();
 		}
 		return questions;
 	}
