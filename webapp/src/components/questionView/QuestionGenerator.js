@@ -1,4 +1,6 @@
 import Question from './Question';
+import axios from 'axios'
+
 class QuestionGenerator{
 
     constructor(){
@@ -8,8 +10,8 @@ class QuestionGenerator{
 
     async generateQuestions(lang) {
         try {
-            const response = await fetch(this.apiUrl + '/' + lang);
-            const receivedQuestions = await response.json();
+            const response = await axios.get(this.apiUrl + '/' + lang);
+            const receivedQuestions = await response.data;
             let i = 0;
             var questions = [];
             for (const key in receivedQuestions) {

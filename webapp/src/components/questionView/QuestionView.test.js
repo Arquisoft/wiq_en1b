@@ -1,13 +1,17 @@
-import { render, screen ,fireEvent, waitFor } from '@testing-library/react';
+import { render , screen, waitFor } from '@testing-library/react';
 import { initReactI18next } from 'react-i18next';
 import i18en from 'i18next';
 import QuestionView from './QuestionView';
 import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import {queryHelpers, buildQueries} from '@testing-library/react'
+import {queryHelpers, buildQueries} from '@testing-library/react';
 import { UserContextProvider } from '../loginAndRegistration/UserContext';
 
-jest.mock('./QuestionGenerator', () => require('./mocks/QuestionGenerator'));
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+
+
+const mockAxios = new MockAdapter(axios);
 
 i18en.use(initReactI18next).init({
     resources: {},
@@ -19,16 +23,37 @@ i18en.use(initReactI18next).init({
 global.i18en = i18en;
 
 describe('Question View component', () => {
-    it('renders a question',async () => {
+
+    beforeEach(() => {
+        mockAxios.reset();
+    });
+    
+    it('shows the no_questions_message as the endpoint does not exist',async () => {
         render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
         const text = screen.getByText(i18en.t('questionView.no_questions_message'));
         expect(text).toBeInTheDocument();
-        
         // Wait for questions to load
-        act(()=>{
-            const tituloH2 = screen.getByRole('heading', { level: 2 });
-            expect(tituloH2).toBeInTheDocument();
-        })        
+        
+    });
+    it('shows a question',async () => {
+       
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: "What is the population of Oviedo?",
+                                                                answers: ["225089","272357","267855","231841"]}]);
+
+        //It gives an error as we are not wrapping it by act, however by doing this we simulate a no questions situation
+        await act(async () =>{
+            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+        })
+
+        await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+
+        //Now that we know the question is showing
+        expect(screen.getByText('225089')).toBeInTheDocument()
+        expect(screen.getByText('272357')).toBeInTheDocument()
+        expect(screen.getByText('267855')).toBeInTheDocument()
+        expect(screen.getByText('231841')).toBeInTheDocument()
+        
     });
     /*
     it('renders a question',async () => {
