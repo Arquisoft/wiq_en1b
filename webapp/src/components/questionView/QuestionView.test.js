@@ -108,35 +108,5 @@ describe('Question View component', () => {
         const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
     });
-    /*
-    it('shows timer has finished', async () => {
-        jest.useFakeTimers();
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}],
-                                                                [{question: "What is the population of Avilés?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
-        await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
-            jest.advanceTimersByTime(11000);
-        })
-        
-        const timerElement = await screen.findByText(i18en.t('questionView.end_countdown'));
-        expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
-    });*/
-    /*
-    it('shows second question', async () => {
-        jest.useFakeTimers();
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}],
-                                                                [{question: "What is the population of Avilés?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
-        await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
-            jest.advanceTimersByTime(11000);
-        })
-        
-        await waitFor(() => expect(screen.getByText('What is the population of Avilés?')).toBeInTheDocument());
-    });*/
+    
 });

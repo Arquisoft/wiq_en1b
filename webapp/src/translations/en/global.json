@@ -65,7 +65,8 @@
       },
       "historicalView":{
         "game":"Game",
-        "points":"points"
+        "points":"points",
+        "no_games_played":"No games played yet"
       }
 }
     

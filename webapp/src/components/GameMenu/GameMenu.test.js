@@ -13,12 +13,7 @@ i18en.use(initReactI18next).init({
     }
 });
 global.i18en = i18en;
-/*
-test('renders learn react link', () => {
-    render(<MemoryRouter><GameMenu /></MemoryRouter>);
-    const linkElement = screen.getByText(/Game Menu/i);
-    expect(linkElement).toBeInTheDocument();
-});*/
+
 
 describe('GameMenu component', () => {
     it('renders Title for Game Menu view', () => {

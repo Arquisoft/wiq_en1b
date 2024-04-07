@@ -15,15 +15,12 @@ export default function HistoricalView() {
   const {user} = useUserContext();
 
     const getRecords = async ()=>{
-      console.log("in")
           try {
               var jsonRecords = await retriever.getRecords(user.username); 
               var recordsArray = jsonRecords.games;
-              console.log(recordsArray)
               setRecords(recordsArray);
           } catch (error) {
-              //Como hacer que funcione esto
-              console.log(error.response);
+              console.log(error);
           }
   }
   useEffect(() => {getRecords()}, []);
@@ -31,14 +28,13 @@ export default function HistoricalView() {
     <div className='globalHistoricalView'>
       {(records && records.length != 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
-      )): <p>No games played yet</p>}
+      )): <p>{t("historicalView.no_games_played")}</p>}
     </div>
   )
 }
 
 
 function HistoricalGameElement({record,t}){
-  console.log(record)
   const [toggle, setToggle] = useState(false);
 
   function handleClick (){
