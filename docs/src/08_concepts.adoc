@@ -90,21 +90,26 @@ Utilize encryption techniques to secure data in any transmission between actors 
 ==== Microservices
 The microservices pattern combines design patterns to create multiple services that work interdependently to create a larger application. Because each application is small, it's easier to update them when needed. We will be using this pattern during development.
 
+
 === Under-the-hood concepts
-TBD
+
+==== Question and User Databases
+To enhance consistency and reduce reliance on Wikidata, our project employs two distinct databases. The first database serves as a repository for questions generated via Wikidata's API, which are then utilized within the application. The second database stores various other datasets, including user information.
+
 
 === Developement concepts
 
-==== Testing
-TBD
-
-==== Deployment
-TBD
+==== Continous Integration
+The developement will intent for the maximum possible code coverage, and to be deployed in an Azure Virtual Machine using Continous Integration.
 
 ==== Task branching
 We should create 1 branch per task and merge them as soon as possible.
 
-=== Operational concepts
-TBD
+==== Error handling
+In case of an exception/error, the system will pressent user-friendly messages informing of the error. This messages will only be delivered in the worst case,  when all other attempts to resolve the issue have been exhausted.
 
-_<All concepts are subject to change>_
+
+=== Operational concepts
+
+==== User history
+The application will maintain a record of user game history, encompassing details such as game timestamps, earned points, questions posed, correct response and selected response.
