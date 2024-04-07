@@ -40,12 +40,10 @@ class CreationHistoricalRecord{
           game:this.record.game
         }
         try {
-          const response = await fetch(apiUrl, {
-            method: 'POST',
+          const response = await axios.post(apiUrl, body, {
             headers: {
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
+            }
           });
       
           if (!response.ok) {
