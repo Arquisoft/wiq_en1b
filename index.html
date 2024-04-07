@@ -1603,7 +1603,7 @@ when your infrastructure is more complex.</p>
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="./images/my-diagram.png.png" alt="my diagram" width="1283" height="973">
+<img src="./images/infrastructure.png.png" alt="infrastructure" width="1283" height="973">
 </div>
 </div>
 </div>
@@ -1739,7 +1739,7 @@ on this list.</p>
 <h4 id="_domain_model">8.1.1. Domain model</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/08-Domain-Model.png" alt="model-diagram">
+<img src="./images/domain-model.png.png" alt="domain model" width="574" height="1042">
 </div>
 </div>
 </div>
@@ -1797,40 +1797,43 @@ on this list.</p>
 </div>
 <div class="sect2">
 <h3 id="_under_the_hood_concepts">8.5. Under-the-hood concepts</h3>
+<div class="sect3">
+<h4 id="_question_and_user_databases">8.5.1. Question and User Databases</h4>
 <div class="paragraph">
-<p>TBD</p>
+<p>To enhance consistency and reduce reliance on Wikidata, our project employs two distinct databases. The first database serves as a repository for questions generated via Wikidata&#8217;s API, which are then utilized within the application. The second database stores various other datasets, including user information.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_developement_concepts">8.6. Developement concepts</h3>
 <div class="sect3">
-<h4 id="_testing">8.6.1. Testing</h4>
+<h4 id="_continous_integration">8.6.1. Continous Integration</h4>
 <div class="paragraph">
-<p>TBD</p>
+<p>The developement will intent for the maximum possible code coverage, and to be deployed in an Azure Virtual Machine using Continous Integration.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployment">8.6.2. Deployment</h4>
-<div class="paragraph">
-<p>TBD</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_task_branching">8.6.3. Task branching</h4>
+<h4 id="_task_branching">8.6.2. Task branching</h4>
 <div class="paragraph">
 <p>We should create 1 branch per task and merge them as soon as possible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_error_handling">8.6.3. Error handling</h4>
+<div class="paragraph">
+<p>In case of an exception/error, the system will pressent user-friendly messages informing of the error. This messages will only be delivered in the worst case,  when all other attempts to resolve the issue have been exhausted.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_operational_concepts">8.7. Operational concepts</h3>
+<div class="sect3">
+<h4 id="_user_history">8.7.1. User history</h4>
 <div class="paragraph">
-<p>TBD</p>
-</div>
-<div class="paragraph">
-<p><em>&lt;All concepts are subject to change&gt;</em></p>
+<p>The application will maintain a record of user game history, encompassing details such as game timestamps, earned points, questions posed, correct response and selected response.</p>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
