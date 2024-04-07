@@ -33,11 +33,11 @@ const Login = () => {
     <div className="card">
       <div className="card2">
         <form className="form" onSubmit={handleSubmit}>
-          <h1>{t("login.title")}</h1>
+          <h1 className="title-login">{t("login.title")}</h1>
           <div className="input-box">
               <input
                 type="text"
-                placeholder={t("addUser.username_placeholder")}
+                placeholder={t("login.username_placeholder")}
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -46,7 +46,7 @@ const Login = () => {
           <div className="input-box">
               <input
                 type="password"
-                placeholder={t("addUser.password_placeholder")}
+                placeholder={t("login.password_placeholder")}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

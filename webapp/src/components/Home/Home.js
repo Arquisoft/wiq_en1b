@@ -26,8 +26,8 @@ function Home() {
       <figure id="welcomeMessage">
         <figcaption>
           <h1>
-            <label htmlFor="toggleOpen" title="Click to Open"></label>
-            <label htmlFor="toggleClose" title="Click to Close">✖</label>
+            <label htmlFor="toggleOpen" title={t("home.clickOpen")} id={t("home.clickOpen")}></label>
+            <label htmlFor="toggleClose" title={t("home.clickClose")} id={t("home.click")}>✖</label>
             <b>
               W
               <Link to="/instructions" title={t("home.how_to_play")}>

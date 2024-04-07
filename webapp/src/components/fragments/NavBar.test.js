@@ -1,10 +1,11 @@
-import { render , screen, waitFor } from '@testing-library/react';
+import { render , screen, fireEvent } from '@testing-library/react';
 import { initReactI18next } from 'react-i18next';
 import i18en from 'i18next';
 import { MemoryRouter } from 'react-router-dom';
 
 import { UserContextProvider} from '../loginAndRegistration/UserContext';
-import Navbar from '../fragments/NavBar';
+import Navbar from './NavBar'
+import App from '../../App'
 
 
 i18en.use(initReactI18next).init({
@@ -26,4 +27,27 @@ describe('NavBar fragment', () => {
         // Wait for questions to load
         
     });
+
+    test('Navbar renders correctly', async () => {
+        render(
+            <App />
+        );
+    
+        expect(screen.getByAltText('App logo')).toBeInTheDocument();
+        expect(screen.getByAltText('Help')).toBeInTheDocument();
+        expect(screen.getByText('navBar.title')).toBeInTheDocument();
+        expect(screen.getByText('navBar.language')).toBeInTheDocument();
+    
+      fireEvent.click(screen.getByText('navBar.language'));
+    
+      // Change to spanish
+      fireEvent.click(screen.getByText('navBar.es'));
+    
+      // Go to instructions
+      fireEvent.click(screen.getByAltText('Help'));
+      expect(screen.getByText('instructions.title')).toBeInTheDocument();
+    
+       
+      });
 });
+

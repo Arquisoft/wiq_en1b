@@ -6,8 +6,10 @@
     "register": "Don't have an account? Sign up here.",
     "language": "The language has been changed to English",
     "msg1": "Welcome to the knowledge challenge! Get ready to test your mind and demonstrate your skills. In this exciting game, you will face a series of questions that will test your knowledge on a variety of topics.",
-    "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?"
-},
+    "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?",
+    "clickOpen": "Click to continue",
+    "clickClose": "Click to close"
+  },
 
     "navBar": {
       "title": "Know and win!",

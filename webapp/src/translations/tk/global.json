@@ -1,13 +1,16 @@
 {
-    "home": {
-      "welcome": "WIQ'e hoş geldiniz!",
-      "how_to_play": "Nasıl Oynanır?",
-      "login": "Giriş Yap",
-      "register": "Hesabınız yok mu? Buradan kaydolun.",
-      "language": "Dil İngilizce olarak değiştirildi",
-      "msg1": "Bilgi yarışmasına hoş geldiniz! Zihninizin sınırlarını test etmeye ve becerilerinizi göstermeye hazır olun. Bu heyecan verici oyunda, çeşitli konularda bilginizi sınamanıza neden olacak bir dizi soruyla karşılaşacaksınız.",
-      "msg2": "Haydi, soruların ustası olduğunuzu kanıtlayın! Zorluğa hazır mısınız?"
-    },
+  "home": {
+    "welcome": "WIQ'e hoş geldiniz!",
+    "how_to_play": "Nasıl Oynanır?",
+    "login": "Giriş Yap",
+    "register": "Hesabınız yok mu? Buradan kaydolun.",
+    "language": "Dil Türkçe olarak değiştirildi",
+    "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizi test etmeye ve becerilerinizi göstermeye hazır olun. Bu heyecan verici oyunda, çeşitli konulardaki bilginizi test edecek bir dizi soruyla karşılaşacaksınız.",
+    "msg2": "Öyleyse ilerleyin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?",
+    "clickOpen": "Devamı için tıklayınız",
+    "clickClose": "Kapatmak için tıklayın"
+},
+  
     "navBar": {
       "title": "Bilgi ve Kazan!",
       "en": "İngilizce",
