@@ -9,7 +9,7 @@ info:
 servers:
   - url: http://localhost:8000
     description: Development server
-  - url: http://SOMEIP:8000
+  - url: http://172.203.216.60:8000
     description: Production server
 paths:
   /adduser:
