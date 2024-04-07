@@ -47,8 +47,8 @@ app.get('/questions', async (req, res) => {
   try {
     
     // Forward the question request to the quetion service
-    const quetionResponse = await axios.get(questionServiceUrl+'/questions');
-    res.send(quetionResponse.data);
+    const questionResponse = await axios.get(questionServiceUrl+'/questions');
+    res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }
@@ -58,9 +58,11 @@ app.get('/questions/:lang', async (req, res) => {
   try {
     const lang = req.params.lang;
     // Forward the question request to the quetion service
-    const quetionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
-    res.send(quetionResponse.data);
+    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
+
+    res.json(questionResponse.data);
   } catch (error) {
+
     res.status(error.response.status).json({ error: error.response.data.error });
   }
 });
