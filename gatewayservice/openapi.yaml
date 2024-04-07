@@ -199,7 +199,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Record'
+                $ref: '#/components/schemas/RecordResponse'
 components:
   schemas:
     LoginRequest:
@@ -250,6 +250,37 @@ components:
       properties:
         user:
           type: string
+        game:
+          type: object
+          properties:
+            questions:
+              type: array
+              items:
+                type: object
+                properties:
+                  question:
+                    type: string
+                    example: What is the capital of Oviedo?
+                  answers:
+                    type: array
+                    items:
+                      type: string
+                  answerGiven:
+                    type: string
+                  correctAnswer:
+                    type: string
+            points:
+              type: number
+            date:
+              type: string
+      required:
+        - user
+        - game
+    RecordResponse:
+      type: object
+      properties:
+        user:
+          type: string
         games:
           type: array
           items:
@@ -262,6 +293,7 @@ components:
                   properties:
                     question:
                       type: string
+                      example: What is the capital of Oviedo?
                     answers:
                       type: array
                       items:
@@ -274,9 +306,6 @@ components:
                 type: number
               date:
                 type: string
-      required:
-        - user
-        - games
     Error:
       type: object
       properties:
