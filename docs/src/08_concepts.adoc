@@ -58,13 +58,64 @@ See https://docs.arc42.org/section-8/[Concepts] in the arc42 documentation.
 === Domain concepts
 ==== Domain model
 
-image::08-Domain-Model.png["model-diagram"]
+[plantuml, domain-model.png, png]
+----
+rectangle "Domain model"{
+    class User {
+    username : String
+    email : String
+    password : String
+}
 
+class Game {
+    questions : List<Question>
+}
+
+class Question {
+    question : String
+    answers : List<Answer>
+    correctAnswer : Answer
+    language : String
+    number : int
+    questionType : QuestionType
+}
+
+enum QuestionType {
+    POPULATION
+    CAPITAL
+    SIZE
+    LANGUAGE
+}
+
+class Answer {
+    text : String
+    language : String
+}
+
+class UserData {
+    answeredQuestion : Question
+    chosenAnswer : String
+}
+
+class GameOptions {
+    language : String
+}
+
+User "1" -[#red]-> "n" Game : plays
+User "1" -[#red]-> "1" GameOptions : defines
+GameOptions "1" -[#red]-> "1" Game : uses
+Game "1" -[#red]-* "n" Question : has many
+Question -[#red]-> QuestionType : is
+Question "1" -[#red]-* "n" Answer : has many
+Game "1" -[#red]-> "1" UserData : stores
+User "1" -[#red]-> "1" UserData : stores
+}
+----
 
 === User experience concepts
 
 ==== Consistency
-Design elements should be consistent throuhgout the design so that the user does not get confused.
+Design elements should be consistent throuhgout the design, so that the user does not get confused.
 
 ==== Progress indicators
 Provide the users with some sort of progress indicator within the quiz. This helps users understand their current position in the quiz.
@@ -73,7 +124,7 @@ Provide the users with some sort of progress indicator within the quiz. This hel
 Provide immediate feedback to users after they answer each question, indicating whether their response was correct or incorrect.
 
 ==== Internationalization
-Provide other language options other than english.
+Provide language options other than english.
 
 
 === Security and Safety concepts
@@ -82,7 +133,7 @@ Provide other language options other than english.
 Make sure to never store the user passwords in plain text, to secure the users data.
 
 ==== Data encryption
-Utilize encryption techniques to secure data in any transmission between actors of owr application.
+Utilize encryption techniques to secure data in any transmission between actors of our application.
 
 
 === Architecture and design patterns concepts
@@ -90,21 +141,26 @@ Utilize encryption techniques to secure data in any transmission between actors 
 ==== Microservices
 The microservices pattern combines design patterns to create multiple services that work interdependently to create a larger application. Because each application is small, it's easier to update them when needed. We will be using this pattern during development.
 
+
 === Under-the-hood concepts
-TBD
+
+==== Question and User Databases
+To enhance consistency and reduce reliance on Wikidata, our project employs two distinct databases. The first database serves as a repository for questions generated via Wikidata's API, which are then utilized within the application. The second database stores various other datasets, including user information.
+
 
 === Developement concepts
 
-==== Testing
-TBD
-
-==== Deployment
-TBD
+==== Continous Integration
+The developement will intent for the maximum possible code coverage, and to be deployed in an Azure Virtual Machine using Continous Integration.
 
 ==== Task branching
-We should create 1 branch per task and merge them as soon as possible.
+We should create 1 branch per issue and merge them as soon as possible.
+
+==== Error handling
+In case of an exception/error, the system will pressent user-friendly messages informing of the error. This messages will only be delivered in the worst case,  when all other attempts to resolve the issue have been exhausted.
+
 
 === Operational concepts
-TBD
 
-_<All concepts are subject to change>_
+==== User history
+The application will maintain a record of user game history, encompassing details such as game timestamps, earned points, questions posed, correct response and selected response.

@@ -56,9 +56,9 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy and adapt this section of arc42 for all relevant environments.
 ****
 
-image::Deployed-Infrastructure.png["Deployed Infrastructure"]
-
 ****
+[plantuml, infrastructure.png, png]
+----
 component User as "User"
 cloud "WIQ" { 
   rectangle "Azure - Ubuntu - Docker"{
@@ -108,17 +108,7 @@ records -[#red]-> Records
 questions -[#red]-> Questions
 qg -[#red]-> Questions
 qg -[dotted]-> Wikidata
+----
+
 ****
 This diagram shows the infrastructure of our application when deployed.
-
-*TBD*
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-

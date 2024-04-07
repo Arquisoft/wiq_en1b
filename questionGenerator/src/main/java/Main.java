@@ -1,6 +1,5 @@
 package main.java;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import main.java.questionGenerator.QuestionGenerator;
@@ -10,41 +9,27 @@ import main.java.questionGenerator.repository.QuestionRepository;
 
 public class Main {
 
-	private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE,
-		QuestionType.LANGUAGE};
-
-	public static void main(String[] args) {
-		System.out.println("Ahora en Espa�ol");
-		QuestionGenerator qg = new QuestionGenerator("es");
-		for(QuestionType t : types) {
-			run(qg, t);
-			System.out.println();
-		}
-		System.out.println("Now English");
-		qg = new QuestionGenerator("en");
-		for(QuestionType t : types) {
-			run(qg, t);
-			System.out.println();
-		}
-		System.out.println("Now in english but with bad language code");
-		qg = new QuestionGenerator("ep");
-		for(QuestionType t : types) {
-			run(qg, t);
-			System.out.println();
-		}
-
+    public static void main(String[] args) {
+		QuestionGenerator qg = new QuestionGenerator("en");
+		
+		run(qg, QuestionType.CAPITAL, 3);
+		System.out.println();
+		
+		run(qg, QuestionType.LANGUAGE, 3);
+		System.out.println();
+		
+		run(qg, QuestionType.POPULATION, 3);
+		System.out.println();
+		
+		run(qg, QuestionType.SIZE, 3);
 	}
 	
-	private static void run(QuestionGenerator qg, QuestionType type) {
-		List<String> questionJSONList = new ArrayList<>();
-
-		//Populate JSON list here
-		for(int i=0; i<3; i++) {
-			Question question = qg.generateQuestion(type);
-			questionJSONList.add(question.getJSON().toString());
-		}
-
-		QuestionRepository.getInstance().insert(questionJSONList);
+	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
+			List<Question> questions = qg.generateQuestions(type, numberOfQuestions);
+			for(int i=0; i<questions.size(); i++) {
+				Question question = questions.get(i);
+				System.out.println(question.getJSON().toString());
+			}
+			QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
 	}
-
 }
