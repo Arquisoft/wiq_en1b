@@ -7,28 +7,49 @@ import java.util.Map;
 import java.util.Random;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
+import org.wikidata.wdtk.datamodel.interfaces.Snak;
+import org.wikidata.wdtk.datamodel.interfaces.SnakGroup;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
+import main.java.questionGenerator.entityGenerator.EntityGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
-public abstract class RightAnswerIsEntity extends AbstractGenerator {
+public abstract class AnswersAreEntities extends AbstractGenerator {
 
-	public RightAnswerIsEntity(String propertyId, QuestionType type) {
-		super(propertyId, type);
+	private final String PROPERTY_TO_CHECK;
+	private final QuestionType type;
+
+	public AnswersAreEntities(String propertyId, QuestionType type, String propertyToCheck, String message) {
+		super(propertyId, type, message);
+		this.PROPERTY_TO_CHECK = propertyToCheck;
+		this.type = type;
 	}
 
-	/**
-	 * This method acts as a wrapper because in some cases this is enough, but not in all of them,
-	 * so the rest are in charge of overriding it and modifying what they need
-	 */
 	@Override
 	protected String getRightAnswer(Map<String, List<Statement>> claims) {
-		return processRightAnswer(claims.get(super.getPropertyId()).get(0));
+		for(Statement st : claims.get(super.getPropertyId())) {
+			boolean valid = true;
+			for(SnakGroup sg : st.getQualifiers()) {
+				for(Snak s : sg.getSnaks()) {
+					String value = getIdFromLink(s.getPropertyId().toString());
+					if(value.equals(PROPERTY_TO_CHECK)) {
+						valid = false;
+						break;
+					}
+				}
+				if(!valid)
+					break;
+			}
+			if(valid) {
+				return processRightAnswer(st);
+			}
+		}
+		return null;
 	}
 	
 	protected String processRightAnswer(Statement st) {
-		String entity = getRightAnswerEntity(st.getValue().toString());
+		String entity = getIdFromLink(st.getValue().toString());
 		String answer = "";
 		try {
 			ItemDocumentImpl idi = getAlreadyProcessedEntity(entity);
@@ -65,23 +86,27 @@ public abstract class RightAnswerIsEntity extends AbstractGenerator {
 		return getRightAnswer(idi.getJsonClaims());
 	}
 	
-	protected String getRightAnswerEntity(String url) {
+	protected String getIdFromLink(String url) {
 		String[] split1 = url.split(" ");
 		String[] split2 = split1[0].split("/");
 		return split2[split2.length-1];
 	}
-
+	
 	@Override
 	protected List<String> getWrongAnswers(String rightAnswer) {
+		List<String> entites = new ArrayList<>();
+		try {
+			entites = EntityGenerator.getEntities(type, 100);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Random rnd = new Random();
-		String[] entities = {"Q142", "Q183", "Q16", "Q142", "Q30", "Q408", "Q668", "Q17", "Q38", "Q159",
-		 "Q79", "Q155", "Q884", "Q414", "Q41", "Q258", "Q96", "Q843", "Q148", "Q20"};
 		List<String> result = new ArrayList<>();
 		List<Integer> used = new ArrayList<>();
 		for(int i = 0; i < 3; i++){
-				int rndnum = rnd.nextInt(entities.length);
-				String wrong = getAnswer(entities[rndnum]);
-			if(wrong.equals(rightAnswer) || used.contains(rndnum))
+				int rndnum = rnd.nextInt(entites.size());
+				String wrong = getAnswer(entites.get(rndnum));
+			if(wrong == null || wrong.equals(rightAnswer) || used.contains(rndnum))
 				i--;
 			else{
 				result.add(wrong);

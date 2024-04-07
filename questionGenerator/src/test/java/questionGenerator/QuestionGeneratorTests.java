@@ -39,7 +39,7 @@ public class QuestionGeneratorTests {
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgEN.generateQuestion(t).getJSON().toString();
+                question = qgEN.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format
@@ -98,7 +98,7 @@ public class QuestionGeneratorTests {
 
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgES.generateQuestion(t).getJSON().toString();
+                question = qgES.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format
