@@ -77,8 +77,10 @@ public abstract class AbstractGenerator {
 		List<String> answers = getWrongAnswers(rightAnswer);
 		
 		answers.add(0, rightAnswer);
-		//create and return the question
 		
+		answers = decorateAnswers(answers);
+
+		//create and return the question
 		return new Question(question, answers, language, type);
 	}
 	
@@ -90,6 +92,8 @@ public abstract class AbstractGenerator {
 //	protected abstract String getQuestion(String name);
 	protected abstract String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
 	protected abstract List<String> getWrongAnswers(String rightAnswer) throws Exception;
+
+	protected abstract List<String> decorateAnswers(List<String> answers);
 	
 	protected String getQuestion(String name) {
 		String q = getMessages().getString(message);

@@ -72,4 +72,9 @@ public abstract class AnswersAreNotEntites extends AbstractGenerator{
         }
         return wrongAnswers;
 	}
+
+    @Override
+	protected List<String> decorateAnswers(List<String> answers) {
+		return answers;
+	}
 }
