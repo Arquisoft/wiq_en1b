@@ -26,7 +26,7 @@ export default function HistoricalView() {
   useEffect(() => {getRecords()}, []);
   return (
     <div className='globalHistoricalView'>
-      {(records && records.length != 0) ? records.map((record, index) => (
+      {(records && records.length !== 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
       )): <p>{t("historicalView.no_games_played")}</p>}
     </div>

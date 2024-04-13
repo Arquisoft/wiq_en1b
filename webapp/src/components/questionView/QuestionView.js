@@ -62,7 +62,7 @@ function QuestionView(){
         });
     }
     function computePointsForQuestion(correctAnswer, answerGiven){
-        if(answerGiven==correctAnswer){
+        if(answerGiven===correctAnswer){
             points+=100;
         }else if(points-50>=0){
             points-=50;

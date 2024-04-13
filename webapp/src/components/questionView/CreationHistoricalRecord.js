@@ -11,7 +11,7 @@ class CreationHistoricalRecord{
     }
 
     addQuestion(statement, answers, answerGiven, correctAnswer, numQuestion) {
-        if(this.record.game.questions.length == numQuestion){
+        if(this.record.game.questions.length === numQuestion){
             this.record.game.questions.push({
                 question: statement,
                 answers: answers,
