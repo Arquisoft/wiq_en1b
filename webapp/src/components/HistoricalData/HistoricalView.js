@@ -23,7 +23,7 @@ export default function HistoricalView() {
               console.log(error);
           }
   }
-  useEffect(() => {getRecords()}, []);
+  useEffect(() => {getRecords()}, [getRecords]);
   return (
     <div className='globalHistoricalView'>
       {(records && records.length !== 0) ? records.map((record, index) => (
