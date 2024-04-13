@@ -44,5 +44,5 @@ jobs:
     - run: npm --prefix users/userservice install
     - run: npm --prefix gatewayservice install
     - run: npm --prefix webapp install
-    - run: npm --prefix webapp run build
-    - run: process.env.CI=false npm --prefix webapp run test:e2e
+    - run: process.env.CI=false npm --prefix webapp run build
+    - run: npm --prefix webapp run test:e2e
