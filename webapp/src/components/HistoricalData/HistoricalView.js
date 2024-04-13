@@ -23,7 +23,9 @@ export default function HistoricalView() {
               console.log(error);
           }
   }
-  useEffect(() => {getRecords()}, [getRecords]);
+  useEffect(() => {getRecords()},
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+   []);
   return (
     <div className='globalHistoricalView'>
       {(records && records.length !== 0) ? records.map((record, index) => (
