@@ -58,6 +58,9 @@ public class EntityGenerator {
 		case SIZE:
 			property = "2046";
 			break;
+		case HEAD_OF_GOVERMENT:
+			property = "6";
+			break;
 		}
 	}
 	

@@ -22,6 +22,9 @@ public class Main {
 		System.out.println();
 		
 		run(qg, QuestionType.SIZE, 3);
+		System.out.println();
+
+		run(qg, QuestionType.HEAD_OF_GOVERMENT, 3);
 	}
 	
 	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
