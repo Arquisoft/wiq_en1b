@@ -11,15 +11,15 @@ import Cookies from 'js-cookie';
 function Navbar() {
   const navigate = useNavigate();
   const [t, i18n] = useTranslation("global");
-  const [anchorEl, setAnchorEl] = useState();
-  const [anchorUser, setAnchorUser] = useState();
+  const [anchorLanguage, setAnchorLanguage] = useState(null);
+  const [anchorUser, setAnchorUser] = useState(null);
 
   const handleLanguageMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorLanguage(event.currentTarget);
   };
 
   const handleLanguageMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorLanguage(null);
   };
 
   const handleUserMenuOpen = (event) => {
@@ -32,7 +32,8 @@ function Navbar() {
 
   const removeCookie = () => {
     Cookies.remove('user');
-    navigate('/home')
+    navigate('/home');
+    window.location.reload();
   };
 
   const changeLanguage = (language) => {
@@ -49,9 +50,10 @@ function Navbar() {
       <div className='right-nav'>
         <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
         <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
+          anchorEl={anchorLanguage}
+          open={Boolean(anchorLanguage)}
           onClose={handleLanguageMenuClose}
+          disableAutoFocusItem
         >
           <MenuItem onClick={() => changeLanguage("en")}> {t("navBar.en")}</MenuItem>
           <MenuItem onClick={() => changeLanguage("es")}> {t("navBar.es")}</MenuItem>
@@ -63,9 +65,10 @@ function Navbar() {
           <>
           <button className="user-button" onClick={handleUserMenuOpen}>{ JSON.parse(Cookies.get('user')).username}</button>
           <Menu
-            anchorUser={anchorUser}
+            anchorEl={anchorUser}
             open={Boolean(anchorUser)}
             onClose={handleUserMenuClose}
+            disableAutoFocusItem
           >
             <MenuItem onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
           </Menu>
