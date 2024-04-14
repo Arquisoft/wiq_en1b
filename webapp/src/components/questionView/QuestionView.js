@@ -9,6 +9,7 @@ import $ from 'jquery';
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
@@ -146,6 +147,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
             ) : (
                 <>
                     <h2>{t("questionView.finished_game")} </h2>
+                    <BackButtonToGameMenu t={t}/>
                     <p>{points} {t("questionView.point")}</p>
                     <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>
                     <ButtonHistoricalData t={t} />

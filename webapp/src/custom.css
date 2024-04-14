@@ -1216,6 +1216,25 @@ svg {
 
 /*------------------------------Historical--------------------------------------------*/
 /* Estilos para los botones */
+.linkButtonHistorical{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  height: 45px;
+  background:#00b8ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 700;
+  margin: 1em;
+  text-decoration: none;
+
+}
 .historicalButton {
   color: white;
   width: 50em;

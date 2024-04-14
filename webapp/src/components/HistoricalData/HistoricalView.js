@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useTranslation} from "react-i18next";
 import HistoryRecordRetriever from './HistoryRecordRetriever';
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
-import { Link } from "react-router-dom";
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 import RecordList from './RecordList';
 
@@ -16,7 +16,7 @@ export default function HistoricalView() {
 
   const getRecords = async ()=>{
         try {
-            var jsonRecords = await retriever.getRecords(user.username); 
+            var jsonRecords = await retriever.getRecords("user"); 
             var recordsArray = jsonRecords.games;
             setRecords(recordsArray);
         } catch (error) {
@@ -29,7 +29,7 @@ export default function HistoricalView() {
 
   return (
     <div className='globalHistoricalView'>
-      <BackButton />
+      <BackButtonToGameMenu t={t}/>
       {(records && records.length !== 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
       )): <p>{t("historicalView.no_games_played")}</p>}
@@ -56,10 +56,3 @@ function HistoricalGameElement({record,t}){
   );
 }
 
-function BackButton({t}){
-  return(
-    <Link className="linkButton" to="/menu">
-      <h3>⬅️{t("gameMenu.back")}</h3>
-    </Link>
-  );
-}
