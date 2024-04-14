@@ -9,8 +9,8 @@ export default function GameMenu() {
   return (
     <div className="divMenu">
       <h2>{t("gameMenu.title")}</h2>
-      <ButtonHistoricalData t={t} />
       <ButtonNewGame t={t}  />
+      <ButtonHistoricalData t={t} />
     </div>
   );
   }
@@ -23,3 +23,5 @@ export default function GameMenu() {
       </Link>
     );
   }
+
+  

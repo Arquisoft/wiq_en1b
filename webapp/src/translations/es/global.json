@@ -59,7 +59,8 @@
      "gameMenu":{
       "history_button":"Ver Historial",
       "new_game_button":"Crear nuevo juego",
-      "title":"Menú del Juego"
+      "title":"Menú del Juego",
+      "back":"Atrás"
     },"questionView":{
       "seconds":"segundos",
       "question_counter":"Pregunta nº ",

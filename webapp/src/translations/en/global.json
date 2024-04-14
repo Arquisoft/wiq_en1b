@@ -55,7 +55,8 @@
       "gameMenu":{
         "history_button":"View Historical Data",
         "new_game_button":"Create New Game",
-        "title":"Game Menu"
+        "title":"Game Menu",
+        "back":"Back"
       },
       "questionView":{
         "seconds":"seconds",
