@@ -17,7 +17,8 @@
         "en": "Inglés",
         "es": "Español",
         "tk": "Turco",
-        "language": "Idioma"
+        "language": "Idioma",
+        "logout":"Desconectarse"
       },
 
       "instructions": {

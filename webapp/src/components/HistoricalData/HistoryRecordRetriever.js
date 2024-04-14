@@ -9,7 +9,7 @@ class HistoryRecordRetriever{
 
     async getRecords(user, token) {
         try {
-            const response = await axios.get(this.apiUrl + '/' + user, {token:token});
+            const response = await axios.get(this.apiUrl + '/' + user, { headers : {'token':token}});
             const receivedRecords = await response.data;
             console.log(receivedRecords)
             console.log(receivedRecords[0])

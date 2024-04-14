@@ -16,7 +16,8 @@
       "en": "English",
       "es": "Spanish",
       "tk": "Turkish",
-      "language": "Language"
+      "language": "Language",
+      "logout":"Log Out"
     },
     "instructions": {
         "title": "WIQ Instructions",

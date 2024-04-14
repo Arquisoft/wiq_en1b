@@ -49,11 +49,7 @@ class CreationHistoricalRecord{
             }
           });
       
-          if (!response.ok) {
-            throw new Error('Error al enviar el registro');
-          }
-      
-          const data = await response.json();
+          const data = await response.data;
           console.log(data);
         } catch (error) {
           console.error('Error:', error);

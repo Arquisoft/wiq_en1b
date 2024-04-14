@@ -115,7 +115,6 @@ function verifyToken(req, res, next) {
 
   // Verify if the token is valid
   jwt.verify(token, (process.env.JWT_KEY??'my-key'), (err, decoded) => {
-    console.log(decoded)
     if (err) {
       // Token is not valid
       res.status(403).json({authorized: false,

@@ -10,7 +10,8 @@ class QuestionGenerator{
 
     async generateQuestions(lang, token) {
         try {
-            const response = await axios.get(this.apiUrl + '/' + lang, {token:token});
+            const response = await axios.get(this.apiUrl + '/' + lang, {headers : {'token':token}});
+            console.log(response)
             const receivedQuestions = await response.data;
             let i = 0;
             var questions = [];

@@ -4,13 +4,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "../../custom.css";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 
 function Navbar() {
-
+  const navigate = useNavigate();
   const [t, i18n] = useTranslation("global");
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState();
+  const [anchorUser, setAnchorUser] = useState();
 
   const handleLanguageMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -18,6 +20,19 @@ function Navbar() {
 
   const handleLanguageMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleUserMenuOpen = (event) => {
+    setAnchorUser(event.currentTarget);
+  };
+
+  const handleUserMenuClose = () => {
+    setAnchorUser(null);
+  };
+
+  const removeCookie = () => {
+    Cookies.remove('user');
+    navigate('/home')
   };
 
   const changeLanguage = (language) => {
@@ -43,10 +58,20 @@ function Navbar() {
           <MenuItem onClick={() => changeLanguage("tk")}> {t("navBar.tk")}</MenuItem>
         </Menu>
         <Help />
-        
+
         {Cookies.get('user') ? (
-          <p>{ JSON.parse(Cookies.get('user')).username}</p>
-          ) : null}
+          <>
+          <button className="user-button" onClick={handleUserMenuOpen}>{ JSON.parse(Cookies.get('user')).username}</button>
+          <Menu
+            anchorUser={anchorUser}
+            open={Boolean(anchorUser)}
+            onClose={handleUserMenuClose}
+          >
+            <MenuItem onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
+          </Menu>
+          </>
+        ) : null}
+        
       </div>
     </div>
   );
