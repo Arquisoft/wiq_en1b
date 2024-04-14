@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect }  from 'react';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
@@ -12,7 +12,11 @@ import './custom.css';
 import HistoricalView from './components/HistoricalData/HistoricalView';
 import { UserContextProvider } from './components/loginAndRegistration/UserContext';
 
+
 function App() {
+  useEffect(() => {
+    document.title = 'WIQ';
+  }, []);
   return (
     <Router className='roter'>
       <UserContextProvider>
