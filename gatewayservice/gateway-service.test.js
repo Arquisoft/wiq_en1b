@@ -24,6 +24,9 @@ describe('Gateway Service', () => {
     if (url.endsWith('/questions')){
       return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
                                       answers: ["225089","272357","267855","231841"]}] });
+    } else if (url.endsWith('/questions/es/1')){
+      return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
+                                      answers: ["225089","272357","267855","231841"]}] });
     } else if (url.endsWith('/questions/es')){
       return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
                                       answers: ["225089","272357","267855","231841"]}] });
@@ -67,6 +70,15 @@ describe('Gateway Service', () => {
   it('should forward questions request to question service', async () => {
     const response = await request(app)
       .get('/questions/es');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+  });
+
+   // Test /questions/:lang/:amount endpoint
+   it('should forward questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions/es/1');
 
     expect(response.statusCode).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");

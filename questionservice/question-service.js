@@ -30,6 +30,33 @@ app.get('/questions',  async (req, res) => {
       }
 });
 
+app.get('/questions/:lang/:amount',  async (req, res) => {
+  try {    
+      const lang = req.params.lang;
+      let amount = parseInt(req.params.amount);
+
+      if(amount > 20)
+        amount = 20;
+
+      const questions = await Question.aggregate([
+        {$match: {language : lang}}, //Condition
+        {$sample: {size:amount}} //5 random from the ones that fullfil the condition
+      ]);
+
+      let jsonResult = {};
+      for (let i = 0; i < questions.length; i++) {
+          const question = questions[i];
+          jsonResult[i] = {
+              question : question.question,
+              answers : question.answers
+          }
+      }
+      res.json(jsonResult);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/questions/:lang',  async (req, res) => {
   try {    
       const lang = req.params.lang;

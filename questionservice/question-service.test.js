@@ -12,7 +12,7 @@ beforeAll(async () => {
   app = require('./question-service'); 
 
   //Populate db
-  for(let i = 0; i < 6 ; i++){
+  for(let i = 0; i < 21 ; i++){
     const question = new Question( {
         question: "¿Cuál es la población de Oviedo?",
         answers: [
@@ -59,5 +59,21 @@ describe('Question Service', () => {
     expect(response.status).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
     expect(Object.keys(response.body).length).toBe(5);
+  });
+
+  it('Should give 10 questions /questions/es/10', async () => {
+
+    let response = await request(app).get('/questions/es/10');
+    expect(response.status).toBe(200);
+    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    expect(Object.keys(response.body).length).toBe(10);
+  });
+
+  it('Should give 20 questions as the max is 20 /questions/es/21', async () => {
+
+    let response = await request(app).get('/questions/es/21');
+    expect(response.status).toBe(200);
+    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    expect(Object.keys(response.body).length).toBe(20);
   });
 });
