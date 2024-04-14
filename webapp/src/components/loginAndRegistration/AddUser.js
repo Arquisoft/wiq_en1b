@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import zxcvbn from "zxcvbn";
 
 
 const AddUser = () => {
@@ -14,6 +15,8 @@ const AddUser = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState(undefined);
+  const [passwordStrengthText, setPasswordStrengthText] = useState('Weak password');
 
 
   const handleSubmit = async (event) => {
@@ -34,6 +37,35 @@ const AddUser = () => {
     }
   };
 
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    const newStrength = zxcvbn(newPassword);
+
+    switch(newStrength.score){
+      case 0:
+        setPasswordStrengthText('Weak password');
+        break;
+      case 1:
+        setPasswordStrengthText('Weak password');
+        break;
+      case 2:
+        setPasswordStrengthText('Fair password');
+        break;
+      case 3:
+        setPasswordStrengthText('Good password');
+        break;
+      case 4:
+        setPasswordStrengthText('Strong password');
+        break;
+      default:
+        setPasswordStrengthText('Weak password');
+        break;
+    }
+    setPasswordStrength(newStrength);
+  };
+
   return (
     <div className="general">
     <div className="card">
@@ -51,7 +83,7 @@ const AddUser = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
           </div>
-          <div className="input-box">
+          <div className="input-box-password-register">
             <p>{t("addUser.password_placeholder")}:</p>
             <input
                 name = "password"
@@ -59,8 +91,17 @@ const AddUser = () => {
                 placeholder={t("addUser.password_placeholder")}
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
               />
+          </div>
+          <div className="password-strength-meter">
+            <span>
+              {passwordStrengthText}
+            </span>
+            <progress
+              value={passwordStrength === undefined? 0 : passwordStrength.score}
+              max="4"
+            />
           </div>
           <div className="input-box">
             <p>{t("addUser.repeat_password_placeholder")}:</p>

@@ -141,6 +141,44 @@
     padding: 10px; 
   }
   
+  .input-box-password-register {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  .input-box-password-register p {
+    font-weight: bold;
+    margin-right: 10%; 
+    width: 150px; 
+    text-align: right; 
+  }
+  
+  .input-box-password-register input {
+    flex: 1; 
+    height: 40px; 
+    background: rgb(255, 255, 255);
+    border: 2px solid gray;
+    border-radius: 10px;
+    font-size: 18px;
+    color: black;
+    padding: 10px;
+    padding-bottom: 0px;
+  }
+
+  .password-strength-meter {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    gap: 20px;
+    margin-top: 0px;
+  }
+
+  .password-strength-meter span {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
     
   .button-register, .button-login {
     appearance: none;
