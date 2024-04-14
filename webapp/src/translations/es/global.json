@@ -54,7 +54,16 @@
           "password_placeholder": "Contraseña",
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
-          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí."
+          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
+          "very_weak_password": "Contraseña muy débil",
+          "weak_password": "Contraseña débil",
+          "good_password": "Contraseña buena",
+          "strong_password": "Contraseña fuerte",
+          "error_passwords_no_match": "Las contraseñas no coinciden",
+          "error_password_spaces": "La contraseña no puede contener espacios",
+          "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres",
+          "error_password_maximum_length": "La contraseña no debe tener más de 64 caracteres",
+          "error_username_in_use": "Nombre de usuario no disponible"
     },
      "gameMenu":{
       "history_button":"Ver Historial",

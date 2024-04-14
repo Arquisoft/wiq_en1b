@@ -50,7 +50,16 @@
         "password_placeholder": "Password",
         "repeat_password_placeholder": "Repeat password",
         "register_button": "Register",
-        "login_link": "Do you have an account? Login here."
+        "login_link": "Do you have an account? Login here.",
+        "very_weak_password": "Very weak password",
+        "weak_password": "Weak password",
+        "good_password": "Good password",
+        "strong_password": "Strong password",
+        "error_passwords_no_match": "Passwords do not match",
+        "error_password_spaces": "Password cannot contain spaces",
+        "error_password_minimum_length": "Password must be at least 8 characters long",
+        "error_password_maximum_length": "Password cannot be over 64 characters long",
+        "error_username_in_use": "Username already in use"
       },
       "gameMenu":{
         "history_button":"View Historical Data",

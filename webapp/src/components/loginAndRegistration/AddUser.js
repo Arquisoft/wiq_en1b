@@ -16,23 +16,32 @@ const AddUser = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(undefined);
-  const [passwordStrengthText, setPasswordStrengthText] = useState('Weak password');
+  const [passwordStrengthText, setPasswordStrengthText] = useState("");
   const [submitError, setSubmitError] = useState('');
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      //TODO: Add more validations
-      if(password !== repeatPassword){ //User put the same password
-        setSubmitError('Passwords do not match');
-      } else if(/\s/.test(password)){ //User put spaces in password
-        setSubmitError('Password cannot contain spaces');
-      } else if(password.length < 8){ //Password too short
-        setSubmitError('Password must be at least 8 characters long');
-      } else if(password.length > 64){ //Password too long
-        setSubmitError('Password cannot be over 64 characters long');
-      } else{ //Continue
+      //Validations
+      //TODO: email validation
+      if(password !== repeatPassword){
+        //User put the same password
+        setSubmitError(t("addUser.error_passwords_no_match"));
+      } else if(/\s/.test(password)){
+        //User put spaces in password
+        setSubmitError(t("addUser.error_password_spaces"));
+      } else if(password.length < 8){
+        //Password too short
+        setSubmitError(t("addUser.error_password_minimum_length"));
+      } else if(password.length > 64){
+        //Password too long
+        setSubmitError(t("addUser.error_password_maximum_length"));
+      } else if(/\s/.test(username)){
+        //Spaces in username
+        setSubmitError(t("addUser.error_username_spaces"));
+      } else{
+        //Continue
         setSubmitError('');
         const response = await axios.post(apiUrl, { username, password });
         console.log("Registered user: " + response.data.username);
@@ -40,9 +49,23 @@ const AddUser = () => {
       }
 
     } catch (error) {
+      if(error.response.data.error === "Username already in use"){ //TODO: Improve
+        setSubmitError(t("addUser.error_username_in_use"));
+      }
       console.error('Error adding user:', error);
     }
   };
+
+  //Possible email validation
+  /**
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  }; 
+  */
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -52,22 +75,22 @@ const AddUser = () => {
 
     switch(newStrength.score){
       case 0:
-        setPasswordStrengthText('Weak password');
+        setPasswordStrengthText(t("addUser.very_weak_password"));
         break;
       case 1:
-        setPasswordStrengthText('Weak password');
+        setPasswordStrengthText(t("addUser.very_weak_password"));
         break;
       case 2:
-        setPasswordStrengthText('Fair password');
+        setPasswordStrengthText(t("addUser.weak_password"));
         break;
       case 3:
-        setPasswordStrengthText('Good password');
+        setPasswordStrengthText(t("addUser.good_password"));
         break;
       case 4:
-        setPasswordStrengthText('Strong password');
+        setPasswordStrengthText(t("addUser.strong_password"));
         break;
       default:
-        setPasswordStrengthText('Weak password');
+        setPasswordStrengthText(t("addUser.very_weak_password"));
         break;
     }
     setPasswordStrength(newStrength);
