@@ -16,6 +16,7 @@ public class PersistentMain {
 
 	public static void main(String[] args) {
 		while(true) {
+			QuestionRepository.getInstance().removeAll();
 			generate();
 			try {
 				Thread.sleep(timeSkip);
