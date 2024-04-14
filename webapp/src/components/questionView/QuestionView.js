@@ -1,6 +1,6 @@
 import QuestionGenerator from './QuestionGenerator';
 import CreationHistoricalRecord from './CreationHistoricalRecord';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import "../../custom.css";
 import React from "react";
 import Countdown from 'react-countdown';
@@ -15,7 +15,7 @@ const questionGenerator = new QuestionGenerator();
 var points = 0;
 function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const {user} = useUserContext();
 
@@ -62,7 +62,7 @@ function QuestionView(){
         });
     }
     function computePointsForQuestion(correctAnswer, answerGiven){
-        if(answerGiven==correctAnswer){
+        if(answerGiven===correctAnswer){
             points+=100;
         }else if(points-50>=0){
             points-=50;
@@ -98,7 +98,9 @@ function QuestionView(){
         
     }
 
-    useEffect(() => {generateQuestions(numQuestion)}, []);
+    if(questions === null)
+        generateQuestions(numQuestion)
+
     
     return (
     <div className="question-view-container">

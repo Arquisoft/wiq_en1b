@@ -11,6 +11,6 @@ Feature: Home page functionality
 
   Scenario: Closing the text container
     Given I am on the home page
-    When I click on the toggle button to close 
+    When I click on the toggle button to open and then I click it to close 
     Then The text container should be visible
 

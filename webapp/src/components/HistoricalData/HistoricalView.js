@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useTranslation} from "react-i18next";
 import HistoryRecordRetriever from './HistoryRecordRetriever';
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
@@ -10,23 +10,26 @@ const retriever = new HistoryRecordRetriever();
 
 
 export default function HistoricalView() {
-  const [records, setRecords]= useState([]);
+  const [records, setRecords]= useState(null);
   const[t] = useTranslation("global");
   const {user} = useUserContext();
 
-    const getRecords = async ()=>{
-          try {
-              var jsonRecords = await retriever.getRecords(user.username); 
-              var recordsArray = jsonRecords.games;
-              setRecords(recordsArray);
-          } catch (error) {
-              console.log(error);
-          }
+  const getRecords = async ()=>{
+        try {
+            var jsonRecords = await retriever.getRecords(user.username); 
+            var recordsArray = jsonRecords.games;
+            setRecords(recordsArray);
+        } catch (error) {
+            console.log(error);
+        }
   }
-  useEffect(() => {getRecords()}, []);
+
+  if(records === null)
+    getRecords();
+
   return (
     <div className='globalHistoricalView'>
-      {(records && records.length != 0) ? records.map((record, index) => (
+      {(records && records.length !== 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
       )): <p>{t("historicalView.no_games_played")}</p>}
     </div>

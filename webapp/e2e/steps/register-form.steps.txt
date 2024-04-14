@@ -1,3 +1,5 @@
+WAIT UNTIL REGISTER IS FINALIZED (Add email)
+
 const puppeteer = require('puppeteer');
 const { defineFeature, loadFeature }=require('jest-cucumber');
 const setDefaultOptions = require('expect-puppeteer').setDefaultOptions
