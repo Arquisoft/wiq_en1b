@@ -73,8 +73,19 @@
       "game":"Partida",
       "points":"puntos",
       "no_games_played":"No has jugado todavía"
+    },
+    "gameConfigurator":{
+      "game_config":"Configuración del Juego",
+      "type_quest":"Tipo de Pregunta",
+      "num_quest":"Numero de Preguntas",
+      "play_custom":"Jugar personalizado",
+      "rules_competi":"Jugar con todo tipo de preguntas siendo estas 5",
+      "play_competi":"Jugar Competitivo",
+      "option_population":"Población",
+      "option_capital":"Capital",
+      "option_language":"Lenguaje",
+      "option_size":"Extensión"
     }
-      
     
   }
   

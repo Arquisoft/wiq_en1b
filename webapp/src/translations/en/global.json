@@ -70,6 +70,18 @@
         "game":"Game",
         "points":"points",
         "no_games_played":"No games played yet"
+      },
+      "gameConfigurator":{
+        "game_config":"Game configuration",
+        "type_quest":"Type of question: ",
+        "num_quest":"Number of questions: ",
+        "play_custom":"Play Customized Game",
+        "rules_competi":"Play with all kinds of questions and a quantity of 5",
+        "play_competi":"Play competitive Game",
+        "option_population":"Population",
+        "option_capital":"Capital",
+        "option_language":"Language",
+        "option_size":"Size"
       }
 }
     
