@@ -1,6 +1,5 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const { email } = require('asciidoctor-emoji/dist/node/twemoji-map');
 
 let mongoServer;
 let app;
