@@ -14,7 +14,7 @@ jest.mock('axios');
 
 
 
-describe('Gateway Service', () => {
+describe('Gateway Service with token mock', () => {
 
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
@@ -39,6 +39,8 @@ describe('Gateway Service', () => {
       return Promise.resolve({data : {record:'undefined'}}) 
     }
   });
+
+  
 
   // Mock the `verify` function of JWT
   jwt.verify.mockImplementation((token, secretOrPublicKey, callback) => {
@@ -102,4 +104,17 @@ describe('Gateway Service', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");
   });
+
+
 });
+
+describe('Gateway Service without token mock', () => {
+  // Test /record/:user endpoint
+  it('should not verify the token', async () => {
+    const response = await request(app)
+      .get('/record/testuser');
+    console.log(response)
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('record', "undefined");
+  });
+})

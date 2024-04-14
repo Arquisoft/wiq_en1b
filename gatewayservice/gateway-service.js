@@ -118,7 +118,8 @@ function verifyToken(req, res, next) {
     console.log(decoded)
     if (err) {
       // Token is not valid
-      res.status(401).json({ message: 'Invalid token' });
+      res.status(403).json({authorized: false,
+        error: 'Invalid token or outdated'});
     } else {
       // Token is valid
       req.decodedToken = decoded;
