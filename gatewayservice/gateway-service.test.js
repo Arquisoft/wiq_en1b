@@ -1,14 +1,21 @@
 const request = require('supertest');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const app = require('./gateway-service'); 
 
 afterAll(async () => {
     app.close();
   });
 
+
+jest.mock('jsonwebtoken');
+
 jest.mock('axios');
 
+
+
 describe('Gateway Service', () => {
+
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
     if (url.endsWith('/login')) {
@@ -31,6 +38,12 @@ describe('Gateway Service', () => {
       //Dont need to check a good record just that it redirects the call
       return Promise.resolve({data : {record:'undefined'}}) 
     }
+  });
+
+  // Mock the `verify` function of JWT
+  jwt.verify.mockImplementation((token, secretOrPublicKey, callback) => {
+    // Assume the token is valid and return the payload
+    callback(null, "decoded");
   });
 
   // Test /login endpoint
@@ -85,7 +98,7 @@ describe('Gateway Service', () => {
   it('should forward record request to record service', async () => {
     const response = await request(app)
       .get('/record/testuser').set('token', 'valorDelToken');
-
+    console.log(response)
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");
   });

@@ -6,7 +6,7 @@ const promBundle = require('express-prom-bundle');
 const swaggerUi = require('swagger-ui-express'); 
 const fs = require("fs")
 const YAML = require('yaml')
-
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = 8000;
 
@@ -72,6 +72,7 @@ app.get('/questions/:lang', verifyToken, async (req, res) => {
 });
 
 app.post('/record', verifyToken, async(req, res) => {
+  console.log("in")
   try {
     // Forward the record request to the record service
     const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
@@ -114,6 +115,7 @@ function verifyToken(req, res, next) {
 
   // Verify if the token is valid
   jwt.verify(token, (process.env.JWT_KEY??'my-key'), (err, decoded) => {
+    console.log(decoded)
     if (err) {
       // Token is not valid
       res.status(401).json({ message: 'Invalid token' });
