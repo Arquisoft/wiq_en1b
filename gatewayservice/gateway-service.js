@@ -47,7 +47,7 @@ app.post('/adduser', async (req, res) => {
   }
 });
 
-app.get('/questions', async (req, res) => {
+app.get('/questions', verifyToken, async (req, res) => {
   try {
     
     // Forward the question request to the quetion service
@@ -58,7 +58,7 @@ app.get('/questions', async (req, res) => {
   }
 });
 
-app.get('/questions/:lang', async (req, res) => {
+app.get('/questions/:lang', verifyToken, async (req, res) => {
   try {
     const lang = req.params.lang;
     // Forward the question request to the quetion service
@@ -71,7 +71,7 @@ app.get('/questions/:lang', async (req, res) => {
   }
 });
 
-app.post('/record', async(req, res) => {
+app.post('/record', verifyToken, async(req, res) => {
   try {
     // Forward the record request to the record service
     const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
@@ -81,7 +81,7 @@ app.post('/record', async(req, res) => {
   }
 });
 
-app.get('/record/:user', async(req, res)=>{
+app.get('/record/:user', verifyToken,  async(req, res)=>{
   try {
     const user = req.params.user;
     // Forward the record request to the record service
