@@ -4,7 +4,11 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 let mongoServer;
 let app;
 
-
+let newUser = {
+  email: 'Nice@g.com',
+  username: 'testuser',
+  password: 'testpassword'
+};
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
@@ -18,14 +22,16 @@ afterAll(async () => {
     await mongoServer.stop();
 });
 
+afterEach(async () => {
+  newUser = {
+    email: 'Nice@g.com',
+    username: 'testuser',
+    password: 'testpassword'
+  };
+})
+
 describe('User Service', () => {
   it('should add a new user on POST /adduser', async () => {
-    const newUser = {
-      email: 'Nice@g.com',
-      username: 'testuser',
-      password: 'testpassword'
-    };
-
     const response = await request(app).post('/adduser').send(newUser);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('username', 'testuser');
@@ -38,11 +44,7 @@ describe('User Service', () => {
   });
 
   it('Should not register user /adduser', async () => {
-  const newUser = {
-    email: 'Nice2@g.com',
-    username: 'testuser',
-    password: 'test'
-  };
+  newUser.email = 'Nice2@g.com';
 
   const response = await request(app).post('/adduser').send(newUser);
   expect(response.status).toBe(400);
@@ -50,11 +52,7 @@ describe('User Service', () => {
   });
 
   it('Should not register user /adduser', async () => {
-    const newUser = {
-      email: 'Nice@g.com',
-      username: 'testuser2',
-      password: 'password'
-    };
+    newUser.username = 'testuser2';
   
     const response = await request(app).post('/adduser').send(newUser);
     expect(response.status).toBe(400);
