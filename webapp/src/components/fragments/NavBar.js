@@ -4,14 +4,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "../../custom.css";
 import { useTranslation } from "react-i18next";
-import { useUserContext } from '../loginAndRegistration/UserContext';
+import Cookies from 'js-cookie';
 
 
 function Navbar() {
 
   const [t, i18n] = useTranslation("global");
   const [anchorEl, setAnchorEl] = useState(null);
-  const { user } = useUserContext();
 
   const handleLanguageMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,8 +43,9 @@ function Navbar() {
           <MenuItem onClick={() => changeLanguage("tk")}> {t("navBar.tk")}</MenuItem>
         </Menu>
         <Help />
-        {user != null ? (
-          <p>{user.username}</p>
+        
+        {Cookies.get('user') ? (
+          <p>{ JSON.parse(Cookies.get('user')).username}</p>
           ) : null}
       </div>
     </div>

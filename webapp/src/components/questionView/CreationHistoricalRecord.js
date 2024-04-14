@@ -34,7 +34,7 @@ class CreationHistoricalRecord{
     }
 
     
-    async sendRecord(user) {
+    async sendRecord(user, token) {
         const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
       
         const body = {
@@ -44,7 +44,8 @@ class CreationHistoricalRecord{
         try {
           const response = await axios.post(apiUrl, body, {
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'token':token
             }
           });
       

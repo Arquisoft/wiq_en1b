@@ -62,7 +62,7 @@ app.get('/questions/:lang', async (req, res) => {
   try {
     const lang = req.params.lang;
     // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
+    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang.toString());
 
     res.json(questionResponse.data);
   } catch (error) {
@@ -107,5 +107,23 @@ app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const server = app.listen(port, () => {
   console.log(`Gateway Service listening at http://localhost:${port}`);
 });
+
+function verifyToken(req, res, next) {
+  // Get the token from the request headers
+  const token = req.headers['token'] || req.body.token || req.query.token;
+
+  // Verify if the token is valid
+  jwt.verify(token, (process.env.JWT_KEY??'my-key'), (err, decoded) => {
+    if (err) {
+      // Token is not valid
+      res.status(401).json({ message: 'Invalid token' });
+    } else {
+      // Token is valid
+      req.decodedToken = decoded;
+      // Call next() to proceed to the next middleware or route handler
+      next();
+    }
+  });
+}
 
 module.exports = server

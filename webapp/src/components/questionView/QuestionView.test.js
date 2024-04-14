@@ -4,11 +4,10 @@ import i18en from 'i18next';
 import QuestionView from './QuestionView';
 import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import { UserContextProvider} from '../loginAndRegistration/UserContext';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {configure} from '@testing-library/dom';
-
+import Cookies from 'js-cookie'
 
 configure({
    testIdAttribute: 'data-value',
@@ -26,6 +25,7 @@ i18en.use(initReactI18next).init({
     }
 });
 global.i18en = i18en;
+Cookies.set('user', JSON.stringify({username:"dummy", token:"fasfda"}))
 
 describe('Question View component', () => {
 
@@ -34,7 +34,7 @@ describe('Question View component', () => {
     });
     
     it('shows the no_questions_message as the endpoint does not exist',async () => {
-        render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+        render(<MemoryRouter><QuestionView /></MemoryRouter>);
         const text = screen.getByText(i18en.t('questionView.no_questions_message'));
         expect(text).toBeInTheDocument();
         // Wait for questions to load
@@ -48,7 +48,7 @@ describe('Question View component', () => {
 
         //It gives an error as we are not wrapping it by act, however by doing this we simulate a no questions situation
         await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            await render(<MemoryRouter><QuestionView /></MemoryRouter>);
         })
 
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
@@ -65,7 +65,7 @@ describe('Question View component', () => {
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            await render(<MemoryRouter><QuestionView /></MemoryRouter>);
             
         })
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
@@ -83,7 +83,7 @@ describe('Question View component', () => {
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            await render(<MemoryRouter><QuestionView /></MemoryRouter>);
             
         })
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
@@ -101,7 +101,7 @@ describe('Question View component', () => {
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
-            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            await render(<MemoryRouter><QuestionView /></MemoryRouter>);
             
         })
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());

@@ -21,7 +21,7 @@ app.post('/record', async (req, res) => {
   console.log(user)
   console.log(game)
   if(user && game){
-    let record = await Record.findOne({ user : user }); 
+    let record = await Record.findOne({ user : user.toString() }); 
     if(record){ //If it exits
       record.games.push(game);
     }
@@ -47,7 +47,7 @@ app.post('/record', async (req, res) => {
 
 app.get('/record/:user', async (req, res) => {
   try {
-    const recordFound = await Record.findOne({ user: req.params.user }, 'games');
+    const recordFound = await Record.findOne({ user: req.params.user.toString() }, 'games');
     if (!recordFound) {
       res.json({record: "undefined" });
     } else {

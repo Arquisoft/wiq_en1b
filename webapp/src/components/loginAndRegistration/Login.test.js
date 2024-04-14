@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Login from './Login';
 import { BrowserRouter as Router } from 'react-router-dom'; 
-import { UserContextProvider } from './UserContext';
 
 // Mocking useTranslation hook
 jest.mock('react-i18next', () => ({
@@ -12,11 +11,9 @@ jest.mock('react-i18next', () => ({
 describe('<Login />', () => {
   test('renders the Login component', () => {
     render(
-      <UserContextProvider>
         <Router>
           <Login />
         </Router>
-      </UserContextProvider>
     );
 
     expect(screen.getByText('login.title')).toBeInTheDocument();

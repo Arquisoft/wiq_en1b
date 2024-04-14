@@ -35,7 +35,7 @@ app.get('/questions/:lang',  async (req, res) => {
       const lang = req.params.lang;
 
       const questions = await Question.aggregate([
-        {$match: {language : lang}}, //Condition
+        {$match: {language : lang.toString()}}, //Condition
         {$sample: {size:5}} //5 random from the ones that fullfil the condition
       ]);
 

@@ -8,21 +8,23 @@ import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
-import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import Cookies from 'js-cookie'
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
+
 function QuestionView(){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
-    const {user} = useUserContext();
+    const cookie = JSON.parse(Cookies.get('user'))
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
+                
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, cookie.token);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
@@ -92,7 +94,7 @@ function QuestionView(){
             if(!(numQuestion < questions.length - 1)){
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
-                creationHistoricalRecord.sendRecord(user.username);
+                creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
             }
         }, 1000);
         

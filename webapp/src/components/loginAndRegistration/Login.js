@@ -5,7 +5,7 @@ import "../../custom.css";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from "./UserContext";
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,13 +13,14 @@ const Login = () => {
   const { t } = useTranslation("global");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser } = useUserContext();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
         const response = await axios.post(apiUrl, { username, password });
-        setUser({username : response.data.username, token : response.data.token})
+        let oneHourAfter = new Date().getTime() + (1 * 60 * 60 * 1000)
+        Cookies.set('user', JSON.stringify({username : response.data.username, token : response.data.token})
+                    , {expires:oneHourAfter});
         //Used to redirect to the menu to start playing
         navigate('/menu');
     } catch (error) {

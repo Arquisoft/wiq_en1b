@@ -10,12 +10,10 @@ import Container from '@mui/material/Container';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './custom.css';
 import HistoricalView from './components/HistoricalData/HistoricalView';
-import { UserContextProvider } from './components/loginAndRegistration/UserContext';
 
 function App() {
   return (
     <Router className='roter'>
-      <UserContextProvider>
         <div style={{ position: 'relative', minHeight: '100vh' }}>
           <Navbar style={{ width: '100%' }} /> 
           <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px' }}>
@@ -31,7 +29,6 @@ function App() {
             </Routes>
           </Container>
         </div>
-      </UserContextProvider>
     </Router>
   );
 }
