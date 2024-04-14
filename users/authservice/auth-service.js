@@ -35,7 +35,9 @@ app.post('/login', async (req, res) => {
       return
     }
 
-    const { email, username, password } = req.body;
+    const email = req.body.email.toString();
+    const username = req.body.username.toString();
+    const password = req.body.password.toString();
 
     let user;
     if(username) //Can log in with both

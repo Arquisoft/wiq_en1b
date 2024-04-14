@@ -38,10 +38,10 @@ app.post('/adduser', async (req, res) => {
         }
 
         //Check there is not a user with the same name
-        const userUsername = await User.findOne({username: req.body.username});
+        const userUsername = await User.findOne({username: req.body.username.toString()});
 
         //Check there is not a user with the same name
-        const userEmail = await User.findOne({email: req.body.email});
+        const userEmail = await User.findOne({email: req.body.email.toString()});
 
         if(userUsername)
           return res.status(400).json({error : "Username already in use"})

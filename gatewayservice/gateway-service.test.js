@@ -100,7 +100,6 @@ describe('Gateway Service with token mock', () => {
   it('should forward record request to record service', async () => {
     const response = await request(app)
       .get('/record/testuser').set('token', 'valorDelToken');
-    console.log(response)
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");
   });
@@ -113,7 +112,6 @@ describe('Gateway Service without token mock', () => {
   it('should not verify the token', async () => {
     const response = await request(app)
       .get('/record/testuser');
-    console.log(response)
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");
   });

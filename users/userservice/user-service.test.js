@@ -41,7 +41,7 @@ describe('User Service', () => {
   const newUser = {
     email: 'Nice2@g.com',
     username: 'testuser',
-    password: 'testpassword'
+    password: 'test'
   };
 
   const response = await request(app).post('/adduser').send(newUser);
@@ -53,7 +53,7 @@ describe('User Service', () => {
     const newUser = {
       email: 'Nice@g.com',
       username: 'testuser2',
-      password: 'testpassword'
+      password: 'password'
     };
   
     const response = await request(app).post('/adduser').send(newUser);
