@@ -57,7 +57,7 @@ describe('Gateway Service', () => {
   // Test /questions endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions');
+      .get('/questions').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
@@ -66,7 +66,7 @@ describe('Gateway Service', () => {
   // Test /questions/:lang endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es');
+      .get('/questions/es').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
@@ -75,7 +75,7 @@ describe('Gateway Service', () => {
   // Test /record endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .post('/record');
+      .post('/record').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body.user).toBe('testuser');
@@ -84,7 +84,7 @@ describe('Gateway Service', () => {
   // Test /record/:user endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/testuser');
+      .get('/record/testuser').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");
