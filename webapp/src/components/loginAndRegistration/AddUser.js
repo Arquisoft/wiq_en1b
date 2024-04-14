@@ -17,19 +17,26 @@ const AddUser = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(undefined);
   const [passwordStrengthText, setPasswordStrengthText] = useState('Weak password');
+  const [submitError, setSubmitError] = useState('');
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       //TODO: Add more validations
-      if(password === repeatPassword){ //User put the same password
+      if(password !== repeatPassword){ //User put the same password
+        setSubmitError('Passwords do not match');
+      } else if(/\s/.test(password)){ //User put spaces in password
+        setSubmitError('Password cannot contain spaces');
+      } else if(password.length < 8){ //Password too short
+        setSubmitError('Password must be at least 8 characters long');
+      } else if(password.length > 64){ //Password too long
+        setSubmitError('Password cannot be over 64 characters long');
+      } else{ //Continue
+        setSubmitError('');
         const response = await axios.post(apiUrl, { username, password });
         console.log("Registered user: " + response.data.username);
         navigate('/login');
-      }
-      else{
-        //TODO: Show some errors to the user
       }
 
     } catch (error) {
@@ -114,7 +121,7 @@ const AddUser = () => {
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
           </div>
-
+          {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
           <button type="submit">{t("addUser.register_button")}</button>
 
           <LinkLogin />
