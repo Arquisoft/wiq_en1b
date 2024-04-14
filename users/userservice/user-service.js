@@ -30,7 +30,7 @@ app.post('/adduser', async (req, res) => {
     try {
         // Check if required fields are present in the request body
         try{
-          validateRequiredFields(req, ['username', 'password']);
+          validateRequiredFields(req, ['email', 'username', 'password']);
         }
         catch(error){
           res.status(400).json({ error : error.message });
@@ -38,15 +38,22 @@ app.post('/adduser', async (req, res) => {
         }
 
         //Check there is not a user with the same name
-        const user = await User.findOne({username: req.body.username});
+        const userUsername = await User.findOne({username: req.body.username});
 
-        if(user)
+        //Check there is not a user with the same name
+        const userEmail = await User.findOne({email: req.body.email});
+
+        if(userUsername)
           return res.status(400).json({error : "Username already in use"})
+
+        if(userEmail)
+        return res.status(400).json({error : "Email already in use"})
 
         // Encrypt the password before saving it
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
         const newUser = new User({
+            email: req.body.email,
             username: req.body.username,
             password: hashedPassword,
         });

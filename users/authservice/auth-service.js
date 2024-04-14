@@ -28,24 +28,28 @@ app.post('/login', async (req, res) => {
   try {
     // Check if required fields are present in the request body
     try{
-      validateRequiredFields(req, ['username', 'password']);
+      validateRequiredFields(req, ['email', 'username', 'password']);
     }
     catch(error){
       res.status(400).json({ error : error.message });
       return
     }
 
-    const { username, password } = req.body;
+    const { email, username, password } = req.body;
 
-    // Find the user by username in the database
-    const user = await User.findOne({ username });
+    let user;
+    if(username) //Can log in with both
+      // Find the user by username in the database
+      user = await User.findOne({ username })
+    else
+      user = await User.findOne({ email })
 
     // Check if the user exists and verify the password
     if (user && await bcrypt.compare(password, user.password)) {
       // Generate a JWT token
       const token = jwt.sign({ userId: user._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '1h' });
       // Respond with the token and user information
-      res.json({ token: token, username: username});
+      res.json({ token: token, username: username, email: email});
     } else {
       res.status(400).json({ error: 'Invalid credentials' });
     }

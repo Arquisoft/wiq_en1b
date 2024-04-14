@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const { email } = require('asciidoctor-emoji/dist/node/twemoji-map');
 
 let mongoServer;
 let app;
@@ -21,6 +22,7 @@ afterAll(async () => {
 describe('User Service', () => {
   it('should add a new user on POST /adduser', async () => {
     const newUser = {
+      email: 'Nice@g.com',
       username: 'testuser',
       password: 'testpassword'
     };
@@ -33,11 +35,12 @@ describe('User Service', () => {
   it('Should show missing field user /adduser', async () => {
     const response = await request(app).post('/adduser').send();
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('error', 'Missing required field: username');
+    expect(response.body).toHaveProperty('error', 'Missing required field: email');
   });
 
   it('Should not register user /adduser', async () => {
   const newUser = {
+    email: 'Nice2@g.com',
     username: 'testuser',
     password: 'testpassword'
   };
@@ -47,6 +50,16 @@ describe('User Service', () => {
   expect(response.body).toHaveProperty('error', 'Username already in use');
   });
 
-
+  it('Should not register user /adduser', async () => {
+    const newUser = {
+      email: 'Nice@g.com',
+      username: 'testuser2',
+      password: 'testpassword'
+    };
+  
+    const response = await request(app).post('/adduser').send(newUser);
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'Email already in use');
+    });
   
 });

@@ -8,6 +8,7 @@ let app;
 
 //test user
 const user = {
+  email: 'nice@g.com',
   username: 'testuser',
   password: 'testpassword',
 };
@@ -15,6 +16,7 @@ const user = {
 async function addUser(user){
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const newUser = new User({
+    email: user.email,
     username: user.username,
     password: hashedPassword,
     createdAt: new Date()
@@ -47,11 +49,11 @@ describe('Auth Service', () => {
   it('Should show missing field user /login', async () => {
     const response = await request(app).post('/login').send();
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('error', 'Missing required field: username');
+    expect(response.body).toHaveProperty('error', 'Missing required field: email');
   });
 
   it('Should show invalid credentials /login', async () => {
-    const user2 = {username:"Hello", password:"world"}
+    const user2 = {email:"nice@g.com" ,username:"Hello", password:"world"}
     const response = await request(app).post('/login').send(user2);
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('error', 'Invalid credentials');
