@@ -21,8 +21,8 @@ const Login = () => {
         let oneHourAfter = new Date().getTime() + (1 * 60 * 60 * 1000)
         Cookies.set('user', JSON.stringify({username : response.data.username, token : response.data.token})
                     , {expires:oneHourAfter});
-        //Used to redirect to the menu to start playing
         navigate('/menu');
+        window.location.reload();
     } catch (error) {
       console.error('Error adding user:', error);
     }

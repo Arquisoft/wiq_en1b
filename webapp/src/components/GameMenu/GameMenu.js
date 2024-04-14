@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 
+
 export default function GameMenu() {
   const[t] = useTranslation("global");
 

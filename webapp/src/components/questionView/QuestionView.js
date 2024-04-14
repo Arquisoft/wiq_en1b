@@ -20,6 +20,8 @@ function QuestionView(){
     const[t, i18n] = useTranslation("global");
     const cookie = JSON.parse(Cookies.get('user'))
 
+    
+
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
