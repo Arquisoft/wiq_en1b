@@ -60,9 +60,9 @@ app.get('/questions', async (req, res) => {
 
 app.get('/questions/:lang/:amount/:type', async (req, res) => {
   try {
-    const lang = req.params.lang;
-    const amount = req.params.amount;
-    const type = req.params.type;
+    const lang = req.params.lang.toString();
+    const amount = req.params.amount.toString();
+    const type = req.params.type.toString();
     // Forward the question request to the quetion service
     const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
 
@@ -76,8 +76,8 @@ app.get('/questions/:lang/:amount/:type', async (req, res) => {
 
 app.get('/questions/:lang/:amount', async (req, res) => {
   try {
-    const lang = req.params.lang;
-    const amount = req.params.amount;
+    const lang = req.params.lang.toString();
+    const amount = req.params.amount.toString();
     // Forward the question request to the quetion service
     const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
 
@@ -90,7 +90,7 @@ app.get('/questions/:lang/:amount', async (req, res) => {
 
 app.get('/questions/:lang', async (req, res) => {
   try {
-    const lang = req.params.lang;
+    const lang = req.params.lang.toString();
     // Forward the question request to the quetion service
     const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
 
