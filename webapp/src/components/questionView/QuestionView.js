@@ -14,16 +14,16 @@ import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
-function QuestionView(){
+function QuestionView({type= "COMPETITIVE", amount=5}){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const {user} = useUserContext();
-
+    
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {

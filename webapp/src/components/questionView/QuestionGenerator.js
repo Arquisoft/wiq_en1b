@@ -8,12 +8,13 @@ class QuestionGenerator{
         
     }
 
-    async generateQuestions(lang) {
+    async generateQuestions(lang, type, amount) {
         try {
             //const response = await fetch(this.apiUrl);
             //const receivedQuestions = await response.json();
 
             //Mockup
+            console.log("type: "+type+" amount: "+amount)
             const receivedQuestions = JSON.parse('{"0":{"question":"¿Cuál es la población de Oviedo?","answers":["225089","191325","220587","121548"]},'+
             '"1":{"question":"¿Cuál es la población de Gijón?","answers":["275274","159658","233982","305554"]},'+
             '"2":{"question":"¿Cuál es la población de Avilés?","answers":["82568","115595","41284","122200"]},'+
@@ -35,7 +36,11 @@ class QuestionGenerator{
     
         /*
         try {
-            const response = await axios.get(this.apiUrl + '/' + lang);
+            if(type==="COMPETITIVE"){
+                const response = await axios.get(this.apiUrl + '/' + lang);
+            }else{
+                const response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type);
+            }
             const receivedQuestions = await response.data;
             let i = 0;
             var questions = [];
