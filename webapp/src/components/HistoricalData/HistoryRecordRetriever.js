@@ -8,7 +8,7 @@ class HistoryRecordRetriever{
     }
 
     async getRecords(user) {
-        /*
+        
         try {
             const response = await axios.get(this.apiUrl + '/' + user);
             const receivedRecords = await response.data;
@@ -17,7 +17,8 @@ class HistoryRecordRetriever{
             console.log(error)
             throw new Error(error);
             
-        }*/
+        }
+        /*
         return {
             userId: user,
             games: [
@@ -82,7 +83,7 @@ class HistoryRecordRetriever{
                     date: "03/02/24"
                 }
             ]
-        };
+        };*/
     }
     
     
