@@ -58,6 +58,22 @@ app.get('/questions', async (req, res) => {
   }
 });
 
+app.get('/questions/:lang/:amount/:type', async (req, res) => {
+  try {
+    const lang = req.params.lang;
+    const amount = req.params.amount;
+    const type = req.params.type;
+    // Forward the question request to the quetion service
+    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
+
+    res.json(questionResponse.data);
+  } catch (error) {
+
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+
 app.get('/questions/:lang/:amount', async (req, res) => {
   try {
     const lang = req.params.lang;
