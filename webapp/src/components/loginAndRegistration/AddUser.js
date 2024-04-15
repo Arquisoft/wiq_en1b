@@ -11,6 +11,7 @@ const AddUser = () => {
   const navigate = useNavigate();
   const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/adduser";
   const { t } = useTranslation("global");
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -21,7 +22,7 @@ const AddUser = () => {
     try {
       //TODO: Add more validations
       if(password === repeatPassword){ //User put the same password
-        const response = await axios.post(apiUrl, { username, password });
+        const response = await axios.post(apiUrl, { email, username, password });
         console.log("Registered user: " + response.data.username);
         navigate('/login');
       }
@@ -40,6 +41,17 @@ const AddUser = () => {
       <div className="card2">
         <form className="form" onSubmit={handleSubmit}>
           <h1>{t("addUser.title")}</h1>
+          <div className="input-box">
+            <p>{t("addUser.email_placeholder")}:</p>
+            <input
+                name = "email"
+                type="text"
+                placeholder={t("addUser.email_placeholder")}
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+          </div>
           <div className="input-box">
             <p>{t("addUser.username_placeholder")}:</p>
             <input

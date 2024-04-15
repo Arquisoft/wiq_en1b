@@ -28,22 +28,19 @@ app.post('/login', async (req, res) => {
   try {
     // Check if required fields are present in the request body
     try{
-      validateRequiredFields(req, ['email', 'username', 'password']);
+      validateRequiredFields(req, ['username', 'password']);
     }
     catch(error){
       res.status(400).json({ error : error.message });
       return
     }
 
-    const email = req.body.email.toString();
+    const email = req.body.username.toString();
     const username = req.body.username.toString();
     const password = req.body.password.toString();
 
-    let user;
-    if(username) //Can log in with both
-      // Find the user by username in the database
-      user = await User.findOne({ username })
-    else
+    let user = await User.findOne({ username })
+    if(!user) //There is no user by that username we may have received an email
       user = await User.findOne({ email })
 
     // Check if the user exists and verify the password
@@ -51,7 +48,7 @@ app.post('/login', async (req, res) => {
       // Generate a JWT token
       const token = jwt.sign({ userId: user._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '1h' });
       // Respond with the token and user information
-      res.json({ token: token, username: username, email: email});
+      res.json({ token: token, username: user.username, email: user.email});
     } else {
       res.status(400).json({ error: 'Invalid credentials' });
     }

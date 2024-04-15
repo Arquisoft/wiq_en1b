@@ -41,7 +41,7 @@
     },
     "login": {
         "title": "Inicio de sesión",
-        "username_placeholder": "Nombre de usuario",
+        "username_placeholder": "Nombre de usuario o Correo Electrónico",
         "password_placeholder": "Contraseña",
         "remember_me": "Recordarme",
         "forgot_password": "¿Olvidaste tu contraseña?",
@@ -55,7 +55,8 @@
           "password_placeholder": "Contraseña",
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
-          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí."
+          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
+          "email_placeholder" : "Correo electrónico"
     },
      "gameMenu":{
       "history_button":"Ver Historial",

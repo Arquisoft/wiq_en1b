@@ -38,7 +38,7 @@
     },
     "login": {
         "title": "Login",
-        "username_placeholder": "Username",
+        "username_placeholder": "Username or Email",
         "password_placeholder": "Password",
         "remember_me": "Remember me",
         "forgot_password": "Forgot password?",
@@ -51,7 +51,8 @@
         "password_placeholder": "Password",
         "repeat_password_placeholder": "Repeat password",
         "register_button": "Register",
-        "login_link": "Do you have an account? Login here."
+        "login_link": "Do you have an account? Login here.",
+        "email_placeholder" : "Email"
       },
       "gameMenu":{
         "history_button":"View Historical Data",

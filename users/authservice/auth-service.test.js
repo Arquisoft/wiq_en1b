@@ -7,8 +7,7 @@ let mongoServer;
 let app;
 
 //test user
-const user = {
-  email: 'nice@g.com',
+let user = {
   username: 'testuser',
   password: 'testpassword',
 };
@@ -16,7 +15,7 @@ const user = {
 async function addUser(user){
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const newUser = new User({
-    email: user.email,
+    email: "user@gmail.com",
     username: user.username,
     password: hashedPassword,
     createdAt: new Date()
@@ -46,14 +45,21 @@ describe('Auth Service', () => {
     expect(response.body).toHaveProperty('username', 'testuser');
   });
 
-  it('Should show missing field user /login', async () => {
+  it('Should perform a login operation with email /login', async () => {
+    user.username = "user@gmail.com";
+    const response = await request(app).post('/login').send(user);
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('username', 'testuser');
+  });
+
+  it('Should show missing field username /login', async () => {
     const response = await request(app).post('/login').send();
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty('error', 'Missing required field: email');
+    expect(response.body).toHaveProperty('error', 'Missing required field: username');
   });
 
   it('Should show invalid credentials /login', async () => {
-    const user2 = {email:"nice@g.com" ,username:"Hello", password:"world"}
+    const user2 = {username:"Hello", password:"world"}
     const response = await request(app).post('/login').send(user2);
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('error', 'Invalid credentials');

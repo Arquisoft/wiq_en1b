@@ -53,13 +53,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
           </div>
-          {//TODO: Study this option and see if it is viable
-          } 
-          <div className="remember-forgot">
-            <label>
-              <input type="checkbox" /> {t("login.remember_me")}
-            </label>
-          </div>
 
           <button type="submit">{t("login.login_button")}</button>
           <LinkRegister />
