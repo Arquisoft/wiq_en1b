@@ -1,6 +1,8 @@
 import React from 'react';
 import '../custom.css';
 import {useTranslation} from "react-i18next";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -10,6 +12,7 @@ function Instructions() {
 
   return (
     <div className='instrucions_container'>
+      
       <h1 className='instructions_title'>{t("instructions.title")}</h1>
      <section>   
       <article>
@@ -57,7 +60,9 @@ function Instructions() {
             </article>
            
       </section>
+ 
     </div>
+    
   );
 }
 

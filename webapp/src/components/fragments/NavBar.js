@@ -53,7 +53,11 @@ function Navbar() {
 }
 
 function Profile() {
-  return <img src="/logo.jpg" alt="App logo" />;
+  return (
+    <Link to="/home" className="home-button">
+      <img src="/logo.jpg" alt="App logo" />    
+    </Link>
+  );
 }
 
 function Help() {
