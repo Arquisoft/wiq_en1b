@@ -16,9 +16,10 @@ export default function HistoricalView() {
 
   const getRecords = async ()=>{
         try {
-            var jsonRecords = await retriever.getRecords("user"); 
+            var jsonRecords = await retriever.getRecords(user.username); 
             var recordsArray = jsonRecords.games;
             setRecords(recordsArray);
+            console.log(recordsArray)
         } catch (error) {
             console.log(error);
         }
