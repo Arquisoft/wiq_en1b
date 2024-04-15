@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {useTranslation} from "react-i18next";
 import { Link } from "react-router-dom";
 import QuestionView from '../questionView/QuestionView'
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 function GameConfigurator(){
     const [tipoPregunta, setTipoPregunta] = useState('POPULATION');
@@ -15,11 +16,12 @@ function GameConfigurator(){
     }
     return (
       clickedForNewGame ? <QuestionView type={tipoPregunta} amount={numeroPreguntas} /> :
-      <div>
+      <div className='GameConfiguratorDiv'>
+        <BackButtonToGameMenu t={t} />
         <h1>{t("gameConfigurator.game_config")}</h1>
-        
+        <h2>{t("gameConfigurator.custo_game")}</h2>
         <label>{t("gameConfigurator.type_quest")}</label>
-        <select value={tipoPregunta} onChange={(e) => setTipoPregunta(e.target.value)}>
+        <select className="select-style" value={tipoPregunta} onChange={(e) => setTipoPregunta(e.target.value)}>
           <option value="POPULATION">{t("gameConfigurator.option_population")}</option>
           <option value="CAPITAL">{t("gameConfigurator.option_capital")}</option>
           <option value="LANGUAGE">{t("gameConfigurator.option_language")}</option>
@@ -29,7 +31,7 @@ function GameConfigurator(){
   
         <label>{t("gameConfigurator.num_quest")}</label>
         {/* Spinner para seleccionar el número de preguntas */}
-        <input 
+        <input  className='spinner-style'
           type="number" 
           value={numeroPreguntas} 
           onChange={(e) => setNumeroPreguntas(e.target.value)} 
@@ -38,24 +40,27 @@ function GameConfigurator(){
         <br></br>
         <ButtonCustomized t={t} handleClick={handleClick}/>
         <br></br>
+        <hr class="hr-style"></hr>
+        <br></br>
+        <h2>{t("gameConfigurator.competi_game")}</h2>
         <p>{t("gameConfigurator.rules_competi")}</p>
         {/* Botones para jugar un juego personalizado o competitivo */}
         <ButtonCompetitive t={t} />
+        
       </div>
     );
 }
 
 
 function ButtonCustomized({t,handleClick}) {
-  
   return (
-    <button onClick={handleClick}>{t("gameConfigurator.play_custom")}</button>
+    <button className="linkButton" onClick={handleClick}>{t("gameConfigurator.play_custom")}</button>
   );
 }
 
 
 function ButtonCompetitive({t}){
-     //llamar setTipoPregunta COMPETITIVE
+
      return (
       <Link className="linkButton" to="/questions">
         <h3>{t("gameConfigurator.play_competi")}</h3>

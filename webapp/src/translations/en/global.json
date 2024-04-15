@@ -81,7 +81,9 @@
         "option_population":"Population",
         "option_capital":"Capital",
         "option_language":"Language",
-        "option_size":"Size"
+        "option_size":"Size",
+        "custo_game":"Create custom game",
+        "competi_game":"Play Competitive"
       }
 }
     
