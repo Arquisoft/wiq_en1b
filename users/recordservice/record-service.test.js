@@ -221,7 +221,6 @@ describe('Record Service', () => {
 
   it('should get back on GET /record/ranking/top10', async () => {
     const responseGet = await request(app).get('/record/ranking/top10');
-    console.log(responseGet.body)
     expect(responseGet.status).toBe(200);
     const usersStats = responseGet.body.usersCompetitiveStats;
     expect(usersStats.length).toBe(10); //Only top 10
