@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.bson.Document;
 
+import main.java.questionGenerator.question.Question;
+
 public class QuestionRepository {
 
     private static QuestionRepository questionRepository;
@@ -75,5 +77,11 @@ public class QuestionRepository {
             return false;
         }
     }
+
+    public boolean populate(List<Question> questions) {
+		// TODO Auto-generated method stub
+		return false;
+		
+	}
     
 }
