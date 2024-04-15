@@ -8,7 +8,6 @@ class HistoryRecordRetriever{
     }
 
     async getRecords(user) {
-        console.log(user)
         try {
             const response = await axios.get(this.apiUrl + '/' + user);
             const receivedRecords = await response.data;

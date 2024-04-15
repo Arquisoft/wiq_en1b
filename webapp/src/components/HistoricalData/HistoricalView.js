@@ -19,7 +19,6 @@ export default function HistoricalView() {
             var jsonRecords = await retriever.getRecords(user.username); 
             var recordsArray = jsonRecords.games;
             setRecords(recordsArray);
-            console.log(recordsArray)
         } catch (error) {
             console.log(error);
         }
