@@ -91,6 +91,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
             
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
+                creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
                 creationHistoricalRecord.sendRecord(user.username);

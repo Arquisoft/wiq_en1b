@@ -29,6 +29,10 @@ class CreationHistoricalRecord{
         this.record.game.date = date;
     }
 
+    setCompetitive(isCompetitive){
+      this.record.game.competitive = isCompetitive;
+    }
+
     getRecord() {
         return this.record;
     }

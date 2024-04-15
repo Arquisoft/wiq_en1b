@@ -37,6 +37,12 @@ describe('Gateway Service', () => {
     } else if(url.endsWith('/record/testuser')){
       //Dont need to check a good record just that it redirects the call
       return Promise.resolve({data : {record:'undefined'}}) 
+    } else if(url.endsWith('/record/ranking/top10')){
+      //Dont need to check a good record just that it redirects the call
+      return Promise.resolve({data : {record:'undefined'}})
+    } else if(url.endsWith('/record/ranking/testuser')){
+      //Dont need to check a good record just that it redirects the call
+      return Promise.resolve({data : {record:'undefined'}})  
     }
   });
 
@@ -110,6 +116,24 @@ describe('Gateway Service', () => {
   it('should forward record request to record service', async () => {
     const response = await request(app)
       .get('/record/testuser');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('record', "undefined");
+  });
+
+  // Test /record/ranking/:user endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/testuser');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('record', "undefined");
+  });
+
+  // Test /record/ranking/top10 endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/top10');
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('record', "undefined");

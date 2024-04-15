@@ -33,15 +33,15 @@ app.get('/questions',  async (req, res) => {
 app.get('/questions/:lang/:amount/:type',  async (req, res) => {
   try {    
       const lang = req.params.lang.toString();
-      let amount = parseInt(req.params.amount);
+      let amount = checkAmount(parseInt(req.params.amount));
       const type = req.params.type.toString();
 
-      if(amount > 20)
-        amount = 20;
+      if(amount > 20 || amount < 1)
+        amount = 5;
 
       const questions = await Question.aggregate([
         {$match: {language : lang, type: type}}, //Condition
-        {$sample: {size:amount}} //5 random from the ones that fullfil the condition
+        {$sample: {size:amount}}
       ]);
 
       let jsonResult = {};
@@ -61,14 +61,13 @@ app.get('/questions/:lang/:amount/:type',  async (req, res) => {
 app.get('/questions/:lang/:amount',  async (req, res) => {
   try {    
       const lang = req.params.lang;
-      let amount = parseInt(req.params.amount);
+      let amount = checkAmount(parseInt(req.params.amount));
 
-      if(amount > 20)
-        amount = 20;
+      
 
       const questions = await Question.aggregate([
         {$match: {language : lang}}, //Condition
-        {$sample: {size:amount}} //5 random from the ones that fullfil the condition
+        {$sample: {size:amount}}
       ]);
 
       let jsonResult = {};
@@ -108,6 +107,11 @@ app.get('/questions/:lang',  async (req, res) => {
     }
 });
 
+function checkAmount(amount){
+  if(amount > 20 || amount < 1)
+        return 5;
+  return amount;
+}
 
 const server = app.listen(port, () => {
     console.log(`Question Service listening at http://localhost:${port}`);

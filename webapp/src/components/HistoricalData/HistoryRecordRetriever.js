@@ -8,6 +8,16 @@ class HistoryRecordRetriever{
     }
 
     async getRecords(user) {
+        /*
+        try {
+            const response = await axios.get(this.apiUrl + '/' + user);
+            const receivedRecords = await response.data;
+            return receivedRecords.record;
+        } catch (error) {
+            console.log(error)
+            throw new Error(error);
+            
+        }*/
         return {
             userId: user,
             games: [

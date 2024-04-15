@@ -9,6 +9,7 @@ class QuestionGenerator{
     }
 
     async generateQuestions(lang, type, amount) {
+        
         try {
             //const response = await fetch(this.apiUrl);
             //const receivedQuestions = await response.json();
@@ -33,13 +34,15 @@ class QuestionGenerator{
         } catch (error) {
             throw new Error(error);
         }
-    
+        
+        
         /*
         try {
+            let response;
             if(type==="COMPETITIVE"){
-                const response = await axios.get(this.apiUrl + '/' + lang);
+                response = await axios.get(this.apiUrl + '/' + lang);
             }else{
-                const response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type);
+                response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type);
             }
             const receivedQuestions = await response.data;
             let i = 0;
@@ -51,7 +54,8 @@ class QuestionGenerator{
             return questions;
         } catch (error) {
             throw new Error(error);
-        }*/
+        }
+        */
     }
 
 }

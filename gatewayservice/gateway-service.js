@@ -111,6 +111,27 @@ app.post('/record', async(req, res) => {
   }
 });
 
+app.get('/record/ranking/top10', async(req, res)=>{
+  try {
+    // Forward the record request to the record service
+    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/top10');
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.get('/record/ranking/:user', async(req, res)=>{
+  try {
+    const user = req.params.user;
+    // Forward the record request to the record service
+    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 app.get('/record/:user', async(req, res)=>{
   try {
     const user = req.params.user;

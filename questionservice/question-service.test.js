@@ -61,20 +61,37 @@ describe('Question Service', () => {
     expect(Object.keys(response.body).length).toBe(5);
   });
 
-  it('Should give 10 questions /questions/es/10', async () => {
 
-    let response = await request(app).get('/questions/es/10');
+  it('Should give 20 questions /questions/es/20', async () => {
+
+    let response = await request(app).get('/questions/es/20');
     expect(response.status).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
-    expect(Object.keys(response.body).length).toBe(10);
+    expect(Object.keys(response.body).length).toBe(20);
   });
 
-  it('Should give 20 questions as the max is 20 /questions/es/21', async () => {
+  it('Should give 1 questions /questions/es/1', async () => {
+
+    let response = await request(app).get('/questions/es/20');
+    expect(response.status).toBe(200);
+    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    expect(Object.keys(response.body).length).toBe(20);
+  });
+
+  it('Should give 5 questions as the max is 20 /questions/es/21', async () => {
 
     let response = await request(app).get('/questions/es/21');
     expect(response.status).toBe(200);
     expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
-    expect(Object.keys(response.body).length).toBe(20);
+    expect(Object.keys(response.body).length).toBe(5);
+  });
+
+  it('Should give 5 questions as the min is 1 /questions/es/0', async () => {
+
+    let response = await request(app).get('/questions/es/0');
+    expect(response.status).toBe(200);
+    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    expect(Object.keys(response.body).length).toBe(5);
   });
 
   it('Should give 10 questions /questions/es/10/POPULATION', async () => {
