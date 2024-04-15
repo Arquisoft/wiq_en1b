@@ -8,6 +8,9 @@ import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AnswersAreNotEntites;
 import main.java.questionGenerator.question.QuestionType;
+import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;
+import main.java.questionGenerator.question.answers.formatAnswers.RemoveEFromNumber;
 
 public class SizeGenerator extends AnswersAreNotEntites {
 	
@@ -28,6 +31,12 @@ public class SizeGenerator extends AnswersAreNotEntites {
 		String[] split1 = url.split(" ");
 		String[] split2 = split1[0].split("/");
 		return split2[split2.length-1];
+	}
+
+	@Override
+	protected List<String> decorateAnswers(List<String> answers) {
+		AnswerFormater formater = new RemoveEFromNumber(new EmbellishNumbersFormater());
+		return formater.format(answers);
 	}
 
 }

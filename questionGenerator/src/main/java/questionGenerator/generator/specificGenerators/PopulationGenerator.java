@@ -8,6 +8,8 @@ import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.generator.AnswersAreNotEntites;
 import main.java.questionGenerator.question.QuestionType;
+import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;
 
 public class PopulationGenerator extends AnswersAreNotEntites {
 	
@@ -23,5 +25,11 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 		List<Statement> statements = claims.get(PROPERTY);
 		Value v = statements.get(statements.size()-1).getValue();
 		return v.toString();
+	}
+
+	@Override
+	protected List<String> decorateAnswers(List<String> answers) {
+		AnswerFormater formater = new EmbellishNumbersFormater();
+		return formater.format(answers);
 	}
 }

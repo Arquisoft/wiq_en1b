@@ -1,7 +1,11 @@
 package main.java.questionGenerator.generator.specificGenerators;
 
+import java.util.List;
+
 import main.java.questionGenerator.generator.AnswersAreEntities;
 import main.java.questionGenerator.question.QuestionType;
+import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.formatAnswers.CapitalLetersFormater;
 
 public class LanguageGenerator extends AnswersAreEntities {
 	
@@ -11,6 +15,12 @@ public class LanguageGenerator extends AnswersAreEntities {
 
 	public LanguageGenerator(){
 		super(PROPERTY, QuestionType.LANGUAGE, PROPERTY_TO_CHECK, MESSAGE);
+	}
+	
+	@Override
+	protected List<String> decorateAnswers(List<String> answers) {
+		AnswerFormater formater = new CapitalLetersFormater();
+		return formater.format(answers);
 	}
 
 }
