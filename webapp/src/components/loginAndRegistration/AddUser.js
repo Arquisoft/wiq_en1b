@@ -16,7 +16,7 @@ const AddUser = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(undefined);
-  const [passwordStrengthText, setPasswordStrengthText] = useState("");
+  const [passwordStrengthText, setPasswordStrengthText] = useState('');
   const [submitError, setSubmitError] = useState('');
 
 
@@ -27,19 +27,19 @@ const AddUser = () => {
       //TODO: email validation
       if(password !== repeatPassword){
         //User put the same password
-        setSubmitError(t("addUser.error_passwords_no_match"));
+        setSubmitError("addUser.error_passwords_no_match");
       } else if(/\s/.test(password)){
         //User put spaces in password
-        setSubmitError(t("addUser.error_password_spaces"));
+        setSubmitError("addUser.error_password_spaces");
       } else if(password.length < 8){
         //Password too short
-        setSubmitError(t("addUser.error_password_minimum_length"));
+        setSubmitError("addUser.error_password_minimum_length");
       } else if(password.length > 64){
         //Password too long
-        setSubmitError(t("addUser.error_password_maximum_length"));
+        setSubmitError("addUser.error_password_maximum_length");
       } else if(/\s/.test(username)){
         //Spaces in username
-        setSubmitError(t("addUser.error_username_spaces"));
+        setSubmitError("addUser.error_username_spaces");
       } else{
         //Continue
         setSubmitError('');
@@ -50,7 +50,7 @@ const AddUser = () => {
 
     } catch (error) {
       if(error.response.data.error === "Username already in use"){ //TODO: Improve
-        setSubmitError(t("addUser.error_username_in_use"));
+        setSubmitError("addUser.error_username_in_use");
       }
       console.error('Error adding user:', error);
     }
@@ -75,22 +75,22 @@ const AddUser = () => {
 
     switch(newStrength.score){
       case 0:
-        setPasswordStrengthText(t("addUser.very_weak_password"));
+        setPasswordStrengthText("addUser.very_weak_password");
         break;
       case 1:
-        setPasswordStrengthText(t("addUser.very_weak_password"));
+        setPasswordStrengthText("addUser.very_weak_password");
         break;
       case 2:
-        setPasswordStrengthText(t("addUser.weak_password"));
+        setPasswordStrengthText("addUser.weak_password");
         break;
       case 3:
-        setPasswordStrengthText(t("addUser.good_password"));
+        setPasswordStrengthText("addUser.good_password");
         break;
       case 4:
-        setPasswordStrengthText(t("addUser.strong_password"));
+        setPasswordStrengthText("addUser.strong_password");
         break;
       default:
-        setPasswordStrengthText(t("addUser.very_weak_password"));
+        setPasswordStrengthText("addUser.very_weak_password");
         break;
     }
     setPasswordStrength(newStrength);
@@ -126,7 +126,7 @@ const AddUser = () => {
           </div>
           <div className="password-strength-meter">
             <span>
-              {passwordStrengthText}
+              {t(passwordStrengthText.toString())}
             </span>
             <progress
               value={passwordStrength === undefined? 0 : passwordStrength.score}
@@ -144,7 +144,7 @@ const AddUser = () => {
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
           </div>
-          {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
+          {submitError && <p style={{ color: 'red' }}>{t(submitError)}</p>}
           <button type="submit">{t("addUser.register_button")}</button>
 
           <LinkLogin />
