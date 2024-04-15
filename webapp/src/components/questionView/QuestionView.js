@@ -34,23 +34,27 @@ function QuestionView(){
     }
 
     function revealColorsForAnswers(){
-        let colorCorrectAnswer='#6EF26E';//green
-        let colorIncorrectAnswer='#FF6666'; //red
+        let colorCorrectAnswer = '#6EF26E'; // verde
+        let colorIncorrectAnswer = '#FF6666'; // rojo
+        let audioCorrect = new Audio('/correct.mp3'); 
+        let audioIncorrect = new Audio('/incorrect.mp3'); 
+    
         $('.answerButton').each(function() {
             var dataValue = $(this).attr('data-value');
-            if (dataValue === false || dataValue === "false")
+            if (dataValue === false || dataValue === "false") {
                 $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
-
-            else{
+                audioIncorrect.play(); // Reproduce el sonido de respuesta incorrecta
+            } else {
                 $(this).css({
                     'background-color': colorCorrectAnswer,
-                    'text-decoration': 'underline'// Underline the text of the button for correct answers
+                    'text-decoration': 'underline' // Subraya el texto del botón para respuestas correctas
                 });
+                audioCorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
-            });
-
+        });
     }
+    
     function setColorsBackToNormal() {
         let colorOriginal = '#9f97ff';
         $('.answerButton').each(function() {
