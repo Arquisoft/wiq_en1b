@@ -9,7 +9,7 @@ function GameConfigurator(){
     const [tipoPregunta, setTipoPregunta] = useState('POPULATION');
     const [numeroPreguntas, setNumeroPreguntas] = useState(5);
     const [clickedForNewGame, setClickedForNewGame]= useState(false);
-    const[t, i18n] = useTranslation("global");
+    const[t] = useTranslation("global");
 
     function handleClick() {
       setClickedForNewGame(true);
