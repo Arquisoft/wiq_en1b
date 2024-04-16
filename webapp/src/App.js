@@ -12,6 +12,7 @@ import './custom.css';
 import HistoricalView from './components/HistoricalData/HistoricalView';
 import { UserContextProvider } from './components/loginAndRegistration/UserContext';
 import GameConfigurator from './components/GameConfigurator/GameConfigurator';
+import RankingView from './components/ranking/RankingView';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path="/questions" element={<QuestionView />} />
               <Route path="/historical" element={<HistoricalView />} />
               <Route path="/configurator" element={<GameConfigurator />}/>
+              <Route path="/ranking" element={<RankingView />} />
             </Routes>
           </Container>
         </div>
