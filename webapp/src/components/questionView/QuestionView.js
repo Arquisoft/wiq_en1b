@@ -33,7 +33,7 @@ function QuestionView(){
         }
     }
 
-    function revealColorsForAnswers(){
+    function revealColorsForAnswers(correctAnswer, answerGiven){
         let colorCorrectAnswer = '#6EF26E'; // verde
         let colorIncorrectAnswer = '#FF6666'; // rojo
         let audioCorrect = new Audio('/correct.mp3'); 
@@ -43,13 +43,17 @@ function QuestionView(){
             var dataValue = $(this).attr('data-value');
             if (dataValue === false || dataValue === "false") {
                 $(this).css('background-color', colorIncorrectAnswer); // Cambia el color de fondo del botón actual a rojo
-                audioIncorrect.play(); // Reproduce el sonido de respuesta incorrecta
             } else {
                 $(this).css({
                     'background-color': colorCorrectAnswer,
                     'text-decoration': 'underline' // Subraya el texto del botón para respuestas correctas
                 });
-                audioCorrect.play(); // Reproduce el sonido de respuesta correcta
+            }
+            if(answerGiven===correctAnswer){
+                audioCorrect.play(); // Reproduce el sonido de respuesta incorrecta
+            }
+            else{
+                audioIncorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
         });
@@ -85,7 +89,7 @@ function QuestionView(){
         computePointsForQuestion(questions[numQuestion].getCorrectAnswer(), text);
         
         //reveal answer to user for 1 sec
-        revealColorsForAnswers();
+        revealColorsForAnswers(questions[numQuestion].getCorrectAnswer(), text);
         setTimeout(function() {
             //after one second set colors back to normal
             setColorsBackToNormal();
