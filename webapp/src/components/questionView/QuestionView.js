@@ -14,10 +14,13 @@ const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
 function QuestionView(){
+    
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const {user} = useUserContext();
+    const [audio] = useState(new Audio('/tictac.mp3'));
+
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -50,9 +53,11 @@ function QuestionView(){
                 });
             }
             if(answerGiven===correctAnswer){
+                audio.pause();
                 audioCorrect.play(); // Reproduce el sonido de respuesta incorrecta
             }
             else{
+                audio.pause();
                 audioIncorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
@@ -72,8 +77,10 @@ function QuestionView(){
     function computePointsForQuestion(correctAnswer, answerGiven){
         if(answerGiven===correctAnswer){
             points+=100;
+            audio.pause();
         }else if(points-50>=0){
             points-=50;
+            audio.pause();
         }else{
             points = 0;
         }
@@ -98,6 +105,7 @@ function QuestionView(){
             
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
+                audio.pause();
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
                 creationHistoricalRecord.sendRecord(user.username);
@@ -113,18 +121,23 @@ function QuestionView(){
     return (
     <div className="question-view-container">
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} audio = {audio}/> :
         <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t, points}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points, audio}){
 
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
+            audio.pause();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
+            if (audio.paused) {
+                audio.loop = true; // Para que el sonido se reproduzca en bucle
+                audio.play();
+            }
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
     };
@@ -153,6 +166,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points}){
                 
             ) : (
                 <>
+                   
                     <h2>{t("questionView.finished_game")} </h2>
                     <p>{points} {t("questionView.point")}</p>
                     <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>
