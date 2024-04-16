@@ -121,19 +121,52 @@ function QuestionView(){
     return (
     <div className="question-view-container">
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} audio = {audio}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} audio = {audio} language={i18n.language}/> :
         <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t, points, audio}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points, audio, language}){
 
 
     const speakQuestion = () => {
         const speech = new SpeechSynthesisUtterance();
-        speech.text = questions[numQuestion].getQuestion();
-        window.speechSynthesis.speak(speech);
+        speech.lang = language;
+        console.log(language);
+        getVoicesForLanguage(language)
+            .then(voices => {
+                const voice = voices.find(voice => voice.lang === language);
+                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
+                window.speechSynthesis.speak(speech);
+            })
+            .catch(error => {
+                console.error("Error al obtener las voces para el idioma:", error);
+            });
     };
+    
+    // Función para obtener las voces disponibles para un idioma
+    const getVoicesForLanguage = (language) => {
+        return new Promise((resolve, reject) => {
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = questions[numQuestion].getQuestion();
+            speech.lang = language;
+    
+            speech.addEventListener("error", reject); 
+    
+            speech.addEventListener("end", () => {
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    resolve(voices);
+                } else {
+                    reject("No se encontraron voces disponibles.");
+                }
+            });
+    
+            window.speechSynthesis.speak(speech); 
+        });
+    };
+    
+    
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
