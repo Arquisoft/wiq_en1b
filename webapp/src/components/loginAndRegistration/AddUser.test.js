@@ -47,32 +47,23 @@ describe('<AddUser />', () => {
     fireEvent.click(submitButton);
   };
 
-  test('displays error message when passwords do not match', () => {
+  test('displays correct error messages', async () => {
+    //Passwords do not match
     fillFormAndSubmit('username', '12345678', '123456789');
     expect(screen.getByText('addUser.error_passwords_no_match')).toBeInTheDocument();
-  });
-
-  test('displays error message when spaces in password', () => {
+    //Password with spaces
     fillFormAndSubmit('username', '1234 5678', '1234 5678');
     expect(screen.getByText('addUser.error_password_spaces')).toBeInTheDocument();
-  });
-
-  test('displays error message when passwords too short', () => {
+    //Password too short
     fillFormAndSubmit('username', '1234567', '1234567');
     expect(screen.getByText('addUser.error_password_minimum_length')).toBeInTheDocument();
-  });
-
-  test('displays error message when passwords too long', () => {
+    //Password too long
     fillFormAndSubmit('username', '01234567890123456789012345678901234567890123456789012345678901234', '01234567890123456789012345678901234567890123456789012345678901234');
     expect(screen.getByText('addUser.error_password_maximum_length')).toBeInTheDocument();
-  });
-
-  test('displays error message when spaces in username', () => {
+    //Username with spaces
     fillFormAndSubmit('user name', '12345678', '12345678');
     expect(screen.getByText('addUser.error_username_spaces')).toBeInTheDocument();
-  });
-
-  test('displays error message when username is already in use', async () => {
+    //Username in use
     axios.post.mockRejectedValue({ response: { data: { error: 'Username already in use' } } });
     fillFormAndSubmit('existing_user', '12345678', '12345678');
     await waitFor(() => {
