@@ -1278,6 +1278,21 @@ svg {
   max-width: 200px;
 }
 
+.altavoz {
+  margin-right: 10px;
+  background: #000000;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px #9f97ff;
+  cursor: pointer;
+  font-size: 21px;
+  color: black;
+  font-weight: 700;
+  margin: 0.5em;
+  max-width: 200px;
+}
+
 .questionContainer p,  span{
   font-size: 20px;
 }

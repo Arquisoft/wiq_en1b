@@ -129,13 +129,19 @@ function QuestionView(){
 function QuestionComponent({questions, numQuestion, handleClick, t, points, audio}){
 
 
+    const speakQuestion = () => {
+        const speech = new SpeechSynthesisUtterance();
+        speech.text = questions[numQuestion].getQuestion();
+        window.speechSynthesis.speak(speech);
+    };
+
     const renderer = ({seconds, completed }) => {
         if (completed) {
             audio.pause();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
             if (audio.paused) {
-                audio.loop = true; // Para que el sonido se reproduzca en bucle
+                audio.loop = true; // Loop of tiktak
                 audio.play();
             }
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
@@ -148,7 +154,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
                 <div className='questionContainer'>
                
                     <div className='topPanel'>
-                        <h2>{questions[numQuestion].getQuestion()}</h2>
+                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speakQuestion}>🔊</button></h2>
                         <div className="countdown">
                             <Countdown key={numQuestion} date={Date.now()+10000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
