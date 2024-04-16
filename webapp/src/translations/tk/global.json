@@ -57,6 +57,7 @@
       "strong_password": "Güçlü şifre",
       "error_passwords_no_match": "Şifreler eşleşmiyor",
       "error_password_spaces": "Şifre boşluk içeremez",
+      "error_username_spaces": "Kullanıcı adı boşluk içeremez.",
       "error_password_minimum_length": "Şifre en az 8 karakter uzunluğunda olmalıdır",
       "error_password_maximum_length": "Şifre en fazla 64 karakter uzunluğunda olabilir",
       "error_username_in_use": "Kullanıcı adı zaten kullanımda"

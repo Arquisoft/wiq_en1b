@@ -61,6 +61,7 @@
           "strong_password": "Contraseña fuerte",
           "error_passwords_no_match": "Las contraseñas no coinciden",
           "error_password_spaces": "La contraseña no puede contener espacios",
+          "error_username_spaces": "El nombre de usuario no puede contener espacios",
           "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres",
           "error_password_maximum_length": "La contraseña no debe tener más de 64 caracteres",
           "error_username_in_use": "Nombre de usuario no disponible"

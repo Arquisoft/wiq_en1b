@@ -57,6 +57,7 @@
         "strong_password": "Strong password",
         "error_passwords_no_match": "Passwords do not match",
         "error_password_spaces": "Password cannot contain spaces",
+        "error_username_spaces": "Username cannot contain spaces",
         "error_password_minimum_length": "Password must be at least 8 characters long",
         "error_password_maximum_length": "Password cannot be over 64 characters long",
         "error_username_in_use": "Username already in use"
