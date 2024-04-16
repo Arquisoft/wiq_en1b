@@ -8,7 +8,7 @@ class QuestionGenerator{
         
     }
 
-    async generateQuestions(lang, type, amount) {
+    async generateQuestions(lang) {
         
         // try {
         //     //const response = await fetch(this.apiUrl);
@@ -38,12 +38,7 @@ class QuestionGenerator{
         
         
         try {
-            let response;
-            if(type==="COMPETITIVE"){
-                response = await axios.get(this.apiUrl + '/' + lang);
-            }else{
-                response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type);
-            }
+            const response = await axios.get(this.apiUrl + '/' + lang);
             const receivedQuestions = await response.data;
             let i = 0;
             var questions = [];
