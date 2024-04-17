@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RankingRetriever from './RankingRetriever';
 import {useTranslation} from "react-i18next";
 import Loader from "../fragments/Loader"
+import BackButton from '../fragments/BackButtonToGameMenu';
 const retriever = new RankingRetriever();
 
 const RankingView = () => {
@@ -26,6 +27,7 @@ const RankingView = () => {
 
   return (
     <div className='table'>
+      <BackButton t={t} />
       <h1>{t("ranking.ranking")}</h1>
       {rankingData && rankingData.length > 0 ? (
         <table>
