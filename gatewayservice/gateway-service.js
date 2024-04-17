@@ -2,6 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const promBundle = require('express-prom-bundle');
+//libraries required for OpenAPI-Swagger
+const swaggerUi = require('swagger-ui-express'); 
+const fs = require("fs")
+const YAML = require('yaml')
 
 const app = express();
 const port = 8000;
@@ -9,6 +13,7 @@ const port = 8000;
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
+const recordServiceUrl = process.env.RECORD_SERVICE_URL || 'http://localhost:8004';
 
 app.use(cors());
 app.use(express.json());
@@ -44,13 +49,59 @@ app.post('/adduser', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
   try {
+    
     // Forward the question request to the quetion service
-    const quetionResponse = await axios.get(questionServiceUrl+'/questions', req.params);
-    res.send(quetionResponse.data);
+    const questionResponse = await axios.get(questionServiceUrl+'/questions');
+    res.json(questionResponse.data);
   } catch (error) {
     res.status(error.response.status).json({ error: error.response.data.error });
   }
 });
+
+app.get('/questions/:lang', async (req, res) => {
+  try {
+    const lang = req.params.lang;
+    // Forward the question request to the quetion service
+    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
+
+    res.json(questionResponse.data);
+  } catch (error) {
+
+    res.status(error.response.status).json({ error: error.response.data.error });
+  }
+});
+
+app.post('/record', async(req, res) => {
+  try {
+    // Forward the record request to the record service
+    const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+app.get('/record/:user', async(req, res)=>{
+  try {
+    const user = req.params.user;
+    // Forward the record request to the record service
+    const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
+    res.json(recordResponse.data);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// Read the OpenAPI YAML file synchronously
+const file = fs.readFileSync('./openapi.yaml', 'utf8');
+
+// Parse the YAML content into a JavaScript object representing the Swagger document
+const swaggerDocument = YAML.parse(file);
+
+// Serve the Swagger UI documentation at the '/api-doc' endpoint
+// This middleware serves the Swagger UI files and sets up the Swagger UI page
+// It takes the parsed Swagger document as input
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the gateway service
 const server = app.listen(port, () => {

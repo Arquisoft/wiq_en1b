@@ -1,0 +1,84 @@
+{
+  "home": {
+    "welcome": "WIQ'e hoş geldiniz!",
+    "how_to_play": "Nasıl Oynanır?",
+    "login": "Giriş Yap",
+    "register": "Hesabınız yok mu? Buradan kaydolun.",
+    "language": "Dil Türkçe olarak değiştirildi",
+    "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizi test etmeye ve becerilerinizi göstermeye hazır olun. Bu heyecan verici oyunda, çeşitli konulardaki bilginizi test edecek bir dizi soruyla karşılaşacaksınız.",
+    "msg2": "Öyleyse ilerleyin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?",
+    "clickOpen": "Devamı için tıklayınız",
+    "clickClose": "Kapatmak için tıklayın"
+},
+  
+    "navBar": {
+      "title": "Bilgi ve Kazan!",
+      "en": "İngilizce",
+      "es": "İspanyolca",
+      "tk": "Türkçe",
+      "language": "Dil"
+    },
+    "instructions": {
+      "title": "WIQ Talimatları",
+      "objective": "Amaç:",
+      "objective_p1": "Oyunun amacı, mümkün olduğunca çok soruyu doğru cevaplamaktır.",
+      "how_to_play": "Nasıl Oynanır:",
+      "how_to_play_p1": "Oyun, bir dizi sorudan oluşur.",
+      "how_to_play_p2": "Her soruyu dikkatlice okuyun.",
+      "how_to_play_p3": "Sağlanan seçenekler arasından doğru cevabı seçin.",
+      "how_to_play_p4": "Seçtiğiniz cevabı göndermek için üzerine tıklayın veya dokunun.",
+      "scoring": "Puanlama:",
+      "scoring_p1": "Her doğru cevap size x puan kazandırır.",
+      "scoring_p2": "Yanlış cevaplar puan kesintisi yapmaz.",
+      "time_limit": "Zaman Sınırı:",
+      "time_limit_p1": "Bazı oyun modları, her soruyu cevaplama için bir zaman sınırına sahip olabilir. Skorunuzu maksimize etmek için hızlı ve doğru olun.",
+      "have_fun": "İyi Eğlenceler!:",
+      "have_fun_p1": "Oyunun tadını çıkarın ve bilginizi test edin. İyi şanslar!"
+    },
+    "login": {
+      "title": "Giriş",
+      "username_placeholder": "Kullanıcı Adı",
+      "password_placeholder": "Şifre",
+      "remember_me": "Beni hatırla",
+      "forgot_password": "Şifrenizi mi unuttunuz?",
+      "login_button": "Giriş",
+      "register_link": "Hesabınız yok mu? Buradan kaydolun."
+    },
+    "addUser": {
+      "title": "Kayıt Ol",
+      "username_placeholder": "Kullanıcı Adı",
+      "password_placeholder": "Şifre",
+      "repeat_password_placeholder": "Şifreyi Tekrar Girin",
+      "register_button": "Kayıt Ol",
+      "login_link": "Hesabınız var mı? Buradan giriş yapın.",
+      "very_weak_password": "Çok zayıf şifre",
+      "weak_password": "Zayıf şifre",
+      "good_password": "İyi şifre",
+      "strong_password": "Güçlü şifre",
+      "error_passwords_no_match": "Şifreler eşleşmiyor",
+      "error_password_spaces": "Şifre boşluk içeremez",
+      "error_username_spaces": "Kullanıcı adı boşluk içeremez.",
+      "error_password_minimum_length": "Şifre en az 8 karakter uzunluğunda olmalıdır",
+      "error_password_maximum_length": "Şifre en fazla 64 karakter uzunluğunda olabilir",
+      "error_username_in_use": "Kullanıcı adı zaten kullanımda"
+    },
+    "gameMenu": {
+      "history_button": "Tarihsel Verileri Görüntüle",
+      "new_game_button": "Yeni Oyun Oluştur",
+      "title": "Oyun Menüsü"
+    },
+    "questionView": {
+      "seconds": "saniye",
+      "question_counter": "Soru numarası ",
+      "end_countdown": "Süre doldu!",
+      "finished_game": "Oyun bitti!",
+      "point": "Puan",
+      "no_questions_message": "Lütfen biraz bekleyin"
+    },
+    "historicalView": {
+      "game": "Oyun",
+      "points": "puanlar",
+      "no_games_played": "Henüz oyun oynanmadı"
+    }
+  }
+  

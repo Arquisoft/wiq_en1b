@@ -1,59 +1,77 @@
-// import React from 'react';
-// import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-// import axios from 'axios';
-// import MockAdapter from 'axios-mock-adapter';
-// import AddUser from './AddUser';
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import AddUser from './AddUser';
+import axios from 'axios';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-// const mockAxios = new MockAdapter(axios);
+// Mocking useTranslation hook
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: key => key }),
+}));
 
-// describe('AddUser component', () => {
-//   beforeEach(() => {
-//     mockAxios.reset();
-//   });
+// Mocking axios to simulate an error response
+jest.mock('axios');
 
-//   it('should add user successfully', async () => {
-//     render(<AddUser />);
+describe('<AddUser />', () => {
 
-//     const usernameInput = screen.getByLabelText(/Username/i);
-//     const passwordInput = screen.getByLabelText(/Password/i);
-//     const addUserButton = screen.getByRole('button', { name: /Add User/i });
+  beforeEach(() => {
+    render(
+      <Router>
+        <AddUser />
+      </Router>
+    );
+  });
 
-//     // Mock the axios.post request to simulate a successful response
-//     mockAxios.onPost('http://localhost:8000/adduser').reply(200);
+  test('renders the AddUser component', () => {
 
-//     // Simulate user input
-//     fireEvent.change(usernameInput, { target: { value: 'testUser' } });
-//     fireEvent.change(passwordInput, { target: { value: 'testPassword' } });
+    expect(screen.getByText('addUser.title')).toBeInTheDocument();
+    expect(screen.getByText('addUser.username_placeholder:')).toBeInTheDocument();
+    expect(screen.getByText('addUser.password_placeholder:')).toBeInTheDocument();
+    expect(screen.getByText('addUser.repeat_password_placeholder:')).toBeInTheDocument();
+    expect(screen.getByText('addUser.register_button')).toBeInTheDocument();
+    expect(screen.getByText('addUser.login_link')).toBeInTheDocument();
 
-//     // Trigger the add user button click
-//     fireEvent.click(addUserButton);
+  });
 
-//     // Wait for the Snackbar to be open
-//     await waitFor(() => {
-//       expect(screen.getByText(/User added successfully/i)).toBeInTheDocument();
-//     });
-//   });
+  const fillFormAndSubmit = (username, password, repeatPassword) => {
+    const usernameInput = screen.getByPlaceholderText('addUser.username_placeholder');
+    fireEvent.change(usernameInput, { target: { value: username } });
 
-//   it('should handle error when adding user', async () => {
-//     render(<AddUser />);
+    const passwordInput = screen.getByPlaceholderText('addUser.password_placeholder');
+    fireEvent.change(passwordInput, { target: { value: password } });
 
-//     const usernameInput = screen.getByLabelText(/Username/i);
-//     const passwordInput = screen.getByLabelText(/Password/i);
-//     const addUserButton = screen.getByRole('button', { name: /Add User/i });
+    const repeatPasswordInput = screen.getByPlaceholderText('addUser.repeat_password_placeholder');
+    fireEvent.change(repeatPasswordInput, { target: { value: repeatPassword } });
 
-//     // Mock the axios.post request to simulate an error response
-//     mockAxios.onPost('http://localhost:8000/adduser').reply(500, { error: 'Internal Server Error' });
+    const submitButton = screen.getByText('addUser.register_button');
+    fireEvent.click(submitButton);
+  };
 
-//     // Simulate user input
-//     fireEvent.change(usernameInput, { target: { value: 'testUser' } });
-//     fireEvent.change(passwordInput, { target: { value: 'testPassword' } });
+  test('displays correct error messages', async () => {
+    //Passwords do not match
+    fillFormAndSubmit('username', '12345678', '123456789');
+    expect(screen.getByText('addUser.error_passwords_no_match')).toBeInTheDocument();
+    //Password with spaces
+    fillFormAndSubmit('username', '1234 5678', '1234 5678');
+    expect(screen.getByText('addUser.error_password_spaces')).toBeInTheDocument();
+    //Password too short
+    fillFormAndSubmit('username', '1234567', '1234567');
+    expect(screen.getByText('addUser.error_password_minimum_length')).toBeInTheDocument();
+    //Password too long
+    fillFormAndSubmit('username', '01234567890123456789012345678901234567890123456789012345678901234', '01234567890123456789012345678901234567890123456789012345678901234');
+    expect(screen.getByText('addUser.error_password_maximum_length')).toBeInTheDocument();
+    //Username with spaces
+    fillFormAndSubmit('user name', '12345678', '12345678');
+    expect(screen.getByText('addUser.error_username_spaces')).toBeInTheDocument();
+    //Username in use
+    axios.post.mockRejectedValue({ response: { data: { error: 'Username already in use' } } });
+    fillFormAndSubmit('existing_user', '12345678', '12345678');
+    await waitFor(() => {
+      expect(screen.getByText('addUser.error_username_in_use')).toBeInTheDocument();
+    });
+    expect(axios.post).toHaveBeenCalledWith(expect.any(String), { username: 'existing_user', password: '12345678' });
+  });
 
-//     // Trigger the add user button click
-//     fireEvent.click(addUserButton);
+});
 
-//     // Wait for the error Snackbar to be open
-//     await waitFor(() => {
-//       expect(screen.getByText(/Error: Internal Server Error/i)).toBeInTheDocument();
-//     });
-//   });
-// });
+

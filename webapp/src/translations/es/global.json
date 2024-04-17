@@ -3,11 +3,21 @@
         "welcome": "¡Bienvenido a WIQ!",
     "how_to_play": "¿Cómo jugar?",
     "login": "Iniciar sesión",
-    "register": "¿No tienes una cuenta? Regístrate aquí."
+    "register": "¿No tienes una cuenta? Regístrate aquí.",
+    "language": "El idioma ha sido cambiado a español",
+    "msg1": "Bienvenido al desafío de conocimientos! Prepárate para poner a prueba tu mente y demostrar tus habilidades. En este emocionante juego, te enfrentarás a una serie de preguntas que pondrán a prueba tu conocimiento en una variedad de temas.",
+    "msg2": "¡Así que adelante, demuestra que eres el maestro de las preguntas! ¿Estás listo para aceptar el desafío?",
+    "clickOpen": "Haz click para continuar",
+    "clickClose": "Haz click para cerrar"
+
     },
 
     "navBar": {
-        "title": "¡Saber y ganar!"
+        "title": "¡Saber y ganar!",
+        "en": "Inglés",
+        "es": "Español",
+        "tk": "Turco",
+        "language": "Idioma"
       },
 
       "instructions": {
@@ -44,7 +54,17 @@
           "password_placeholder": "Contraseña",
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
-          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí."
+          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
+          "very_weak_password": "Contraseña muy débil",
+          "weak_password": "Contraseña débil",
+          "good_password": "Contraseña buena",
+          "strong_password": "Contraseña fuerte",
+          "error_passwords_no_match": "Las contraseñas no coinciden",
+          "error_password_spaces": "La contraseña no puede contener espacios",
+          "error_username_spaces": "El nombre de usuario no puede contener espacios",
+          "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres",
+          "error_password_maximum_length": "La contraseña no debe tener más de 64 caracteres",
+          "error_username_in_use": "Nombre de usuario no disponible"
     },
      "gameMenu":{
       "history_button":"Ver Historial",
@@ -52,8 +72,16 @@
       "title":"Menú del Juego"
     },"questionView":{
       "seconds":"segundos",
-      "question_counter":"Número de pregunta : ",
-      "end_countdown":"¡Se acabó el tiempo!"
+      "question_counter":"Pregunta nº ",
+      "end_countdown":"¡Se acabó el tiempo!",
+      "finished_game":"¡El juego se ha terminado!",
+      "point":"Puntos",
+      "no_questions_message":"Please wait a bit"
+    },
+    "historicalView":{
+      "game":"Partida",
+      "points":"puntos",
+      "no_games_played":"No has jugado todavía"
     }
       
     

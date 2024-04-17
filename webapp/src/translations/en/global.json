@@ -1,12 +1,22 @@
 {
-    "home": {
-      "welcome": "Welcome to WIQ!",
-      "how_to_play": "How to play?",
-      "login": "Login",
-      "register": "Don't have an account? Register here."
-    },
+  "home": {
+    "welcome": "Welcome to WIQ!",
+    "how_to_play": "How to Play?",
+    "login": "Log In",
+    "register": "Don't have an account? Sign up here.",
+    "language": "The language has been changed to English",
+    "msg1": "Welcome to the knowledge challenge! Get ready to test your mind and demonstrate your skills. In this exciting game, you will face a series of questions that will test your knowledge on a variety of topics.",
+    "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?",
+    "clickOpen": "Click to continue",
+    "clickClose": "Click to close"
+  },
+
     "navBar": {
-      "title": "Know and win!"
+      "title": "Know and win!",
+      "en": "English",
+      "es": "Spanish",
+      "tk": "Turkish",
+      "language": "Language"
     },
     "instructions": {
         "title": "WIQ Instructions",
@@ -40,7 +50,17 @@
         "password_placeholder": "Password",
         "repeat_password_placeholder": "Repeat password",
         "register_button": "Register",
-        "login_link": "Do you have an account? Login here."
+        "login_link": "Do you have an account? Login here.",
+        "very_weak_password": "Very weak password",
+        "weak_password": "Weak password",
+        "good_password": "Good password",
+        "strong_password": "Strong password",
+        "error_passwords_no_match": "Passwords do not match",
+        "error_password_spaces": "Password cannot contain spaces",
+        "error_username_spaces": "Username cannot contain spaces",
+        "error_password_minimum_length": "Password must be at least 8 characters long",
+        "error_password_maximum_length": "Password cannot be over 64 characters long",
+        "error_username_in_use": "Username already in use"
       },
       "gameMenu":{
         "history_button":"View Historical Data",
@@ -49,8 +69,16 @@
       },
       "questionView":{
         "seconds":"seconds",
-        "question_counter":"Question counter :",
-        "end_countdown":"Time's up!"
+        "question_counter":"Question number ",
+        "end_countdown":"Time's up!",
+        "finished_game":"The game has finished!",
+        "point":"Points",
+        "no_questions_message":"Please wait a bit"
+      },
+      "historicalView":{
+        "game":"Game",
+        "points":"points",
+        "no_games_played":"No games played yet"
       }
 }
     

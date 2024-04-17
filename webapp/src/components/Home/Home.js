@@ -1,65 +1,56 @@
-import React from "react";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 import "../../custom.css";
-import {useTranslation} from "react-i18next";
-
 
 function Home() {
+  const { t } = useTranslation("global");
+  const [textContainerVisible, setTextContainerVisible] = useState(true);
 
-  const[t, i18n] = useTranslation("global");
+  const handleToggleOpen = () => {
+    setTextContainerVisible(false);
+  };
+
+  const handleToggleClose = () => {
+    setTextContainerVisible(true);
+  };
 
   return (
-    <div className="wrapper">
-      <h1 variant="h3" align="center">
-        {t("home.welcome")}
-      </h1>
-      <ButtonHowToPlay />
-      <p></p>
-      {/* Button to the login view */}
-      <ButtonLogin />
-      <p></p>
-      {/* Link to the registration view */}
-      <LinkRegister />
-      <p></p>
+    <div className="general">
+      <div className={`text-container ${textContainerVisible ? 'visible' : 'hidden'}`}>
+        <p>{t("home.msg1")}</p>
+        <p>{t("home.msg2")}</p>
+      </div>
+      <input className='input-home' type="radio" name="toggle" id="toggleOpen" value="toggleOpen" onChange={handleToggleOpen} />
+      <input className='input-home' type="radio" name="toggle" id="toggleClose" value="toggleClose" onChange={handleToggleClose} />
+      <figure id="welcomeMessage">
+        <figcaption>
+          <h1>
+            <label htmlFor="toggleOpen" title={t("home.clickOpen")}></label>
+            <label htmlFor="toggleClose" title={t("home.clickClose")}>✖</label>
+            <b>
+              W
+              <Link to="/instructions" title={t("home.how_to_play")}>
+                <img src="/instrucciones.png" alt="Instructions" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+            <b>
+              I
+              <Link to="/login" title={t("home.login")}>
+              <img src="/login.png" alt="Login" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+            <b>
+              Q
+              <Link to="/addUser" title={t("addUser.title")}>
+              <img src="/signup.png" alt="Add user" style={{ width: "100%", height: "100%" }} />
+              </Link>
+            </b>
+          </h1>
+        </figcaption>
+      </figure>
     </div>
   );
-
-
-  function ButtonHowToPlay() {
-    return (
-      <Link to="/instructions" className="button-instructions">
-          <Button>
-          {t("home.how_to_play")}
-        </Button>
-        </Link>
-    );
-  
-  }
-
-  
-function ButtonLogin() {
-  return (
-    <Link to="/login" className="button-login">
-        <Button> {t("home.login")}</Button>
-      </Link>
-  );
-
 }
-
-function LinkRegister() {
-  return (
-    <Link
-        to="/addUser"
-        component="button-register"
-        variant="body2"
-      >
-        {t("home.register")}
-      </Link>
-  );
-
-}
-}
-
 
 export default Home;
