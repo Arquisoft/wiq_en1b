@@ -8,16 +8,18 @@ class RankingRetriever{
     }
 
     async getTopTen() {
-        /*
+        
         try {
             const response = await axios.get(this.apiUrl + '/top10');//finding the top ten
             const receivedTopTenRanking = await response.data;
-            return receivedTopTenRanking.record;
+            console.log(receivedTopTenRanking)
+            return receivedTopTenRanking;
         } catch (error) {
             console.log(error)
             throw new Error(error);
             
-        }*/
+        }
+        /*
         return  {
           "usersCompetitiveStats": [
             {
@@ -71,24 +73,26 @@ class RankingRetriever{
               "totalCompetitiveGames": 11
             }
           ]
-        }
+        }*/
     }
     async getMyPosition(user){
-      /*
+      
         try {
             const response = await axios.get(this.apiUrl + '/'+user);//finding the top ten
             const receivedMyRanking = await response.data;
-            return receivedMyRanking.record;
+            console.log(receivedMyRanking)
+            return receivedMyRanking;
         } catch (error) {
             console.log(error)
             throw new Error(error);
             
-        }*/
+        }
+        /*
         return {
           "_id": "myUser",
           "totalPoints": 250,
           "totalCompetitiveGames": 1
-        };
+        };*/
     }
     
     

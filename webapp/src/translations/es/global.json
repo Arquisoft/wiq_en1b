@@ -82,12 +82,14 @@
       "play_custom":"Jugar personalizado",
       "rules_competi":"Jugar con todo tipo de preguntas siendo estas 5",
       "play_competi":"Jugar Competitivo",
+      "option_all":"Todas",
       "option_population":"Población",
       "option_capital":"Capital",
       "option_language":"Lenguaje",
       "option_size":"Extensión",
       "custo_game":"Crea una partida personalizada",
-      "competi_game":"Juega en modo Competitivo"
+      "competi_game":"Juega en modo Competitivo",
+      "randomize":"Randomiza Parámetros"
     },
     "ranking":{
       "ranking":"Ranking",

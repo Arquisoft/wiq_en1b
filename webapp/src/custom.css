@@ -1351,30 +1351,7 @@ h2{
   box-sizing: border-box;
 }
 
-.terminal-controls {
-  float: right;
-}
 
-.control {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-left: 0.4em;
-  border-radius: 50%;
-  background-color: #777;
-}
-
-.control.close {
-  background-color: #e33;
-}
-
-.control.minimize {
-  background-color: #ee0;
-}
-
-.control.maximize {
-  background-color: #0b0;
-}
 
 .terminal-title {
   float: left;
@@ -1394,6 +1371,25 @@ h2{
 
 /*--------------------------------------------------Configurator---------------------------------*/
 /* Estilo para el elemento select */
+.buttonRandomize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15em;
+  height: 45px;
+  background:#00b8ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  text-decoration: none;
+}
 .select-style {
   width: 200px;
   height: 35px;
@@ -1427,6 +1423,16 @@ h2{
   left: 50%;
   top: 50%;
 }
+/*
+.GameConfiguratorDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.GameConfiguratorDiv > *:not(:first-child):not(:nth-child(4)) {
+  text-align: left;
+}*/
+
 .hr-style {
   border: 0;
   border-top: 1px solid #8e888885; /* Color gris */

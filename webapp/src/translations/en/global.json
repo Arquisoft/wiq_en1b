@@ -79,12 +79,14 @@
         "play_custom":"Play Customized Game",
         "rules_competi":"Play with all kinds of questions and a quantity of 5",
         "play_competi":"Play competitive Game",
+        "option_all":"All",
         "option_population":"Population",
         "option_capital":"Capital",
         "option_language":"Language",
         "option_size":"Size",
         "custo_game":"Create custom game",
-        "competi_game":"Play Competitive"
+        "competi_game":"Play Competitive",
+        "randomize":"Randomize Parameters"
       },
       "ranking":{
         "ranking":"Ranking",

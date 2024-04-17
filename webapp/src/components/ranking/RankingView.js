@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RankingRetriever from './RankingRetriever';
 import {useTranslation} from "react-i18next";
 import Loader from "../fragments/Loader"
 import BackButton from '../fragments/BackButtonToGameMenu';
+import { useUserContext } from '../loginAndRegistration/UserContext'; 
+
 const retriever = new RankingRetriever();
 
 const RankingView = () => {
   const [rankingData, setRankingData] = useState(null);
   const [myRankingData, setMyRankingData] = useState(null);
   const[t] = useTranslation("global");
+  const {user} = useUserContext();
+
   const getRanking = async () => {
     try {
       var ranking = await retriever.getTopTen();
       setRankingData(ranking.usersCompetitiveStats);
-      var myrank = await retriever.getMyPosition();
+      var myrank = await retriever.getMyPosition("user");
       setMyRankingData(myrank);
       console.log(myrank)
     } catch (error) {
@@ -21,15 +25,15 @@ const RankingView = () => {
     }
   }
 
-  useEffect(() => {
+  if(rankingData==null){
     getRanking();
-  }, []); 
+  }
 
   return (
     <div className='table'>
       <BackButton t={t} />
       <h1>{t("ranking.ranking")}</h1>
-      {rankingData && rankingData.length > 0 ? (
+      {rankingData && rankingData.length > 0 && myRankingData ? (
         <table>
           <thead>
             <tr>
