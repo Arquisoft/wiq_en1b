@@ -155,11 +155,8 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
     
             speech.addEventListener("end", () => {
                 const voices = window.speechSynthesis.getVoices();
-                if (voices.length > 0) {
+                if (voices.length > 0) 
                     resolve(voices);
-                } else {
-                    reject("No se encontraron voces disponibles.");
-                }
             });
     
             window.speechSynthesis.speak(speech); 

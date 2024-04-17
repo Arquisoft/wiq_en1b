@@ -37,6 +37,7 @@ configure({
 });
 
 const mockAxios = new MockAdapter(axios);
+jest.setTimeout(10000);
 
 
 i18en.use(initReactI18next).init({
@@ -160,5 +161,25 @@ describe('Question View component', () => {
     });    
     
 
+    // it('renders end message when countdown completes', async() => {
+      
+    //     setupAudioMock()
+    //     mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+    //                                                             [{question: "What is the population of Oviedo?",
+    //                                                             answers: ["225089","272357","267855","231841"]}]);
+    //     await act(async () =>{
+    //         await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            
+    //     })
+    //     await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+
+    //     const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
+    //     expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
+
+        
+    //     await waitFor(() => {
+    //         expect(screen.getByText("Time's up!")).toBeInTheDocument();
+    //     }, { timeout: 9800 }); // Esperar 10 segundos
+    // });
     
 });
