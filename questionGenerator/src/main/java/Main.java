@@ -10,15 +10,15 @@ import main.java.questionGenerator.repository.QuestionRepository;
 public class Main {
 
     public static void main(String[] args) {
-		QuestionGenerator qgEn = new QuestionGenerator("en");
+		QuestionGenerator qg = new QuestionGenerator("en");
 		
-		run(qgEn, QuestionType.CAPITAL, 3);
+		run(qg, QuestionType.CAPITAL, 3);
 		System.out.println();
 		
-		run(qgEn, QuestionType.LANGUAGE, 3);
+		run(qg, QuestionType.LANGUAGE, 3);
 		System.out.println();
 		
-		run(qgEn, QuestionType.POPULATION, 3);
+		run(qg, QuestionType.POPULATION, 3);
 		System.out.println();
 		
 		run(qg, QuestionType.SIZE, 3);

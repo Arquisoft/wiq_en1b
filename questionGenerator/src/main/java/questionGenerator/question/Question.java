@@ -9,6 +9,7 @@ public class Question {
 
 	private String question;
     private List<String> answers;
+    private int number = -1;
     private String language;
     private QuestionType type;
 
@@ -43,12 +44,16 @@ public class Question {
     	answers.add(0, answer);
     }
 
+    public void setNumber(int number){
+        this.number = number;
+    }
 	
 	public JSONObject getJSON() {
 		JSONObject json = new JSONObject();
 		json.accumulate("question", question);
 		for(String s : answers)
 			json.accumulate("answers", s);
+        if(number != -1) json.accumulate("number", number); //Para que los tests pasen
         json.accumulate("language", language);
         json.accumulate("type", type);
 		return json;
