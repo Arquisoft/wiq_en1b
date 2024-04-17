@@ -10,6 +10,15 @@ import MockAdapter from 'axios-mock-adapter';
 import {configure} from '@testing-library/dom';
 
 
+// Función para configurar el mock de global.Audio
+const setupAudioMock = () => {
+    jest.spyOn(global, 'Audio').mockImplementation(() => ({
+        play: jest.fn(),
+        pause: jest.fn(),
+        loop: true
+    }));
+};
+
 // Mock the SpeechSynthesisUtterance and window.speechSynthesis APIs
 global.SpeechSynthesisUtterance = jest.fn(() => ({
     lang: '',
@@ -163,11 +172,8 @@ describe('Question View component', () => {
     });
 
     it('the tik-tak sounds', async () => {
-        jest.spyOn(global, 'Audio').mockImplementation(() => ({
-            play: jest.fn(),
-            pause: jest.fn(),
-            loop: true
-        }));
+        setupAudioMock();
+
         mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
@@ -180,11 +186,8 @@ describe('Question View component', () => {
     });
 
     it('the correct sound sounds', async () => {
-        jest.spyOn(global, 'Audio').mockImplementation(() => ({
-            play: jest.fn(),
-            pause: jest.fn(),
-            loop: true
-        }));
+        setupAudioMock();
+
         mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
@@ -201,11 +204,8 @@ describe('Question View component', () => {
     });
 
     it('the incorrect sound sounds', async () => {
-        jest.spyOn(global, 'Audio').mockImplementation(() => ({
-            play: jest.fn(),
-            pause: jest.fn(),
-            loop: true
-        }));
+        setupAudioMock();
+
         mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
                                                                 [{question: "What is the population of Oviedo?",
                                                                 answers: ["225089","272357","267855","231841"]}]);
