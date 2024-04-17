@@ -1,5 +1,6 @@
 package main.java.questionGenerator.generator.specificGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,5 +32,15 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 	protected List<String> decorateAnswers(List<String> answers) {
 		AnswerFormater formater = new EmbellishNumbersFormater();
 		return formater.format(answers);
+	}
+
+	@Override
+	protected List<String> getWrongAnswers(String rightAnswer) {
+		List<String> original = super.getWrongAnswers(rightAnswer);
+		List<String> result = new ArrayList<>();
+		for(String s :  original) {
+			result.add(String.valueOf((int) Float.parseFloat(s)));
+		}
+		return result;
 	}
 }
