@@ -3,7 +3,7 @@ import axios from 'axios';
 class RankingRetriever{
 
     constructor(){
-        this.apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000');
+        this.apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000')+ "/record/ranking";
         
     }
 
@@ -85,9 +85,9 @@ class RankingRetriever{
             
         }*/
         return {
-          "_id": "user",
-          "totalPoints": 1000,
-          "totalCompetitiveGames": 4
+          "_id": "myUser",
+          "totalPoints": 250,
+          "totalCompetitiveGames": 1
         };
     }
     
