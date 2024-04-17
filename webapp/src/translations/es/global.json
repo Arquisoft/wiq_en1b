@@ -59,6 +59,7 @@
      "gameMenu":{
       "history_button":"Ver Historial",
       "new_game_button":"Crear nuevo juego",
+      "view_ranking":"Ranking",
       "title":"Menú del Juego",
       "back":"Atrás"
     },"questionView":{
@@ -87,6 +88,13 @@
       "option_size":"Extensión",
       "custo_game":"Crea una partida personalizada",
       "competi_game":"Juega en modo Competitivo"
+    },
+    "ranking":{
+      "ranking":"Ranking",
+      "position":"Posición",
+      "username":"Username",
+      "points":"Puntos",
+      "num_games":"Nº juegos Competitivos"
     }
     
   }

@@ -55,6 +55,7 @@
       "gameMenu":{
         "history_button":"View Historical Data",
         "new_game_button":"Create New Game",
+        "view_ranking":"Ranking",
         "title":"Game Menu",
         "back":"Back"
       },
@@ -84,6 +85,13 @@
         "option_size":"Size",
         "custo_game":"Create custom game",
         "competi_game":"Play Competitive"
+      },
+      "ranking":{
+        "ranking":"Ranking",
+        "position":"Position",
+        "username":"Username",
+        "points":"Points",
+        "num_games":"Num Competitive games"
       }
 }
     

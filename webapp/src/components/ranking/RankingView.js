@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import RankingRetriever from './RankingRetriever';
+import {useTranslation} from "react-i18next";
+import Loader from "../fragments/Loader"
 const retriever = new RankingRetriever();
 
 const RankingView = () => {
   const [rankingData, setRankingData] = useState(null);
-
+  const [myRankingData, setMyRankingData] = useState(null);
+  const[t] = useTranslation("global");
   const getRanking = async () => {
     try {
-      console.log("caalling")
       var ranking = await retriever.getTopTen();
       setRankingData(ranking.usersCompetitiveStats);
-      console.log(ranking)
-      console.log(rankingData)
+      var myrank = await retriever.getMyPosition();
+      setMyRankingData(myrank);
+      console.log(myrank)
     } catch (error) {
       console.log(error);
     }
@@ -22,19 +25,16 @@ const RankingView = () => {
   }, []); 
 
   return (
-    <div>
-      <h1>Ranking</h1>
-      {console.log("DIV")}
-      {console.log(rankingData)}
+    <div className='table'>
+      <h1>{t("ranking.ranking")}</h1>
       {rankingData && rankingData.length > 0 ? (
-        
         <table>
           <thead>
             <tr>
-              <th>Position</th>
-              <th>Username</th>
-              <th>Points</th>
-              <th>Num of Games</th>
+              <th>{t("ranking.position")}</th>
+              <th>{t("ranking.username")}</th>
+              <th>{t("ranking.points")}</th>
+              <th>{t("ranking.num_games")}</th>
             </tr>
           </thead>
           <tbody>
@@ -46,10 +46,20 @@ const RankingView = () => {
                 <td>{user.totalCompetitiveGames}</td>
               </tr>
             ))}
+            {/* Blank row */}
+            <tr className="penultimate-row">
+              <td colSpan="4"></td>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>{myRankingData._id}</td>
+              <td>{myRankingData.totalPoints}</td>
+              <td>{myRankingData.totalCompetitiveGames}</td>
+            </tr>
           </tbody>
         </table>
       ) : (
-        <p>Loading...</p>
+        < Loader />
       )}
     </div>
   );

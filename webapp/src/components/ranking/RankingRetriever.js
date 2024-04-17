@@ -18,7 +18,6 @@ class RankingRetriever{
             throw new Error(error);
             
         }*/
-        console.log("getting top 10")
         return  {
           "usersCompetitiveStats": [
             {
@@ -73,6 +72,23 @@ class RankingRetriever{
             }
           ]
         }
+    }
+    async getMyPosition(user){
+      /*
+        try {
+            const response = await axios.get(this.apiUrl + '/'+user);//finding the top ten
+            const receivedMyRanking = await response.data;
+            return receivedMyRanking.record;
+        } catch (error) {
+            console.log(error)
+            throw new Error(error);
+            
+        }*/
+        return {
+          "_id": "user",
+          "totalPoints": 1000,
+          "totalCompetitiveGames": 4
+        };
     }
     
     

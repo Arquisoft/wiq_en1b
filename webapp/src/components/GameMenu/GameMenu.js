@@ -11,6 +11,7 @@ export default function GameMenu() {
       <h2>{t("gameMenu.title")}</h2>
       <ButtonNewGame t={t}  />
       <ButtonHistoricalData t={t} />
+      <ButtonRanking t={t} />
     </div>
   );
   }
@@ -20,6 +21,15 @@ export default function GameMenu() {
     return (
       <Link className="linkButton" to="/configurator">
         <h3>{t("gameMenu.new_game_button")}</h3>
+      </Link>
+    );
+  }
+
+  function ButtonRanking({ t }) {
+    return (
+      <Link className="linkButton"  to="/ranking">
+        <h3>{t("gameMenu.view_ranking")}</h3>
+        
       </Link>
     );
   }
