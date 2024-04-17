@@ -10,12 +10,24 @@ import MockAdapter from 'axios-mock-adapter';
 import {configure} from '@testing-library/dom';
 
 
+// Mock the SpeechSynthesisUtterance and window.speechSynthesis APIs
+global.SpeechSynthesisUtterance = jest.fn(() => ({
+    lang: '',
+    text: '',
+    addEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+}));
+
+global.window.speechSynthesis = {
+    getVoices: jest.fn(() => []),
+    speak: jest.fn(),
+};
+
 configure({
    testIdAttribute: 'data-value',
 });
 
 const mockAxios = new MockAdapter(axios);
-
 
 
 i18en.use(initReactI18next).init({
@@ -40,6 +52,26 @@ describe('Question View component', () => {
         // Wait for questions to load
         
     });
+
+     // Test for sound functionality
+     it('speaks the question when the speaker button is clicked', async () => {
+        const questionText = "What is the population of Oviedo?";
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: questionText,
+                                                                answers: ["225089","272357","267855","231841"]}]);
+        
+        await act(async () => {
+            render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+        });
+        
+        fireEvent.click(screen.getByText('🔊'));
+        
+        // Check if the SpeechSynthesisUtterance is called with the correct text
+        expect(global.SpeechSynthesisUtterance).toHaveBeenCalledWith();
+        
+       
+    });
+
     it('shows a question and answers',async () => {
        
         mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
