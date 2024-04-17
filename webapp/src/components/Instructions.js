@@ -1,7 +1,6 @@
 import React from 'react';
 import '../custom.css';
 import {useTranslation} from "react-i18next";
-import { Link } from "react-router-dom";
 
 
 
