@@ -20,8 +20,8 @@ function GameConfigurator(){
         <BackButtonToGameMenu t={t} />
         <h1>{t("gameConfigurator.game_config")}</h1>
         <h2>{t("gameConfigurator.custo_game")}</h2>
-        <label>{t("gameConfigurator.type_quest")}</label>
-        <select className="select-style" value={tipoPregunta} onChange={(e) => setTipoPregunta(e.target.value)}>
+        <label for="select">{t("gameConfigurator.type_quest")}</label>
+        <select id="select" className="select-style" value={tipoPregunta} onChange={(e) => setTipoPregunta(e.target.value)}>
           <option value="POPULATION">{t("gameConfigurator.option_population")}</option>
           <option value="CAPITAL">{t("gameConfigurator.option_capital")}</option>
           <option value="LANGUAGE">{t("gameConfigurator.option_language")}</option>
@@ -29,9 +29,9 @@ function GameConfigurator(){
         </select>
         <br></br>
   
-        <label>{t("gameConfigurator.num_quest")}</label>
+        <label for="spinner">{t("gameConfigurator.num_quest")}</label>
         {/* Spinner para seleccionar el número de preguntas */}
-        <input  className='spinner-style'
+        <input id="spinner" className='spinner-style'
           type="number" 
           value={numeroPreguntas} 
           onChange={(e) => setNumeroPreguntas(e.target.value)} 
