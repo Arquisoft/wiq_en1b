@@ -140,5 +140,90 @@ describe('Question View component', () => {
         const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
     });
+
+    it('shows colors to reveal false answer', async () => {
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: "What is the population of Oviedo?",
+                                                                answers: ["225089","272357","267855","231841"]}]);
+        await act(async () =>{
+            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            
+        })
+        await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+
+        fireEvent.click(screen.getAllByTestId('false')[0]);
+        // Esperar un segundo antes de continuar
+        await waitFor(() => {
+            // Clic en un botón de respuesta con data-value=true
+            const incorrectAnswerButton = screen.getAllByTestId('false')[0];
+            // Verificar que el botón tenga el color esperado
+            expect(incorrectAnswerButton).toHaveStyle('background-color: #FF6666');
+
+        }, { timeout: 1000 }); // Esperar 1 segundo
+    });
+
+    it('the tik-tak sounds', async () => {
+        jest.spyOn(global, 'Audio').mockImplementation(() => ({
+            play: jest.fn(),
+            pause: jest.fn(),
+            loop: true
+        }));
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: "What is the population of Oviedo?",
+                                                                answers: ["225089","272357","267855","231841"]}]);
+        await act(async () =>{
+            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            
+        })
+        await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+        expect(global.Audio).toHaveBeenCalledWith('/tictac.mp3');
+    });
+
+    it('the correct sound sounds', async () => {
+        jest.spyOn(global, 'Audio').mockImplementation(() => ({
+            play: jest.fn(),
+            pause: jest.fn(),
+            loop: true
+        }));
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: "What is the population of Oviedo?",
+                                                                answers: ["225089","272357","267855","231841"]}]);
+        await act(async () =>{
+            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            
+        })
+        await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+
+        fireEvent.click(screen.getByTestId('true'));//clicamos en la respuesta correcta
+     
+        expect(global.Audio).toHaveBeenCalledWith('/correct.mp3');
+
+    });
+
+    it('the incorrect sound sounds', async () => {
+        jest.spyOn(global, 'Audio').mockImplementation(() => ({
+            play: jest.fn(),
+            pause: jest.fn(),
+            loop: true
+        }));
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+                                                                [{question: "What is the population of Oviedo?",
+                                                                answers: ["225089","272357","267855","231841"]}]);
+        await act(async () =>{
+            await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            
+        })
+        await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
+
+
+        fireEvent.click(screen.getAllByTestId('false')[1]);//clicamos en la respuesta incorrecta
+     
+        expect(global.Audio).toHaveBeenCalledWith('/incorrect.mp3');
+
+    });
+    
+   
+   
+    
     
 });
