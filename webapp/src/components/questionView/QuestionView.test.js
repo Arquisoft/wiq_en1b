@@ -159,4 +159,6 @@ describe('Question View component', () => {
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
     });    
     
+
+    
 });

@@ -15,7 +15,7 @@ class QuestionGenerator{
         //     //const receivedQuestions = await response.json();
 
         //     //Mockup
-        //     console.log("type: "+type+" amount: "+amount)
+        //     // console.log("type: "+type+" amount: "+amount)
         //     const receivedQuestions = JSON.parse('{"0":{"question":"¿Cuál es la población de Oviedo?","answers":["225089","191325","220587","121548"]},'+
         //     '"1":{"question":"¿Which is the population of Gijon?","answers":["275274","159658","233982","305554"]},'+
         //     '"2":{"question":"¿Cuál es la población de Avilés?","answers":["82568","115595","41284","122200"]},'+

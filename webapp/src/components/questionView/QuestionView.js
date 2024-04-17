@@ -135,8 +135,8 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
         console.log(language);
         getVoicesForLanguage(language)
             .then(voices => {
-                const voice = voices.find(voice => voice.lang === language);
-                speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
+                // const voice = voices.find(voice => voice.lang === language);
+                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
                 window.speechSynthesis.speak(speech);
             })
             .catch(error => {
