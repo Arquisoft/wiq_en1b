@@ -1,9 +1,9 @@
 package main.java.questionGenerator.generator.specificGenerators;
 
-import main.java.questionGenerator.generator.AnswersAreEntities;
+import main.java.questionGenerator.generator.AnswersAreEntitiesWithSubProperties;
 import main.java.questionGenerator.question.QuestionType;
 
-public class HeadOfGovernmentGenerator extends AnswersAreEntities {
+public class HeadOfGovernmentGenerator extends AnswersAreEntitiesWithSubProperties {
 	
 	private final static String PROPERTY = "P6";
 	private final static String PROPERTY_TO_CHECK = "P582";
