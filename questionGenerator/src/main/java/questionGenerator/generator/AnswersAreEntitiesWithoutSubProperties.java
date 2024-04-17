@@ -19,7 +19,7 @@ public abstract class AnswersAreEntitiesWithoutSubProperties extends AbstractAns
 			throw new Exception("Claims does not have the property " + super.getPropertyId());
 		}
 		List<Statement> stms = claims.get(getPropertyId());
-		Statement stm = claims.get(getPropertyId()).get(stms.size()-1);
+		Statement stm = stms.get(stms.size()-1);
 		return processRightAnswer(stm);
 	}
 
