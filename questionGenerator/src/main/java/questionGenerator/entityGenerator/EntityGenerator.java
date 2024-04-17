@@ -61,6 +61,9 @@ public class EntityGenerator {
 		case HEAD_OF_GOVERMENT:
 			property = "6";
 			break;
+		case DIRECTOR:
+			property = "57";
+			break;
 		}
 	}
 	

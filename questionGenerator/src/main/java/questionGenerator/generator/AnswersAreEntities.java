@@ -52,7 +52,7 @@ public abstract class AnswersAreEntities extends AbstractGenerator {
 		return null;
 	}
 	
-	private String processRightAnswer(Statement st) {
+	protected String processRightAnswer(Statement st) {
 		String entity = getIdFromLink(st.getValue().toString());
 		String answer = "";
 		try {
