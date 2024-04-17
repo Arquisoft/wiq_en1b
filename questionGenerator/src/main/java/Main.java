@@ -32,6 +32,11 @@ public class Main {
 	
 	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
 			List<Question> questions = qg.generateQuestions(type, numberOfQuestions);
+			for(int i=0; i<questions.size(); i++) {
+				Question question = questions.get(i);
+				question.setNumber(i);
+				System.out.println(question.getJSON().toString());
+			}
 			QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
 	}
 }

@@ -8,7 +8,7 @@ import java.util.Random;
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
 import main.java.questionGenerator.generator.AbstractGenerator;
 import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator;
-import main.java.questionGenerator.generator.specificGenerators.DirectorGenerator;
+import main.java.questionGenerator.generator.specificGenerators.FilmDirectorGenerator;
 import main.java.questionGenerator.generator.specificGenerators.HeadOfGovernmentGenerator;
 import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
 import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
@@ -45,6 +45,13 @@ public class QuestionGenerator {
 			try {
 				q = generator.generate(entity);
 				questions.add(q);
+			} catch(RuntimeException e) {
+				/*
+				 * Sometimes not all the parameters for generating can be passed in the query, so this 
+				 * acts as failsave to avoid generating undesired questions, while not overloading the 
+				 * screen with error messages if not wanted
+				 */
+				//System.err.println(e.getMessage());
 			} catch (Exception e) {
 				//If there's any problem generating the question we jump to the next one
 				System.err.println(e.getMessage());
@@ -78,7 +85,7 @@ public class QuestionGenerator {
 				break;
 			}
 			case DIRECTOR: {
-				generator = new DirectorGenerator();
+				generator = new FilmDirectorGenerator();
 				break;
 			}
 		}
