@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
-import main.java.questionGenerator.generator.AbstractGenerator;
+import main.java.questionGenerator.generator.Generator;
 import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator;
 import main.java.questionGenerator.generator.specificGenerators.FilmDirectorGenerator;
 import main.java.questionGenerator.generator.specificGenerators.HeadOfGovernmentGenerator;
@@ -18,7 +18,7 @@ import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionGenerator {
 	
-	private AbstractGenerator generator;
+	private Generator generator;
 	private String languageCode;
 	
 	public QuestionGenerator(String languageCode){

@@ -20,5 +20,7 @@ public interface Generator {
 	List<String> decorateAnswers(List<String> answers);
  
 	String getPropertyId();
+	
+	void setLocalization(String languageCode);
 
 }
