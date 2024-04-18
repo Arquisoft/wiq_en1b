@@ -8,7 +8,7 @@ import java.util.Random;
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
 import main.java.questionGenerator.generator.Generator;
 import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator;
-import main.java.questionGenerator.generator.specificGenerators.FilmDirectorGenerator;
+import main.java.questionGenerator.generator.specificGenerators.DirectorGenerator;
 import main.java.questionGenerator.generator.specificGenerators.HeadOfGovernmentGenerator;
 import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
 import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
@@ -85,7 +85,7 @@ public class QuestionGenerator {
 				break;
 			}
 			case DIRECTOR: {
-				generator = new FilmDirectorGenerator();
+				generator = new DirectorGenerator();
 				break;
 			}
 		}

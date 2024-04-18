@@ -10,12 +10,9 @@ import main.java.questionGenerator.question.QuestionType;
 public abstract class AnswersAreEntitiesWithoutSubProperties extends AbstractAnswersAreEntites {
 
 	private static final String INSTANCE_OF_PROPERTY = "P31";
-	private String instanceOf;
 
-	public AnswersAreEntitiesWithoutSubProperties(String propertyId, QuestionType type, String message, 
-			String instanceOfPropertyValue) {
+	public AnswersAreEntitiesWithoutSubProperties(String propertyId, QuestionType type, String message) {
 		super(propertyId, type, message);
-		this.instanceOf = instanceOfPropertyValue;
 	}
 
 	@Override
@@ -23,15 +20,17 @@ public abstract class AnswersAreEntitiesWithoutSubProperties extends AbstractAns
 		if(claims.get(super.getPropertyId())==null) {
 			throw new Exception("Claims does not have the property " + super.getPropertyId());
 		}
-
-		String value = processRightAnswer(claims.get(INSTANCE_OF_PROPERTY).get(0));
-		if(!value.equals(instanceOf)) {
-			throw new RuntimeException("The entity is not a " + instanceOf);
-		}
 		
 		List<Statement> stms = claims.get(getPropertyId());
 		Statement stm = stms.get(stms.size()-1);
 		return processRightAnswer(stm);
+	}
+
+	@Override
+	public String getQuestion(String name, Map<String, List<Statement>> claims) {
+		String value = processRightAnswer(claims.get(INSTANCE_OF_PROPERTY).get(0));
+		String q = getMessages().getString(getMessage());
+		return String.format(q, value, name);
 	}
 
 }
