@@ -11,6 +11,7 @@ import main.java.questionGenerator.generator.answersAreEntites.withSubProperties
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.HeadOfGovernmentGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.LanguageGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogameDeveloperGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogamePublisherGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withoutSubProperties.DirectorGenerator;
 import main.java.questionGenerator.generator.answersAreNotEntites.PopulationGenerator;
 import main.java.questionGenerator.generator.answersAreNotEntites.SizeGenerator;
@@ -91,6 +92,10 @@ public class QuestionGenerator {
 			}
 			case VIDEOGAME_DEVELOPER: {
 				generator = new VideogameDeveloperGenerator();
+				break;
+			}
+			case VIDEOGAME_PUBLISHER: {
+				generator = new VideogamePublisherGenerator();
 				break;
 			}
 		}
