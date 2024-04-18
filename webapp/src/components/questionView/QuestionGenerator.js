@@ -9,7 +9,7 @@ class QuestionGenerator{
     }
 
     async generateQuestions(lang, type, amount) {
-        
+        /*
         try {
             //const response = await fetch(this.apiUrl);
             //const receivedQuestions = await response.json();
@@ -35,8 +35,8 @@ class QuestionGenerator{
             throw new Error(error);
         }
         
+        */
         
-        /*
         try {
             let response;
             if(type==="COMPETITIVE"){
@@ -55,7 +55,7 @@ class QuestionGenerator{
         } catch (error) {
             throw new Error(error);
         }
-        */
+        
     }
 
 }
