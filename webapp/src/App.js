@@ -29,7 +29,6 @@ function App() {
               <Route path="/menu" element={<GameMenu />} />
               <Route path="/questions" element={<QuestionView />} />
               <Route path="/historical" element={<HistoricalView />} />
-              {/* Esta ruta atrapará cualquier ruta no definida */}
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
