@@ -17,7 +17,7 @@ const RankingView = () => {
     try {
       var ranking = await retriever.getTopTen();
       setRankingData(ranking.usersCompetitiveStats);
-      var myrank = await retriever.getMyPosition(user.username);
+      var myrank = await retriever.getMyPosition("user.username");
       setMyRankingData(myrank);
       console.log(myrank)
     } catch (error) {
@@ -32,7 +32,7 @@ const RankingView = () => {
   return (
     <div className='table'>
       <BackButton t={t} />
-      <h1>{t("ranking.ranking")}</h1>
+      <h1>{t("ranking.ranking")}🏅</h1>
       {rankingData && rankingData.length > 0 && myRankingData ? (
         <table>
           <thead>
