@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue;
+import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
@@ -63,14 +64,16 @@ public abstract class AbstractGenerator implements Generator {
 			}
 		}
 
+		Map<String, MonolingualTextValue> labels = idi.getLabels();
+		Map<String, List<Statement>> claims = idi.getJsonClaims();
 		
-		String name = getName(idi.getLabels());
+		String name = getName(labels);
 		
 		//get the question
-		String question = getQuestion(name);
+		String question = getQuestion(name, claims);
 		
 		//get the right answer
-		String rightAnswer = getRightAnswer(idi.getJsonClaims());
+		String rightAnswer = getRightAnswer(claims);
 		
 		//get the wrong answers
 		List<String> answers = getWrongAnswers(rightAnswer);
@@ -88,7 +91,7 @@ public abstract class AbstractGenerator implements Generator {
 		return mtv.getText();
 	}
 	
-	public String getQuestion(String name) {
+	public String getQuestion(String name, Map<String, List<Statement>> claims) {
 		String q = getMessages().getString(message);
 		return String.format(q, name);
 	}
@@ -134,6 +137,10 @@ public abstract class AbstractGenerator implements Generator {
 		this.language = languageCode;
 		this.localization = new Locale(languageCode);
 		this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+	}
+
+	public String getMessage(){
+		return message;
 	}
 
 }

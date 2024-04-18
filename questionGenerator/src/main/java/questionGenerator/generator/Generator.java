@@ -11,7 +11,7 @@ public interface Generator {
 
     Question generate(String id) throws Exception;
 	
-	String getQuestion(String name);
+	String getQuestion(String name, Map<String, List<Statement>> claims);
 	
 	String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
 	
