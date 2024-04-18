@@ -1,4 +1,4 @@
-package main.java.questionGenerator.generator;
+package main.java.questionGenerator.generator.answersAreEntites;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
+import main.java.questionGenerator.generator.AbstractGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
 

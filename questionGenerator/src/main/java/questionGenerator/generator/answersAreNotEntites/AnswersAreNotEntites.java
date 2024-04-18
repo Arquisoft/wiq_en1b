@@ -1,14 +1,14 @@
-package main.java.questionGenerator.generator;
+package main.java.questionGenerator.generator.answersAreNotEntites;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import main.java.questionGenerator.generator.AbstractGenerator;
 import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AnswersAreNotEntites extends AbstractGenerator{
 
-    //Open to changes if needed.
     public AnswersAreNotEntites(String propertyId, QuestionType type, String message) {
         super(propertyId, type, message);
     }

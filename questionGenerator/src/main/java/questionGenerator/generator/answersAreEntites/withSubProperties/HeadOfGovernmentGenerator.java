@@ -1,6 +1,5 @@
-package main.java.questionGenerator.generator.specificGenerators;
+package main.java.questionGenerator.generator.answersAreEntites.withSubProperties;
 
-import main.java.questionGenerator.generator.AnswersAreEntitiesWithSubProperties;
 import main.java.questionGenerator.question.QuestionType;
 
 public class HeadOfGovernmentGenerator extends AnswersAreEntitiesWithSubProperties {

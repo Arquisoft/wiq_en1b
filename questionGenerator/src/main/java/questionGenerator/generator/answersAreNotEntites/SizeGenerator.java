@@ -1,4 +1,4 @@
-package main.java.questionGenerator.generator.specificGenerators;
+package main.java.questionGenerator.generator.answersAreNotEntites;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,6 @@ import java.util.Map;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
-import main.java.questionGenerator.generator.AnswersAreNotEntites;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.question.answers.AnswerFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;

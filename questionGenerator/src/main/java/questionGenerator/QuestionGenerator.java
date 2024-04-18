@@ -7,12 +7,12 @@ import java.util.Random;
 
 import main.java.questionGenerator.entityGenerator.EntityGenerator;
 import main.java.questionGenerator.generator.Generator;
-import main.java.questionGenerator.generator.specificGenerators.CapitalGenerator;
-import main.java.questionGenerator.generator.specificGenerators.DirectorGenerator;
-import main.java.questionGenerator.generator.specificGenerators.HeadOfGovernmentGenerator;
-import main.java.questionGenerator.generator.specificGenerators.LanguageGenerator;
-import main.java.questionGenerator.generator.specificGenerators.PopulationGenerator;
-import main.java.questionGenerator.generator.specificGenerators.SizeGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.CapitalGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.HeadOfGovernmentGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.LanguageGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withoutSubProperties.DirectorGenerator;
+import main.java.questionGenerator.generator.answersAreNotEntites.PopulationGenerator;
+import main.java.questionGenerator.generator.answersAreNotEntites.SizeGenerator;
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 

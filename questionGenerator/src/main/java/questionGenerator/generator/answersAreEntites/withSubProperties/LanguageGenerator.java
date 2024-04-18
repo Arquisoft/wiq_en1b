@@ -1,8 +1,7 @@
-package main.java.questionGenerator.generator.specificGenerators;
+package main.java.questionGenerator.generator.answersAreEntites.withSubProperties;
 
 import java.util.List;
 
-import main.java.questionGenerator.generator.AnswersAreEntitiesWithSubProperties;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.question.answers.AnswerFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.CapitalLetersFormater;

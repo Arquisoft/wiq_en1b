@@ -1,4 +1,4 @@
-package main.java.questionGenerator.generator;
+package main.java.questionGenerator.generator.answersAreEntites.withSubProperties;
 
 import java.util.List;
 import java.util.Map;
@@ -7,6 +7,7 @@ import org.wikidata.wdtk.datamodel.interfaces.Snak;
 import org.wikidata.wdtk.datamodel.interfaces.SnakGroup;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 
+import main.java.questionGenerator.generator.answersAreEntites.AbstractAnswersAreEntites;
 import main.java.questionGenerator.question.QuestionType;
 
 public abstract class AnswersAreEntitiesWithSubProperties extends AbstractAnswersAreEntites {

@@ -1,6 +1,5 @@
-package main.java.questionGenerator.generator.specificGenerators;
+package main.java.questionGenerator.generator.answersAreEntites.withoutSubProperties;
 
-import main.java.questionGenerator.generator.AnswersAreEntitiesWithoutSubProperties;
 import main.java.questionGenerator.question.QuestionType;
 
 public class DirectorGenerator extends AnswersAreEntitiesWithoutSubProperties{
