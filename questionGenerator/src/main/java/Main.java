@@ -13,20 +13,15 @@ public class Main {
 		QuestionGenerator qg = new QuestionGenerator("en");
 		
 		run(qg, QuestionType.CAPITAL, 3);
-		
 		run(qg, QuestionType.LANGUAGE, 3);
-		
 		run(qg, QuestionType.POPULATION, 3);
-		
 		run(qg, QuestionType.SIZE, 3);
-
 		run(qg, QuestionType.HEAD_OF_GOVERMENT, 3);
-
 		run(qg, QuestionType.DIRECTOR, 3);
-
 		run(qg, QuestionType.VIDEOGAME_DEVELOPER, 3);
-
 		run(qg, QuestionType.VIDEOGAME_PUBLISHER, 3);
+		run(qg, QuestionType.VIDEOGAME_GENRE, 3);
+
 	}
 	
 	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
