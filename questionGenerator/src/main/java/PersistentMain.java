@@ -43,6 +43,7 @@ public class PersistentMain {
 		questions.addAll(run(qg, QuestionType.POPULATION, 50));
 		questions.addAll(run(qg, QuestionType.SIZE, 50));
 		questions.addAll(run(qg, QuestionType.HEAD_OF_GOVERMENT, 50));
+		questions.addAll(run(qg, QuestionType.DIRECTOR, 50));
 		return questions;
 	}
 	
