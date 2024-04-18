@@ -31,7 +31,7 @@ public class QuestionGenerator {
 		List<Question> questions = new ArrayList<>();
 		List<String> entites = new ArrayList<>();
 		try {
-			entites = EntityGenerator.getEntities(type, 100);
+			entites = EntityGenerator.getEntities(type, 100, generator.getPropertyId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

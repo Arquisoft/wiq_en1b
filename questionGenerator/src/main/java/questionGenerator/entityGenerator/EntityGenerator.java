@@ -15,15 +15,13 @@ public class EntityGenerator {
     private static final String PRE_URL = "https://www.wikidata.org/w/api.php?action=query&format=json&"
         + "list=backlinks&formatversion=2&";
 	
-	private static String property = "";
-	private static final String PROPERTY_URL = "bltitle=Property%3AP";
+	private static final String PROPERTY_URL = "bltitle=Property%3A";
 	
 	private static final String POST_URL = "&blnamespace=0&";
 	
 	private static final String LIMIT = "bllimit=";
 	
-	public static List<String> getEntities(QuestionType type, int size) throws IOException{
-		propertyFactory(type);
+	public static List<String> getEntities(QuestionType type, int size, String property) throws IOException{
 		URL url = new URL(PRE_URL+PROPERTY_URL+property+POST_URL+LIMIT+size);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
@@ -42,29 +40,6 @@ public class EntityGenerator {
 		List<String> result = extractEntities(json);
 		
 		return result;
-	}
-	
-	private static void propertyFactory(QuestionType type) {
-		switch (type) {
-		case CAPITAL:
-			property = "36";
-			break;
-		case LANGUAGE:
-			property = "37";
-			break;
-		case POPULATION:
-			property = "1082";
-			break;
-		case SIZE:
-			property = "2046";
-			break;
-		case HEAD_OF_GOVERMENT:
-			property = "6";
-			break;
-		case DIRECTOR:
-			property = "57";
-			break;
-		}
 	}
 	
 	private static List<String> extractEntities(String json){
