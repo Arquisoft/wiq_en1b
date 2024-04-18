@@ -44,6 +44,9 @@ public class PersistentMain {
 		questions.addAll(run(qg, QuestionType.SIZE, 50));
 		questions.addAll(run(qg, QuestionType.HEAD_OF_GOVERMENT, 50));
 		questions.addAll(run(qg, QuestionType.DIRECTOR, 50));
+		questions.addAll(run(qg, QuestionType.VIDEOGAME_DEVELOPER, 50));
+		questions.addAll(run(qg, QuestionType.VIDEOGAME_PUBLISHER, 50));
+		questions.addAll(run(qg, QuestionType.VIDEOGAME_GENRE, 50));
 		return questions;
 	}
 	
