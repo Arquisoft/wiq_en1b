@@ -21,7 +21,7 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 	}
 
 	@Override
-	public String getRightAnswer(Map<String, List<Statement>> claims) {
+	public String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) {
 		List<Statement> statements = claims.get(PROPERTY);
 		Value v = statements.get(statements.size()-1).getValue();
 		return v.toString();

@@ -40,7 +40,7 @@ public abstract class AbstractAnswersAreEntites extends AbstractGenerator{
 				return null;
 			}
 		}
-		return getRightAnswer(idi.getJsonClaims());
+		return getRightAnswer(idi.getJsonClaims(), getPropertyId());
 	}
 
 	@Override

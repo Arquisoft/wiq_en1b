@@ -73,7 +73,7 @@ public abstract class AbstractGenerator implements Generator {
 		String question = getQuestion(name, claims);
 		
 		//get the right answer
-		String rightAnswer = getRightAnswer(claims);
+		String rightAnswer = getRightAnswer(claims, propertyId);
 		
 		//get the wrong answers
 		List<String> answers = getWrongAnswers(rightAnswer);

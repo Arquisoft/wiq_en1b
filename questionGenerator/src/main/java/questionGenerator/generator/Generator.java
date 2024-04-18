@@ -13,7 +13,7 @@ public interface Generator {
 	
 	String getQuestion(String name, Map<String, List<Statement>> claims);
 	
-	String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
+	String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) throws Exception;
 	
 	List<String> getWrongAnswers(String rightAnswer) throws Exception;
 	

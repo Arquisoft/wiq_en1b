@@ -21,7 +21,7 @@ public class SizeGenerator extends AnswersAreNotEntites {
 	}
 
 	@Override
-	public String getRightAnswer(Map<String, List<Statement>> claims) {
+	public String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) {
 		Value v = claims.get(PROPERTY).get(0).getValue();
 		return getRightAnswerEntity(v.toString());
 	}
