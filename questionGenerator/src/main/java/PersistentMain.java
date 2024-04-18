@@ -16,6 +16,15 @@ public class PersistentMain {
 	
 	private static QuestionGenerator[] generators = {new QuestionGenerator("en"), new QuestionGenerator("es")};
 
+	private static QuestionType[] types = {QuestionType.CAPITAL, QuestionType.LANGUAGE, QuestionType.POPULATION, 
+		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT, QuestionType.VIDEOGAME_DEVELOPER, 
+		QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE};
+
+	private static final int numberOfQuestions = 50;
+	//	private static final int numberOfQuestions = 100;
+	//	private static final int numberOfQuestions = 3;
+	//	private static final int numberOfQuestions = 1;
+
 	public static void main(String[] args) {
 		while(true) {
 			List<Question> questions = generate();
@@ -25,28 +34,14 @@ public class PersistentMain {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
 		}
 	}
 	
 	private static List<Question> generate() {
 		List<Question> questions = new ArrayList<Question>();
 		for(QuestionGenerator qg : generators)
-			questions.addAll(generateQuestions(qg));
-		return questions;
-	}
-	
-	private static List<Question> generateQuestions(QuestionGenerator qg) {
-		List<Question> questions = new ArrayList<>();
-		questions.addAll(run(qg, QuestionType.CAPITAL, 50));
-		questions.addAll(run(qg, QuestionType.LANGUAGE, 50));
-		questions.addAll(run(qg, QuestionType.POPULATION, 50));
-		questions.addAll(run(qg, QuestionType.SIZE, 50));
-		questions.addAll(run(qg, QuestionType.HEAD_OF_GOVERMENT, 50));
-		questions.addAll(run(qg, QuestionType.DIRECTOR, 50));
-		questions.addAll(run(qg, QuestionType.VIDEOGAME_DEVELOPER, 50));
-		questions.addAll(run(qg, QuestionType.VIDEOGAME_PUBLISHER, 50));
-		questions.addAll(run(qg, QuestionType.VIDEOGAME_GENRE, 50));
+			for(QuestionType type: types)
+				questions.addAll(run(qg, type, numberOfQuestions));
 		return questions;
 	}
 	
