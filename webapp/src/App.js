@@ -2,6 +2,7 @@ import React from 'react';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
+import ErrorPage from './components/fragments/ErrorPage';
 import Home from './components/Home/Home';
 import Login from './components/loginAndRegistration/Login';
 import AddUser from './components/loginAndRegistration/AddUser';
@@ -14,7 +15,7 @@ import { UserContextProvider } from './components/loginAndRegistration/UserConte
 
 function App() {
   return (
-    <Router className='roter'>
+    <Router>
       <UserContextProvider>
         <div style={{ position: 'relative', minHeight: '100vh' }}>
           <Navbar style={{ width: '100%' }} /> 
@@ -28,6 +29,8 @@ function App() {
               <Route path="/menu" element={<GameMenu />} />
               <Route path="/questions" element={<QuestionView />} />
               <Route path="/historical" element={<HistoricalView />} />
+              {/* Esta ruta atrapará cualquier ruta no definida */}
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
         </div>

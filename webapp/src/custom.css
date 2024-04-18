@@ -4,6 +4,17 @@
   width: 100%;
 }
 
+/*---------------------------Error---------------------------*/
+.error {
+  color: red;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sorry {
+  font-size: 18px;
+}
+
 /*---------------------------Navbar---------------------------*/
 .navbar-container {
   display: flex;

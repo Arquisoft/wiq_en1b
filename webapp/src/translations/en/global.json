@@ -69,7 +69,11 @@
         "game":"Game",
         "points":"points",
         "no_games_played":"No games played yet"
-      }
+      },
+      "error":{
+        "error":"Error",
+        "sorry":"We're sorry, this page does not exist. Don't be angry, I'm just a little cat."
+        }
 }
     
     
