@@ -15,6 +15,14 @@
   font-size: 18px;
 }
 
+
+.error-body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+
 /*---------------------------Navbar---------------------------*/
 .navbar-container {
   display: flex;

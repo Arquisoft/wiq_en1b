@@ -6,11 +6,10 @@ const ErrorPage = () => {
   
 
   return (
-    <div>
+    <div className='error-body'> 
       <h1 className='error'>{t("error.error")}</h1>
       <p className='sorry'>{t("error.sorry")}</p>
       <img src="/gatotriste5.jpg" alt="Cat crying"  />    
-   
     </div>
   );
 }
