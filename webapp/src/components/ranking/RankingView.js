@@ -17,7 +17,7 @@ const RankingView = () => {
     try {
       var ranking = await retriever.getTopTen();
       setRankingData(ranking.usersCompetitiveStats);
-      var myrank = await retriever.getMyPosition("user");
+      var myrank = await retriever.getMyPosition(user.username);
       setMyRankingData(myrank);
       console.log(myrank)
     } catch (error) {
