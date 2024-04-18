@@ -21,11 +21,11 @@ public abstract class AnswersAreEntitiesWithSubProperties extends AbstractAnswer
 
 	@Override
 	public String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) throws Exception {
-		if(claims.get(super.getPropertyId())==null) {
-			throw new Exception("Claims does not have the property " + super.getPropertyId());
+		if(claims.get(propertyId)==null) {
+			throw new Exception("Claims does not have the property " + propertyId);
 		}
 		
-		for(Statement st : claims.get(super.getPropertyId())) {
+		for(Statement st : claims.get(propertyId)) {
 			boolean valid = true;
 			for(SnakGroup sg : st.getQualifiers()) {
 				for(Snak s : sg.getSnaks()) {

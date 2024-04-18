@@ -18,11 +18,11 @@ public abstract class AnswersAreEntitiesWithoutSubProperties extends AbstractAns
 
 	@Override
 	public String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) throws Exception {
-		if(claims.get(super.getPropertyId())==null) {
-			throw new Exception("Claims does not have the property " + super.getPropertyId());
+		if(claims.get(propertyId)==null) {
+			throw new Exception("Claims does not have the property " + propertyId);
 		}
 		
-		List<Statement> stms = claims.get(getPropertyId());
+		List<Statement> stms = claims.get(propertyId);
 		Statement stm = stms.get(stms.size()-1);
 		return processRightAnswer(stm);
 	}
