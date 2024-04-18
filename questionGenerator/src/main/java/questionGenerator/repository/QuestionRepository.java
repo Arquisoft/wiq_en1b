@@ -1,5 +1,6 @@
 package main.java.questionGenerator.repository;
 
+import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -11,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
-
-import main.java.questionGenerator.question.Question;
 
 public class QuestionRepository {
 
@@ -78,9 +77,33 @@ public class QuestionRepository {
         }
     }
 
-    public boolean populate(List<Question> questions) {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean populate(List<String> questions) {
+		try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
+			MongoDatabase database = mongoClient.getDatabase("questions");
+			
+			ClientSession session = mongoClient.startSession();
+			session.startTransaction();
+			
+			MongoCollection<Document> collection = database.getCollection("questions");
+			
+			collection.deleteMany(Document.parse("{}"));
+			
+			List<Document> documents = new ArrayList<>();
+            for (String questionJSON : questions) {
+                documents.add(Document.parse(questionJSON));
+            }
+            
+            collection.insertMany(session, documents);
+            
+            session.commitTransaction();
+        	session.close();
+            
+            return true;
+			
+		} catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
 		
 	}
     

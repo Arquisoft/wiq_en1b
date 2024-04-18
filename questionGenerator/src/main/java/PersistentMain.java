@@ -27,7 +27,7 @@ public class PersistentMain {
 
 	public static void main(String[] args) {
 		while(true) {
-			List<Question> questions = generate();
+			List<String> questions = generate().stream().map(q -> q.getJSON().toString()).toList();
 			QuestionRepository.getInstance().populate(questions);
 			try {
 				Thread.sleep(timeSkip);
