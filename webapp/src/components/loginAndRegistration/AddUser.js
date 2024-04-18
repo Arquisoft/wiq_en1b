@@ -148,6 +148,8 @@ const AddUser = () => {
           <button type="submit">{t("addUser.register_button")}</button>
 
           <LinkLogin />
+
+          
       </form>
     </div>
     </div>
