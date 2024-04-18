@@ -12,22 +12,25 @@ public class Main {
     public static void main(String[] args) {
 		QuestionGenerator qg = new QuestionGenerator("en");
 		
-		run(qg, QuestionType.CAPITAL, 3);
-		System.out.println();
+		// run(qg, QuestionType.CAPITAL, 3);
+		// System.out.println();
 		
-		run(qg, QuestionType.LANGUAGE, 3);
-		System.out.println();
+		// run(qg, QuestionType.LANGUAGE, 3);
+		// System.out.println();
 		
-		run(qg, QuestionType.POPULATION, 3);
-		System.out.println();
+		// run(qg, QuestionType.POPULATION, 3);
+		// System.out.println();
 		
-		run(qg, QuestionType.SIZE, 3);
-		System.out.println();
+		// run(qg, QuestionType.SIZE, 3);
+		// System.out.println();
 
-		run(qg, QuestionType.HEAD_OF_GOVERMENT, 3);
-		System.out.println();
+		// run(qg, QuestionType.HEAD_OF_GOVERMENT, 3);
+		// System.out.println();
 
-		run(qg, QuestionType.DIRECTOR, 3);
+		// run(qg, QuestionType.DIRECTOR, 3);
+		// System.out.println();
+
+		run(qg, QuestionType.VIDEOGAME_DEVELOPER, 3);
 	}
 	
 	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
@@ -37,6 +40,6 @@ public class Main {
 				question.setNumber(i);
 				System.out.println(question.getJSON().toString());
 			}
-			QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
+			// QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
 	}
 }
