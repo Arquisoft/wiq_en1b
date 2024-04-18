@@ -9,14 +9,13 @@ import java.util.ResourceBundle;
 
 import org.wikidata.wdtk.datamodel.implementation.ItemDocumentImpl;
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue;
-import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
-public abstract class AbstractGenerator {
+public abstract class AbstractGenerator implements Generator {
 	
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
 	private String language = "en";
@@ -89,13 +88,7 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
-//	protected abstract String getQuestion(String name);
-	protected abstract String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
-	protected abstract List<String> getWrongAnswers(String rightAnswer) throws Exception;
-
-	protected abstract List<String> decorateAnswers(List<String> answers);
-	
-	protected String getQuestion(String name) {
+	public String getQuestion(String name) {
 		String q = getMessages().getString(message);
 		return String.format(q, name);
 	}

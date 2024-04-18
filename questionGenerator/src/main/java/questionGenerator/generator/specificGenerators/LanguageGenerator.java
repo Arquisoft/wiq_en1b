@@ -18,7 +18,7 @@ public class LanguageGenerator extends AnswersAreEntitiesWithSubProperties {
 	}
 	
 	@Override
-	protected List<String> decorateAnswers(List<String> answers) {
+	public List<String> decorateAnswers(List<String> answers) {
 		AnswerFormater formater = new CapitalLetersFormater();
 		return formater.format(answers);
 	}

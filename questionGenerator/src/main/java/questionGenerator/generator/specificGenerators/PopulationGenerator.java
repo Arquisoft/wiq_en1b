@@ -22,20 +22,20 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 	}
 
 	@Override
-	protected String getRightAnswer(Map<String, List<Statement>> claims) {
+	public String getRightAnswer(Map<String, List<Statement>> claims) {
 		List<Statement> statements = claims.get(PROPERTY);
 		Value v = statements.get(statements.size()-1).getValue();
 		return v.toString();
 	}
 
 	@Override
-	protected List<String> decorateAnswers(List<String> answers) {
+	public List<String> decorateAnswers(List<String> answers) {
 		AnswerFormater formater = new EmbellishNumbersFormater();
 		return formater.format(answers);
 	}
 
 	@Override
-	protected List<String> getWrongAnswers(String rightAnswer) {
+	public List<String> getWrongAnswers(String rightAnswer) {
 		List<String> original = super.getWrongAnswers(rightAnswer);
 		List<String> result = new ArrayList<>();
 		for(String s :  original) {

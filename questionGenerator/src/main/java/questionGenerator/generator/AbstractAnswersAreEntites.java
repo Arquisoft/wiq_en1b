@@ -43,7 +43,7 @@ public abstract class AbstractAnswersAreEntites extends AbstractGenerator{
 	}
 
 	@Override
-	protected List<String> getWrongAnswers(String rightAnswer) throws Exception {
+	public List<String> getWrongAnswers(String rightAnswer) throws Exception {
 		List<String> entites = new ArrayList<>();
 		try {
 			entites = EntityGenerator.getEntities(type, 100);
@@ -69,7 +69,7 @@ public abstract class AbstractAnswersAreEntites extends AbstractGenerator{
 	 * simply returns the value passed to it as a parameter
 	 */
 	@Override
-	protected List<String> decorateAnswers(List<String> answers) {
+	public List<String> decorateAnswers(List<String> answers) {
 		return answers;
 	}
 	

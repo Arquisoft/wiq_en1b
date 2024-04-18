@@ -19,7 +19,7 @@ public abstract class AnswersAreEntitiesWithSubProperties extends AbstractAnswer
 	}
 
 	@Override
-	protected String getRightAnswer(Map<String, List<Statement>> claims) throws Exception {
+	public String getRightAnswer(Map<String, List<Statement>> claims) throws Exception {
 		if(claims.get(super.getPropertyId())==null) {
 			throw new Exception("Claims does not have the property " + super.getPropertyId());
 		}

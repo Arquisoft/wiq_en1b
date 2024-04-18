@@ -22,7 +22,7 @@ public class SizeGenerator extends AnswersAreNotEntites {
 	}
 
 	@Override
-	protected String getRightAnswer(Map<String, List<Statement>> claims) {
+	public String getRightAnswer(Map<String, List<Statement>> claims) {
 		Value v = claims.get(PROPERTY).get(0).getValue();
 		return getRightAnswerEntity(v.toString());
 	}
@@ -34,7 +34,7 @@ public class SizeGenerator extends AnswersAreNotEntites {
 	}
 
 	@Override
-	protected List<String> decorateAnswers(List<String> answers) {
+	public List<String> decorateAnswers(List<String> answers) {
 		AnswerFormater formater = new RemoveEFromNumber(new EmbellishNumbersFormater());
 		return formater.format(answers);
 	}
