@@ -18,7 +18,7 @@ public class PersistentMain {
 
 	private static QuestionType[] types = {QuestionType.CAPITAL, QuestionType.LANGUAGE, QuestionType.POPULATION, 
 		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT, QuestionType.VIDEOGAME_DEVELOPER, 
-		QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE};
+		QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE, QuestionType.VIDEOGAME_COUNTRY};
 
 	private static final int numberOfQuestions = 50;
 	//	private static final int numberOfQuestions = 100;
