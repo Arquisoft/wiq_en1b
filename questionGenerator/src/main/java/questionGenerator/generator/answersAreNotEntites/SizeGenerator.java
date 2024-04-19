@@ -6,6 +6,7 @@ import java.util.Map;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
+import main.java.questionGenerator.generator.Generator;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.question.answers.AnswerFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.AddUnitsFormater;
@@ -16,8 +17,16 @@ public class SizeGenerator extends AnswersAreNotEntites {
 	
 	private final static String PROPERTY = "P2046";
 	private final static String MESSAGE = "question.size";
+	
+	private static Generator generator;
+	
+	public static Generator getInstance() {
+		if(generator==null)
+			generator = new SizeGenerator();
+		return generator;
+	}
 
-	public SizeGenerator() {
+	private SizeGenerator() {
 		super(PROPERTY, QuestionType.SIZE, MESSAGE);
 	}
 

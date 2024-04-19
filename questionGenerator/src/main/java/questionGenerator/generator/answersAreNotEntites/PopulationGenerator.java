@@ -7,6 +7,7 @@ import java.util.Map;
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
 
+import main.java.questionGenerator.generator.Generator;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.question.answers.AnswerFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;
@@ -15,8 +16,16 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 	
 	private final static String PROPERTY = "P1082";
 	private final static String MESSAGE = "question.population";
+	
+	private static Generator generator;
+	
+	public static Generator getInstance() {
+		if(generator==null)
+			generator = new PopulationGenerator();
+		return generator;
+	}
 
-	public PopulationGenerator(){
+	private PopulationGenerator(){
 		super(PROPERTY, QuestionType.POPULATION, MESSAGE);
 	}
 

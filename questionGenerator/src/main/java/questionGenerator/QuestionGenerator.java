@@ -78,44 +78,43 @@ public class QuestionGenerator {
 	private void setGenerator(QuestionType type) {
 		switch (type) {
 			case POPULATION: {
-				generator = new PopulationGenerator();
+				generator = PopulationGenerator.getInstance();
 				break;
 			}
 			case CAPITAL: {
-				generator = new CapitalGenerator();
+				generator = CapitalGenerator.getInstance();
 				break;
-				
 			}
 			case SIZE: {
-				generator = new SizeGenerator();
+				generator = SizeGenerator.getInstance();
 				break;
 			}
 			case LANGUAGE: {
-				generator = new LanguageGenerator();
+				generator = LanguageGenerator.getInstance();
 				break;
 			}
-			case HEAD_OF_GOVERMENT:{
-				generator = new HeadOfGovernmentGenerator();
+			case HEAD_OF_GOVERMENT: {
+				generator = HeadOfGovernmentGenerator.getInstance();
 				break;
 			}
 			case DIRECTOR: {
-				generator = new DirectorGenerator();
+				generator = DirectorGenerator.getInstance();
 				break;
 			}
 			case VIDEOGAME_DEVELOPER: {
-				generator = new VideogameDeveloperGenerator();
+				generator = VideogameDeveloperGenerator.getInstance();
 				break;
 			}
 			case VIDEOGAME_PUBLISHER: {
-				generator = new VideogamePublisherGenerator();
+				generator = VideogamePublisherGenerator.getInstance();
 				break;
 			}
 			case VIDEOGAME_GENRE: {
-				generator = new VideogameGenreGenerator();
+				generator = VideogameGenreGenerator.getInstance();
 				break;
 			}
-			case VIDEOGAME_COUNTRY:{
-				generator = new VideogameCountryGenerator();
+			case VIDEOGAME_COUNTRY: {
+				generator = VideogameCountryGenerator.getInstance();
 				break;
 			}
 		}
