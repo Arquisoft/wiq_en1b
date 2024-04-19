@@ -25,8 +25,16 @@ public class QuestionGenerator {
 	private Generator generator;
 	private String languageCode;
 	
-	public QuestionGenerator(String languageCode){
-		this.languageCode = languageCode;
+	private static QuestionGenerator questionGenerator;
+	
+	public static QuestionGenerator getInstance() {
+		if(questionGenerator==null)
+			questionGenerator = new QuestionGenerator();
+		return questionGenerator;
+	}
+	
+	private QuestionGenerator() {
+		
 	}
 	
 	public List<Question> generateQuestions(QuestionType type, int amount){
@@ -109,6 +117,14 @@ public class QuestionGenerator {
 				break;
 			}
 		}
+	}
+
+	public String getLanguageCode() {
+		return languageCode;
+	}
+
+	public void setLanguageCode(String languageCode) {
+		this.languageCode = languageCode;
 	}
 
 }

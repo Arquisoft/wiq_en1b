@@ -10,11 +10,15 @@ import main.java.questionGenerator.repository.QuestionRepository;
 
 public class PersistentMain {
 	
+	private static QuestionGenerator qg = QuestionGenerator.getInstance();
+	
 	private static long timeSkip = 18000000; //5 hours
 //	private static long timeSkip = 43200000; //12 hours
 //	private static long timeSkip = 1000; //1 minute
 	
-	private static QuestionGenerator[] generators = {new QuestionGenerator("en"), new QuestionGenerator("es")};
+	// private static QuestionGenerator[] generators = {new QuestionGenerator("en"), new QuestionGenerator("es")};
+
+	private static String[] languages = {"en", "es"};
 
 	private static QuestionType[] types = {QuestionType.CAPITAL, QuestionType.LANGUAGE, QuestionType.POPULATION, 
 		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT, QuestionType.VIDEOGAME_DEVELOPER, 
@@ -39,9 +43,11 @@ public class PersistentMain {
 	
 	private static List<Question> generate() {
 		List<Question> questions = new ArrayList<Question>();
-		for(QuestionGenerator qg : generators)
+		for(String lang : languages) {
+			qg.setLanguageCode(lang);
 			for(QuestionType type: types)
 				questions.addAll(run(qg, type, numberOfQuestions));
+		}
 		return questions;
 	}
 	

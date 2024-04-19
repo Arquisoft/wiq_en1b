@@ -10,7 +10,7 @@ import main.java.questionGenerator.repository.QuestionRepository;
 public class Main {
 
     public static void main(String[] args) {
-		QuestionGenerator qg = new QuestionGenerator("en");
+		QuestionGenerator qg = QuestionGenerator.getInstance();
 		
 		run(qg, QuestionType.CAPITAL, 3);
 		run(qg, QuestionType.LANGUAGE, 3);
