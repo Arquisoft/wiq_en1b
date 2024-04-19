@@ -21,6 +21,7 @@ public class Main {
 		run(qg, QuestionType.VIDEOGAME_DEVELOPER, 3);
 		run(qg, QuestionType.VIDEOGAME_PUBLISHER, 3);
 		run(qg, QuestionType.VIDEOGAME_GENRE, 3);
+		run(qg, QuestionType.VIDEOGAME_COUNTRY, 3);
 
 	}
 	

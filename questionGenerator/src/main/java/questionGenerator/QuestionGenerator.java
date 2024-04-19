@@ -10,6 +10,7 @@ import main.java.questionGenerator.generator.Generator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.CapitalGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.HeadOfGovernmentGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.LanguageGenerator;
+import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogameCountryGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogameDeveloperGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogameGenreGenerator;
 import main.java.questionGenerator.generator.answersAreEntites.withSubProperties.videogames.VideogamePublisherGenerator;
@@ -101,6 +102,10 @@ public class QuestionGenerator {
 			}
 			case VIDEOGAME_GENRE: {
 				generator = new VideogameGenreGenerator();
+				break;
+			}
+			case VIDEOGAME_COUNTRY:{
+				generator = new VideogameCountryGenerator();
 				break;
 			}
 		}
