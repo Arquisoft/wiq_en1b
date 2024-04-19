@@ -40,10 +40,12 @@ public class QuestionGenerator {
 	public List<Question> generateQuestions(QuestionType type, int amount){
 		setGenerator(type);
 		generator.setLocalization(languageCode);
+		long sampleSize = getSampleSize(amount);
+		generator.setSampleSize(sampleSize);
 		List<Question> questions = new ArrayList<>();
 		List<String> entites = new ArrayList<>();
 		try {
-			entites = EntityGenerator.getEntities(type, 1000, generator.getPropertyId());
+			entites = EntityGenerator.getEntities(type, sampleSize, generator.getPropertyId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -125,6 +127,13 @@ public class QuestionGenerator {
 
 	public void setLanguageCode(String languageCode) {
 		this.languageCode = languageCode;
+	}
+
+	private long getSampleSize(int amount) {
+		long value = amount * 10;
+		if(value<1000)
+			return 1000;
+		return value;
 	}
 
 }

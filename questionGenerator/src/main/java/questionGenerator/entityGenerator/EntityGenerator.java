@@ -21,7 +21,7 @@ public class EntityGenerator {
 	
 	private static final String LIMIT = "bllimit=";
 	
-	public static List<String> getEntities(QuestionType type, int size, String property) throws IOException{
+	public static List<String> getEntities(QuestionType type, long size, String property) throws IOException{
 		URL url = new URL(PRE_URL+PROPERTY_URL+property+POST_URL+LIMIT+size);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");

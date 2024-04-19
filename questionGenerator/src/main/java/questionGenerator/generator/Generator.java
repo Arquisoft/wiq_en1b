@@ -23,4 +23,8 @@ public interface Generator {
 	
 	void setLocalization(String languageCode);
 
+	void setSampleSize(long sampleSize);
+
+	long getSampleSize();
+
 }

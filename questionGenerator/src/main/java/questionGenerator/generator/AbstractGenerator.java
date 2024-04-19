@@ -33,6 +33,8 @@ public abstract class AbstractGenerator implements Generator {
 	
 	private String message;
 	
+	private long sampleSize = 0L;
+	
 	public AbstractGenerator(String propertyId, QuestionType type, String message) {
 		this.propertyId = propertyId;
 		this.type = type;
@@ -141,6 +143,16 @@ public abstract class AbstractGenerator implements Generator {
 
 	public String getMessage(){
 		return message;
+	}
+	
+	@Override
+	public void setSampleSize(long sampleSize) {
+		this.sampleSize = sampleSize;
+	}
+	
+	@Override
+	public long getSampleSize() {
+		return sampleSize;
 	}
 
 }
