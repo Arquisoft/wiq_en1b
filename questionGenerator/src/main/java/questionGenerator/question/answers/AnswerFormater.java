@@ -6,4 +6,6 @@ public interface AnswerFormater {
 	
 	List<String> format(List<String> answers);
 
+	List<String> end(List<String> answers);
+
 }

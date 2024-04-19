@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.AbstractFormater;
 
-public class RemoveEFromNumber implements AnswerFormater {
-	
-	private AnswerFormater formater;
+public class RemoveEFromNumber extends AbstractFormater {
 	
 	public RemoveEFromNumber(AnswerFormater formater) {
-		this.formater = formater;
+		super(formater);
 	}
 
 	@Override
@@ -19,7 +18,7 @@ public class RemoveEFromNumber implements AnswerFormater {
 		for(String s : answers) {
 			result.add(removeE(s));
 		}
-		return formater.format(result);
+		return end(result);
 	}
 	
 	private String removeE(String answer) {

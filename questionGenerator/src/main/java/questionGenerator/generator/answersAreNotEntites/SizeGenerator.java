@@ -8,6 +8,7 @@ import org.wikidata.wdtk.datamodel.interfaces.Value;
 
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.formatAnswers.AddUnitsFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.RemoveEFromNumber;
 
@@ -34,7 +35,8 @@ public class SizeGenerator extends AnswersAreNotEntites {
 
 	@Override
 	public List<String> decorateAnswers(List<String> answers) {
-		AnswerFormater formater = new RemoveEFromNumber(new EmbellishNumbersFormater());
+		AnswerFormater formater = new RemoveEFromNumber(new EmbellishNumbersFormater(
+			new AddUnitsFormater(null, "km^2")));
 		return formater.format(answers);
 	}
 

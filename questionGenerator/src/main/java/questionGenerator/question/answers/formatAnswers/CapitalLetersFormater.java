@@ -3,9 +3,14 @@ package main.java.questionGenerator.question.answers.formatAnswers;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.questionGenerator.question.answers.AbstractFormater;
 import main.java.questionGenerator.question.answers.AnswerFormater;
 
-public class CapitalLetersFormater implements AnswerFormater {
+public class CapitalLetersFormater extends AbstractFormater {
+
+	public CapitalLetersFormater(AnswerFormater formater) {
+		super(formater);
+	}
 
 	@Override
 	public List<String> format(List<String> answers) {
@@ -13,7 +18,7 @@ public class CapitalLetersFormater implements AnswerFormater {
 		for(String s : answers) {
 			result.add(toUppercaseFirstCharacter(s));
 		}
-		return result;
+		return end(result);
 		
 	}
 	

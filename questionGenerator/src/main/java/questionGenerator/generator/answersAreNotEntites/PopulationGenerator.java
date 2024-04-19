@@ -29,7 +29,7 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 
 	@Override
 	public List<String> decorateAnswers(List<String> answers) {
-		AnswerFormater formater = new EmbellishNumbersFormater();
+		AnswerFormater formater = new EmbellishNumbersFormater(null);
 		return formater.format(answers);
 	}
 

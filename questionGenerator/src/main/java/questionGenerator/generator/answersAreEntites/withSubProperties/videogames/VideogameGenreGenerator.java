@@ -19,7 +19,7 @@ public class VideogameGenreGenerator extends AbstractVideogameGenerator {
 	
 	@Override
 	public List<String> decorateAnswers(List<String> answers) {
-		AnswerFormater formater = new CapitalLetersFormater();
+		AnswerFormater formater = new CapitalLetersFormater(null);
 		return formater.format(answers);
 	}
 }

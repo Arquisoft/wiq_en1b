@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.questionGenerator.question.answers.AnswerFormater;
+import main.java.questionGenerator.question.answers.AbstractFormater;
 
-public class EmbellishNumbersFormater implements AnswerFormater {
+public class EmbellishNumbersFormater extends AbstractFormater {
+
+	public EmbellishNumbersFormater(AnswerFormater formater) {
+		super(formater);
+	}
 
 	@Override
 	public List<String> format(List<String> answers) {
@@ -13,7 +18,7 @@ public class EmbellishNumbersFormater implements AnswerFormater {
     	for(String s : answers) {
     		result.add(decorateAnswer(s));
     	}
-    	return result;
+    	return end(result);
 	}
     
 	private String decorateAnswer(String answer) {
