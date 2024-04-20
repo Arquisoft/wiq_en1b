@@ -20,7 +20,7 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class VideogameDeveloperGenerator {
+public class VideogameDeveloperGeneratorTests {
 
 	private QuestionGenerator qg = QuestionGenerator.getInstance();
 	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_DEVELOPER, 3);
