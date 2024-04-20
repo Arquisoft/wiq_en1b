@@ -9,13 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import main.java.questionGenerator.QuestionGenerator;
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DirectorGeneratorTests {
 	
 	private QuestionGenerator qg = QuestionGenerator.getInstance();
