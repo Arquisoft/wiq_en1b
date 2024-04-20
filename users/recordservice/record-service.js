@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Record = require('./record-model');
-const { SystemUpdate } = require('@material-ui/icons');
 
 const app = express();
 const port = 8004;
