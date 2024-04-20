@@ -21,12 +21,12 @@ defineFeature(feature, test => {
   });
 
   test('There should be visible three links', ({ given, then }) => {
-    given('I am on the the game menu', async () => {
+    given('I am on the game menu', async () => {
       await page.goto('http://localhost:3000/menu'); 
       await page.waitForSelector('.divMenu');
     });
 
-    then('Then three buttons should be visible', async () => {
+    then('three buttons should be visible', async () => {
       //await expect(page).toMatchElement('.linkButton');
       const elements = await page.$$('.linkButton');
       expect(elements.length).toBeGreaterThan(0); // At least one element with class 'linkButton'
