@@ -32,5 +32,17 @@ defineFeature(feature, test => {
       expect(elements.length).toBeGreaterThan(0); // At least one element with class 'linkButton'
     });
   });
+  test('New Game should go to game configurator', ({ given, when, then }) => {
+    given('I am on the game menu', async () => {
+      await page.goto('http://localhost:3000/menu'); 
+      await page.waitForSelector('.divMenu');
+    });
+    when('I click on New Game', async () => {
+      await page.click('.linkButton:first-child');
+    });
+    then('I should be in the game configurator', async () => {
+      await expect(page).toMatchElement('.GameConfiguratorDiv');
+    });
+  });
 
 });
