@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -73,6 +74,28 @@ public class DirectorGeneratorTests {
 		for(Question q : questions) {
 			assertTrue(q.getQuestion().contains("Who's the director of the "));
 			assertTrue(q.getQuestion().endsWith("?"));
+		}
+	}
+
+    @Test
+	@Order(6)
+	public void QuestionInTheJSONIsTheExpectedOne() {
+		for(Question q : questions) {
+			String expectedQuestion = q.getQuestion();
+			String actualQuestion = q.getJSON().get("question").toString();
+			assertEquals(expectedQuestion, actualQuestion);
+		}
+	}
+	
+	@Test
+	@Order(7)
+	public void AnswersInTheJSONAreTheExpectedOnes() {
+		for(Question q : questions) {
+			List<String> answers = q.getAnswers();
+			JSONArray actualAnswers = q.getJSON().getJSONArray("answers");
+			for(int i=0; i<actualAnswers.length(); i++) {
+				assertEquals(answers.get(i), String.valueOf(actualAnswers.get(i)));
+			}
 		}
 	}
 
