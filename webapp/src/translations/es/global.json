@@ -82,7 +82,12 @@
       "game":"Partida",
       "points":"puntos",
       "no_games_played":"No has jugado todavía"
-    }
+    
+  },
+  "error":{
+    "error":"Error",
+    "sorry":"Lo sentimos, esta página no existe. No te enfades, solo soy un gatito."
+  }
       
     
   }

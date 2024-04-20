@@ -79,6 +79,11 @@
       "game": "Oyun",
       "points": "puanlar",
       "no_games_played": "Henüz oyun oynanmadı"
-    }
+    },
+  
+    "error":{
+      "error":"Hata",
+      "sorry":"Üzgünüz, bu sayfa mevcut değil. Kızma, ben sadece küçük bir kedicik."
+      }
   }
   
