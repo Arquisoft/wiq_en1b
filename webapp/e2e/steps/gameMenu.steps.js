@@ -38,7 +38,7 @@ defineFeature(feature, test => {
       await page.waitForSelector('.divMenu');
     });
     when('I click on New Game', async () => {
-      await page.click('.linkButton:first-child');
+      await page.click('.linkButton');
     });
     then('I should be in the game configurator', async () => {
       await expect(page).toMatchElement('.GameConfiguratorDiv');
