@@ -72,7 +72,7 @@ public class VideogameDeveloperGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("Who were the developers of the videogame "));
+			assertTrue(q.getQuestion().startsWith("Who were the developers of the videogame "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 		

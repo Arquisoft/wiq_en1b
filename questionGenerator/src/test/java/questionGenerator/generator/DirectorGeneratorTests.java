@@ -72,7 +72,7 @@ public class DirectorGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("Who's the director of the "));
+			assertTrue(q.getQuestion().startsWith("Who's the director of the "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 	}

@@ -72,7 +72,7 @@ public class HeadOfGovernmentGeneratorTest {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("Who's the current head of the government of "));
+			assertTrue(q.getQuestion().startsWith("Who's the current head of the government of "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 		

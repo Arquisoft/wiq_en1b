@@ -72,7 +72,7 @@ public class VideogameGenreGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("What's the main genre of the videogame "));
+			assertTrue(q.getQuestion().startsWith("What's the main genre of the videogame "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 		

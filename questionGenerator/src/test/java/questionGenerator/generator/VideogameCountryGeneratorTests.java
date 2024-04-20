@@ -72,7 +72,7 @@ public class VideogameCountryGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("Which country is the videogame "));
+			assertTrue(q.getQuestion().startsWith("Which country is the videogame "));
 			assertTrue(q.getQuestion().endsWith(" from?"));
 		}
 		

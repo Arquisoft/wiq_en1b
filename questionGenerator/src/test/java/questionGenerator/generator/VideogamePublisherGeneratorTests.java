@@ -72,7 +72,7 @@ public class VideogamePublisherGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("Who was the publisher of the videogame "));
+			assertTrue(q.getQuestion().startsWith("Who was the publisher of the videogame "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 		

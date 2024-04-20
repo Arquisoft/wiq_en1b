@@ -72,7 +72,7 @@ public class CapitalGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("What's the capital of "));
+			assertTrue(q.getQuestion().startsWith("What's the capital of "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 	}

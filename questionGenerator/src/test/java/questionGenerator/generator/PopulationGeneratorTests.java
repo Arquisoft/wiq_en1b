@@ -72,7 +72,7 @@ public class PopulationGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().contains("What's the population of "));
+			assertTrue(q.getQuestion().startsWith("What's the population of "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 	}
