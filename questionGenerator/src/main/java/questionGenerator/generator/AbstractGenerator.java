@@ -128,6 +128,10 @@ public abstract class AbstractGenerator implements Generator {
 				localize(languageCode);
 				break;
 			}
+			case "tr":{
+				localize(languageCode);
+				break;
+			}
 			default:{
 				localize("en");
 				break;
