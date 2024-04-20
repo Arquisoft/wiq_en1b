@@ -239,6 +239,7 @@ describe('Record Service', () => {
     const userStats = responseGet.body.userCompetitiveStats;
 
     expect(userStats).toHaveProperty('_id', 'user1');
+    expect(userStats).toHaveProperty('position', 10);
     expect(userStats).toHaveProperty('totalCompetitiveGames', 2);
     expect(userStats).toHaveProperty('totalPoints', 20); //i * 10 * totalCompetitiveGames , i = 2
   });
