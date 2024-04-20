@@ -4,6 +4,25 @@
   width: 100%;
 }
 
+/*---------------------------Error---------------------------*/
+.error {
+  color: red;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sorry {
+  font-size: 18px;
+}
+
+
+.error-body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+
 /*---------------------------Navbar---------------------------*/
 .navbar-container {
   display: flex;
@@ -141,6 +160,44 @@
     padding: 10px; 
   }
   
+  .input-box-password-register {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  .input-box-password-register p {
+    font-weight: bold;
+    margin-right: 10%; 
+    width: 150px; 
+    text-align: right; 
+  }
+  
+  .input-box-password-register input {
+    flex: 1; 
+    height: 40px; 
+    background: rgb(255, 255, 255);
+    border: 2px solid gray;
+    border-radius: 10px;
+    font-size: 18px;
+    color: black;
+    padding: 10px;
+    padding-bottom: 0px;
+  }
+
+  .password-strength-meter {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    gap: 20px;
+    margin-top: 0px;
+  }
+
+  .password-strength-meter span {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
     
   .button-register, .button-login {
     appearance: none;
@@ -233,6 +290,80 @@ button[type="submit"]:hover::before, button:hover::after {
 button[type="submit"]:hover {
   box-shadow: inset 0px 0px 25px #3700ff;
 }
+
+.button-back  {
+  display: block;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+.button-back:before,
+.button-back:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+}
+
+.button-back:before {
+  border: 4px solid #f0eeef;
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button-back:after {
+  border: 4px solid #96daf0;
+  transform: scale(1.3);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.button-back:hover:before,
+.button-back:focus:before {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.button-back:hover:after,
+.button-back:focus:after {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button-box {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.button-elem {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 17px 18px 0 18px;
+  transform: rotate(180deg);
+  fill: #f0eeef;
+}
+
+.button-back :hover .button-box,
+.button-back :focus .button-box {
+  transition: 0.4s;
+  transform: translateX(-56px);
+}
+
 
 /*---------------------------Instructions---------------------------*/
 .instructions_title {
@@ -1192,6 +1323,21 @@ svg {
 .answerButton {
   margin-right: 10px;
   background: #9f97ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px #9f97ff;
+  cursor: pointer;
+  font-size: 21px;
+  color: black;
+  font-weight: 700;
+  margin: 0.5em;
+  max-width: 200px;
+}
+
+.altavoz {
+  margin-right: 10px;
+  background: #000000;
   border: none;
   outline: none;
   border-radius: 40px;

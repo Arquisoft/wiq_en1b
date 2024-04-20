@@ -30,7 +30,9 @@ function Navbar() {
     <div className="navbar-container">
       <div className='left-nav'>
       <Profile />
-        <h1 className='navbar-text'>{t("navBar.title")}</h1>
+      <Link to="/home" className="home-button">
+      <h1 className='navbar-text'>{t("navBar.title")}</h1>
+      </Link>
       </div>
       <div className='right-nav'>
         <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
@@ -53,7 +55,11 @@ function Navbar() {
 }
 
 function Profile() {
-  return <img src="/logo.jpg" alt="App logo" />;
+  return (
+    <Link to="/home" className="home-button">
+      <img src="/logo.jpg" alt="App logo" />    
+    </Link>
+  );
 }
 
 function Help() {

@@ -2,6 +2,7 @@ import React,{ useEffect }  from 'react';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
+import ErrorPage from './components/fragments/ErrorPage';
 import Home from './components/Home/Home';
 import Login from './components/loginAndRegistration/Login';
 import AddUser from './components/loginAndRegistration/AddUser';
@@ -20,7 +21,7 @@ function App() {
     document.title = 'WIQ';
   }, []);
   return (
-    <Router className='roter'>
+    <Router>
       <UserContextProvider>
         <div style={{ position: 'relative', minHeight: '100vh' }}>
           <Navbar style={{ width: '100%' }} /> 
@@ -36,6 +37,7 @@ function App() {
               <Route path="/historical" element={<HistoricalView />} />
               <Route path="/configurator" element={<GameConfigurator />}/>
               <Route path="/ranking" element={<RankingView />} />
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
         </div>
