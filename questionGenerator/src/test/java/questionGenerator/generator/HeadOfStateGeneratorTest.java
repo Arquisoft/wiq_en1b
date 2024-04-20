@@ -9,23 +9,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import main.java.questionGenerator.QuestionGenerator;
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HeadOfStateGeneratorTest {
 	
 	private QuestionGenerator qg = QuestionGenerator.getInstance();
 	private List<Question> questions = qg.generateQuestions(QuestionType.HEAD_OF_GOVERMENT, 3);
 
 	@Test
+	@Order(1)
 	public void AmountOfQuestions() {
 		assertTrue(questions.size()<=3);
 	}
 
 	@Test
+	@Order(2)
 	public void QuestionsAreGeneratedTest() {
 		assertNotNull(questions);
 		assertNotEquals(List.of(questions), questions);
@@ -35,6 +41,7 @@ public class HeadOfStateGeneratorTest {
 	}
 	
 	@Test
+	@Order(3)
 	public void AllQuestionsAreDifferentTest() {
 		List<String> messages = new ArrayList<String>();
 		for(Question q : questions) {
@@ -47,6 +54,7 @@ public class HeadOfStateGeneratorTest {
 	}
 	
 	@Test
+	@Order(4)
 	public void AllAnswersInAQuestionAreDifferent() {
 		for(Question q : questions) {
 			assertFalse(q.getAnswers().isEmpty());
@@ -60,6 +68,7 @@ public class HeadOfStateGeneratorTest {
 	}
 
 	@Test
+	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
 			assertTrue(q.getQuestion().contains("Who's the current head of the government of "));
