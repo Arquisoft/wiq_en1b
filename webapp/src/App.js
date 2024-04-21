@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect }  from 'react';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
@@ -12,8 +12,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './custom.css';
 import HistoricalView from './components/HistoricalData/HistoricalView';
 import { UserContextProvider } from './components/loginAndRegistration/UserContext';
+import GameConfigurator from './components/GameConfigurator/GameConfigurator';
+import RankingView from './components/ranking/RankingView';
+
 
 function App() {
+  useEffect(() => {
+    document.title = 'WIQ';
+  }, []);
   return (
     <Router>
       <UserContextProvider>
@@ -29,6 +35,8 @@ function App() {
               <Route path="/menu" element={<GameMenu />} />
               <Route path="/questions" element={<QuestionView />} />
               <Route path="/historical" element={<HistoricalView />} />
+              <Route path="/configurator" element={<GameConfigurator />}/>
+              <Route path="/ranking" element={<RankingView />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>

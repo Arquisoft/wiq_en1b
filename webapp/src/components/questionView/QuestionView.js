@@ -9,12 +9,12 @@ import $ from 'jquery';
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
 import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
-function QuestionView(){
-    
+function QuestionView({type= "COMPETITIVE", amount=5}){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
@@ -25,7 +25,7 @@ function QuestionView(){
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
@@ -106,6 +106,7 @@ function QuestionView(){
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
                 audio.pause();
+                creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
                 creationHistoricalRecord.sendRecord(user.username);
@@ -204,6 +205,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
                 <>
                    
                     <h2>{t("questionView.finished_game")} </h2>
+                    <BackButtonToGameMenu t={t}/>
                     <p>{points} {t("questionView.point")}</p>
                     <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>
                     <ButtonHistoricalData t={t} />

@@ -51,9 +51,9 @@ global.i18en = i18en;
 
 describe('Question View component', () => {
 
-    beforeEach(() => {
-        mockAxios.reset();
-    });
+    mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
+    [{question: "What is the population of Oviedo?",
+    answers: ["225089","272357","267855","231841"]}]);
     
     it('shows the no_questions_message as the endpoint does not exist',async () => {
         render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
@@ -65,10 +65,6 @@ describe('Question View component', () => {
 
      // Test for sound functionality
      it('speaks the question when the speaker button is clicked', async () => {
-        const questionText = "What is the population of Oviedo?";
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: questionText,
-                                                                answers: ["225089","272357","267855","231841"]}]);
         
         await act(async () => {
             render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
@@ -83,10 +79,6 @@ describe('Question View component', () => {
     });
 
     it('shows a question and answers',async () => {
-       
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
 
         //It gives an error as we are not wrapping it by act, however by doing this we simulate a no questions situation
         await act(async () =>{
@@ -104,9 +96,6 @@ describe('Question View component', () => {
     });
     it('shows colors to reveal correct answer and it sounds', async () => {
         setupAudioMock();
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
             await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
             
@@ -125,9 +114,6 @@ describe('Question View component', () => {
     });
     it('shows colors to reveal false answer and it sounds', async () => {
         setupAudioMock()
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
             await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
             
@@ -146,9 +132,6 @@ describe('Question View component', () => {
     
     it('shows timer and tiktak sound', async () => {
         setupAudioMock()
-        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, 
-                                                                [{question: "What is the population of Oviedo?",
-                                                                answers: ["225089","272357","267855","231841"]}]);
         await act(async () =>{
             await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
             
@@ -158,7 +141,24 @@ describe('Question View component', () => {
 
         const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
-    });    
+    }); 
+    
+    it('shows finish game review',async () => {      
+        mockAxios.onGet('http://localhost:8000/questions/en').reply(200, []);                                                          
+        mockAxios.onPost('http://localhost:8000/record').reply(200, {user:'myUser'});
+
+        const user = { username: 'myUser' };
+
+        //It gives an error as we are not wrapping it by act, however by doing this we simulate a no questions situation
+        await act(async () =>{
+            await render(<UserContextProvider baseUser={user}><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+        })  
+
+        await waitFor(() => expect(screen.getByText(i18en.t('questionView.finished_game'))).toBeInTheDocument()); 
+
+        expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument()
+        
+    });
     
 
     // it('renders end message when countdown completes', async() => {

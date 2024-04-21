@@ -30,6 +30,60 @@ app.get('/questions',  async (req, res) => {
       }
 });
 
+app.get('/questions/:lang/:amount/:type',  async (req, res) => {
+  try {    
+      const lang = req.params.lang.toString();
+      let amount = checkAmount(parseInt(req.params.amount));
+      const type = req.params.type.toString();
+
+      if(amount > 20 || amount < 1)
+        amount = 5;
+
+      const questions = await Question.aggregate([
+        {$match: {language : lang, type: type}}, //Condition
+        {$sample: {size:amount}}
+      ]);
+
+      let jsonResult = {};
+      for (let i = 0; i < questions.length; i++) {
+          const question = questions[i];
+          jsonResult[i] = {
+              question : question.question,
+              answers : question.answers
+          }
+      }
+      res.json(jsonResult);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/questions/:lang/:amount',  async (req, res) => {
+  try {    
+      const lang = req.params.lang;
+      let amount = checkAmount(parseInt(req.params.amount));
+
+      
+
+      const questions = await Question.aggregate([
+        {$match: {language : lang}}, //Condition
+        {$sample: {size:amount}}
+      ]);
+
+      let jsonResult = {};
+      for (let i = 0; i < questions.length; i++) {
+          const question = questions[i];
+          jsonResult[i] = {
+              question : question.question,
+              answers : question.answers
+          }
+      }
+      res.json(jsonResult);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/questions/:lang',  async (req, res) => {
   try {    
       const lang = req.params.lang;
@@ -53,6 +107,11 @@ app.get('/questions/:lang',  async (req, res) => {
     }
 });
 
+function checkAmount(amount){
+  if(amount > 20 || amount < 1)
+        return 5;
+  return amount;
+}
 
 const server = app.listen(port, () => {
     console.log(`Question Service listening at http://localhost:${port}`);

@@ -1362,6 +1362,26 @@ svg {
 
 /*------------------------------Historical--------------------------------------------*/
 /* Estilos para los botones */
+.linkButtonHistorical{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10em;
+  height: 45px;
+  background:#00b8ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  text-decoration: none;
+
+}
 .historicalButton {
   color: white;
   width: 50em;
@@ -1426,3 +1446,235 @@ svg {
 h2{
   text-align: center;
 }
+/*------------------------Loader------------------------------*/
+@keyframes blinkCursor {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes typeAndDelete {
+  0%,
+  10% {
+    width: 0;
+  }
+  45%,
+  55% {
+    width: 6.2em;
+  } /* adjust width based on content */
+  90%,
+  100% {
+    width: 0;
+  }
+}
+
+.terminal-loader {
+  border: 0.1em solid #333;
+  background-color: #1a1a1a;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  padding: 1.5em 1em;
+  width: 12em;
+  margin: 100px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.terminal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  background-color: #333;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0 0.4em;
+  box-sizing: border-box;
+}
+
+
+
+.terminal-title {
+  float: left;
+  line-height: 1.5em;
+  color: #eee;
+}
+
+.text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.2em solid green; /* Cursor */
+  animation: typeAndDelete 4s steps(11) infinite,
+    blinkCursor 0.5s step-end infinite alternate;
+  margin-top: 1.5em;
+}
+
+/*--------------------------------------------------Configurator---------------------------------*/
+/* Estilo para el elemento select */
+.buttonRandomize{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15em;
+  height: 45px;
+  background:#00b8ff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+  font-size: 1em;
+  color: black;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  text-decoration: none;
+}
+.select-style {
+  width: 200px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  padding: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.select-style:focus {
+  border-color: #6e9ecf;
+  outline: none;
+}
+
+/* Estilo para el spinner */
+.spinner-style {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  font-size: medium;
+}
+.GameConfiguratorDiv> * {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.GameConfiguratorDiv {
+  left: 50%;
+  top: 50%;
+}
+/*
+.GameConfiguratorDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.GameConfiguratorDiv > *:not(:first-child):not(:nth-child(4)) {
+  text-align: left;
+}*/
+
+.hr-style {
+  border: 0;
+  border-top: 1px solid #8e888885; /* Color gris */
+  margin: 20px 0; /* Espacio antes y después de la línea */
+}
+
+.GameConfiguratorDiv h2 {
+  text-align: left; /* Alinea el texto a la izquierda */
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.table tbody tr.penultimate-row td {
+  background-color: black;
+  padding: 15px;
+  /*
+  border: 1px solid rgba(205, 187, 187, 0.455);
+  box-shadow: 0 0 10px rgba(197, 191, 191, 0.726);*/
+}
+
+.table tbody tr.penultimate-row td div{
+  background-color: #171717;
+  padding: 0.5em;
+}
+
+.table th,td{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  
+}
+/* Estilo para todos los td excepto el penúltimo */
+.table tbody tr:not(:nth-last-child(2)) td:nth-child(1) {  
+  background-color: #4d1e51a8;
+}
+
+
+.table tr:nth-child(even) {background-color: #f2f2f22a;}
+.table th {
+  background-color: #69276f;
+  color: white;
+}
+.table tr:hover {background-color:  #a59c9ca2;}
+
+.table table{
+  border-collapse: collapse;
+}
+/* Estilo para la fila de headers */
+.table th {
+  border-top: 2px solid rgba(205, 187, 187, 0.455); /* Borde superior para todas las celdas de la fila de headers */
+  border-left: 2px solid rgba(205, 187, 187, 0.455); /* Borde izquierdo en la primera celda */
+  border-right: 2px solid rgba(205, 187, 187, 0.455); /* Borde derecho en la última celda */
+}
+
+/* Estilo para las filas de datos (excepto la penúltima) */
+.table tbody tr:not(:nth-last-child(2)) td {
+  border-left: 2px solid rgba(205, 187, 187, 0.455); /* Borde izquierdo en la primera celda */
+  border-right: 2px solid rgba(205, 187, 187, 0.455); /* Borde derecho en la última celda */
+}
+
+/* Borde superior e inferior para la penúltima fila */
+.table tbody tr:nth-last-child(2) td {
+  border-top: 2px solid rgba(205, 187, 187, 0.455); /* Borde superior */
+  border-bottom: 2px solid rgba(205, 187, 187, 0.455); /* Borde inferior */
+}
+
+/* Borde inferior para todas las celdas de la última fila */
+.table tbody tr:last-child td {
+  border-bottom: 2px solid rgba(205, 187, 187, 0.455); /* Borde inferior */
+}
+
+/* Borde izquierdo para la primera celda de la última fila */
+.table tbody tr:last-child td:first-child {
+  border-left: 2px solid rgba(205, 187, 187, 0.455); /* Borde izquierdo */
+}
+
+/* Borde derecho para la última celda de la última fila */
+.table tbody tr:last-child td:last-child {
+  border-right: 2px solid rgba(205, 187, 187, 0.455); /* Borde derecho */
+}
+
+/* Estilo para el cuadro de búsqueda */
+input[type="text"] {
+  border: 2px solid #636262; /* Borde sólido */
+  padding: 8px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de letra */
+  color: #e5e0e0; /* Color de letra */
+  background-color: #2a2929; /* Color de fondo */
+}
+
+/* Estilo para el botón */
+#search {
+  font-size: 18px; /* Tamaño de letra */
+  width: 7em;
+  height: 2em;
+}
+
+
