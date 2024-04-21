@@ -1598,6 +1598,11 @@ h2{
   box-shadow: 0 0 10px rgba(197, 191, 191, 0.726);*/
 }
 
+.table tbody tr.penultimate-row td div{
+  background-color: #171717;
+  padding: 0.5em;
+}
+
 .table th,td{
   padding-left: 30px;
   padding-right: 30px;
@@ -1666,7 +1671,7 @@ input[type="text"] {
 }
 
 /* Estilo para el botón */
-.search > button{
+#search {
   font-size: 18px; /* Tamaño de letra */
   width: 7em;
   height: 2em;

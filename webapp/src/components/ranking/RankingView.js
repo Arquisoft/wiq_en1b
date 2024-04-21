@@ -46,48 +46,53 @@ const RankingView = () => {
     <div className='table'>
       <BackButton t={t} />
       <h1>{t("ranking.ranking")}</h1>
-      <form onSubmit={handleSearch} className='search'>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder={t("ranking.enter_username")}
-        />
-        <button type="submit">{t("ranking.search")}</button>
-      </form>
       {rankingData && rankingData.length > 0 && myRankingData ? (
         <>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>{t("ranking.position")}</th>
-              <th>{t("ranking.username")}</th>
-              <th>{t("ranking.points")}</th>
-              <th>{t("ranking.num_games")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rankingData.map((user, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{user._id}</td>
-                <td>{user.totalPoints}</td> 
-                <td>{user.totalCompetitiveGames}</td>
+        <form onSubmit={handleSearch}>
+          <table>
+            <thead>
+              <tr>
+                <th>{t("ranking.position")}</th>
+                <th>{t("ranking.username")}</th>
+                <th>{t("ranking.points")}</th>
+                <th>{t("ranking.num_games")}</th>
               </tr>
-            ))}
-            {/* Blank row */}
-            <tr className="penultimate-row">
-              <td colSpan="4"></td>
-            </tr>
-            <tr>
-              <td>{myRankingData.position}</td>
-              <td>{myRankingData._id}</td>
-              <td>{myRankingData.totalPoints}</td>
-              <td>{myRankingData.totalCompetitiveGames}</td>
-            </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {rankingData.map((user, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{user._id}</td>
+                  <td>{user.totalPoints}</td> 
+                  <td>{user.totalCompetitiveGames}</td>
+                </tr>
+              ))}
+              {/* Blank row */}
+              <tr className="penultimate-row">
+                <td>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder={t("ranking.enter_username")}
+                />
+                </td>
+                <td>
+                  <div>
+                    <button id='search' type="submit">{t("ranking.search")}</button>
+                  </div>
+                </td>
+              <td colSpan="2"></td>
+              </tr>
+              <tr>
+                <td>{myRankingData.position}</td>
+                <td>{myRankingData._id}</td>
+                <td>{myRankingData.totalPoints}</td>
+                <td>{myRankingData.totalCompetitiveGames}</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
         </>
       ) : (
         < Loader />

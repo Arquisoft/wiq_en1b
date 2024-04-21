@@ -74,7 +74,7 @@ class RankingRetriever{
           ]
         }*/
     }
-    async getMyPosition(user){
+    async getUser(user){
       
         try {
             const response = await axios.get(this.apiUrl + '/'+user);//finding the top ten
