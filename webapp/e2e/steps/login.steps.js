@@ -21,41 +21,42 @@ defineFeature(feature, test => {
   setDefaultOptions({ timeout: 10000 });
 });
 
-  test('Successful login', ({ given, when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login');
-      await page.waitForSelector('.general');
-    });
+test('Successful login', ({ given, when, then }) => {
+  given('I am on the login page', async () => {
+    await page.goto('http://localhost:3000/login');
+    await page.waitForSelector('.general');
+  });
 
-    when('I enter valid credentials', async () => {
-      await page.type('input[type="text"]', 'ltbg');
-      await page.type('input[type="password"]', 'ltbg');
-      await page.click('button[type="submit"]');
-    });
+  when('I enter valid credentials', async () => {
+    await page.type('input[type="text"]', 'ltbg');
+    await page.type('input[type="password"]', 'ltbg');
+    await page.click('button[type="submit"]');
+  });
 
-    then('I should be redirected to the menu', async () => {
-      await page.waitForNavigation({ waitUntil: 'networkidle0' });
-      expect(page.url()).toContain('/menu');
-    });
-  }, 60000);
+  then('I should be redirected to the menu', async () => {
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    expect(page.url()).toContain('/menu');
+  });
+}, 60000);
 
-  test('Failed login', ({ given, when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login');
-      await page.waitForSelector('.general');
-    });
+test('Failed login', ({ given, when, then }) => {
+  given('I am on the login page', async () => {
+    await page.goto('http://localhost:3000/login');
+    await page.waitForSelector('.general');
+  });
 
-    when('I enter invalid credentials', async () => {
-      await page.type('input[type="text"]', 'invalidUsername');
-      await page.type('input[type="password"]', 'invalidPassword');
-      await page.click('button[type="submit"]');
-    });
+  when('I enter invalid credentials', async () => {
+    await page.type('input[type="text"]', 'invalidUsername');
+    await page.type('input[type="password"]', 'invalidPassword');
+    await page.click('button[type="submit"]');
+  });
 
-    then('I should NOT be redirected to the menu', async () => {
-      await page.waitForNavigation({ waitUntil: 'networkidle0' });
-      expect(page.url()).toContain('/login');
-    });
-  }, 60000);
+  then('I should NOT be redirected to the menu', async () => {
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    expect(page.url()).toContain('/login');
+  });
+}, 60000);
+
 
   afterAll(async () => {
     await browser.close();
