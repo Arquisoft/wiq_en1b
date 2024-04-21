@@ -25,7 +25,7 @@ const RankingView = () => {
     }
   }
 
-  if(rankingData==null){
+  if(rankingData==null || myRankingData == null){
     getRanking();
   }
 
@@ -57,7 +57,7 @@ const RankingView = () => {
               <td colSpan="4"></td>
             </tr>
             <tr>
-              <td>0</td>
+              <td>{myRankingData.position}</td>
               <td>{myRankingData._id}</td>
               <td>{myRankingData.totalPoints}</td>
               <td>{myRankingData.totalCompetitiveGames}</td>

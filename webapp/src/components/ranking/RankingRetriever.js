@@ -12,7 +12,6 @@ class RankingRetriever{
         try {
             const response = await axios.get(this.apiUrl + '/top10');//finding the top ten
             const receivedTopTenRanking = await response.data;
-            console.log(receivedTopTenRanking)
             return receivedTopTenRanking;
         } catch (error) {
             console.log(error)
@@ -80,8 +79,7 @@ class RankingRetriever{
         try {
             const response = await axios.get(this.apiUrl + '/'+user);//finding the top ten
             const receivedMyRanking = await response.data;
-            console.log(receivedMyRanking)
-            return receivedMyRanking;
+            return receivedMyRanking.userCompetitiveStats;
         } catch (error) {
             console.log(error)
             throw new Error(error);
