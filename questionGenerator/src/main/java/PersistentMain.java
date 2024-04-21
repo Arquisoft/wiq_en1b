@@ -16,7 +16,6 @@ public class PersistentMain {
 //	private static long timeSkip = 43200000; //12 hours
 //	private static long timeSkip = 1000; //1 minute
 	
-	// private static QuestionGenerator[] generators = {new QuestionGenerator("en"), new QuestionGenerator("es")};
 
 	private static String[] languages = {"en", "es", "tr"};
 
