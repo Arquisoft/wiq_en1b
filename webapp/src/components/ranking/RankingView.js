@@ -10,6 +10,8 @@ const retriever = new RankingRetriever();
 const RankingView = () => {
   const [rankingData, setRankingData] = useState(null);
   const [myRankingData, setMyRankingData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); // Nuevo estado para el término de búsqueda
+  
   const[t] = useTranslation("global");
   const {user} = useUserContext();
 
@@ -17,14 +19,25 @@ const RankingView = () => {
     try {
       var ranking = await retriever.getTopTen();
       setRankingData(ranking.usersCompetitiveStats);
-      var myrank = await retriever.getMyPosition(user.username);
+      var myrank = await retriever.getUser(user.username);
       setMyRankingData(myrank);
       console.log(myrank)
     } catch (error) {
       console.log(error);
     }
   }
-
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if(searchTerm.length!==0){
+      try {
+        const rank = await retriever.getUser(searchTerm);
+        setMyRankingData(rank);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
+  }
   if(rankingData==null){
     getRanking();
   }
@@ -33,7 +46,18 @@ const RankingView = () => {
     <div className='table'>
       <BackButton t={t} />
       <h1>{t("ranking.ranking")}</h1>
+      <form onSubmit={handleSearch} className='search'>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder={t("ranking.enter_username")}
+        />
+        <button type="submit">{t("ranking.search")}</button>
+      </form>
       {rankingData && rankingData.length > 0 && myRankingData ? (
+        <>
+        
         <table>
           <thead>
             <tr>
@@ -64,6 +88,7 @@ const RankingView = () => {
             </tr>
           </tbody>
         </table>
+        </>
       ) : (
         < Loader />
       )}

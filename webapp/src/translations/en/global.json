@@ -103,7 +103,9 @@
         "position":"Position",
         "username":"Username",
         "points":"Points",
-        "num_games":"Competitive games"
+        "num_games":"Competitive games",
+        "search":"Search",
+        "enter_username":"Enter Username..."
       },
       "error":{
         "error":"Error",

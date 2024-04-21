@@ -1655,3 +1655,21 @@ h2{
 .table tbody tr:last-child td:last-child {
   border-right: 2px solid rgba(205, 187, 187, 0.455); /* Borde derecho */
 }
+
+/* Estilo para el cuadro de búsqueda */
+input[type="text"] {
+  border: 2px solid #636262; /* Borde sólido */
+  padding: 8px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de letra */
+  color: #e5e0e0; /* Color de letra */
+  background-color: #2a2929; /* Color de fondo */
+}
+
+/* Estilo para el botón */
+.search > button{
+  font-size: 18px; /* Tamaño de letra */
+  width: 7em;
+  height: 2em;
+}
+
+

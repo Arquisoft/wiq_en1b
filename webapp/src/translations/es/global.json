@@ -111,7 +111,9 @@
       "position":"Posición",
       "username":"Username",
       "points":"Puntos",
-      "num_games":"Juegos Competitivos"
+      "num_games":"Juegos Competitivos",
+      "search":"Buscar",
+      "enter_username":"Inserta usuario..."
     }
     
   }
