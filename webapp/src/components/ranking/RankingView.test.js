@@ -94,10 +94,13 @@ describe('RankingView component', () => {
     });
 
     mockAxios.onGet('http://localhost:8000/record/ranking/myUser').reply(200,
-    {
+    {usersCompetitiveStats:
+      {
       "_id": "myUser",
       "totalPoints": 250,
-      "totalCompetitiveGames": 1
+      "totalCompetitiveGames": 1,
+      "position":10
+      }
     }
     );
     const user = { username: 'myUser' };
