@@ -18,7 +18,7 @@ public class PersistentMain {
 	
 	// private static QuestionGenerator[] generators = {new QuestionGenerator("en"), new QuestionGenerator("es")};
 
-	private static String[] languages = {"en", "es"};
+	private static String[] languages = {"en", "es", "tr"};
 
 	private static QuestionType[] types = {QuestionType.CAPITAL, QuestionType.LANGUAGE, QuestionType.POPULATION, 
 		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT, QuestionType.VIDEOGAME_DEVELOPER, 
