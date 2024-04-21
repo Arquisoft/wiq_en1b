@@ -18,24 +18,23 @@ global.i18en = i18en;
 
 const mockAxios = new MockAdapter(axios);
 describe('RankingView component', () => {
-    
+  const user = { username: 'myUser' };
     
     it('renders title', () => {
       act(()=>{
-        render(<UserContextProvider ><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+        render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
       })
         const text = screen.getByText(i18en.t('ranking.ranking'));
         expect(text).toBeInTheDocument();
     });
     it('renders Loading if the call to the gateway has not been done', () => {
       act(()=>{
-        render(<UserContextProvider><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+        render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
       })
         const text = screen.getByText('Loading...');
         expect(text).toBeInTheDocument();
     });
 });
-
   describe('RankingView component with endpoint', ()=>{
     mockAxios.onGet('http://localhost:8000/record/ranking/top10').reply(200, 
       {
@@ -94,7 +93,7 @@ describe('RankingView component', () => {
     });
 
     mockAxios.onGet('http://localhost:8000/record/ranking/myUser').reply(200,
-    {usersCompetitiveStats:
+    {userCompetitiveStats:
       {
       "_id": "myUser",
       "totalPoints": 250,
@@ -111,11 +110,12 @@ describe('RankingView component', () => {
           await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
           
       })
-      await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
+          await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
           expect(screen.getByText(i18en.t('ranking.username'))).toBeInTheDocument()
           expect(screen.getByText(i18en.t('ranking.points'))).toBeInTheDocument()
           expect(screen.getByText(i18en.t('ranking.num_games'))).toBeInTheDocument()
-  });
+    });
+    
   it('renders position all users usernames',async ()=>{
     await act(async () =>{
         await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
@@ -177,5 +177,6 @@ describe('RankingView component', () => {
     expect(screen.getAllByText(/1/).length).toBeGreaterThanOrEqual(2);//hay dos pq hay una posicion
 
   });
+  
 })
 

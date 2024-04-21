@@ -8,12 +8,14 @@ import { useUserContext } from '../loginAndRegistration/UserContext';
 const retriever = new RankingRetriever();
 
 const RankingView = () => {
-  const [rankingData, setRankingData] = useState(null);
-  const [myRankingData, setMyRankingData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // Nuevo estado para el término de búsqueda
-  
   const[t] = useTranslation("global");
   const {user} = useUserContext();
+
+  const [rankingData, setRankingData] = useState(null);
+  const [myRankingData, setMyRankingData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(user.username);
+  
+  
 
   const getRanking = async () => {
     try {
@@ -21,7 +23,6 @@ const RankingView = () => {
       setRankingData(ranking.usersCompetitiveStats);
       var myrank = await retriever.getUser(user.username);
       setMyRankingData(myrank);
-      console.log(myrank)
     } catch (error) {
       console.log(error);
     }
