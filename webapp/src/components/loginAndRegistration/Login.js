@@ -30,10 +30,14 @@ const Login = () => {
 
   return (
     <div className="general">
-
+         
     <div className="card">
+      
       <div className="card2">
+        
         <form className="form" onSubmit={handleSubmit}>
+       
+
           <h1 className="title-login">{t("login.title")}</h1>
           <div className="input-box">
               <input
@@ -55,7 +59,10 @@ const Login = () => {
           </div>
 
           <button type="submit">{t("login.login_button")}</button>
+          
           <LinkRegister />
+          
+          
         </form>
       </div>
     </div>
@@ -71,6 +78,8 @@ function LinkRegister() {
     </Link>
   );
 }
+
+
 
 export default Login;
 

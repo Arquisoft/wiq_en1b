@@ -56,12 +56,24 @@
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
           "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
-          "email_placeholder" : "Correo electrónico"
+          "email_placeholder" : "Correo electrónico",
+          "very_weak_password": "Contraseña muy débil",
+          "weak_password": "Contraseña débil",
+          "good_password": "Contraseña buena",
+          "strong_password": "Contraseña fuerte",
+          "error_passwords_no_match": "Las contraseñas no coinciden",
+          "error_password_spaces": "La contraseña no puede contener espacios",
+          "error_username_spaces": "El nombre de usuario no puede contener espacios",
+          "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres",
+          "error_password_maximum_length": "La contraseña no debe tener más de 64 caracteres",
+          "error_username_in_use": "Nombre de usuario no disponible"
     },
      "gameMenu":{
       "history_button":"Ver Historial",
       "new_game_button":"Crear nuevo juego",
-      "title":"Menú del Juego"
+      "view_ranking":"Ranking",
+      "title":"Menú del Juego",
+      "back":"Atrás"
     },"questionView":{
       "seconds":"segundos",
       "question_counter":"Pregunta nº ",
@@ -74,8 +86,37 @@
       "game":"Partida",
       "points":"puntos",
       "no_games_played":"No has jugado todavía"
+    
+  },
+  "error":{
+    "error":"Error",
+    "sorry":"Lo sentimos, esta página no existe. No te enfades, solo soy un gatito."
+  },
+    "gameConfigurator":{
+      "game_config":"Configuración del Juego",
+      "type_quest":"Tipo de Pregunta : ",
+      "num_quest":"Número de Preguntas : ",
+      "play_custom":"Jugar personalizado",
+      "rules_competi":"Jugar con todo tipo de preguntas siendo estas 5",
+      "play_competi":"Jugar Competitivo",
+      "option_all":"Todas",
+      "option_population":"Población",
+      "option_capital":"Capital",
+      "option_language":"Lenguaje",
+      "option_size":"Extensión",
+      "custo_game":"Crea una partida personalizada",
+      "competi_game":"Juega en modo Competitivo",
+      "randomize":"Randomiza Parámetros"
+    },
+    "ranking":{
+      "ranking":"Ranking",
+      "position":"Posición",
+      "username":"Username",
+      "points":"Puntos",
+      "num_games":"Juegos Competitivos",
+      "search":"Buscar",
+      "enter_username":"Inserta usuario..."
     }
-      
     
   }
   

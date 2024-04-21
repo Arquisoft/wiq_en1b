@@ -27,16 +27,28 @@ describe('Gateway Service with token mock', () => {
     } 
   });
 
+  const question = { data:  [{question: "¿Cuál es la población de Oviedo?",
+                              answers: ["225089","272357","267855","231841"]}] };
+
+  //Dont need to check a good record just that it redirects the call
+  const record = {data : {record:'undefined'}};
+
   axios.get.mockImplementation((url, data) => {
     if (url.endsWith('/questions')){
-      return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
-                                      answers: ["225089","272357","267855","231841"]}] });
+      return Promise.resolve(question);
+    } else if (url.endsWith('/questions/es/1/CAPITAL')){
+      return Promise.resolve(question);
+    } else if (url.endsWith('/questions/es/1')){
+      return Promise.resolve(question);
     } else if (url.endsWith('/questions/es')){
-      return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
-                                      answers: ["225089","272357","267855","231841"]}] });
+      return Promise.resolve(question);
+
     } else if(url.endsWith('/record/testuser')){
-      //Dont need to check a good record just that it redirects the call
-      return Promise.resolve({data : {record:'undefined'}}) 
+      return Promise.resolve(record) 
+    } else if(url.endsWith('/record/ranking/top10')){
+      return Promise.resolve(record)
+    } else if(url.endsWith('/record/ranking/testuser')){
+      return Promise.resolve(record)  
     }
   });
 
@@ -74,8 +86,7 @@ describe('Gateway Service with token mock', () => {
     const response = await request(app)
       .get('/questions').set('token', 'valorDelToken');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+      checkQuestion(response);
   });
   
   // Test /questions/:lang endpoint
@@ -83,8 +94,23 @@ describe('Gateway Service with token mock', () => {
     const response = await request(app)
       .get('/questions/es').set('token', 'valorDelToken');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    checkQuestion(response);
+  });
+
+  // Test /questions/:lang/:amount endpoint
+  it('should forward questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions/es/1');
+
+      checkQuestion(response);
+  });
+
+  // Test /questions/:lang/:amount/:type endpoint
+  it('should forward questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions/es/1/CAPITAL');
+
+      checkQuestion(response);
   });
 
   // Test /record endpoint
@@ -112,7 +138,33 @@ describe('Gateway Service without token mock', () => {
   it('should not verify the token', async () => {
     const response = await request(app)
       .get('/record/testuser');
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('record', "undefined");
+
+      checkRecord(response);
   });
-})
+
+  // Test /record/ranking/:user endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/testuser');
+
+      checkRecord(response);
+  });
+
+  // Test /record/ranking/top10 endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/top10');
+      checkRecord(response);
+    
+  });
+});
+
+function checkRecord(response){
+  expect(response.statusCode).toBe(200);
+  expect(response.body).toHaveProperty('record', "undefined");
+}
+
+function checkQuestion(response){
+  expect(response.statusCode).toBe(200);
+  expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+}

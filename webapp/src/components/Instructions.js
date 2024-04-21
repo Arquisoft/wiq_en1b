@@ -4,12 +4,14 @@ import {useTranslation} from "react-i18next";
 
 
 
+
 function Instructions() {
 
   const[t] = useTranslation("global");
 
   return (
     <div className='instrucions_container'>
+      
       <h1 className='instructions_title'>{t("instructions.title")}</h1>
      <section>   
       <article>
@@ -57,7 +59,9 @@ function Instructions() {
             </article>
            
       </section>
+ 
     </div>
+    
   );
 }
 

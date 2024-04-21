@@ -29,32 +29,37 @@ class CreationHistoricalRecord{
         this.record.game.date = date;
     }
 
+    setCompetitive(isCompetitive){
+      this.record.game.competitive = isCompetitive;
+    }
+
     getRecord() {
         return this.record;
     }
 
     
     async sendRecord(user, token) {
-        const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
-      
-        const body = {
-          user:user,
-          game:this.record.game
-        }
-        try {
+      const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
+    
+      const body = {
+        user: user,
+        game: this.record.game 
+      };
+    
+      try {
           const response = await axios.post(apiUrl, body, {
-            headers: {
-              'Content-Type': 'application/json',
-              'token':token
-            }
+              headers: {
+                  'Content-Type': 'application/json',
+                  'token':token
+              }
           });
-      
-          const data = await response.data;
-          console.log(data);
-        } catch (error) {
-          console.error('Error:', error);
-        }
+        
+          
+          console.log('Registro enviado:', response.data);
+      } catch (error) {
+          console.error('Error al enviar el registro:', error.message); 
       }
+  }
 
 }
 export default CreationHistoricalRecord;

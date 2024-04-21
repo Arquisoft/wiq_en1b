@@ -34,7 +34,7 @@ docker compose --profile dev up --build
 ```
 
 ### Deployed in Cloud
-In order to view the application deploy in the cloud click [here](http://172.203.216.60:3000)
+In order to view the application deploy in the cloud click [here](http://wiqen1b.serveminecraft.net:3000)
 ### Members
 
 - Lucía Ruiz Núñez uo289267@uniovi.es

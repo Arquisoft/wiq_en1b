@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useTranslation} from "react-i18next";
 import HistoryRecordRetriever from './HistoryRecordRetriever';
 import Cookies from 'js-cookie'
-
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 import RecordList from './RecordList';
 
@@ -29,6 +29,7 @@ export default function HistoricalView() {
 
   return (
     <div className='globalHistoricalView'>
+      <BackButtonToGameMenu t={t}/>
       {(records && records.length !== 0) ? records.map((record, index) => (
         <HistoricalGameElement key={index} record={record} t={t} />
       )): <p>{t("historicalView.no_games_played")}</p>}
@@ -54,3 +55,4 @@ function HistoricalGameElement({record,t}){
     </div>
   );
 }
+
