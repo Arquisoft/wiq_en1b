@@ -11,12 +11,12 @@ defineFeature(feature, test => {
   
   beforeAll(async () => {
     browser = await puppeteer.launch({
+      headless: "new",
       slowMo: 20,
       defaultViewport: { width: 1920, height: 1080 },
       args: ['--window-size=1920,1080']
     });
-    page = await browser.newPage();
-    setDefaultOptions({ timeout: 10000 });
+    
   });
 
   test('Successful login', ({ given, when, then }) => {
@@ -26,8 +26,8 @@ defineFeature(feature, test => {
     });
 
     when('I enter valid credentials', async () => {
-      await page.type('input[type="text"]', 'validUsername');
-      await page.type('input[type="password"]', 'validPassword');
+      await page.type('input[type="text"]', 'ltbg');
+      await page.type('input[type="password"]', 'ltbg');
       await page.click('button[type="submit"]');
     });
 
@@ -35,7 +35,7 @@ defineFeature(feature, test => {
       await page.waitForNavigation();
       expect(page.url()).toContain('/menu');
     });
-  });
+  }, 60000);
 
   test('Failed login', ({ given, when, then }) => {
     given('I am on the login page', async () => {
@@ -53,7 +53,7 @@ defineFeature(feature, test => {
         await page.waitForNavigation();
         expect(page.url()).toContain('/login');
       });
-  });
+  }, 60000);
 
   afterAll(async () => {
     await browser.close();

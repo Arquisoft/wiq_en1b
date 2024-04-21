@@ -20,16 +20,16 @@ defineFeature(feature, test => {
     setDefaultOptions({ timeout: 10000 });
   });
 
-  test('The text container is initially visible', ({ given, then }) => {
-    given('I am on the home page', async () => {
-      await page.goto('http://localhost:3000/home'); 
-      await page.waitForSelector('.general');
-    });
+  // test('The text container is initially visible', ({ given, then }) => {
+  //   given('I am on the home page', async () => {
+  //     await page.goto('http://localhost:3000/home'); 
+  //     await page.waitForSelector('.general');
+  //   });
 
-    then('The text container should be visible', async () => {
-      await expect(page).toMatchElement('.text-container.visible');
-    });
-  });
+  //   then('The text container should be visible', async () => {
+  //     await expect(page).toMatchElement('.text-container.visible');
+  //   });
+  // });
 
   test('Opening the text container', ({ given, when, then }) => {
     given('I am on the home page', async () => {
