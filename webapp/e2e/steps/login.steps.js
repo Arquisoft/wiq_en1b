@@ -11,12 +11,13 @@ defineFeature(feature, test => {
   
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: "new",
+      headless: false, 
       slowMo: 20,
       defaultViewport: { width: 1920, height: 1080 },
       args: ['--window-size=1920,1080']
     });
-    
+    page = await browser.newPage(); // Inicialización de la página
+    setDefaultOptions({ timeout: 10000 });
   });
 
   test('Successful login', ({ given, when, then }) => {
@@ -32,7 +33,7 @@ defineFeature(feature, test => {
     });
 
     then('I should be redirected to the menu', async () => {
-      await page.waitForNavigation();
+      await page.waitForNavigation({ waitUntil: 'networkidle0' });
       expect(page.url()).toContain('/menu');
     });
   }, 60000);
@@ -50,9 +51,9 @@ defineFeature(feature, test => {
     });
 
     then('I should NOT be redirected to the menu', async () => {
-        await page.waitForNavigation();
-        expect(page.url()).toContain('/login');
-      });
+      await page.waitForNavigation({ waitUntil: 'networkidle0' });
+      expect(page.url()).toContain('/login');
+    });
   }, 60000);
 
   afterAll(async () => {
