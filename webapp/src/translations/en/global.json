@@ -62,7 +62,8 @@
         "error_username_spaces": "Username cannot contain spaces",
         "error_password_minimum_length": "Password must be at least 8 characters long",
         "error_password_maximum_length": "Password cannot be over 64 characters long",
-        "error_username_in_use": "Username already in use"
+        "error_username_in_use": "Username already in use",
+        "error_wrong_email_format": "Wrong email format (user@example.com)"
       },
       "gameMenu":{
         "history_button":"View Historical Data",

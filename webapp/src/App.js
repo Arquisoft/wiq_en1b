@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './custom.css';
 import HistoricalView from './components/HistoricalData/HistoricalView';
-import React from 'react';
 import Cookies from 'js-cookie';
 import GameConfigurator from './components/GameConfigurator/GameConfigurator';
 import RankingView from './components/ranking/RankingView';
@@ -22,7 +21,8 @@ function App() {
     document.title = 'WIQ';
   }, []);
 
-  const isLoggedIn = !!Cookies.get('user');
+  //The double !! converts an expression that can be a boolean into an actual boolean
+  const isLoggedIn = !!Cookies.get('user'); 
 
   return (
     <Router>

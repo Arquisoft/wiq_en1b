@@ -42,7 +42,7 @@ class QuestionGenerator{
             if(type==="COMPETITIVE"){
                 response = await axios.get(this.apiUrl + '/' + lang, {headers : {'token':token}});
             }else{
-                response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type);
+                response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type, {headers : {'token':token}});
             }
             console.log(response)
             const receivedQuestions = await response.data;

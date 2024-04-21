@@ -6,7 +6,8 @@ import i18en from 'i18next';
 import RankingView from './RankingView';
 import MockAdapter from 'axios-mock-adapter';
 import { act } from 'react-dom/test-utils';
-import { UserContextProvider} from '../loginAndRegistration/UserContext';
+import Cookies from 'js-cookie'
+
 i18en.use(initReactI18next).init({
     resources: {},
     lng: 'en',
@@ -15,21 +16,20 @@ i18en.use(initReactI18next).init({
     }
 });
 global.i18en = i18en;
-
+Cookies.set('user', JSON.stringify({username:"myUser", token:"fasfda"}))
 const mockAxios = new MockAdapter(axios);
 describe('RankingView component', () => {
-  const user = { username: 'myUser' };
     
     it('renders title', () => {
       act(()=>{
-        render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+        render(<MemoryRouter><RankingView /></MemoryRouter>);
       })
         const text = screen.getByText(i18en.t('ranking.ranking'));
         expect(text).toBeInTheDocument();
     });
     it('renders Loading if the call to the gateway has not been done', () => {
       act(()=>{
-        render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+        render(<MemoryRouter><RankingView /></MemoryRouter>);
       })
         const text = screen.getByText('Loading...');
         expect(text).toBeInTheDocument();
@@ -102,12 +102,11 @@ describe('RankingView component', () => {
       }
     }
     );
-    const user = { username: 'myUser' };
 
     it('renders position all headers in the table',async ()=>{
       
       await act(async () =>{
-          await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+          await render(<MemoryRouter><RankingView /></MemoryRouter>);
           
       })
           await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
@@ -118,7 +117,7 @@ describe('RankingView component', () => {
     
   it('renders position all users usernames',async ()=>{
     await act(async () =>{
-        await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+        await render(<MemoryRouter><RankingView /></MemoryRouter>);
         
     })
     await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
@@ -136,7 +135,7 @@ describe('RankingView component', () => {
   it('renders position all users totalPoints',async ()=>{
   
   await act(async () =>{
-      await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+      await render(<MemoryRouter><RankingView /></MemoryRouter>);
       
   })
   await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
@@ -153,7 +152,7 @@ describe('RankingView component', () => {
   it('renders position all users competitive games',async ()=>{
   
   await act(async () =>{
-    await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+    await render(<MemoryRouter><RankingView /></MemoryRouter>);
     
   })
   await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());
@@ -166,7 +165,7 @@ describe('RankingView component', () => {
   it('renders position all users competitive games',async ()=>{
  
   await act(async () =>{
-    await render(<UserContextProvider baseUser={user}><MemoryRouter><RankingView /></MemoryRouter></UserContextProvider>);
+    await render(<MemoryRouter><RankingView /></MemoryRouter>);
     
   })
   await waitFor(() => expect(screen.getByText(i18en.t('ranking.position'))).toBeInTheDocument());

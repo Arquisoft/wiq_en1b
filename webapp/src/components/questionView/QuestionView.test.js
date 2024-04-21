@@ -67,7 +67,7 @@ describe('Question View component', () => {
      it('speaks the question when the speaker button is clicked', async () => {
         
         await act(async () => {
-            render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            render(<MemoryRouter><QuestionView /></MemoryRouter>);
         });
         
         fireEvent.click(screen.getByText('🔊'));
@@ -147,11 +147,9 @@ describe('Question View component', () => {
         mockAxios.onGet('http://localhost:8000/questions/en').reply(200, []);                                                          
         mockAxios.onPost('http://localhost:8000/record').reply(200, {user:'myUser'});
 
-        const user = { username: 'myUser' };
-
         //It gives an error as we are not wrapping it by act, however by doing this we simulate a no questions situation
         await act(async () =>{
-            await render(<UserContextProvider baseUser={user}><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+            await render(<MemoryRouter><QuestionView /></MemoryRouter>);
         })  
 
         await waitFor(() => expect(screen.getByText(i18en.t('questionView.finished_game'))).toBeInTheDocument()); 
@@ -168,7 +166,7 @@ describe('Question View component', () => {
     //                                                             [{question: "What is the population of Oviedo?",
     //                                                             answers: ["225089","272357","267855","231841"]}]);
     //     await act(async () =>{
-    //         await render(<UserContextProvider><MemoryRouter><QuestionView /></MemoryRouter></UserContextProvider>);
+    //         await render(<MemoryRouter><QuestionView /></MemoryRouter>);
             
     //     })
     //     await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());

@@ -3,25 +3,25 @@ import RankingRetriever from './RankingRetriever';
 import {useTranslation} from "react-i18next";
 import Loader from "../fragments/Loader"
 import BackButton from '../fragments/BackButtonToGameMenu';
-import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import Cookies from 'js-cookie'
 
 const retriever = new RankingRetriever();
 
 const RankingView = () => {
   const[t] = useTranslation("global");
-  const {user} = useUserContext();
+  const cookie = JSON.parse(Cookies.get('user'))   
 
   const [rankingData, setRankingData] = useState(null);
   const [myRankingData, setMyRankingData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(user.username);
+  const [searchTerm, setSearchTerm] = useState(cookie.username);
   
   
 
   const getRanking = async () => {
     try {
-      var ranking = await retriever.getTopTen();
+      var ranking = await retriever.getTopTen(cookie.token);
       setRankingData(ranking.usersCompetitiveStats);
-      var myrank = await retriever.getUser(user.username);
+      var myrank = await retriever.getUser(cookie.username, cookie.token);
       setMyRankingData(myrank);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const RankingView = () => {
     e.preventDefault();
     if(searchTerm.length!==0){
       try {
-        const rank = await retriever.getUser(searchTerm);
+        const rank = await retriever.getUser(searchTerm, cookie.token);
         setMyRankingData(rank);
       } catch (error) {
         console.log(error);
