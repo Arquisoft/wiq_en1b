@@ -4,21 +4,35 @@ const setDefaultOptions = require('expect-puppeteer').setDefaultOptions;
 
 const feature = loadFeature('./features/gameMenu.feature');
 
+const { register, login, logout } = require("../utils");
+
 let page;
 let browser;
+
+const email = "testUser@example.com";
+const username = "testUser"
+const password = "testUserPassword"
 
 defineFeature(feature, test => {
   
   beforeAll(async () => {
       browser = await puppeteer.launch({
-      slowMo: 20,
-      defaultViewport: { width: 1920, height: 1080 },
-      args: ['--window-size=1920,1080']
+        headless: "new",
+        slowMo: 40,
+        defaultViewport: { width: 1920, height: 1080 },
+        args: ['--window-size=1920,1080']
     });
      
     page = await browser.newPage();
-    setDefaultOptions({ timeout: 10000 });
+    setDefaultOptions({ timeout: 30000 });
+
+    await register(page, email, username, password);
   });
+
+  beforeEach(async () => {
+    await logout(page);
+    await login(page, username, password);
+  })
 
   test('There should be visible three links', ({ given, then }) => {
     given('I am on the game menu', async () => {
@@ -29,7 +43,7 @@ defineFeature(feature, test => {
     then('three buttons should be visible', async () => {
       //await expect(page).toMatchElement('.linkButton');
       const elements = await page.$$('.linkButton');
-      expect(elements.length).toBeGreaterThan(0); // At least one element with class 'linkButton'
+      expect(elements.length).toBe(3);
     });
   });
   test('New Game should go to game configurator', ({ given, when, then }) => {

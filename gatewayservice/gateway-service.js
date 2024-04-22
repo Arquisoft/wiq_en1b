@@ -6,7 +6,7 @@ const promBundle = require('express-prom-bundle');
 const swaggerUi = require('swagger-ui-express'); 
 const fs = require("fs")
 const YAML = require('yaml')
-
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = 8000;
 
@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
     const authResponse = await axios.post(authServiceUrl+'/login', req.body);
     res.json(authResponse.data);
   } catch (error) {
-    res.status(error.response.status).json({ error: error.response.data.error });
+    manageError(error)
   }
 });
 
@@ -43,103 +43,130 @@ app.post('/adduser', async (req, res) => {
     const userResponse = await axios.post(userServiceUrl+'/adduser', req.body);
     res.json(userResponse.data);
   } catch (error) {
-    res.status(error.response.status).json({ error: error.response.data.error });
+    manageError(error);
+    
   }
 });
 
-app.get('/questions', async (req, res) => {
+app.get('/questions', verifyToken, async (req, res) => {
   try {
     
     // Forward the question request to the quetion service
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
     res.json(questionResponse.data);
   } catch (error) {
-    res.status(error.response.status).json({ error: error.response.data.error });
+    manageError(error)
   }
 });
 
-app.get('/questions/:lang/:amount/:type', async (req, res) => {
-  try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    const type = req.params.type.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
 
-    res.json(questionResponse.data);
+
+app.get('/questions/:lang/:amount/:type', verifyToken, async (req, res) => {
+  try {
+    if(!validateLang(req.params.lang.toString()) ||
+       !validateAmount(req.params.amount.toString()) ||
+       !validateType(req.params.type.toString()))
+       res.status(400).json({ error: 'Wrong values given' });
+    else {
+      const lang = encodeURIComponent(req.params.lang.toString());
+      const amount = encodeURIComponent(req.params.amount.toString());
+      const type = encodeURIComponent(req.params.type.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
+
+      res.json(questionResponse.data);
+    }
   } catch (error) {
 
-    res.status(error.response.status).json({ error: error.response.data.error });
+    manageError(error)
   }
 });
 
 
-app.get('/questions/:lang/:amount', async (req, res) => {
+app.get('/questions/:lang/:amount', verifyToken, async (req, res) => {
   try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
+    if(!validateLang(req.params.lang.toString()) ||
+       !validateAmount(req.params.amount.toString()))
+        res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const lang = encodeURIComponent(req.params.lang.toString());
+      const amount = encodeURIComponent(req.params.amount.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
+  
+      res.json(questionResponse.data);
+    }
+  } catch (error) {
+    manageError(error)
+  }
+});
 
-    res.json(questionResponse.data);
+app.get('/questions/:lang', verifyToken, async (req, res) => {
+  try {
+    if(!validateLang(req.params.lang.toString()))
+      res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const lang = encodeURIComponent(req.params.lang.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang.toString());
+
+      res.json(questionResponse.data);
+    }
+    
   } catch (error) {
 
-    res.status(error.response.status).json({ error: error.response.data.error });
+    manageError(error)
   }
 });
 
-app.get('/questions/:lang', async (req, res) => {
-  try {
-    const lang = req.params.lang.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang);
+app.post('/record', verifyToken, async(req, res) => {
 
-    res.json(questionResponse.data);
-  } catch (error) {
-
-    res.status(error.response.status).json({ error: error.response.data.error });
-  }
-});
-
-app.post('/record', async(req, res) => {
   try {
     // Forward the record request to the record service
     const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
     res.json(recordResponse.data);
   } catch (error) {
-    res.send(error);
+    manageError(error)
   }
 });
 
-app.get('/record/ranking/top10', async(req, res)=>{
+app.get('/record/ranking/top10', verifyToken, async(req, res)=>{
   try {
     // Forward the record request to the record service
     const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/top10');
     res.json(recordResponse.data);
   } catch (error) {
-    res.send(error);
+    manageError(error)
   }
 });
 
-app.get('/record/ranking/:user', async(req, res)=>{
+app.get('/record/ranking/:user', verifyToken, async(req, res)=>{
   try {
-    const user = req.params.user;
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
-    res.json(recordResponse.data);
+    if(!validateUser(req.params.user.toString()))
+        res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const user = encodeURIComponent(req.params.user.toString());
+      // Forward the record request to the record service
+      const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
+      res.json(recordResponse.data);
+    }
   } catch (error) {
-    res.send(error);
+    manageError(error)
   }
 });
 
-app.get('/record/:user', async(req, res)=>{
+app.get('/record/:user', verifyToken,  async(req, res)=>{
   try {
-    const user = req.params.user;
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
-    res.json(recordResponse.data);
+    if(!validateUser(req.params.user.toString()))
+      res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const user = encodeURIComponent(req.params.user.toString());
+      // Forward the record request to the record service
+      const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
+      res.json(recordResponse.data);
+    }
   } catch (error) {
-    res.send(error);
+    manageError(error)
   }
 });
 
@@ -158,5 +185,49 @@ app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const server = app.listen(port, () => {
   console.log(`Gateway Service listening at http://localhost:${port}`);
 });
+
+function verifyToken(req, res, next) {
+  // Get the token from the request headers
+  const token = req.headers['token'] || req.body.token || req.query.token;
+
+  // Verify if the token is valid
+  jwt.verify(token, (process.env.JWT_KEY??'my-key'), (err, decoded) => {
+    if (err) {
+      // Token is not valid
+      res.status(403).json({authorized: false,
+        error: 'Invalid token or outdated'});
+    } else {
+      // Token is valid
+      req.decodedToken = decoded;
+      // Call next() to proceed to the next middleware or route handler
+      next();
+    }
+  });
+}
+
+function validateLang(lang){
+  return ['en', 'es', 'tk'].includes(lang);
+}
+
+function validateAmount(amount) {
+  const parsed = parseInt(amount, 10);
+  // We only accept integers and positive ones
+  return !isNaN(parsed) && parsed > 0;
+}
+
+function validateType(type){
+  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE'].includes(type);
+}
+
+function validateUser(user){
+  return !(/\s/.test(user)) //True if there are no spaces
+}
+
+function manageError(error){
+  if(error.response) //Some microservice responded with an error
+    res.status(error.response.status).json({ error: error.response.data.error });
+  else //Some other error
+    res.status(500).json({error : "Interanl server error"})
+}
 
 module.exports = server

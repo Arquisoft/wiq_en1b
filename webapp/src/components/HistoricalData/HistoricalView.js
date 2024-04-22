@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useTranslation} from "react-i18next";
 import HistoryRecordRetriever from './HistoryRecordRetriever';
-import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import Cookies from 'js-cookie'
 import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 import RecordList from './RecordList';
@@ -12,13 +12,13 @@ const retriever = new HistoryRecordRetriever();
 export default function HistoricalView() {
   const [records, setRecords]= useState(null);
   const[t] = useTranslation("global");
-  const {user} = useUserContext();
 
   const getRecords = async ()=>{
         try {
-            var jsonRecords = await retriever.getRecords(user.username); 
-            var recordsArray = jsonRecords.games;
-            setRecords(recordsArray);
+          let cookie = JSON.parse(Cookies.get('user'))
+          var jsonRecords = await retriever.getRecords(cookie.username, cookie.token); 
+          var recordsArray = jsonRecords.games;
+          setRecords(recordsArray);
         } catch (error) {
             console.log(error);
         }

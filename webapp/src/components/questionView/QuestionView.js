@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
-import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import Cookies from 'js-cookie'
 import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
@@ -18,14 +18,15 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
-    const {user} = useUserContext();
+    const cookie = JSON.parse(Cookies.get('user'))    
     const [audio] = useState(new Audio('/tictac.mp3'));
 
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount);
+                
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
@@ -109,7 +110,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
-                creationHistoricalRecord.sendRecord(user.username);
+                creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
             }
         }, 1000);
         

@@ -16,7 +16,8 @@
       "en": "İngilizce",
       "es": "İspanyolca",
       "tk": "Türkçe",
-      "language": "Dil"
+      "language": "Dil",
+      "logout":"Log Out"
     },
     "instructions": {
       "title": "WIQ Talimatları",

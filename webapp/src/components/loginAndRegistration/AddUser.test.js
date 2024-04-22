@@ -33,7 +33,10 @@ describe('<AddUser />', () => {
 
   });
 
-  const fillFormAndSubmit = (username, password, repeatPassword) => {
+  const fillFormAndSubmit = (email, username, password, repeatPassword) => {
+    const emailInput = screen.getByPlaceholderText('addUser.email_placeholder');
+    fireEvent.change(emailInput, { target: { value: email } });
+
     const usernameInput = screen.getByPlaceholderText('addUser.username_placeholder');
     fireEvent.change(usernameInput, { target: { value: username } });
 
@@ -48,28 +51,40 @@ describe('<AddUser />', () => {
   };
 
   test('displays correct error messages', async () => {
+    //Wrong email format lacks @
+    fillFormAndSubmit('userexample.com', 'username', '12345678', '123456789');
+    expect(screen.getByText('addUser.error_wrong_email_format')).toBeInTheDocument();
+    //Wrong email format lacks domain
+    fillFormAndSubmit('user@example', 'username', '12345678', '123456789');
+    expect(screen.getByText('addUser.error_wrong_email_format')).toBeInTheDocument();
     //Passwords do not match
-    fillFormAndSubmit('username', '12345678', '123456789');
+    fillFormAndSubmit('user@example.com', 'username', '12345678', '123456789');
     expect(screen.getByText('addUser.error_passwords_no_match')).toBeInTheDocument();
     //Password with spaces
-    fillFormAndSubmit('username', '1234 5678', '1234 5678');
+    fillFormAndSubmit('user@example.com', 'username', '1234 5678', '1234 5678');
     expect(screen.getByText('addUser.error_password_spaces')).toBeInTheDocument();
     //Password too short
-    fillFormAndSubmit('username', '1234567', '1234567');
+    fillFormAndSubmit('user@example.com', 'username', '1234567', '1234567');
     expect(screen.getByText('addUser.error_password_minimum_length')).toBeInTheDocument();
     //Password too long
-    fillFormAndSubmit('username', '01234567890123456789012345678901234567890123456789012345678901234', '01234567890123456789012345678901234567890123456789012345678901234');
+    fillFormAndSubmit('user@example.com', 'username', '01234567890123456789012345678901234567890123456789012345678901234', '01234567890123456789012345678901234567890123456789012345678901234');
     expect(screen.getByText('addUser.error_password_maximum_length')).toBeInTheDocument();
     //Username with spaces
-    fillFormAndSubmit('user name', '12345678', '12345678');
+    fillFormAndSubmit('user@example.com', 'user name', '12345678', '12345678');
     expect(screen.getByText('addUser.error_username_spaces')).toBeInTheDocument();
+
+    //Show various errors
+    fillFormAndSubmit('userexample.com', 'user name', '12345678', '12345678');
+    expect(screen.getByText('addUser.error_username_spaces')).toBeInTheDocument();
+    expect(screen.getByText('addUser.error_wrong_email_format')).toBeInTheDocument();
+
     //Username in use
     axios.post.mockRejectedValue({ response: { data: { error: 'Username already in use' } } });
-    fillFormAndSubmit('existing_user', '12345678', '12345678');
+    fillFormAndSubmit('user@example.com', 'existing_user', '12345678', '12345678');
     await waitFor(() => {
       expect(screen.getByText('addUser.error_username_in_use')).toBeInTheDocument();
     });
-    expect(axios.post).toHaveBeenCalledWith(expect.any(String), { username: 'existing_user', password: '12345678' });
+    expect(axios.post).toHaveBeenCalledWith(expect.any(String), { email: 'user@example.com' ,username: 'existing_user', password: '12345678', repeatPassword: "12345678" });
   });
 
 });

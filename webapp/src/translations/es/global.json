@@ -17,7 +17,8 @@
         "en": "Inglés",
         "es": "Español",
         "tk": "Turco",
-        "language": "Idioma"
+        "language": "Idioma",
+        "logout":"Desconectarse"
       },
 
       "instructions": {
@@ -40,7 +41,7 @@
     },
     "login": {
         "title": "Inicio de sesión",
-        "username_placeholder": "Nombre de usuario",
+        "username_placeholder": "Nombre de usuario o Correo Electrónico",
         "password_placeholder": "Contraseña",
         "remember_me": "Recordarme",
         "forgot_password": "¿Olvidaste tu contraseña?",
@@ -55,6 +56,7 @@
           "repeat_password_placeholder": "Repetir contraseña",
           "register_button": "Registrarse",
           "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
+          "email_placeholder" : "Correo electrónico",
           "very_weak_password": "Contraseña muy débil",
           "weak_password": "Contraseña débil",
           "good_password": "Contraseña buena",
