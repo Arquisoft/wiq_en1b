@@ -11,9 +11,10 @@ defineFeature(feature, test => {
   
   beforeAll(async () => {
       browser = await puppeteer.launch({
-      slowMo: 20,
-      defaultViewport: { width: 1920, height: 1080 },
-      args: ['--window-size=1920,1080']
+        headless: "new",
+        slowMo: 20,
+        defaultViewport: { width: 1920, height: 1080 },
+        args: ['--window-size=1920,1080']
     });
      
     page = await browser.newPage();

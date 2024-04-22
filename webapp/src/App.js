@@ -31,7 +31,7 @@ function App() {
           <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px' }}>
             <Routes>
               <Route path="/" element={<Navigate to="/home" />} /> 
-              <Route path="/home" element={<Home />} />
+              <Route path="/home" element={isLoggedIn ? <GameMenu /> : <Home />} />
               <Route path="/login" element={isLoggedIn ? <GameMenu /> : <Login />} />
               <Route path="/instructions" element={<Instructions />} />
               <Route path="/addUser" element={isLoggedIn ? <GameMenu /> : <AddUser />} />

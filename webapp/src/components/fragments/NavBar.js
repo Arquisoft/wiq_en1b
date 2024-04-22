@@ -72,7 +72,7 @@ function Navbar() {
             onClose={handleUserMenuClose}
             disableAutoFocusItem
           >
-            <MenuItem onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
+            <MenuItem id="logout" onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
           </Menu>
           </>
         ) : null}

@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 const User = require('./user-model')
 
 const app = express();
@@ -58,8 +59,11 @@ app.post('/adduser', async (req, res) => {
             password: hashedPassword,
         });
 
-        await newUser.save();
-        res.json({username: newUser.username});
+        const savedUser = await newUser.save();
+
+        const token = jwt.sign({ userId: savedUser._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '1h' });
+
+        res.json({ token: token, username: savedUser.username, email: savedUser.email});
     } catch (error) {
         res.status(400).json({ error: error.message }); 
     }});

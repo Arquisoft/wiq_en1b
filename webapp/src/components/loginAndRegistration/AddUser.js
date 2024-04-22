@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
+import Cookies from 'js-cookie';
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -66,7 +67,11 @@ const AddUser = () => {
     if (newSubmitErrors.length === 0) {
       try {
         const response = await axios.post(apiUrl, { email, username, password });
-        navigate('/login');
+        let oneHourAfter = new Date().getTime() + (1 * 60 * 60 * 1000)
+        Cookies.set('user', JSON.stringify({username : response.data.username, token : response.data.token})
+                    , {expires:oneHourAfter});
+        navigate('/menu');
+        window.location.reload();
       } catch (error) {
         if (error.response.data.error === "Username already in use") {
           setSubmitErrors(["addUser.error_username_in_use"]);
