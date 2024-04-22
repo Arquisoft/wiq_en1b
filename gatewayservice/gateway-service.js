@@ -58,15 +58,23 @@ app.get('/questions', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/questions/:lang/:amount/:type', async (req, res) => {
-  try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    const type = req.params.type.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
 
-    res.json(questionResponse.data);
+
+app.get('/questions/:lang/:amount/:type', verifyToken, async (req, res) => {
+  try {
+    if(!validateLang(req.params.lang.toString()) ||
+       !validateAmount(req.params.amount.toString()) ||
+       !validateType(req.params.type.toString()))
+       res.status(400).json({ error: 'Wrong values given' });
+    else {
+      const lang = encodeURIComponent(req.params.lang.toString());
+      const amount = encodeURIComponent(req.params.amount.toString());
+      const type = encodeURIComponent(req.params.type.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
+
+      res.json(questionResponse.data);
+    }
   } catch (error) {
 
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -76,55 +84,34 @@ app.get('/questions/:lang/:amount/:type', async (req, res) => {
 
 app.get('/questions/:lang/:amount', verifyToken, async (req, res) => {
   try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
-
-    res.json(questionResponse.data);
+    if(!validateLang(req.params.lang.toString()) ||
+       !validateAmount(req.params.amount.toString()))
+        res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const lang = encodeURIComponent(req.params.lang.toString());
+      const amount = encodeURIComponent(req.params.amount.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
+  
+      res.json(questionResponse.data);
+    }
   } catch (error) {
-
-    res.status(error.response.status).json({ error: error.response.data.error });
-  }
-});
-
-app.get('/questions/:lang/:amount/:type', verifyToken, async (req, res) => {
-  try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    const type = req.params.type.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount + '/' + type);
-
-    res.json(questionResponse.data);
-  } catch (error) {
-
-    res.status(error.response.status).json({ error: error.response.data.error });
-  }
-});
-
-
-app.get('/questions/:lang/:amount', async (req, res) => {
-  try {
-    const lang = req.params.lang.toString();
-    const amount = req.params.amount.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang + '/' + amount);
-
-    res.json(questionResponse.data);
-  } catch (error) {
-
     res.status(error.response.status).json({ error: error.response.data.error });
   }
 });
 
 app.get('/questions/:lang', verifyToken, async (req, res) => {
   try {
-    const lang = req.params.lang.toString();
-    // Forward the question request to the quetion service
-    const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang.toString());
+    if(!validateLang(req.params.lang.toString()))
+      res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const lang = encodeURIComponent(req.params.lang.toString());
+      // Forward the question request to the quetion service
+      const questionResponse = await axios.get(questionServiceUrl+'/questions/' + lang.toString());
 
-    res.json(questionResponse.data);
+      res.json(questionResponse.data);
+    }
+    
   } catch (error) {
 
     res.status(error.response.status).json({ error: error.response.data.error });
@@ -132,7 +119,7 @@ app.get('/questions/:lang', verifyToken, async (req, res) => {
 });
 
 app.post('/record', verifyToken, async(req, res) => {
-  console.log("in")
+
   try {
     // Forward the record request to the record service
     const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
@@ -154,31 +141,14 @@ app.get('/record/ranking/top10', verifyToken, async(req, res)=>{
 
 app.get('/record/ranking/:user', verifyToken, async(req, res)=>{
   try {
-    const user = req.params.user;
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
-    res.json(recordResponse.data);
-  } catch (error) {
-    res.send(error);
-  }
-});
-
-app.get('/record/ranking/top10', verifyToken, async(req, res)=>{
-  try {
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/top10');
-    res.json(recordResponse.data);
-  } catch (error) {
-    res.send(error);
-  }
-});
-
-app.get('/record/ranking/:user', async(req, res)=>{
-  try {
-    const user = req.params.user;
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
-    res.json(recordResponse.data);
+    if(!validateUser(req.params.user.toString()))
+        res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const user = encodeURIComponent(req.params.user.toString());
+      // Forward the record request to the record service
+      const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/' + user);
+      res.json(recordResponse.data);
+    }
   } catch (error) {
     res.send(error);
   }
@@ -186,10 +156,14 @@ app.get('/record/ranking/:user', async(req, res)=>{
 
 app.get('/record/:user', verifyToken,  async(req, res)=>{
   try {
-    const user = req.params.user;
-    // Forward the record request to the record service
-    const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
-    res.json(recordResponse.data);
+    if(!validateUser(req.params.user.toString()))
+      res.status(400).json({ error: 'Wrong values given' });
+    else{
+      const user = encodeURIComponent(req.params.user.toString());
+      // Forward the record request to the record service
+      const recordResponse = await axios.get(recordServiceUrl + '/record/' + user);
+      res.json(recordResponse.data);
+    }
   } catch (error) {
     res.send(error);
   }
@@ -228,6 +202,24 @@ function verifyToken(req, res, next) {
       next();
     }
   });
+}
+
+function validateLang(lang){
+  return ['en', 'es', 'tk'].includes(lang);
+}
+
+function validateAmount(amount) {
+  const parsed = parseInt(amount, 10);
+  // We only accept integers and positive ones
+  return !isNaN(parsed) && parsed > 0;
+}
+
+function validateType(type){
+  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE'].includes(type);
+}
+
+function validateUser(user){
+  return !(/\s/.test(user)) //True if there are no spaces
 }
 
 module.exports = server

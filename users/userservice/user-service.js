@@ -17,6 +17,11 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
 mongoose.connect(mongoUri);
 
 
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+};
 
 // Function to validate required fields in the request body
 function validateRequiredFields(req, requiredFields) {
@@ -25,13 +30,47 @@ function validateRequiredFields(req, requiredFields) {
         throw new Error(`Missing required field: ${field}`);
       }
     }
+
+    let email = req.body.email.toString();
+    let username = req.body.username.toString();
+    let password = req.body.password.toString();
+    let repeatPassword = req.body.repeatPassword.toString();
+
+    if(!validateEmail(email)){
+      //User put a wrong format email
+      throw new Error("Wrong email format (example@example.com)")
+    }
+
+    if(password !== repeatPassword){
+      //User put the same password
+      throw new Error("Passwords dont match");
+    }
+    if(/\s/.test(password)){
+      //User put spaces in password
+      throw new Error("Password cannot have spaces");
+    }
+    if(password.length < 8){
+      //Password too short
+      throw new Error("Password must be at least 8 characters long");
+    }
+
+    if(password.length > 64){
+      //Password too long
+      throw new Error("Password must less than 64 characters long");
+    } 
+
+    if(/\s/.test(username)){
+      //Spaces in username
+      throw new Error("Username cannot have spaces");
+    }
+
 }
 
 app.post('/adduser', async (req, res) => {
     try {
         // Check if required fields are present in the request body
         try{
-          validateRequiredFields(req, ['email', 'username', 'password']);
+          validateRequiredFields(req, ['email', 'username', 'password', 'repeatPassword']);
         }
         catch(error){
           res.status(400).json({ error : error.message });

@@ -100,7 +100,7 @@ describe('Gateway Service with token mock', () => {
   // Test /questions/:lang/:amount endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es/1');
+      .get('/questions/es/1').set('token', 'valorDelToken');
 
       checkQuestion(response);
   });
@@ -108,7 +108,7 @@ describe('Gateway Service with token mock', () => {
   // Test /questions/:lang/:amount/:type endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es/1/CAPITAL');
+      .get('/questions/es/1/CAPITAL').set('token', 'valorDelToken');
 
       checkQuestion(response);
   });
@@ -126,18 +126,6 @@ describe('Gateway Service with token mock', () => {
   it('should forward record request to record service', async () => {
     const response = await request(app)
       .get('/record/testuser').set('token', 'valorDelToken');
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('record', "undefined");
-  });
-
-
-});
-
-describe('Gateway Service without token mock', () => {
-  // Test /record/:user endpoint
-  it('should not verify the token', async () => {
-    const response = await request(app)
-      .get('/record/testuser');
 
       checkRecord(response);
   });
@@ -145,7 +133,7 @@ describe('Gateway Service without token mock', () => {
   // Test /record/ranking/:user endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/ranking/testuser');
+      .get('/record/ranking/testuser').set('token', 'valorDelToken');
 
       checkRecord(response);
   });
@@ -153,10 +141,11 @@ describe('Gateway Service without token mock', () => {
   // Test /record/ranking/top10 endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/ranking/top10');
+      .get('/record/ranking/top10').set('token', 'valorDelToken');
       checkRecord(response);
     
   });
+
 });
 
 function checkRecord(response){

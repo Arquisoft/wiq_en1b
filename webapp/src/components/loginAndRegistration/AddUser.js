@@ -66,7 +66,7 @@ const AddUser = () => {
 
     if (newSubmitErrors.length === 0) {
       try {
-        const response = await axios.post(apiUrl, { email, username, password });
+        const response = await axios.post(apiUrl, { email, username, password, repeatPassword });
         let oneHourAfter = new Date().getTime() + (1 * 60 * 60 * 1000)
         Cookies.set('user', JSON.stringify({username : response.data.username, token : response.data.token})
                     , {expires:oneHourAfter});
