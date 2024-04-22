@@ -17,7 +17,7 @@ defineFeature(feature, test => {
   
   beforeAll(async () => {
       browser = await puppeteer.launch({
-        headless: false, // Muestra el navegador
+        headless: "new",
         slowMo: 40,
         defaultViewport: { width: 1920, height: 1080 },
         args: ['--window-size=1920,1080']
