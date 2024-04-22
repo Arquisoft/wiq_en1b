@@ -74,6 +74,7 @@ app.post('/adduser', async (req, res) => {
         }
         catch(error){
           res.status(400).json({ error : error.message });
+          console.log(res)
           return
         }
 

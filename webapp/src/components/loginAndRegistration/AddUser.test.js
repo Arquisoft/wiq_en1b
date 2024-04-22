@@ -84,7 +84,7 @@ describe('<AddUser />', () => {
     await waitFor(() => {
       expect(screen.getByText('addUser.error_username_in_use')).toBeInTheDocument();
     });
-    expect(axios.post).toHaveBeenCalledWith(expect.any(String), { email: 'user@example.com' ,username: 'existing_user', password: '12345678' });
+    expect(axios.post).toHaveBeenCalledWith(expect.any(String), { email: 'user@example.com' ,username: 'existing_user', password: '12345678', repeatPassword: "12345678" });
   });
 
 });

@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
 import Cookies from 'js-cookie';
 
+import { manageError } from "../../utils/manageError";
+
 const AddUser = () => {
   const navigate = useNavigate();
   const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/adduser";
@@ -73,10 +75,9 @@ const AddUser = () => {
         navigate('/menu');
         window.location.reload();
       } catch (error) {
-        if (error.response.data.error === "Username already in use") {
-          setSubmitErrors(["addUser.error_username_in_use"]);
-        }
-        console.error("Error adding user:", error);
+        let processedError = manageError(error);
+        if(processedError.status !== 500)
+          setSubmitErrors(['addUser.error_username_in_use']);
       }
     }
   };
