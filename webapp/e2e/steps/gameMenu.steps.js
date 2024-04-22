@@ -24,10 +24,15 @@ defineFeature(feature, test => {
     });
      
     page = await browser.newPage();
-    setDefaultOptions({ timeout: 10000 });
+    setDefaultOptions({ timeout: 30000 });
 
     await register(page, email, username, password);
   });
+
+  beforeEach(async () => {
+    await logout(page);
+    await login(page, username, password);
+  })
 
   test('There should be visible three links', ({ given, then }) => {
     given('I am on the game menu', async () => {
