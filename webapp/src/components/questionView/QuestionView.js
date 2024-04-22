@@ -1,8 +1,7 @@
 import QuestionGenerator from './QuestionGenerator';
 import CreationHistoricalRecord from './CreationHistoricalRecord';
-import { useState } from 'react';
 import "../../custom.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
@@ -129,15 +128,42 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
 
 function QuestionComponent({questions, numQuestion, handleClick, t, points, audio, language}){
 
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.key === 's') {
+                speakQuestionAndAnswers();
+            } else {
+                const answerIndex = parseInt(event.key) - 1;
+                if (!isNaN(answerIndex) && answerIndex >= 0 && answerIndex < questions[numQuestion].getAnswers().length) {
+                    handleClick(questions[numQuestion].getAnswers()[answerIndex]);
+                }
+            }
+        };
 
-    const speakQuestion = () => {
+        window.addEventListener("keypress", handleKeyPress);
+        
+        return () => {
+            window.removeEventListener("keypress", handleKeyPress);
+        };
+    }, [numQuestion, questions, handleClick]);
+    const speakQuestionAndAnswers = () => {
+        // speakQuestion(questions[numQuestion].getQuestion());
+        speakAnswers(questions[numQuestion].getAnswers());
+    };
+
+    
+
+    const speakAnswers = (answers) => {
         const speech = new SpeechSynthesisUtterance();
         speech.lang = language;
-        console.log(language);
+        let concatenatedAnswers = Array.isArray(answers) ? answers.map((answer, index) => `${index + 1}. ${answer}`).join(". ") : ''; 
+
         getVoicesForLanguage(language)
             .then(voices => {
                 // const voice = voices.find(voice => voice.lang === language);
                 // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
+                speech.text = concatenatedAnswers;
+
                 window.speechSynthesis.speak(speech);
             })
             .catch(error => {
@@ -185,7 +211,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
                 <div className='questionContainer'>
                
                     <div className='topPanel'>
-                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speakQuestion}>🔊</button></h2>
+                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speakQuestionAndAnswers}>🔊</button></h2>
                         <div className="countdown">
                             <Countdown key={numQuestion} date={Date.now()+10000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
