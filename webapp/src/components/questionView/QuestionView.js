@@ -85,6 +85,9 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
         }
     }
     function handleClick(text){
+        // Detener el síntesis de voz
+        window.speechSynthesis.cancel();
+    
         //create the record to record the response
         creationHistoricalRecord.addQuestion(questions[numQuestion].getQuestion(),
                                         questions[numQuestion].getAnswers(),
@@ -113,7 +116,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
         }, 1000);
         
     }
-
+    
     if(questions === null)
         generateQuestions(numQuestion)
 
@@ -146,6 +149,19 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
             window.removeEventListener("keypress", handleKeyPress);
         };
     }, [numQuestion, questions, handleClick]);
+
+    //To stop the voice when changing of page
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            window.speechSynthesis.cancel();
+        };
+    
+        window.addEventListener("beforeunload", handleBeforeUnload);
+    
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
     const speakQuestionAndAnswers = () => {
         // speakQuestion(questions[numQuestion].getQuestion());
         speakAnswers(questions[numQuestion].getAnswers());
@@ -199,7 +215,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
         } else {
             if (audio.paused) {
                 audio.loop = true; // Loop of tiktak
-                audio.play();
+                // audio.play();
             }
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
