@@ -21,6 +21,13 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const [audio] = useState(new Audio('/tictac.mp3'));
 
 
+    //To stop tiktak sound when changing of page
+    useEffect(() => {
+        return () => {
+            audio.pause(); 
+        };
+    }, []);
+
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
