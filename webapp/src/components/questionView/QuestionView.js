@@ -28,6 +28,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 
                 var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
                 setQuestions(generatedQuestions);
+                points=0;
                 setnumQuestion(0);
             } catch (error) {
                 //Como hacer que funcione esto
