@@ -215,7 +215,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
         } else {
             if (audio.paused) {
                 audio.loop = true; // Loop of tiktak
-                // audio.play();
+                audio.play();
             }
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
