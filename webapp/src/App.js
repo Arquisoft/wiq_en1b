@@ -14,12 +14,32 @@ import HistoricalView from './components/HistoricalData/HistoricalView';
 import { UserContextProvider } from './components/loginAndRegistration/UserContext';
 import GameConfigurator from './components/GameConfigurator/GameConfigurator';
 import RankingView from './components/ranking/RankingView';
-
+import GoogleLogin from "react-google-login";
+import {gapi} from "gapi-script";
 
 function App() {
+  const clientID = "";
+
+
   useEffect(() => {
     document.title = 'WIQ';
+    const start = () =>{
+      gapi.auth2.init({
+        clientId:clientID, 
+      })
+    }
+    gapi.load("client:auth2", start);
   }, []);
+
+
+
+  const onSuccess=(response)=>{
+    console.log(response);
+  }
+
+  const onFailure=()=>{
+    console.log("Something went wrong");
+  }
   return (
     <Router>
       <UserContextProvider>
@@ -40,9 +60,20 @@ function App() {
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
+          <div className='btnGoogle'>
+            <GoogleLogin 
+            clientId={clientID}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_policy"}
+            />
+          </div>
         </div>
+        
       </UserContextProvider>
+      
     </Router>
+    
   );
 }
 

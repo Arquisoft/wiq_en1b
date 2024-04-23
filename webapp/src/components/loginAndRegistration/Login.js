@@ -7,13 +7,36 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from "./UserContext";
 
-const Login = () => {
+
+const Login = (props) => {
   const navigate = useNavigate();
   const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/login";
   const { t } = useTranslation("global");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useUserContext();
+
+  
+
+  //GOOGLE
+  // const clientID = "";
+
+  // useEffect(()=>{
+  //   const start = () =>{
+  //     gapi.auth2.init({
+  //       clientId:clientID, 
+  //     })
+  //   }
+  //   gapi.load("client:auth2", start);
+  // }, [])
+
+  // const onSuccess=(response)=>{
+  //   console.log(response);
+  // }
+
+  // const onFailure=()=>{
+  //   console.log("Something went wrong");
+  // }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,7 +89,14 @@ const Login = () => {
           <button type="submit">{t("login.login_button")}</button>
           
           <LinkRegister />
-          
+          <div className='btnGoogle'>
+            {/* <GoogleLogin 
+            // clientId={clientID}
+            // onSuccess={onSuccess}
+            // onFailure={onFailure}
+            cookiePolicy={"single_host_policy"}
+            /> */}
+          </div>
           
         </form>
       </div>
