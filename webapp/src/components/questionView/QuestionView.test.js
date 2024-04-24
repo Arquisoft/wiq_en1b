@@ -130,7 +130,7 @@ describe('Question View component', () => {
         }, { timeout: 1000 }); // Esperar 1 segundo
     });
     
-    it('shows timer', async () => {
+    it('shows timer ', async () => {
         setupAudioMock()
         await act(async () =>{
             await render(<MemoryRouter><QuestionView /></MemoryRouter>);
@@ -139,7 +139,7 @@ describe('Question View component', () => {
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
         // expect(global.Audio).toHaveBeenCalledWith('/tictac.mp3');
 
-        const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
+        const timerElement = screen.getByText(new RegExp((\\d+) ${i18en.t('questionView.seconds')}));
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
     }); 
     
@@ -171,7 +171,7 @@ describe('Question View component', () => {
     //     })
     //     await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
 
-    //     const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
+    //     const timerElement = screen.getByText(new RegExp((\\d+) ${i18en.t('questionView.seconds')}));
     //     expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
 
         
