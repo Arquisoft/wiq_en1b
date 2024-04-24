@@ -25,8 +25,12 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
+                var generatedQuestions;
+                if(cookie){
+                    generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
+                }else{
+                    generateQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, null);//playing as guest
+                }
                 setQuestions(generatedQuestions);
                 setnumQuestion(0);
             } catch (error) {
@@ -110,7 +114,8 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
-                creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
+                if(cookie)
+                    creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
             }
         }, 1000);
         
