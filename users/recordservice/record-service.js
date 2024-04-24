@@ -22,7 +22,7 @@ app.post('/record', async (req, res) => {
   const user = req.body.user;
   const game = req.body.game;
   if(user && game){
-    let record = await Record.findOne({ user : user }); 
+    let record = await Record.findOne({ user : user.toString() }); 
     if(record){ //If it exits
       record.games.push(game);
     }

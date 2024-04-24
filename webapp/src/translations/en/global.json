@@ -16,7 +16,8 @@
       "en": "English",
       "es": "Spanish",
       "tk": "Turkish",
-      "language": "Language"
+      "language": "Language",
+      "logout":"Log Out"
     },
     "instructions": {
         "title": "WIQ Instructions",
@@ -42,7 +43,7 @@
     },
     "login": {
         "title": "Login",
-        "username_placeholder": "Username",
+        "username_placeholder": "Username or Email",
         "password_placeholder": "Password",
         "remember_me": "Remember me",
         "forgot_password": "Forgot password?",
@@ -56,6 +57,7 @@
         "repeat_password_placeholder": "Repeat password",
         "register_button": "Register",
         "login_link": "Do you have an account? Login here.",
+        "email_placeholder" : "Email",
         "very_weak_password": "Very weak password",
         "weak_password": "Weak password",
         "good_password": "Good password",
@@ -65,7 +67,8 @@
         "error_username_spaces": "Username cannot contain spaces",
         "error_password_minimum_length": "Password must be at least 8 characters long",
         "error_password_maximum_length": "Password cannot be over 64 characters long",
-        "error_username_in_use": "Username already in use"
+        "error_username_in_use": "Username already in use",
+        "error_wrong_email_format": "Wrong email format (user@example.com)"
       },
       "gameMenu":{
         "history_button":"View Historical Data",

@@ -1,14 +1,21 @@
 const request = require('supertest');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const app = require('./gateway-service'); 
 
 afterAll(async () => {
     app.close();
   });
 
+
+jest.mock('jsonwebtoken');
+
 jest.mock('axios');
 
-describe('Gateway Service', () => {
+
+
+describe('Gateway Service with token mock', () => {
+
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
     if (url.endsWith('/login')) {
@@ -45,6 +52,14 @@ describe('Gateway Service', () => {
     }
   });
 
+  
+
+  // Mock the `verify` function of JWT
+  jwt.verify.mockImplementation((token, secretOrPublicKey, callback) => {
+    // Assume the token is valid and return the payload
+    callback(null, "decoded");
+  });
+
   // Test /login endpoint
   it('should forward login request to auth service', async () => {
     const response = await request(app)
@@ -69,7 +84,7 @@ describe('Gateway Service', () => {
   // Test /questions endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions');
+      .get('/questions').set('token', 'valorDelToken');
 
       checkQuestion(response);
   });
@@ -77,7 +92,7 @@ describe('Gateway Service', () => {
   // Test /questions/:lang endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es');
+      .get('/questions/es').set('token', 'valorDelToken');
 
     checkQuestion(response);
   });
@@ -85,7 +100,7 @@ describe('Gateway Service', () => {
   // Test /questions/:lang/:amount endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es/1');
+      .get('/questions/es/1').set('token', 'valorDelToken');
 
       checkQuestion(response);
   });
@@ -93,7 +108,7 @@ describe('Gateway Service', () => {
   // Test /questions/:lang/:amount/:type endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es/1/CAPITAL');
+      .get('/questions/es/1/CAPITAL').set('token', 'valorDelToken');
 
       checkQuestion(response);
   });
@@ -101,7 +116,7 @@ describe('Gateway Service', () => {
   // Test /record endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .post('/record');
+      .post('/record').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body.user).toBe('testuser');
@@ -110,7 +125,7 @@ describe('Gateway Service', () => {
   // Test /record/:user endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/testuser');
+      .get('/record/testuser').set('token', 'valorDelToken');
 
       checkRecord(response);
   });
@@ -118,7 +133,7 @@ describe('Gateway Service', () => {
   // Test /record/ranking/:user endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/ranking/testuser');
+      .get('/record/ranking/testuser').set('token', 'valorDelToken');
 
       checkRecord(response);
   });
@@ -126,10 +141,11 @@ describe('Gateway Service', () => {
   // Test /record/ranking/top10 endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/ranking/top10');
+      .get('/record/ranking/top10').set('token', 'valorDelToken');
       checkRecord(response);
     
   });
+
 });
 
 function checkRecord(response){

@@ -35,17 +35,20 @@ app.post('/login', async (req, res) => {
       return
     }
 
-    const { username, password } = req.body;
+    const email = req.body.username.toString();
+    const username = req.body.username.toString();
+    const password = req.body.password.toString();
 
-    // Find the user by username in the database
-    const user = await User.findOne({ username });
+    let user = await User.findOne({ username })
+    if(!user) //There is no user by that username we may have received an email
+      user = await User.findOne({ email })
 
     // Check if the user exists and verify the password
     if (user && await bcrypt.compare(password, user.password)) {
       // Generate a JWT token
-      const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '1h' });
       // Respond with the token and user information
-      res.json({ token: token, username: username});
+      res.json({ token: token, username: user.username, email: user.email});
     } else {
       res.status(400).json({ error: 'Invalid credentials' });
     }
