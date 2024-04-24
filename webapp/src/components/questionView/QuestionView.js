@@ -18,15 +18,15 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const cookie = JSON.parse(Cookies.get('user'))    
-    const [audio] = useState(new Audio('/tictac.mp3'));
+    // const [audio] = useState(new Audio('/tictac.mp3'));
 
 
     //To stop tiktak sound when changing of page
-    useEffect(() => {
-        return () => {
-            audio.pause(); 
-        };
-    }, []);
+    // useEffect(() => {
+    //     return () => {
+    //         audio.pause(); 
+    //     };
+    // }, []);
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -61,11 +61,11 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 });
             }
             if(answerGiven===correctAnswer){
-                audio.pause();
+                // audio.pause();
                 audioCorrect.play(); // Reproduce el sonido de respuesta incorrecta
             }
             else{
-                audio.pause();
+                // audio.pause();
                 audioIncorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
@@ -85,10 +85,10 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     function computePointsForQuestion(correctAnswer, answerGiven){
         if(answerGiven===correctAnswer){
             points+=100;
-            audio.pause();
+            // audio.pause();
         }else if(points-50>=0){
             points-=50;
-            audio.pause();
+            // audio.pause();
         }else{
             points = 0;
         }
@@ -116,7 +116,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
             
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
-                audio.pause();
+                // audio.pause();
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
@@ -133,12 +133,12 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     return (
     <div className="question-view-container">
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} audio = {audio} language={i18n.language}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} /*audio = {audio}*/ language={i18n.language}/> :
         <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t, points, audio, language}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points, /*audio,*/ language}){
 
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -219,13 +219,13 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
-            audio.pause();
+            // audio.pause();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
-            if (audio.paused) {
-                audio.loop = true; // Loop of tiktak
-                audio.play();
-            }
+            // if (audio.paused) {
+            //     audio.loop = true; // Loop of tiktak
+            //     audio.play();
+            // }
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
     };

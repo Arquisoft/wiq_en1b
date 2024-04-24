@@ -130,14 +130,14 @@ describe('Question View component', () => {
         }, { timeout: 1000 }); // Esperar 1 segundo
     });
     
-    it('shows timer and tiktak sound', async () => {
+    it('shows timer', async () => {
         setupAudioMock()
         await act(async () =>{
             await render(<MemoryRouter><QuestionView /></MemoryRouter>);
             
         })
         await waitFor(() => expect(screen.getByText('What is the population of Oviedo?')).toBeInTheDocument());
-        expect(global.Audio).toHaveBeenCalledWith('/tictac.mp3');
+        // expect(global.Audio).toHaveBeenCalledWith('/tictac.mp3');
 
         const timerElement = screen.getByText(new RegExp(`(\\d+) ${i18en.t('questionView.seconds')}`));
         expect(timerElement).toBeInTheDocument(); // Verificar que el temporizador esté presente en el DOM
