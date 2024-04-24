@@ -107,23 +107,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: Shows the error info..
-                    example: Invalid credentials
+                $ref: '#/components/shcemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: Error information.
-                    example: Internal Server Error
+                $ref: '#/components/shcemas/Error'
   /questions:
     get:
       summary: Get 5 random questions from the system in any language
@@ -133,7 +123,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QuestionResponse'            
+                $ref: '#/components/schemas/QuestionResponse'     
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'       
   /questions/{lang}:
     get:
       summary: Get 5 random questions from the system in the lang specified
@@ -143,7 +139,10 @@ paths:
           required: true
           schema:
             type: string
-          description: Language code for filtering questions must be es or en
+            enum: [es, en, tr]
+          description: Language code for filtering questions
+      security:
+        - BearerAuth: []    
       responses:
         '200':
           description: OK
@@ -151,6 +150,105 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QuestionResponse'
+        '400':
+          description: Wrong values given.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+  /questions/{lang}/{amount}:
+    get:
+      summary: Get an amount of random questions from the system in the lang specified
+      parameters:
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [es, en, tr]
+          description: Language code for filtering questions
+        - name: amount
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimun: 1
+            maximun: 20
+          description: Amount of questions retrieved
+      security:
+        - BearerAuth: []    
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '400':
+          description: Wrong values given.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+  /questions/{lang}/{amount}/{type}:
+    get:
+      summary: Get an amount of questions of the given type from the system in the lang specified
+      parameters:
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [es, en, tr]
+          description: Language code for filtering questions
+        - name: amount
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimun: 1
+            maximun: 20
+          description: Amount of questions retrieved
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [POPULATION, CAPITAL, LANGUAGE, SIZE]
+          description: Type for filtering questions
+      security:
+        - BearerAuth: []    
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '400':
+          description: Wrong values given.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
   /record: 
     post:
       summary: Add a new record to the database
@@ -188,6 +286,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/RecordResponse'
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     LoginRequest:
       type: object
@@ -261,7 +364,7 @@ components:
                   correctAnswer:
                     type: string
             points:
-              type: number
+              type: integer
             date:
               type: string
       required:
@@ -294,7 +397,7 @@ components:
                     correctAnswer:
                       type: string
               points:
-                type: number
+                type: integer
               date:
                 type: string
     Error:
