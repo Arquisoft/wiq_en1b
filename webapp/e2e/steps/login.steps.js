@@ -28,13 +28,13 @@ test('Successful login', ({ given, when, then }) => {
   });
 
   when('I enter valid credentials', async () => {
-    await page.type('input[type="text"]', 'ltbg');
-    await page.type('input[type="password"]', 'ltbg');
+    await page.type('input[type="text"]', 'username');
+    await page.type('input[type="password"]', 'password');
     await page.click('button[type="submit"]');
   });
 
   then('I should be redirected to the menu', async () => {
-    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('.divMenu');
     expect(page.url()).toContain('/menu');
   });
 }, 60000);
