@@ -33,6 +33,12 @@ describe('GameMenu component', () => {
         const text = screen.getByText(i18en.t('gameMenu.history_button'));
         expect(text).toBeInTheDocument();
     });
+
+    it('renders option to view ranking data', () => {
+        render(<MemoryRouter><GameMenu /></MemoryRouter>);
+        const text = screen.getByText(i18en.t('gameMenu.view_ranking'));
+        expect(text).toBeInTheDocument();
+    });
 });
 
 

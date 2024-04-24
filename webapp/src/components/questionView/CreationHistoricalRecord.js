@@ -3,6 +3,9 @@ import axios from 'axios'
 class CreationHistoricalRecord{
     
     constructor() {
+       this.initRecord();
+    }
+    initRecord(){
         this.record = {
             game: {
                 questions: []
@@ -29,35 +32,37 @@ class CreationHistoricalRecord{
         this.record.game.date = date;
     }
 
+    setCompetitive(isCompetitive){
+      this.record.game.competitive = isCompetitive;
+    }
+
     getRecord() {
         return this.record;
     }
 
     
-    async sendRecord(user) {
-        const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
-      
-        const body = {
-          user:user,
-          game:this.record.game
-        }
-        try {
+    async sendRecord(user, token) {
+      const apiUrl = (process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000') + "/record";
+    
+      const body = {
+        user: user,
+        game: this.record.game 
+      };
+    
+      try {
           const response = await axios.post(apiUrl, body, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
+              headers: {
+                  'Content-Type': 'application/json',
+                  'token':token
+              }
           });
-      
-          if (!response.ok) {
-            throw new Error('Error al enviar el registro');
-          }
-      
-          const data = await response.json();
-          console.log(data);
-        } catch (error) {
-          console.error('Error:', error);
-        }
+        
+          this.initRecord();
+          console.log('Registro enviado:', response.data);
+      } catch (error) {
+          console.error('Error al enviar el registro:', error.message); 
       }
+  }
 
 }
 export default CreationHistoricalRecord;

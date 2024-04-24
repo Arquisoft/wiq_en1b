@@ -10,17 +10,17 @@ let browser;
 defineFeature(feature, test => {
   
   beforeAll(async () => {
-    browser = await puppeteer.launch({
-    headless: "new", // Cambiado a "new" para evitar la advertencia de deprecación
-    slowMo: 20,
-    defaultViewport: { width: 1920, height: 1080 },
-    args: ['--window-size=1920,1080']
+      browser = await puppeteer.launch({
+        headless: "new",
+        slowMo: 20,
+        defaultViewport: { width: 1920, height: 1080 },
+        args: ['--window-size=1920,1080']
+    });
+     
+    page = await browser.newPage();
+    setDefaultOptions({ timeout: 10000 });
   });
    
-  page = await browser.newPage();
-  setDefaultOptions({ timeout: 10000 });
-});
-
   // test('The text container is initially visible', ({ given, then }) => {
   //   given('I am on the home page', async () => {
   //     await page.goto('http://localhost:3000/home'); 

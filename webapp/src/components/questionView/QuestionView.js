@@ -8,25 +8,27 @@ import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
 import RecordList from '../HistoricalData/RecordList';
 import ButtonHistoricalData from "../HistoricalData/ButtonHistoricalData";
-import { useUserContext } from '../loginAndRegistration/UserContext'; 
+import Cookies from 'js-cookie'
+import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
-function QuestionView(){
-    
+function QuestionView({type= "COMPETITIVE", amount=5}){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
-    const {user} = useUserContext();
+    const cookie = JSON.parse(Cookies.get('user'))    
     const [audio] = useState(new Audio('/tictac.mp3'));
 
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language);
+                
+                var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
                 setQuestions(generatedQuestions);
+                points=0;
                 setnumQuestion(0);
             } catch (error) {
                 //Como hacer que funcione esto
@@ -106,9 +108,10 @@ function QuestionView(){
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
                 audio.pause();
+                creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
-                creationHistoricalRecord.sendRecord(user.username);
+                creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
             }
         }, 1000);
         
@@ -204,6 +207,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
                 <>
                    
                     <h2>{t("questionView.finished_game")} </h2>
+                    <BackButtonToGameMenu t={t}/>
                     <p>{points} {t("questionView.point")}</p>
                     <ul>< RecordList record={creationHistoricalRecord.getRecord().game}/></ul>
                     <ButtonHistoricalData t={t} />

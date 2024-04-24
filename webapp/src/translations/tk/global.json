@@ -16,7 +16,8 @@
       "en": "İngilizce",
       "es": "İspanyolca",
       "tk": "Türkçe",
-      "language": "Dil"
+      "language": "Dil",
+      "logout":"Log Out"
     },
     "instructions": {
       "title": "WIQ Talimatları",
@@ -50,7 +51,17 @@
       "password_placeholder": "Şifre",
       "repeat_password_placeholder": "Şifreyi Tekrar Girin",
       "register_button": "Kayıt Ol",
-      "login_link": "Hesabınız var mı? Buradan giriş yapın."
+      "login_link": "Hesabınız var mı? Buradan giriş yapın.",
+      "very_weak_password": "Çok zayıf şifre",
+      "weak_password": "Zayıf şifre",
+      "good_password": "İyi şifre",
+      "strong_password": "Güçlü şifre",
+      "error_passwords_no_match": "Şifreler eşleşmiyor",
+      "error_password_spaces": "Şifre boşluk içeremez",
+      "error_username_spaces": "Kullanıcı adı boşluk içeremez.",
+      "error_password_minimum_length": "Şifre en az 8 karakter uzunluğunda olmalıdır",
+      "error_password_maximum_length": "Şifre en fazla 64 karakter uzunluğunda olabilir",
+      "error_username_in_use": "Kullanıcı adı zaten kullanımda"
     },
     "gameMenu": {
       "history_button": "Tarihsel Verileri Görüntüle",

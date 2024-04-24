@@ -1,14 +1,21 @@
 const request = require('supertest');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const app = require('./gateway-service'); 
 
 afterAll(async () => {
     app.close();
   });
 
+
+jest.mock('jsonwebtoken');
+
 jest.mock('axios');
 
-describe('Gateway Service', () => {
+
+
+describe('Gateway Service with token mock', () => {
+
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
     if (url.endsWith('/login')) {
@@ -20,17 +27,37 @@ describe('Gateway Service', () => {
     } 
   });
 
+  const question = { data:  [{question: "¿Cuál es la población de Oviedo?",
+                              answers: ["225089","272357","267855","231841"]}] };
+
+  //Dont need to check a good record just that it redirects the call
+  const record = {data : {record:'undefined'}};
+
   axios.get.mockImplementation((url, data) => {
     if (url.endsWith('/questions')){
-      return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
-                                      answers: ["225089","272357","267855","231841"]}] });
+      return Promise.resolve(question);
+    } else if (url.endsWith('/questions/es/1/CAPITAL')){
+      return Promise.resolve(question);
+    } else if (url.endsWith('/questions/es/1')){
+      return Promise.resolve(question);
     } else if (url.endsWith('/questions/es')){
-      return Promise.resolve({ data:  [{question: "¿Cuál es la población de Oviedo?",
-                                      answers: ["225089","272357","267855","231841"]}] });
+      return Promise.resolve(question);
+
     } else if(url.endsWith('/record/testuser')){
-      //Dont need to check a good record just that it redirects the call
-      return Promise.resolve({data : {record:'undefined'}}) 
+      return Promise.resolve(record) 
+    } else if(url.endsWith('/record/ranking/top10')){
+      return Promise.resolve(record)
+    } else if(url.endsWith('/record/ranking/testuser')){
+      return Promise.resolve(record)  
     }
+  });
+
+  
+
+  // Mock the `verify` function of JWT
+  jwt.verify.mockImplementation((token, secretOrPublicKey, callback) => {
+    // Assume the token is valid and return the payload
+    callback(null, "decoded");
   });
 
   // Test /login endpoint
@@ -57,25 +84,39 @@ describe('Gateway Service', () => {
   // Test /questions endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions');
+      .get('/questions').set('token', 'valorDelToken');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+      checkQuestion(response);
   });
   
   // Test /questions/:lang endpoint
   it('should forward questions request to question service', async () => {
     const response = await request(app)
-      .get('/questions/es');
+      .get('/questions/es').set('token', 'valorDelToken');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+    checkQuestion(response);
+  });
+
+  // Test /questions/:lang/:amount endpoint
+  it('should forward questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions/es/1').set('token', 'valorDelToken');
+
+      checkQuestion(response);
+  });
+
+  // Test /questions/:lang/:amount/:type endpoint
+  it('should forward questions request to question service', async () => {
+    const response = await request(app)
+      .get('/questions/es/1/CAPITAL').set('token', 'valorDelToken');
+
+      checkQuestion(response);
   });
 
   // Test /record endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .post('/record');
+      .post('/record').set('token', 'valorDelToken');
 
     expect(response.statusCode).toBe(200);
     expect(response.body.user).toBe('testuser');
@@ -84,9 +125,35 @@ describe('Gateway Service', () => {
   // Test /record/:user endpoint
   it('should forward record request to record service', async () => {
     const response = await request(app)
-      .get('/record/testuser');
+      .get('/record/testuser').set('token', 'valorDelToken');
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty('record', "undefined");
+      checkRecord(response);
   });
+
+  // Test /record/ranking/:user endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/testuser').set('token', 'valorDelToken');
+
+      checkRecord(response);
+  });
+
+  // Test /record/ranking/top10 endpoint
+  it('should forward record request to record service', async () => {
+    const response = await request(app)
+      .get('/record/ranking/top10').set('token', 'valorDelToken');
+      checkRecord(response);
+    
+  });
+
 });
+
+function checkRecord(response){
+  expect(response.statusCode).toBe(200);
+  expect(response.body).toHaveProperty('record', "undefined");
+}
+
+function checkQuestion(response){
+  expect(response.statusCode).toBe(200);
+  expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
+}
