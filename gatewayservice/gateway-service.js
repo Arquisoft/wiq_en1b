@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
     const authResponse = await axios.post(authServiceUrl+'/login', req.body);
     res.json(authResponse.data);
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -43,7 +43,7 @@ app.post('/adduser', async (req, res) => {
     const userResponse = await axios.post(userServiceUrl+'/adduser', req.body);
     res.json(userResponse.data);
   } catch (error) {
-    manageError(error);
+    manageError(res, error);
     
   }
 });
@@ -55,7 +55,7 @@ app.get('/questions', verifyToken, async (req, res) => {
     const questionResponse = await axios.get(questionServiceUrl+'/questions');
     res.json(questionResponse.data);
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -78,7 +78,7 @@ app.get('/questions/:lang/:amount/:type', verifyToken, async (req, res) => {
     }
   } catch (error) {
 
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -97,7 +97,7 @@ app.get('/questions/:lang/:amount', verifyToken, async (req, res) => {
       res.json(questionResponse.data);
     }
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -115,7 +115,7 @@ app.get('/questions/:lang', verifyToken, async (req, res) => {
     
   } catch (error) {
 
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -126,7 +126,7 @@ app.post('/record', verifyToken, async(req, res) => {
     const recordResponse = await axios.post(recordServiceUrl+'/record', req.body);
     res.json(recordResponse.data);
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -136,7 +136,7 @@ app.get('/record/ranking/top10', verifyToken, async(req, res)=>{
     const recordResponse = await axios.get(recordServiceUrl + '/record/ranking/top10');
     res.json(recordResponse.data);
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -151,7 +151,7 @@ app.get('/record/ranking/:user', verifyToken, async(req, res)=>{
       res.json(recordResponse.data);
     }
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -166,7 +166,7 @@ app.get('/record/:user', verifyToken,  async(req, res)=>{
       res.json(recordResponse.data);
     }
   } catch (error) {
-    manageError(error)
+    manageError(res, error)
   }
 });
 
@@ -206,7 +206,7 @@ function verifyToken(req, res, next) {
 }
 
 function validateLang(lang){
-  return ['en', 'es', 'tk'].includes(lang);
+  return ['en', 'es', 'tr'].includes(lang);
 }
 
 function validateAmount(amount) {
@@ -223,7 +223,7 @@ function validateUser(user){
   return !(/\s/.test(user)) //True if there are no spaces
 }
 
-function manageError(error){
+function manageError(res, error){
   if(error.response) //Some microservice responded with an error
     res.status(error.response.status).json({ error: error.response.data.error });
   else //Some other error

@@ -1,16 +1,16 @@
 openapi: 3.0.0
 info:
-  title: wiq_en1b API
-  description: Our project's OpenAPI specification.
-  version: 0.1.2
+  title: WIQ_en1b API
+  description: WIQ_en1b OpenAPI specification.
+  version: "0.2"
   contact:
     name: Project github
     url: https://github.com/Arquisoft/wiq_en1b
 servers:
+  - url: http://wiqen1b.serveminecraft.net:8000
+    description: Production server
   - url: http://localhost:8000
     description: Development server
-    - url: http://wiqen1b.serveminecraft.net:8000
-    description: Production server
 paths:
   /health:
       get:
@@ -39,21 +39,29 @@ paths:
             schema:
               type: object
               properties:
+                email:
+                  type: string
+                  description: User email
+                  example: user@example.com
                 username:
                   type: string
-                  description: User ID.
+                  description: User name
                   example: student
                 password:
                   type: string
-                  description: User password.
-                  example: pass
+                  description: User password
+                  example: password123
+                repeatPassword:
+                  type: string
+                  description: Userpassword
+                  example: password123
       responses:
         '200':
           description: User added successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/LoginResponse'                                      
+                $ref: '#/components/schemas/LoginResponse'                                      
         '400':
           description: Failed to add user
           content:
@@ -101,22 +109,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/LoginResponse'
+                $ref: '#/components/schemas/LoginResponse'
         '400':
           description: Invalid credentials.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /questions:
     get:
       summary: Get 5 random questions from the system in any language
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -129,20 +142,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'       
+                $ref: '#/components/schemas/Error'       
   /questions/{lang}:
     get:
       summary: Get 5 random questions from the system in the lang specified
       parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
         - name: lang
           in: path
           required: true
           schema:
             type: string
-            enum: [es, en, tr]
-          description: Language code for filtering questions
-      security:
-        - BearerAuth: []    
+            enum: [es, en, tk]
+          description: Language code for filtering questions    
       responses:
         '200':
           description: OK
@@ -155,34 +170,36 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /questions/{lang}/{amount}:
     get:
       summary: Get an amount of random questions from the system in the lang specified
       parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
         - name: lang
           in: path
           required: true
           schema:
             type: string
-            enum: [es, en, tr]
+            enum: [es, en, tk]
           description: Language code for filtering questions
         - name: amount
           in: path
           required: true
           schema:
             type: integer
-            minimun: 1
-            maximun: 20
-          description: Amount of questions retrieved
-      security:
-        - BearerAuth: []    
+            minimum: 1
+            maximum: 20
+          description: Amount of questions retrieved must be between 1 and 20    
       responses:
         '200':
           description: OK
@@ -195,41 +212,43 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /questions/{lang}/{amount}/{type}:
     get:
       summary: Get an amount of questions of the given type from the system in the lang specified
       parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
         - name: lang
           in: path
           required: true
           schema:
             type: string
-            enum: [es, en, tr]
+            enum: ["es", "en", "tk"]
           description: Language code for filtering questions
         - name: amount
           in: path
           required: true
           schema:
             type: integer
-            minimun: 1
-            maximun: 20
-          description: Amount of questions retrieved
+            minimum: 1
+            maximum: 20
+          description: Amount of questions retrieved must be between 1 and 20
         - name: type
           in: path
           required: true
           schema:
             type: string
-            enum: [POPULATION, CAPITAL, LANGUAGE, SIZE]
-          description: Type for filtering questions
-      security:
-        - BearerAuth: []    
+            enum: ["POPULATION", "CAPITAL", "LANGUAGE", "SIZE"]
+          description: Type for filtering questions    
       responses:
         '200':
           description: OK
@@ -242,24 +261,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /record: 
     post:
       summary: Add a new record to the database
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Record'
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -275,19 +297,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /record/{user}:
     get:
       summary: Gets the records from a given user
       parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
         - name: user
           in: path
           required: true
           schema:
             type: string
           description: Username for filtering records
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -300,18 +324,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /record/ranking/top10:
     get:
       summary: Gets the top 10 users on the system
-      security:
-        - BearerAuth: []
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -324,19 +351,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
   /record/ranking/{user}:
     get:
       summary: Gets the ranking information of the given user
       parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
         - name: user
           in: path
           required: true
           schema:
             type: string
           description: username of the user
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -349,30 +378,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/shcemas/Error'
+                $ref: '#/components/schemas/Error'
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
-    LoginRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-      required:
-        - username
-        - password
     LoginResponse:
       type: object
       properties:
@@ -381,21 +395,6 @@ components:
         username:
           type: string
         email:
-          type: string
-    User:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-      required:
-        - username
-        - email
-    UserResponse:
-      type: object
-      properties:
-        message:
           type: string
     QuestionResponse:
       type: array
@@ -476,7 +475,7 @@ components:
       properties:
         error:
           type: string
-    UserRanking:
+    Ranking:
       type: object
       properties:
         _id:
@@ -487,7 +486,15 @@ components:
           type: integer
         position:
           type: integer 
+    UserRanking:
+      type: object
+      properties:
+        userCompetitiveStats:
+          $ref: '#/components/schemas/Ranking'
     Top10Ranking:
-      type: array
-      items: 
-        $ref: '#/components/schemas/UserRanking'
+      type: object
+      properties:
+        usersCompetitiveStats:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Ranking'
