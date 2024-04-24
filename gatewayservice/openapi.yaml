@@ -258,6 +258,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Record'
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -268,6 +270,12 @@ paths:
                 properties:
                   user:
                     type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
   /record/{user}:
     get:
       summary: Gets the records from a given user
@@ -278,6 +286,8 @@ paths:
           schema:
             type: string
           description: Username for filtering records
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
@@ -285,6 +295,67 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecordResponse'
+        '400':
+          description: Wrong values given.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+  /record/ranking/top10:
+    get:
+      summary: Gets the top 10 users on the system
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Top10Ranking'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+  /record/ranking/{user}:
+    get:
+      summary: Gets the ranking information of the given user
+      parameters:
+        - name: user
+          in: path
+          required: true
+          schema:
+            type: string
+          description: username of the user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRanking'
+        '400':
+          description: Wrong values given.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/shcemas/Error'
 components:
   securitySchemes:
     BearerAuth:
@@ -405,3 +476,18 @@ components:
       properties:
         error:
           type: string
+    UserRanking:
+      type: object
+      properties:
+        _id:
+          type: string
+        totalPoints:
+          type: integer
+        totalCompetitiveGames:
+          type: integer
+        position:
+          type: integer 
+    Top10Ranking:
+      type: array
+      items: 
+        $ref: '#/components/schemas/UserRanking'
