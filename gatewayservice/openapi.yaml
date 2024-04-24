@@ -9,9 +9,25 @@ info:
 servers:
   - url: http://localhost:8000
     description: Development server
-  - url: http://wiqen1b.serveminecraft.net:8000
+    - url: http://wiqen1b.serveminecraft.net:8000
     description: Production server
 paths:
+  /health:
+      get:
+        summary: Check the health status of the service.
+        operationId: checkHealth
+        responses:
+          '200':
+            description: Service is healthy.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      description: Health status.
+                      example: OK
   /adduser:
     post:
       summary: Add a new user to the database.
@@ -37,11 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  username:
-                    type: string
-                    description: User ID                                      
+                $ref: '#/components/shcemas/LoginResponse'                                      
         '400':
           description: Failed to add user
           content:
@@ -64,22 +76,6 @@ paths:
                     type: string
                     description: Error information.
                     example: Internal Server Error
-  /health:
-    get:
-      summary: Check the health status of the service.
-      operationId: checkHealth
-      responses:
-        '200':
-          description: Service is healthy.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    description: Health status.
-                    example: OK
   /login:
     post:
       summary: Log in to the system.
@@ -93,28 +89,19 @@ paths:
               properties:
                 username:
                   type: string
-                  description: User ID.
+                  description: UserID.
                   example: student
                 password:
                   type: string
-                  description: User password.
+                  description: Userpassword.
                   example: pass
       responses:
         '200':
-          description: Login successful. Returns user token, and username.
+          description: Login successful. Returns user token, username and email.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  token:
-                    type: string
-                    description: User token.
-                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWY3NTZkYjNmYTIyZDIyN2E0YjdjN2QiLCJpYXQiOjE3MTA3MDg3NDUsImV4cCI6MTcxMDcxMjM0NX0.VMG_5DOyQ4GYlJQRcu1I6ICG1IGzuo2Xuei093ONHxw
-                  username:
-                    type: string
-                    description: Username.
-                    example: student
+                $ref: '#/components/shcemas/LoginResponse'
         '400':
           description: Invalid credentials.
           content:
@@ -216,6 +203,10 @@ components:
       type: object
       properties:
         token:
+          type: string
+        username:
+          type: string
+        email:
           type: string
     User:
       type: object
