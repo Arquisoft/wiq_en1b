@@ -95,7 +95,8 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     }
     function handleClick(text){
         // Detener el síntesis de voz
-        window.speechSynthesis.cancel();
+        if(window.speechSynthesis.speaking)
+            window.speechSynthesis.cancel();
     
         //create the record to record the response
         creationHistoricalRecord.addQuestion(questions[numQuestion].getQuestion(),
@@ -147,6 +148,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
             } else {
                 const answerIndex = parseInt(event.key) - 1;
                 if (!isNaN(answerIndex) && answerIndex >= 0 && answerIndex < questions[numQuestion].getAnswers().length) {
+                
                     handleClick(questions[numQuestion].getAnswers()[answerIndex]);
                 }
             }
@@ -162,7 +164,8 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
     //To stop the voice when changing of page
     useEffect(() => {
         const handleBeforeUnload = () => {
-            window.speechSynthesis.cancel();
+            if(window.speechSynthesis.speaking)
+                window.speechSynthesis.cancel();
         };
     
         window.addEventListener("beforeunload", handleBeforeUnload);
@@ -188,7 +191,6 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
                 // const voice = voices.find(voice => voice.lang === language);
                 // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
                 speech.text = concatenatedAnswers;
-
                 window.speechSynthesis.speak(speech);
             })
             .catch(error => {
