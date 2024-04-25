@@ -1,7 +1,7 @@
 import QuestionGenerator from './QuestionGenerator';
 import CreationHistoricalRecord from './CreationHistoricalRecord';
 import "../../custom.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
@@ -143,6 +143,48 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
 
 function QuestionComponent({questions, numQuestion, handleClick, t, points, /*audio,*/ language}){
 
+
+    // Función para obtener las voces disponibles para un idioma
+    const getVoicesForLanguage = useCallback((language) => {
+        return new Promise((resolve, reject) => {
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = questions[numQuestion].getQuestion();
+            speech.lang = language;
+    
+            speech.addEventListener("error", reject); 
+    
+            speech.addEventListener("end", () => {
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) 
+                    resolve(voices);
+            });
+    
+            window.speechSynthesis.speak(speech); 
+        });
+    },[questions, numQuestion]);
+
+    const speakAnswers = useCallback((answers) => {
+        const speech = new SpeechSynthesisUtterance();
+        speech.lang = language;
+        let concatenatedAnswers = Array.isArray(answers) ? answers.map((answer, index) => `${index + 1}. ${answer}`).join(". ") : ''; 
+
+        getVoicesForLanguage(language)
+            .then(voices => {
+                // const voice = voices.find(voice => voice.lang === language);
+                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
+                speech.text = concatenatedAnswers;
+                window.speechSynthesis.speak(speech);
+            })
+            .catch(error => {
+                console.error("Error al obtener las voces para el idioma:", error);
+            });
+    }, [getVoicesForLanguage, language]);
+
+    const speakQuestionAndAnswers = useCallback(() => {
+        // speakQuestion(questions[numQuestion].getQuestion());
+        speakAnswers(questions[numQuestion].getAnswers());
+    }, [numQuestion, questions, speakAnswers]);
+
     useEffect(() => {
         const handleKeyPress = (event) => {
             if (event.key === 's') {
@@ -161,7 +203,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
         return () => {
             window.removeEventListener("keypress", handleKeyPress);
         };
-    }, [numQuestion, questions, handleClick]);
+    }, [speakQuestionAndAnswers, numQuestion, questions, handleClick]);
 
     //To stop the voice when changing of page
     useEffect(() => {
@@ -175,49 +217,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
         return () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
-    }, []);
-    const speakQuestionAndAnswers = () => {
-        // speakQuestion(questions[numQuestion].getQuestion());
-        speakAnswers(questions[numQuestion].getAnswers());
-    };
-
-    
-
-    const speakAnswers = (answers) => {
-        const speech = new SpeechSynthesisUtterance();
-        speech.lang = language;
-        let concatenatedAnswers = Array.isArray(answers) ? answers.map((answer, index) => `${index + 1}. ${answer}`).join(". ") : ''; 
-
-        getVoicesForLanguage(language)
-            .then(voices => {
-                // const voice = voices.find(voice => voice.lang === language);
-                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
-                speech.text = concatenatedAnswers;
-                window.speechSynthesis.speak(speech);
-            })
-            .catch(error => {
-                console.error("Error al obtener las voces para el idioma:", error);
-            });
-    };
-    
-    // Función para obtener las voces disponibles para un idioma
-    const getVoicesForLanguage = (language) => {
-        return new Promise((resolve, reject) => {
-            const speech = new SpeechSynthesisUtterance();
-            speech.text = questions[numQuestion].getQuestion();
-            speech.lang = language;
-    
-            speech.addEventListener("error", reject); 
-    
-            speech.addEventListener("end", () => {
-                const voices = window.speechSynthesis.getVoices();
-                if (voices.length > 0) 
-                    resolve(voices);
-            });
-    
-            window.speechSynthesis.speak(speech); 
-        });
-    };
+    }, []);    
     
     
 

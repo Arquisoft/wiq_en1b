@@ -71,7 +71,7 @@ function ButtonRandomizeCustom({t,handleClick}){
 
 function ButtonCustomized({t,handleClick}) {
   return (
-    <button className="linkButton" onClick={handleClick}>{t("gameConfigurator.play_custom")}</button>
+    <button className="linkButton"  id="customized" onClick={handleClick}>{t("gameConfigurator.play_custom")}</button>
   );
 }
 

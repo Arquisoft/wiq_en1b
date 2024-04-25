@@ -9,8 +9,8 @@ const { register, login, logout } = require("../utils");
 let page;
 let browser;
 
-const email = "testUser@example.com";
-const username = "testUser"
+const email = "testUser1@example.com";
+const username = "testUser1"
 const password = "testUserPassword"
 
 defineFeature(feature, test => {
@@ -41,6 +41,19 @@ defineFeature(feature, test => {
     });
     when('I click on new competitive game', async () => {
         await page.click('#competitive');
+      });
+    then('I am in /questions', async () => {
+      await expect(page).toMatchElement('.questionContainer');
+    });
+  });
+  
+  test('Create Customized Game should go to /questions', ({ given,when, then }) => {
+    given('I am on the game configurator', async () => {
+      await page.goto('http://localhost:3000/configurator'); 
+      await page.waitForSelector('.GameConfiguratorDiv');
+    });
+    when('I click on new customized game', async () => {
+        await page.click('.linkButton');
       });
     then('I am in /questions', async () => {
       await expect(page).toMatchElement('.questionContainer');
