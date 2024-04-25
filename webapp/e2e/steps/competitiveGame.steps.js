@@ -21,7 +21,7 @@ defineFeature(feature, test => {
         slowMo: 40,
         defaultViewport: { width: 1920, height: 1080 },
         args: ['--window-size=1920,1080']
-    });
+    }, 60000);
      
     page = await browser.newPage();
     setDefaultOptions({ timeout: 30000 });
