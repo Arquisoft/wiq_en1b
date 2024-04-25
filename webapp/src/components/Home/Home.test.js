@@ -22,8 +22,8 @@ describe('Home component', () => {
     // Click toggle open button
     fireEvent.click(screen.getByTitle("home.clickOpen"));
 
-    // Icons of instructions, login and signup must be shown
-    expect(screen.getByAltText('Instructions')).toBeVisible();
+    // Icons of play as guest, login and signup must be shown
+    expect(screen.getByAltText('Game')).toBeVisible();
     expect(screen.getByAltText('Login')).toBeVisible();
     expect(screen.getByAltText('Add user')).toBeVisible();
 

@@ -48,7 +48,7 @@ app.post('/adduser', async (req, res) => {
   }
 });
 
-app.get('/questions', verifyToken, async (req, res) => {
+app.get('/questions', async (req, res) => {
   try {
     
     // Forward the question request to the quetion service
@@ -101,7 +101,7 @@ app.get('/questions/:lang/:amount', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/questions/:lang', verifyToken, async (req, res) => {
+app.get('/questions/:lang', async (req, res) => {
   try {
     if(!validateLang(req.params.lang.toString()))
       res.status(400).json({ error: 'Wrong values given' });
