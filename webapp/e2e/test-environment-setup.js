@@ -12,14 +12,14 @@ async function startServer() {
     mongoserver = await MongoMemoryServer.create();
 
     //Populate db
-    //await loadQuestions();
+    await loadQuestions();
 
     const mongoUri = mongoserver.getUri();
     process.env.MONGODB_URI = mongoUri;
     process.env.MONGODB_URI_QUESTIONS = mongoUri;
     questionservice = await require("../../questionservice/question-service")
     recordservice = await require("../../users/recordservice/record-service");
-    //userservice = await require("../../users/userservice/user-service");
+    userservice = await require("../../users/userservice/user-service");
     authservice = await require("../../users/authservice/auth-service");
     gatewayservice = await require("../../gatewayservice/gateway-service");
   }
@@ -294,7 +294,14 @@ async function loadQuestions() {
   }]
 
   //No need of loading questions for these tests
-  //await Question.bulkSave(questions);
+  await questions.forEach(async question =>{
+    let dbQuestion = new Question();
+    dbQuestion.question=question.question;
+    dbQuestion.answers=question.answers;
+    dbQuestion.language=question.language;
+    dbQuestion.type=question.type;
+    await dbQuestion.save();
+  });
 }
 
 startServer();

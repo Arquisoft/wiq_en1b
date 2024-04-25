@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const { defineFeature, loadFeature } = require('jest-cucumber');
 const setDefaultOptions = require('expect-puppeteer').setDefaultOptions;
 
-const feature = loadFeature('./features/gameMenu.feature');
+const feature = loadFeature('./features/competitiveGame.feature');
 
 const { register, login, logout } = require("../utils");
 
@@ -17,7 +17,7 @@ defineFeature(feature, test => {
   
   beforeAll(async () => {
       browser = await puppeteer.launch({
-        headless: "new",
+        headless: false,
         slowMo: 40,
         defaultViewport: { width: 1920, height: 1080 },
         args: ['--window-size=1920,1080']
@@ -34,7 +34,7 @@ defineFeature(feature, test => {
     await login(page, username, password);
   })
 
-  test('Create Competitive Game should go to /questions', ({ given, then }) => {
+  test('Create Competitive Game should go to /questions', ({ given,when, then }) => {
     given('I am on the game configurator', async () => {
       await page.goto('http://localhost:3000/configurator'); 
       await page.waitForSelector('.GameConfiguratorDiv');
