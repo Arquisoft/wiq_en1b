@@ -1,13 +1,14 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const bcrypt = require('bcrypt');
-const User = require('./auth-model');
+const User = require('./user-model');
 
 let mongoServer;
 let app;
 
 //test user
 let user = {
+  email: "user@gmail.com",
   username: 'testuser',
   password: 'testpassword',
 };
@@ -15,7 +16,7 @@ let user = {
 async function addUser(user){
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const newUser = new User({
-    email: "user@gmail.com",
+    email: user.email,
     username: user.username,
     password: hashedPassword,
     createdAt: new Date()
