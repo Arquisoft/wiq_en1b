@@ -2,7 +2,6 @@ const request = require('supertest');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const app = require('./gateway-service'); 
-const { cat } = require('asciidoctor-emoji/dist/node/twemoji-map');
 
 afterAll(async () => {
     app.close();
@@ -171,12 +170,6 @@ describe('Gateway Service without mocked micro services', () => {
         expect(error.response.status).toBe(500);
         expect(error.response.data.error).toBe('Internal server error');
       }
-    });
-
-    axios.post.mockImplementation((url, data) => {
-      if (url.endsWith('/login')) {
-        throw new Error("Important information");
-      } 
     });
 
     it('should not forward login request and give 500', async () => {
