@@ -36,7 +36,7 @@ function App() {
               <Route path="/instructions" element={<Instructions />} />
               <Route path="/addUser" element={isLoggedIn ? <GameMenu /> : <AddUser />} />
               <Route path="/menu" element={isLoggedIn ? <GameMenu /> : <Login /> } />
-              <Route path="/questions" element={isLoggedIn ? <QuestionView /> : <Login />} />
+              <Route path="/questions" element={ <QuestionView />} />
               <Route path="/historical" element={isLoggedIn ? <HistoricalView /> : <Login />} />
               <Route path="/configurator" element={isLoggedIn ? <GameConfigurator /> : <Login />}/>
               <Route path="/ranking" element={isLoggedIn ? <RankingView /> : <Login />} />
