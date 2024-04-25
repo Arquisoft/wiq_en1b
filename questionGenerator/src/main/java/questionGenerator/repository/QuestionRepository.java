@@ -1,6 +1,5 @@
 package main.java.questionGenerator.repository;
 
-import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -81,9 +80,6 @@ public class QuestionRepository {
 		try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
 			MongoDatabase database = mongoClient.getDatabase("questions");
 			
-			ClientSession session = mongoClient.startSession();
-			session.startTransaction();
-			
 			MongoCollection<Document> collection = database.getCollection("questions");
 			
 			collection.deleteMany(Document.parse("{}"));
@@ -93,10 +89,7 @@ public class QuestionRepository {
                 documents.add(Document.parse(questionJSON));
             }
             
-            collection.insertMany(session, documents);
-            
-            session.commitTransaction();
-        	session.close();
+            collection.insertMany(documents);
             
             return true;
 			

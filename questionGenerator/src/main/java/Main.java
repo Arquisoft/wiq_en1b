@@ -12,21 +12,21 @@ public class Main {
 	
 	private static QuestionGenerator qg = QuestionGenerator.getInstance();
 	
-	// private static final long TIME_SKIP = 18000000; //5 hours
+	 private static final long TIME_SKIP = 18000000; //5 hours
 	// private static final long TIME_SKIP = 43200000; //12 hours
-	private static final long TIME_SKIP = 1000; //1 minute
+	//private static final long TIME_SKIP = 1000; //1 minute
 	
 
 	private static String[] languages = {"en", "es", "tr"};
 
 	private static QuestionType[] types = {QuestionType.CAPITAL, QuestionType.LANGUAGE, QuestionType.POPULATION, 
-		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT, QuestionType.VIDEOGAME_DEVELOPER, 
-		QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE, QuestionType.VIDEOGAME_COUNTRY};
+		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT};
+		//, QuestionType.VIDEOGAME_DEVELOPER, QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE, QuestionType.VIDEOGAME_COUNTRY};
 
- 	// private static final int NUMBER_OF_QUESTIONS = 50;
-	// private static final int NUMBER_OF_QUESTIONS = 100;
-	// private static final int NUMBER_OF_QUESTIONS = 3;
-	private static final int NUMBER_OF_QUESTIONS = 1;
+ 	//private static final int NUMBER_OF_QUESTIONS = 50;
+	private static final int NUMBER_OF_QUESTIONS = 100;
+	//private static final int NUMBER_OF_QUESTIONS = 3;
+	//private static final int NUMBER_OF_QUESTIONS = 1;
 
 	public static void main(String[] args) {
 		while(true) {
