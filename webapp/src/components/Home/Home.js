@@ -30,8 +30,8 @@ function Home() {
             <label htmlFor="toggleClose" title={t("home.clickClose")}>✖</label>
             <b>
               W
-              <Link to="/instructions" title={t("home.how_to_play")}>
-                <img src="/instrucciones.png" alt="Instructions" style={{ width: "100%", height: "100%" }} />
+              <Link to="/questions" title={t("home.game")}>
+                <img src="/game.png" alt="Game" style={{ width: "100%", height: "100%" }} />
               </Link>
             </b>
             <b>

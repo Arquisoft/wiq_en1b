@@ -13,11 +13,13 @@ import BackButtonToGameMenu from '../fragments/BackButtonToGameMenu';
 const creationHistoricalRecord = new CreationHistoricalRecord();
 const questionGenerator = new QuestionGenerator();
 var points = 0;
+var playAsGuestUsername = "Play as Guest" //Wont be ever used as it has spaces
+var playAsGuestToken = " "
 function QuestionView({type= "COMPETITIVE", amount=5}){
     const [numQuestion, setnumQuestion] = useState(-1);
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
-    const cookie = JSON.parse(Cookies.get('user'))    
+    const cookie = JSON.parse(Cookies.get('user')??JSON.stringify({username : playAsGuestUsername, token : playAsGuestToken}))    
     // const [audio] = useState(new Audio('/tictac.mp3'));
 
 
@@ -31,7 +33,6 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
             try {
-                
                 var generatedQuestions = await questionGenerator.generateQuestions(i18n.language, type, amount, cookie.token);
                 setQuestions(generatedQuestions);
                 points=0;
@@ -121,7 +122,8 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
-                creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
+                if(cookie.username !== playAsGuestUsername)
+                    creationHistoricalRecord.sendRecord(cookie.username, cookie.token);
             }
         }, 1000);
         

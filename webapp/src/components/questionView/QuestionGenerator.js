@@ -41,7 +41,10 @@ class QuestionGenerator{
             let response;
             if(type==="COMPETITIVE"){
                 response = await axios.get(this.apiUrl + '/' + lang, {headers : {'token':token}});
-            }else{
+            }else if(type==="ALL"){
+                response = await axios.get(this.apiUrl + '/' + lang + '/' +amount, {headers : {'token':token}});
+            }
+            else{
                 response = await axios.get(this.apiUrl + '/' + lang + '/' +amount + '/' + type, {headers : {'token':token}});
             }
             console.log(response)
