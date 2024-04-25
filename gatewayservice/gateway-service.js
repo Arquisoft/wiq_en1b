@@ -171,15 +171,19 @@ app.get('/record/:user', verifyToken,  async(req, res)=>{
 });
 
 // Read the OpenAPI YAML file synchronously
-const file = fs.readFileSync('./openapi.yaml', 'utf8');
+const openapiPath = './openapi.yaml'
+if(fs.existsSync(openapiPath)){
+  const file = fs.readFileSync(openapiPath, 'utf8');
 
-// Parse the YAML content into a JavaScript object representing the Swagger document
-const swaggerDocument = YAML.parse(file);
+  // Parse the YAML content into a JavaScript object representing the Swagger document
+  const swaggerDocument = YAML.parse(file);
 
-// Serve the Swagger UI documentation at the '/api-doc' endpoint
-// This middleware serves the Swagger UI files and sets up the Swagger UI page
-// It takes the parsed Swagger document as input
-app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  // Serve the Swagger UI documentation at the '/api-doc' endpoint
+  // This middleware serves the Swagger UI files and sets up the Swagger UI page
+  // It takes the parsed Swagger document as input
+  app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+}
+
 
 // Start the gateway service
 const server = app.listen(port, () => {
