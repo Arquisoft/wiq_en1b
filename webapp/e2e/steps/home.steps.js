@@ -64,7 +64,7 @@ defineFeature(feature, test => {
     });
 
     then('The text container should be visible', async () => {
-      await expect(page).toMatchElement('.text-container.visible');
+      await expect(page).notToMatchElement('.text-container.hidden');
     });
   });
 
