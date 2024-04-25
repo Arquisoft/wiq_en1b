@@ -14,7 +14,7 @@ jest.mock('jsonwebtoken');
 jest.mock('axios');
 
 
-/*
+
 describe('Gateway Service with mocked micro services', () => {
 
   // Mock responses from external services
@@ -147,7 +147,7 @@ describe('Gateway Service with mocked micro services', () => {
     
   });
 
-});*/
+});
 
 function checkRecord(response){
   expect(response.statusCode).toBe(200);
