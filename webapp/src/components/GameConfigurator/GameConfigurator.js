@@ -16,7 +16,7 @@ function GameConfigurator(){
     }
 
     function handleClickRandomize() {
-      const options = ['ALL', 'POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE'];
+      const options = ['ALL', 'POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE', 'HEAD_OF_GOVERMENT'];
       const randomOptionIndex = Math.floor(Math.random() * options.length);
       setTipoPregunta(options[randomOptionIndex]);
   
@@ -37,6 +37,7 @@ function GameConfigurator(){
           <option value="CAPITAL">{t("gameConfigurator.option_capital")}</option>
           <option value="LANGUAGE">{t("gameConfigurator.option_language")}</option>
           <option value="SIZE">{t("gameConfigurator.option_size")}</option>
+          <option value="HEAD_OF_GOVERMENT">{t("gameConfigurator.option_head_of_goverment")}</option>
         </select>
         <br></br>
   

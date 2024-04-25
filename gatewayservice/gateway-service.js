@@ -220,7 +220,7 @@ function validateAmount(amount) {
 }
 
 function validateType(type){
-  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE'].includes(type);
+  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE', 'HEAD_OF_GOVERMENT'].includes(type);
 }
 
 function validateUser(user){

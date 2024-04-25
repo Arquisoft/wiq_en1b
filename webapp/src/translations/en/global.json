@@ -98,6 +98,7 @@
         "option_capital":"Capital",
         "option_language":"Language",
         "option_size":"Size",
+        "option_head_of_goverment":"Head of Goverment",
         "custo_game":"Create custom game",
         "competi_game":"Play Competitive",
         "randomize":"Randomize Parameters"
