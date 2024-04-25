@@ -79,7 +79,7 @@ function ButtonCustomized({t,handleClick}) {
 function ButtonCompetitive({t}){
 
      return (
-      <Link className="linkButton" to="/questions">
+      <Link className="linkButton" id="competitive" to="/questions">
         <h3>{t("gameConfigurator.play_competi")}</h3>
       </Link>
     );
