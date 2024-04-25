@@ -61,5 +61,43 @@ public class QuestionRepository {
             return false;
         }
     }
+
+    public boolean removeAll() {
+    	try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
+            MongoDatabase database = mongoClient.getDatabase("questions");
+
+            MongoCollection<Document> collection = database.getCollection("questions");
+        
+            collection.deleteMany(Document.parse("{}"));
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean populate(List<String> questions) {
+		try (MongoClient mongoClient = MongoClients.create(dbConnectionString)) {
+			MongoDatabase database = mongoClient.getDatabase("questions");
+			
+			MongoCollection<Document> collection = database.getCollection("questions");
+			
+			collection.deleteMany(Document.parse("{}"));
+			
+			List<Document> documents = new ArrayList<>();
+            for (String questionJSON : questions) {
+                documents.add(Document.parse(questionJSON));
+            }
+            
+            collection.insertMany(documents);
+            
+            return true;
+			
+		} catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+		
+	}
     
 }

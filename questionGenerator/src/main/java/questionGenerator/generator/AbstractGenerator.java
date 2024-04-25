@@ -16,7 +16,7 @@ import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
-public abstract class AbstractGenerator {
+public abstract class AbstractGenerator implements Generator {
 	
 	protected static final WikibaseDataFetcher wbdf = WikibaseDataFetcher.getWikidataDataFetcher();
 	private String language = "en";
@@ -32,6 +32,8 @@ public abstract class AbstractGenerator {
 	private static final String MESSAGES_PATH = "messages";
 	
 	private String message;
+	
+	private long sampleSize = 0L;
 	
 	public AbstractGenerator(String propertyId, QuestionType type, String message) {
 		this.propertyId = propertyId;
@@ -64,21 +66,25 @@ public abstract class AbstractGenerator {
 			}
 		}
 
+		Map<String, MonolingualTextValue> labels = idi.getLabels();
+		Map<String, List<Statement>> claims = idi.getJsonClaims();
 		
-		String name = getName(idi.getLabels());
+		String name = getName(labels);
 		
 		//get the question
-		String question = getQuestion(name);
+		String question = getQuestion(name, claims);
 		
 		//get the right answer
-		String rightAnswer = getRightAnswer(idi.getJsonClaims());
+		String rightAnswer = getRightAnswer(claims, propertyId);
 		
 		//get the wrong answers
 		List<String> answers = getWrongAnswers(rightAnswer);
 		
 		answers.add(0, rightAnswer);
-		//create and return the question
 		
+		answers = decorateAnswers(answers);
+
+		//create and return the question
 		return new Question(question, answers, language, type);
 	}
 	
@@ -87,11 +93,7 @@ public abstract class AbstractGenerator {
 		return mtv.getText();
 	}
 	
-//	protected abstract String getQuestion(String name);
-	protected abstract String getRightAnswer(Map<String, List<Statement>> claims) throws Exception;
-	protected abstract List<String> getWrongAnswers(String rightAnswer) throws Exception;
-	
-	protected String getQuestion(String name) {
+	public String getQuestion(String name, Map<String, List<Statement>> claims) {
 		String q = getMessages().getString(message);
 		return String.format(q, name);
 	}
@@ -126,6 +128,10 @@ public abstract class AbstractGenerator {
 				localize(languageCode);
 				break;
 			}
+			case "tr":{
+				localize(languageCode);
+				break;
+			}
 			default:{
 				localize("en");
 				break;
@@ -137,6 +143,20 @@ public abstract class AbstractGenerator {
 		this.language = languageCode;
 		this.localization = new Locale(languageCode);
 		this.messages = ResourceBundle.getBundle(MESSAGES_PATH, localization);
+	}
+
+	public String getMessage(){
+		return message;
+	}
+	
+	@Override
+	public void setSampleSize(long sampleSize) {
+		this.sampleSize = sampleSize;
+	}
+	
+	@Override
+	public long getSampleSize() {
+		return sampleSize;
 	}
 
 }
