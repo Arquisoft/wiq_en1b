@@ -231,7 +231,7 @@ function manageError(res, error){
   if(error.response) //Some microservice responded with an error
     res.status(error.response.status).json({ error: error.response.data.error });
   else //Some other error
-    res.status(500).json({error : "Interanl server error"})
+    res.status(500).json({error : "Internal server error"})
 }
 
 module.exports = server
