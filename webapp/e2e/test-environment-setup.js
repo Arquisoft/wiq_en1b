@@ -294,7 +294,14 @@ async function loadQuestions() {
   }]
 
   //No need of loading questions for these tests
-  //await Question.bulkSave(questions);
+  await questions.forEach(async question =>{
+    let dbQuestion = new Question();
+    dbQuestion.question=question.question;
+    dbQuestion.answers=question.answers;
+    dbQuestion.language=question.language;
+    dbQuestion.type=question.type;
+    await dbQuestion.save();
+  });
 }
 
 startServer();
