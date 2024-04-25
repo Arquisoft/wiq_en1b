@@ -14,7 +14,7 @@ jest.mock('axios');
 
 
 
-describe('Gateway Service with token mock', () => {
+describe('Gateway Service with mocked micro services', () => {
 
   // Mock responses from external services
   axios.post.mockImplementation((url, data) => {
@@ -157,3 +157,35 @@ function checkQuestion(response){
   expect(response.statusCode).toBe(200);
   expect(response.body[0]).toHaveProperty('question', "¿Cuál es la población de Oviedo?");
 }
+
+describe('Gateway Service without mocked micro services', () => {
+
+    it('should not forward login request and give 500', async () => {
+      try{
+        await request(app)
+        .post('/login')
+        .send({ username: 'testuser', password: 'testpassword' });
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward login request and give 500', async () => {
+      axios.post.mockImplementation((url, data) => {
+        if (url.endsWith('/login')) {
+          throw new Error("Important information");
+        } 
+      });
+      try{
+        await request(app)
+        .post('/login')
+        .send({ username: 'testuser', password: 'testpassword' });
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+});
