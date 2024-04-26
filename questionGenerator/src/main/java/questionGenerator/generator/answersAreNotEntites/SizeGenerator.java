@@ -12,6 +12,7 @@ import main.java.questionGenerator.question.answers.AnswerFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.AddUnitsFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.EmbellishNumbersFormater;
 import main.java.questionGenerator.question.answers.formatAnswers.RemoveEFromNumber;
+import main.java.questionGenerator.question.answers.formatAnswers.SetAmountOfDecimals;
 
 public class SizeGenerator extends AnswersAreNotEntites {
 	
@@ -45,7 +46,7 @@ public class SizeGenerator extends AnswersAreNotEntites {
 	@Override
 	public List<String> decorateAnswers(List<String> answers) {
 		AnswerFormater formater = new RemoveEFromNumber(new EmbellishNumbersFormater(
-			new AddUnitsFormater(null, "km^2")));
+				new SetAmountOfDecimals(new AddUnitsFormater(null, "km^2"), 2)));
 		return formater.format(answers);
 	}
 
