@@ -38,7 +38,6 @@ beforeEach(async () => {
   test('Login', ({ given,when, then }) => {
     given('I am on the login page', async () => {
       await page.goto('http://localhost:3000/login'); 
-      await page.waitForSelector('.general');
     });
     when('I login as user', async () => {
         await login(page, email, username, password);
