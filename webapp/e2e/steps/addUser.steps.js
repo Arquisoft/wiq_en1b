@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const { defineFeature, loadFeature } = require('jest-cucumber');
 const setDefaultOptions = require('expect-puppeteer').setDefaultOptions;
 
-const feature = loadFeature('./features/login.feature');
+const feature = loadFeature('./features/addUser.feature');
 
 const { register, login, logout } = require("../utils");
 
@@ -26,7 +26,6 @@ defineFeature(feature, test => {
       page = await browser.newPage();
       setDefaultOptions({ timeout: 30000 });
   
-      await register(page, email, username, password);
     });
 
   beforeEach(async () => {
@@ -34,29 +33,16 @@ defineFeature(feature, test => {
     await login(page, username, password);
   })
 
-  test('Login', ({ given,when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login'); 
+  test('Register', ({ given,when, then }) => {
+    given('I am on the add user page', async () => {
+      await page.goto('http://localhost:3000/addUser'); 
       await page.waitForSelector('.general');
     });
-    when('I login as user', async () => {
-        await login(page, email, username, password);
+    when('I register a user', async () => {
+        await register(page, email, username, password);
     });
     then('I am in /menu', async () => {
       await expect(page).toMatchElement('.divMenu');
-    });
-  });
-
-  test('Failed login', ({ given,when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login'); 
-      await page.waitForSelector('.general');
-    });
-    when('I try to login', async () => {
-        await login(page, email, "lau", "123");
-    });
-    then('I am in /login', async () => {
-      await expect(page).toMatchElement('.general');
     });
   });
   
