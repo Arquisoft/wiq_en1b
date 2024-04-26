@@ -35,9 +35,14 @@ defineFeature(feature, test => {
       await page.waitForSelector('.general');
     });
     when('I register a user', async () => {
-        await register(page, email, username, password);
+        await page.type('input[name="email"]', email);
+        await page.type('input[name="username"]', username);
+        await page.type('input[name="password"]', password);
+        await page.type('input[name="repeat_password"]', password);
+        await page.click('button[type="submit"]');
     });
     then('I am in /menu', async () => {
+        await page.waitForSelector('.divMenu');
       await expect(page).toMatchElement('.divMenu');
     });
   }, 60000);
