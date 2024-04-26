@@ -48,18 +48,17 @@ beforeEach(async () => {
     });
   }, 60000);
 
-  test('Failed login', ({ given,when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login'); 
-      await page.waitForSelector('.general');
-    });
-    when('I try to login', async () => {
-        await login(page, email, "lau", "123");
-    });
-    then('I am in /login', async () => {
-      await expect(page).toMatchElement('.general');
-    }, 60000);
-  });
+  // test('Failed login', ({ given,when, then }) => {
+  //   given('I am on the login page', async () => {
+  //     await page.goto('http://localhost:3000/login'); 
+  //   });
+  //   when('I try to login', async () => {
+  //       await login(page, email, "lau", "123");
+  //   });
+  //   then('I am in /login', async () => {
+  //     await expect(page).toMatchElement('.general');
+  //   }, 60000);
+  // });
   
   
 

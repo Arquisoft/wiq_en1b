@@ -26,7 +26,6 @@ defineFeature(feature, test => {
       page = await browser.newPage();
       setDefaultOptions({ timeout: 30000 });
   
-      await register(page, email, username, password);
     }, 60000);
   
     beforeEach(async () => {
