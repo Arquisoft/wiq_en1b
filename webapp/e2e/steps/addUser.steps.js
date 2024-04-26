@@ -26,12 +26,13 @@ defineFeature(feature, test => {
       page = await browser.newPage();
       setDefaultOptions({ timeout: 30000 });
   
+      await register(page, email, username, password);
     });
-
-  beforeEach(async () => {
-    await logout(page);
-    await login(page, username, password);
-  })
+  
+    beforeEach(async () => {
+      await logout(page);
+      await login(page, username, password);
+    })
 
   test('Register', ({ given,when, then }) => {
     given('I am on the add user page', async () => {
