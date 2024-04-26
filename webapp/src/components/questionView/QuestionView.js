@@ -20,15 +20,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const cookie = JSON.parse(Cookies.get('user')??JSON.stringify({username : playAsGuestUsername, token : playAsGuestToken}))    
-    // const [audio] = useState(new Audio('/tictac.mp3'));
-
-
-    //To stop tiktak sound when changing of page
-    // useEffect(() => {
-    //     return () => {
-    //         audio.pause(); 
-    //     };
-    // }, []);
+    
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -62,11 +54,9 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 });
             }
             if(answerGiven===correctAnswer){
-                // audio.pause();
                 audioCorrect.play(); // Reproduce el sonido de respuesta incorrecta
             }
             else{
-                // audio.pause();
                 audioIncorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
@@ -86,10 +76,8 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     function computePointsForQuestion(correctAnswer, answerGiven){
         if(answerGiven===correctAnswer){
             points+=100;
-            // audio.pause();
         }else if(points-50>=0){
             points-=50;
-            // audio.pause();
         }else{
             points = 0;
         }
@@ -118,7 +106,6 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
             
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
-                // audio.pause();
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
@@ -136,18 +123,20 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     return (
     <div className="question-view-container">
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} /*audio = {audio}*/ language={i18n.language}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} language={i18n.language}/> :
         <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t, points, /*audio,*/ language}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points,  language}){
 
 
-    // Función para obtener las voces disponibles para un idioma
+    // To obtain available voices for language
     const getVoicesForLanguage = useCallback((language) => {
         return new Promise((resolve, reject) => {
             const speech = new SpeechSynthesisUtterance();
+
+            //speaks the question
             speech.text = questions[numQuestion].getQuestion();
             speech.lang = language;
     
@@ -180,15 +169,14 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
             });
     }, [getVoicesForLanguage, language]);
 
-    const speakQuestionAndAnswers = useCallback(() => {
-        // speakQuestion(questions[numQuestion].getQuestion());
+    const speak = useCallback(() => {
         speakAnswers(questions[numQuestion].getAnswers());
     }, [numQuestion, questions, speakAnswers]);
 
     useEffect(() => {
         const handleKeyPress = (event) => {
             if (event.key === 's') {
-                speakQuestionAndAnswers();
+                speak();
             } else {
                 const answerIndex = parseInt(event.key) - 1;
                 if (!isNaN(answerIndex) && answerIndex >= 0 && answerIndex < questions[numQuestion].getAnswers().length) {
@@ -203,7 +191,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
         return () => {
             window.removeEventListener("keypress", handleKeyPress);
         };
-    }, [speakQuestionAndAnswers, numQuestion, questions, handleClick]);
+    }, [speak, numQuestion, questions, handleClick]);
 
     //To stop the voice when changing of page
     useEffect(() => {
@@ -223,13 +211,9 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
-            // audio.pause();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
-            // if (audio.paused) {
-            //     audio.loop = true; // Loop of tiktak
-            //     audio.play();
-            // }
+
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
     };
@@ -240,7 +224,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, /*au
                 <div className='questionContainer'>
                
                     <div className='topPanel'>
-                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speakQuestionAndAnswers}>🔊</button></h2>
+                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speak}>🔊</button></h2>
                         <div className="countdown">
                             <Countdown key={numQuestion} date={Date.now()+10000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>
