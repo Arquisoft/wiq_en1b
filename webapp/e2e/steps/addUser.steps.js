@@ -42,7 +42,6 @@ defineFeature(feature, test => {
         await page.click('button[type="submit"]');
     });
     then('I am in /menu', async () => {
-        await page.waitForSelector('.divMenu');
       await expect(page).toMatchElement('.divMenu');
     });
   }, 60000);
