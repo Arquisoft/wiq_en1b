@@ -15,19 +15,19 @@ const password = "testUserPassword"
 
 defineFeature(feature, test => {
   
-  beforeAll(async () => {
-    browser = await puppeteer.launch({
-      headless: "new",
-      slowMo: 40,
-      defaultViewport: { width: 1920, height: 1080 },
-      args: ['--window-size=1920,1080']
-  });
-   
-  page = await browser.newPage();
-  setDefaultOptions({ timeout: 30000 });
-
-  await register(page, email, username, password);
+beforeAll(async () => {
+  browser = await puppeteer.launch({
+    headless: "new",
+    slowMo: 20,
+    defaultViewport: { width: 1920, height: 1080 },
+    args: ['--window-size=1920,1080']
 });
+ 
+page = await browser.newPage();
+setDefaultOptions({ timeout: 10000 });
+await register(page, email, username, password);
+
+},60000);
 
 beforeEach(async () => {
   await logout(page);
