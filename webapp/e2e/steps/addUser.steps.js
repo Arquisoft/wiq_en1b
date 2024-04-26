@@ -30,17 +30,10 @@ defineFeature(feature, test => {
   
     
   test('Register', ({ given,when, then }) => {
-    given('I am on the add user page', async () => {
-      await page.goto('http://localhost:3000/addUser'); 
-      await page.waitForSelector('.general');
+    given('I register a user', async () => {
+        await register(page, email, username, password);
     });
-    when('I register a user', async () => {
-        await page.type('input[name="email"]', email);
-        await page.type('input[name="username"]', username);
-        await page.type('input[name="password"]', password);
-        await page.type('input[name="repeat_password"]', password);
-        await page.click('button[type="submit"]');
-    });
+
     then('I am in /menu', async () => {
       await expect(page).toMatchElement('.divMenu');
     });

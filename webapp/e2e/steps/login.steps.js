@@ -31,20 +31,11 @@ await register(page, email, username, password);
 
 
    test('Login', ({ given,when, then }) => {
-    given('I am on the login page', async () => {
-      await page.goto('http://localhost:3000/login'); 
-      await page.waitForSelector('.general');
+    given('I login a user', async () => {
+      await login(page, username, password);
 
     });
-    when('I login as user', async () => {
-        
-      await page.type('input[type="text"]', username);
-      await page.type('input[type="password"]', password);
-      await page.click('button[type="submit"]');
-      await page.waitForSelector('.general');
-    });
     then('I am in /menu', async () => {
-      await page.waitForSelector('.general');
       await expect(page).toMatchElement('.divMenu');
     });
   }, 60000);
