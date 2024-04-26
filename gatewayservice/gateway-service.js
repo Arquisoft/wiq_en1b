@@ -41,6 +41,7 @@ app.post('/adduser', async (req, res) => {
   try {
     // Forward the add user request to the user service
     const userResponse = await axios.post(userServiceUrl+'/adduser', req.body);
+    console.log(userResponse)
     res.json(userResponse.data);
   } catch (error) {
     manageError(res, error);
@@ -48,7 +49,7 @@ app.post('/adduser', async (req, res) => {
   }
 });
 
-app.get('/questions', verifyToken, async (req, res) => {
+app.get('/questions', async (req, res) => {
   try {
     
     // Forward the question request to the quetion service
@@ -101,7 +102,7 @@ app.get('/questions/:lang/:amount', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/questions/:lang', verifyToken, async (req, res) => {
+app.get('/questions/:lang', async (req, res) => {
   try {
     if(!validateLang(req.params.lang.toString()))
       res.status(400).json({ error: 'Wrong values given' });
@@ -220,7 +221,7 @@ function validateAmount(amount) {
 }
 
 function validateType(type){
-  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE'].includes(type);
+  return ['POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE', 'HEAD_OF_GOVERMENT'].includes(type);
 }
 
 function validateUser(user){
@@ -231,7 +232,7 @@ function manageError(res, error){
   if(error.response) //Some microservice responded with an error
     res.status(error.response.status).json({ error: error.response.data.error });
   else //Some other error
-    res.status(500).json({error : "Interanl server error"})
+    res.status(500).json({error : "Internal server error"})
 }
 
 module.exports = server

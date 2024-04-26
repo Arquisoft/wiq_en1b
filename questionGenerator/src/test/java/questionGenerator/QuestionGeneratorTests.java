@@ -13,7 +13,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.java.questionGenerator.QuestionGenerator;
@@ -21,25 +20,20 @@ import main.java.questionGenerator.question.QuestionType;
 
 public class QuestionGeneratorTests {
 
-    private QuestionGenerator qgEN;
-    private QuestionGenerator qgES;
+    private QuestionGenerator qg = QuestionGenerator.getInstance();
 
     private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE, QuestionType.LANGUAGE};
-
-    @BeforeEach
-    void setUp(){
-        qgEN = new QuestionGenerator("en");
-        qgES = new QuestionGenerator("es");
-    }
 
     @Test
 	void testGenerateQuestionsEnglish() {
 
         String question;
 
+        qg.setLanguageCode("en");
+
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgEN.generateQuestions(t, 1).get(0).getJSON().toString();
+                question = qg.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format
@@ -96,9 +90,11 @@ public class QuestionGeneratorTests {
 
         String question;
 
+        qg.setLanguageCode("es");
+
         for(QuestionType t : types) {
 			for(int i=0; i<3; i++) {
-                question = qgES.generateQuestions(t, 1).get(0).getJSON().toString();
+                question = qg.generateQuestions(t, 1).get(0).getJSON().toString();
                 JSONObject json = null;
 
                 //Check correct format

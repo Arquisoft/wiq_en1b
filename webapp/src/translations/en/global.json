@@ -8,7 +8,8 @@
     "msg1": "Welcome to the knowledge challenge! Get ready to test your mind and demonstrate your skills. In this exciting game, you will face a series of questions that will test your knowledge on a variety of topics.",
     "msg2": "So go ahead, prove that you are the master of questions! Are you ready to accept the challenge?",
     "clickOpen": "Click to continue",
-    "clickClose": "Click to close"
+    "clickClose": "Click to close",
+    "game":"Play as a guest"
   },
 
     "navBar": {
@@ -97,6 +98,7 @@
         "option_capital":"Capital",
         "option_language":"Language",
         "option_size":"Size",
+        "option_head_of_goverment":"Head of Goverment",
         "custo_game":"Create custom game",
         "competi_game":"Play Competitive",
         "randomize":"Randomize Parameters"
