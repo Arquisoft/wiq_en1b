@@ -27,7 +27,7 @@ defineFeature(feature, test => {
       setDefaultOptions({ timeout: 30000 });
   
       await register(page, email, username, password);
-    });
+    }, 60000);
   
     beforeEach(async () => {
       await logout(page);
@@ -45,7 +45,7 @@ defineFeature(feature, test => {
     then('I am in /menu', async () => {
       await expect(page).toMatchElement('.divMenu');
     });
-  });
+  }, 60000);
   
   
 

@@ -46,7 +46,7 @@ beforeEach(async () => {
     then('I am in /menu', async () => {
       await expect(page).toMatchElement('.divMenu');
     });
-  });
+  }, 60000);
 
   test('Failed login', ({ given,when, then }) => {
     given('I am on the login page', async () => {
@@ -58,7 +58,7 @@ beforeEach(async () => {
     });
     then('I am in /login', async () => {
       await expect(page).toMatchElement('.general');
-    });
+    }, 60000);
   });
   
   

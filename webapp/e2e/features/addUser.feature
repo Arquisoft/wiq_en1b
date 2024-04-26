@@ -1,4 +1,4 @@
-Feature: Login page functionality
+Feature: Register page functionality
 
   Scenario: Register
     Given I am on the add user page
