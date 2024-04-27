@@ -1,0 +1,23 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[section-testing]]
+== Testing
+Here lies a detailed description of some of the test of the application.
+
+=== Load testing
+For load testing two different kind of test were designed. The first ones were based on the pressencce of a high number of users, across a "long" period of time. 
+On the other hand, the second ones were though with the idea of a big number of users arriving almost simmultaniously.
+
+The first ones were designed to test the application under "normal" circunstances, while the second ones were designed with an unexpected user peak in mind.
+
+==== Constant traffic tests
+- **600 users playing as guests**: Arriving in batches of 10 users per second over 60 seconds. -> link:https://github.com/Arquisoft/wiq_en1b/files/15139283/600peopleresult.pdf[Result PDF]
+- **1200 users playing as guests**: Arriving in batches of 20 users per second over 60 seconds. -> link:https://github.com/Arquisoft/wiq_en1b/files/15139356/1200peopleresult.pdf[Result PDF]
+- **20 users playing normally**: Arriving in batches of 2 users per second over 10 seconds. They log in, play and check the results. -> link:https://github.com/Arquisoft/wiq_en1b/files/15139376/login.pdf[Result PDF]
+
+==== Burst traffic tests
+- **2400 users playing as guests**: Arriving in batches of 200 people per second over 12 seconds. -> link:https://github.com/Arquisoft/wiq_en1b/files/15139644/burstguest.pdf[Result PDF]
+- **1200 users playing normally**: Arriving in batches of 100 people per second over 12 seconds. They log in, play and check the results. -> link:https://github.com/Arquisoft/wiq_en1b/files/15139645/burstlogin.pdf[Result PDF]
+
+As we can see, in the first kind of testing, the percentage of successful requests is between 99 and 100%. However things change when moving into the second kind, with a success rate of 91% for the ones playing as a guest and 82% for the ones logging in. 
+Despite not being such great numbers as the other ones, this still represent a lot of successes under a very stresfull situation for our application.
