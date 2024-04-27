@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./user-model')
 
 const app = express();
-const port = 8001;
+const port = 8011;
 
 // Middleware to parse JSON in request body
 app.use(bodyParser.json());
@@ -31,10 +31,11 @@ function validateRequiredFields(req, requiredFields) {
       }
     }
 
-    let email = req.body.email.toString();
-    let username = req.body.username.toString();
-    let password = req.body.password.toString();
-    let repeatPassword = req.body.repeatPassword.toString();
+    //If there are not here is because they dont need to be, it has being check before which need to be here
+    let email = req.body.email ? req.body.email.toString() : "example@example.com";
+    let username = req.body.username ? req.body.username.toString() : "example";
+    let password = req.body.password ? req.body.password.toString() : "123456789";
+    let repeatPassword = req.body.repeatPassword ? req.body.repeatPassword.toString() : "123456789";
 
     if(!validateEmail(email)){
       //User put a wrong format email
@@ -106,7 +107,73 @@ app.post('/adduser', async (req, res) => {
         res.json({ token: token, username: savedUser.username, email: savedUser.email});
     } catch (error) {
         res.status(400).json({ error: error.message }); 
-    }});
+    }}
+);
+
+app.post('/forgetPassword', async (req, res) => {
+  try {
+      // Check if required fields are present in the request body
+      try{
+        validateRequiredFields(req, ['email', 'username']);
+      }
+      catch(error){
+        res.status(400).json({ error : error.message });
+        return
+      }
+      //Check there is a user with that name
+      const userUsername = await User.findOne({username: req.body.username.toString()});
+
+      if(!userUsername || userUsername.email !== req.body.email)
+        return res.status(400).json({error : "No user found, review credentials"})
+
+
+      const token = jwt.sign({ userId: userUsername._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '15m' });
+
+      res.json({ token: token, username: userUsername.username, email: userUsername.email});
+  } catch (error) {
+      res.status(400).json({ error: error.message }); 
+  }}
+);
+
+app.post('/changePassword', async (req, res) => {
+  try {
+      // Check if required fields are present in the request body
+      try{
+        validateRequiredFields(req, ['email', 'username', 'password', 'repeatPassword']);
+      }
+      catch(error){
+        res.status(400).json({ error : error.message });
+        console.log(res)
+        return
+      }
+
+      
+      //Check there is a user with that name
+      const userUsername = await User.findOne({username: req.body.username.toString()});
+
+      if(!userUsername || userUsername.email !== req.body.email)
+        return res.status(400).json({error : "No user found, review credentials"})
+
+      // Encrypt the password before saving it
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+      const result = await User.updateOne(
+        { _id: userUsername._id },
+        { $set: { password: hashedPassword } }
+      );
+  
+      if (result.nModified === 0) {
+        res.status(404).send('User not found or no change');
+      } else {
+        const token = jwt.sign({ userId: userUsername._id }, (process.env.JWT_KEY??'my-key'), { expiresIn: '1h' });
+        res.json({ token: token, username: userUsername.username, email: userUsername.email});
+      }
+
+      
+  } catch (error) {
+      res.status(400).json({ error: error.message }); 
+  }}
+);
 
 const server = app.listen(port, () => {
   console.log(`User Service listening at http://localhost:${port}`);
