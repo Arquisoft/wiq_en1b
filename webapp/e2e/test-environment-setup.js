@@ -291,6 +291,39 @@ async function loadQuestions() {
     ],
     "language": "es",
     "type": "SIZE"
+  },
+  {
+    "question": "Who is the head of goverment in Spain in 2024?",
+    "answers": [
+      "Pedro Sanchez",
+      "Trump",
+      "Macron",
+      "Paco"
+    ],
+    "language": "en",
+    "type": "HEAD_OF_GOVERMENT"
+  },
+  {
+    "question": "Who is the head of goverment in France in 2024?",
+    "answers": [
+      "Pedro Sanchez",
+      "Trump",
+      "Macron",
+      "Paco"
+    ],
+    "language": "en",
+    "type": "HEAD_OF_GOVERMENT"
+  },
+  {
+    "question": "Who is the head of goverment in USA in 2017?",
+    "answers": [
+      "Pedro Sanchez",
+      "Trump",
+      "Macron",
+      "Paco"
+    ],
+    "language": "en",
+    "type": "HEAD_OF_GOVERMENT"
   }]
 
   //No need of loading questions for these tests

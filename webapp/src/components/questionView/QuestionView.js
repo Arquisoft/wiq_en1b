@@ -1,8 +1,7 @@
 import QuestionGenerator from './QuestionGenerator';
 import CreationHistoricalRecord from './CreationHistoricalRecord';
-import { useState } from 'react';
 import "../../custom.css";
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Countdown from 'react-countdown';
 import {useTranslation} from "react-i18next";
 import $ from 'jquery'; 
@@ -21,8 +20,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     const [questions, setQuestions] = useState(null);
     const[t, i18n] = useTranslation("global");
     const cookie = JSON.parse(Cookies.get('user')??JSON.stringify({username : playAsGuestUsername, token : playAsGuestToken}))    
-    const [audio] = useState(new Audio('/tictac.mp3'));
-
+    
 
     const generateQuestions = async (numQuestion) => {
         if (numQuestion < 0) {
@@ -56,11 +54,9 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 });
             }
             if(answerGiven===correctAnswer){
-                audio.pause();
                 audioCorrect.play(); // Reproduce el sonido de respuesta incorrecta
             }
             else{
-                audio.pause();
                 audioIncorrect.play(); // Reproduce el sonido de respuesta correcta
             }
             $(this).css('pointer-events', 'none');
@@ -80,15 +76,17 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     function computePointsForQuestion(correctAnswer, answerGiven){
         if(answerGiven===correctAnswer){
             points+=100;
-            audio.pause();
         }else if(points-50>=0){
             points-=50;
-            audio.pause();
         }else{
             points = 0;
         }
     }
     function handleClick(text){
+        // Detener el síntesis de voz
+        if(window.speechSynthesis.speaking)
+            window.speechSynthesis.cancel();
+    
         //create the record to record the response
         creationHistoricalRecord.addQuestion(questions[numQuestion].getQuestion(),
                                         questions[numQuestion].getAnswers(),
@@ -108,7 +106,6 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
             
             //Last question sends the record
             if(!(numQuestion < questions.length - 1)){
-                audio.pause();
                 creationHistoricalRecord.setCompetitive(type === 'COMPETITIVE');
                 creationHistoricalRecord.setDate(Date.now());
                 creationHistoricalRecord.setPoints(points);
@@ -118,7 +115,7 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
         }, 1000);
         
     }
-
+    
     if(questions === null)
         generateQuestions(numQuestion)
 
@@ -126,33 +123,20 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
     return (
     <div className="question-view-container">
         {numQuestion >= 0 ? 
-        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} audio = {audio} language={i18n.language}/> :
+        <QuestionComponent t={t} questions={questions} numQuestion={numQuestion} handleClick={handleClick} points={points} language={i18n.language}/> :
         <h1>{t("questionView.no_questions_message")}</h1> }
     </div>);
 }
 
-function QuestionComponent({questions, numQuestion, handleClick, t, points, audio, language}){
+function QuestionComponent({questions, numQuestion, handleClick, t, points,  language}){
 
 
-    const speakQuestion = () => {
-        const speech = new SpeechSynthesisUtterance();
-        speech.lang = language;
-        console.log(language);
-        getVoicesForLanguage(language)
-            .then(voices => {
-                // const voice = voices.find(voice => voice.lang === language);
-                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
-                window.speechSynthesis.speak(speech);
-            })
-            .catch(error => {
-                console.error("Error al obtener las voces para el idioma:", error);
-            });
-    };
-    
-    // Función para obtener las voces disponibles para un idioma
-    const getVoicesForLanguage = (language) => {
+    // To obtain available voices for language
+    const getVoicesForLanguage = useCallback((language) => {
         return new Promise((resolve, reject) => {
             const speech = new SpeechSynthesisUtterance();
+
+            //speaks the question
             speech.text = questions[numQuestion].getQuestion();
             speech.lang = language;
     
@@ -166,19 +150,70 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
     
             window.speechSynthesis.speak(speech); 
         });
-    };
+    },[questions, numQuestion]);
+
+    const speakAnswers = useCallback((answers) => {
+        const speech = new SpeechSynthesisUtterance();
+        speech.lang = language;
+        let concatenatedAnswers = Array.isArray(answers) ? answers.map((answer, index) => `${index + 1}. ${answer}`).join(". ") : ''; 
+
+        getVoicesForLanguage(language)
+            .then(voices => {
+                // const voice = voices.find(voice => voice.lang === language);
+                // speech.voice = voice || voices[0]; // If there is no voice for the lang, choose the first one
+                speech.text = concatenatedAnswers;
+                window.speechSynthesis.speak(speech);
+            })
+            .catch(error => {
+                console.error("Error al obtener las voces para el idioma:", error);
+            });
+    }, [getVoicesForLanguage, language]);
+
+    const speak = useCallback(() => {
+        speakAnswers(questions[numQuestion].getAnswers());
+    }, [numQuestion, questions, speakAnswers]);
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.key === 's') {
+                speak();
+            } else {
+                const answerIndex = parseInt(event.key) - 1;
+                if (!isNaN(answerIndex) && answerIndex >= 0 && answerIndex < questions[numQuestion].getAnswers().length) {
+                
+                    handleClick(questions[numQuestion].getAnswers()[answerIndex]);
+                }
+            }
+        };
+
+        window.addEventListener("keypress", handleKeyPress);
+        
+        return () => {
+            window.removeEventListener("keypress", handleKeyPress);
+        };
+    }, [speak, numQuestion, questions, handleClick]);
+
+    //To stop the voice when changing of page
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            if(window.speechSynthesis.speaking)
+                window.speechSynthesis.cancel();
+        };
+    
+        window.addEventListener("beforeunload", handleBeforeUnload);
+    
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);    
     
     
 
     const renderer = ({seconds, completed }) => {
         if (completed) {
-            audio.pause();
             return <span>{t("questionView.end_countdown")}</span>; // Rendered when countdown completes
         } else {
-            if (audio.paused) {
-                audio.loop = true; // Loop of tiktak
-                audio.play();
-            }
+
             return <span>{seconds} {t("questionView.seconds")}</span>; // Render countdown
         }
     };
@@ -189,7 +224,7 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points, audi
                 <div className='questionContainer'>
                
                     <div className='topPanel'>
-                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speakQuestion}>🔊</button></h2>
+                        <h2>{questions[numQuestion].getQuestion()} <button className="altavoz" onClick={speak}>🔊</button></h2>
                         <div className="countdown">
                             <Countdown key={numQuestion} date={Date.now()+10000} renderer={renderer} onComplete={handleClick.bind(this,"no-answer")} />
                         </div>

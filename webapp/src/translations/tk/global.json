@@ -29,12 +29,17 @@
       "how_to_play_p3": "Sağlanan seçenekler arasından doğru cevabı seçin.",
       "how_to_play_p4": "Seçtiğiniz cevabı göndermek için üzerine tıklayın veya dokunun.",
       "scoring": "Puanlama:",
-      "scoring_p1": "Her doğru cevap size x puan kazandırır.",
-      "scoring_p2": "Yanlış cevaplar puan kesintisi yapmaz.",
+      "scoring_p1": "Her doğru cevap size 100 puan kazandırır.",
+      "scoring_p2": "Yanlış cevaplar 50 puan keser.",
       "time_limit": "Zaman Sınırı:",
       "time_limit_p1": "Bazı oyun modları, her soruyu cevaplama için bir zaman sınırına sahip olabilir. Skorunuzu maksimize etmek için hızlı ve doğru olun.",
       "have_fun": "İyi Eğlenceler!:",
-      "have_fun_p1": "Oyunun tadını çıkarın ve bilginizi test edin. İyi şanslar!"
+      "have_fun_p1": "Oyunun tadını çıkarın ve bilginizi test edin. İyi şanslar!",
+      "voice": "Ses ve Klavye Erişilebilirliği",
+"voice_p1": "Soruyu ve cevabı dinleme seçeneğiniz bulunmaktadır. Bir düğmeye basarak, soruyu dinleyebilir ve ardından her biri önünde bir numara olan cevapları dinleyebilirsiniz.",
+"voice_p2": "Bir düğmeye basarak, soruyu dinleyebilir ve ardından her biri önünde bir numara olan cevapları dinleyebilirsiniz.",
+"voice_p3": "Bu numara, seçtiğiniz cevaba klavyede karşılık gelen numarayı basarak yanıt vermek için kullanılır.",
+"voice_p4": "Ayrıca, 's' harfine basarak sesi aktive edebilirsiniz."
     },
     "login": {
       "title": "Giriş",

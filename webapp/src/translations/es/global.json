@@ -33,13 +33,19 @@
         "how_to_play_p4": "Haz clic o toca tu respuesta seleccionada para enviarla.",
     
         "scoring": "Puntuación:",
-        "scoring_p1": "Cada respuesta correcta te otorga x puntos.",
-        "scoring_p2": "Las respuestas incorrectas no restan puntos.",
+        "scoring_p1": "Cada respuesta correcta te otorga 100 puntos.",
+        "scoring_p2": "Las respuestas incorrectas restan 50 puntos.",
         "time_limit": "Límite de Tiempo:",
         "time_limit_p1": "Algunos modos de juego pueden tener un límite de tiempo para responder cada pregunta. Sé rápido y preciso para maximizar tu puntuación.",
         "have_fun": "¡Diviértete!",
-        "have_fun_p1": "¡Disfruta del juego y pon a prueba tus conocimientos. Buena suerte!"
-    },
+        "have_fun_p1": "¡Disfruta del juego y pon a prueba tus conocimientos. Buena suerte!",
+        "voice": "Voz y accesibilidad por teclado",
+        "voice_p1": "Tienes la opción de escuchar la pregunta y la respuesta. Pulsando un botón podrás escuchar la pregunta y seguidamente las respuestas con un número delante.",
+        "voice_p2": "Pulsando un botón podrás escuchar la pregunta y seguidamente las respuestas con un número delante.",
+        "voice_p3": "Este número sirve para responder pulsando por teclado el número correspondiente a la respuesta que desees.",
+        "voice_p4": "Además, podrás activar la voz pulsando la letra s"
+
+      },
     "login": {
         "title": "Inicio de sesión",
         "username_placeholder": "Nombre de usuario o Correo Electrónico",
