@@ -235,4 +235,46 @@ describe('Gateway Service without mocked micro services', () => {
         expect(error.response.data.error).toBe('Internal server error');
       }
     });
+
+    it('should not forward login request and give 400', async () => {
+      axios.post.mockImplementation((url, data) => {
+        if (url.endsWith('/login')) {
+          return Promise.reject({
+            response: {
+              status: 400,
+              data: { message: 'Invalid username or password' },
+            },
+          });
+        }
+      });
+
+      try{
+        await request(app)
+        .post('/login')
+        .send({ username: 'testuser', password: 'testpassword' });
+
+      } catch(error){
+        expect(error.response.status).toBe(400);
+        expect(error.response.data.error).toBe('Invalid username or password');
+      }
+    });
+
+    it('should not forward any url and give 500', async () => {
+      const urls = ['/adduser', '/forgetPassword', '/changePassword', '/questions',
+                    '/questions/es/1/CAPITAL', '/questions/es/1', '/questions/es',
+                    '/record', '/record/ranking/top10', '/record/ranking/user',
+                    '/record/user']
+      urls.forEach(async (url) => {
+        try{
+          await request(app)
+          .post(url)
+          .send({ username: 'testuser', password: 'testpassword' });
+  
+        } catch(error){
+          expect(error.response.status).toBe(500);
+          expect(error.response.data.error).toBe('Internal server error');
+        }
+      })
+      
+    })
 });
