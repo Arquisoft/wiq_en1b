@@ -5,7 +5,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class GuestTest extends Simulation {
+class BurstGuestTest extends Simulation {
 
   private val httpProtocol = http
     .baseUrl("http://wiqen1b.serveminecraft.net:3000")
