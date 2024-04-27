@@ -59,7 +59,7 @@ public class QuestionGenerator {
 			try {
 				q = generator.generate(entity);
 				questions.add(q);
-				System.out.println(questions);
+				System.out.println(questions.size());
 			} catch(RuntimeException e) {
 				/*
 				 * Sometimes not all the parameters for generating can be passed in the query, so this 

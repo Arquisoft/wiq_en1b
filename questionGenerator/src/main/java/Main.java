@@ -24,15 +24,16 @@ public class Main {
 		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT};
 		//, QuestionType.VIDEOGAME_DEVELOPER, QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE, QuestionType.VIDEOGAME_COUNTRY};
 
- 	//private static final int NUMBER_OF_QUESTIONS = 50;
-	private static final int NUMBER_OF_QUESTIONS = 75;
+ 	private static final int NUMBER_OF_QUESTIONS = 50;
+	//private static final int NUMBER_OF_QUESTIONS = 75;
 	//private static final int NUMBER_OF_QUESTIONS = 3;
 	//private static final int NUMBER_OF_QUESTIONS = 1;
 
 	public static void main(String[] args) {
+		List<String> questions = generate().stream().map(q -> q.getJSON().toString()).toList();
 		while(true) {
-			List<String> questions = generate().stream().map(q -> q.getJSON().toString()).toList();
 			QuestionRepository.getInstance().populate(questions);
+			questions = generate().stream().map(q -> q.getJSON().toString()).toList();
 			try {
 				Thread.sleep(TIME_SKIP);
 			} catch (InterruptedException e) {
