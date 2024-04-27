@@ -4,6 +4,17 @@ ifndef::imagesdir[:imagesdir: ../images]
 == Testing
 Here lies a detailed description of some of the test of the application.
 
+=== Generator tests
+For the generator some unitary tests were developed. There are two different types.
+
+==== Question tests
+This ones are designed to test that the questions work perfectly. This does not test whether the questions are generated properly, for that is the resposability of other tests.
+They do not require to access Wikidata, since they are testing the most internal parts of our application.
+
+==== Generator tests
+This tests are designed to test each one of the specific generators (for example, CapitalGenerator, VideogameDeveloperGenerator, DirectorGenerator, etc). As opposed to the question tests, this are focused on the correct access to Wikidata and generation of the questions.
+They do require to access Wikidata, since they test how our application generates the questions, which are obtained from Wikidata.
+
 === Load testing
 For load testing two different kind of test were designed. The first ones were based on the pressencce of a high number of users, across a "long" period of time. 
 On the other hand, the second ones were though with the idea of a big number of users arriving almost simmultaniously.
