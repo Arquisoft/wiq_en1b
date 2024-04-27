@@ -59,7 +59,7 @@ const Login = () => {
           </div>
 
           <button type="submit">{t("login.login_button")}</button>
-          
+          <LinkForgetPassword />
           <LinkRegister />
           
           
@@ -75,6 +75,15 @@ function LinkRegister() {
   return (
     <Link to="/AddUser" className="button-register" variant="body2">
       {t("login.register_link")}
+    </Link>
+  );
+}
+
+function LinkForgetPassword(){
+  const { t } = useTranslation("global");
+  return (
+    <Link to="/restorePassword" className="button-register" variant="body2">
+      {t("login.forget_pass")}
     </Link>
   );
 }

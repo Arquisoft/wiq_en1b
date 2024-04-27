@@ -7,7 +7,7 @@ import { act } from 'react-dom/test-utils';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {configure} from '@testing-library/dom';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 // Función para configurar el mock de global.Audio
 const setupAudioMock = () => {

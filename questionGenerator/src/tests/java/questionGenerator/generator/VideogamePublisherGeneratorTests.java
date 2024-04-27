@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,10 +20,10 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class VideogameGenreGeneratorTests {
+public class VideogamePublisherGeneratorTests {
 
 	private QuestionGenerator qg = QuestionGenerator.getInstance();
-	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_GENRE, 3);
+	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_PUBLISHER, 3);
 	
 	@Test
 	@Order(1)
@@ -72,7 +72,7 @@ public class VideogameGenreGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().startsWith("What's the main genre of the videogame "));
+			assertTrue(q.getQuestion().startsWith("Who was the publisher of the videogame "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 		

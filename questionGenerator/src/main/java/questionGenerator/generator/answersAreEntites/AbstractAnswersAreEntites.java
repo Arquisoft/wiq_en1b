@@ -47,7 +47,7 @@ public abstract class AbstractAnswersAreEntites extends AbstractGenerator{
 	public List<String> getWrongAnswers(String rightAnswer) throws Exception {
 		List<String> entites = new ArrayList<>();
 		try {
-			entites = EntityGenerator.getEntities(type, getSampleSize(), getPropertyId());
+			entites = EntityGenerator.getEntities(type, 20, getPropertyId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

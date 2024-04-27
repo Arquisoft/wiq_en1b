@@ -17,6 +17,7 @@ import HistoricalView from './components/HistoricalData/HistoricalView';
 import Cookies from 'js-cookie';
 import GameConfigurator from './components/GameConfigurator/GameConfigurator';
 import RankingView from './components/ranking/RankingView';
+import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
               <Route path="/configurator" element={isLoggedIn ? <GameConfigurator /> : <Login />}/>
               <Route path="/ranking" element={isLoggedIn ? <RankingView /> : <Login />} />
               <Route path="/about" element={<About /> } />
+              <Route path="/restorePassword" element={<ForgetPassword />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>

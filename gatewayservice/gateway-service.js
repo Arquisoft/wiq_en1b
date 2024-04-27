@@ -9,11 +9,24 @@ const YAML = require('yaml')
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = 8000;
+//Setting up the email
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: "wiqen1b@gmail.com",
+    pass: "akskfqgakjvcswyg",
+  },
+});
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
 const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
 const recordServiceUrl = process.env.RECORD_SERVICE_URL || 'http://localhost:8004';
+
+
+var forgetPasswords = new Map()
 
 app.use(cors());
 app.use(express.json());
@@ -41,7 +54,50 @@ app.post('/adduser', async (req, res) => {
   try {
     // Forward the add user request to the user service
     const userResponse = await axios.post(userServiceUrl+'/adduser', req.body);
-    console.log(userResponse)
+    res.json(userResponse.data);
+  } catch (error) {
+    manageError(res, error);
+    
+  }
+});
+
+app.post('/forgetPassword', async (req, res) => {
+  try {
+    // Forward the forget password request to the user service
+    const userResponse = await axios.post(userServiceUrl+'/forgetPassword', req.body);
+    
+    let sixNumbers = getRandomSixDigitNumber();
+    while(forgetPasswords.has(sixNumbers))
+      sixNumbers = getRandomSixDigitNumber();
+
+    forgetPasswords.set(sixNumbers, userResponse.data.token)
+    await sendEmail(res, userResponse.data.email,  userResponse.data.username, sixNumbers)
+  } catch (error) {
+    manageError(res, error);
+    
+  }
+});
+
+app.get('/tokenFromCode/:code', async (req, res) => {
+  try {
+    var code = parseInt(req.params.code);
+    if(forgetPasswords.has(code)){
+      var token = forgetPasswords.get(code)
+      forgetPasswords.delete(code)
+      res.json({token: token});
+    }
+    else
+      res.status(400).json({ error : "Invalid code" });
+  } catch (error) {
+    manageError(res, error);
+    
+  }
+});
+
+app.post('/changePassword', verifyToken, async (req, res) => {
+  try {
+    // Forward the forget password request to the user service
+    const userResponse = await axios.post(userServiceUrl+'/changePassword', req.body);
     res.json(userResponse.data);
   } catch (error) {
     manageError(res, error);
@@ -233,6 +289,32 @@ function manageError(res, error){
     res.status(error.response.status).json({ error: error.response.data.error });
   else //Some other error
     res.status(500).json({error : "Internal server error"})
+}
+
+function getRandomSixDigitNumber() {
+  const now = Date.now(); // Gets the current timestamp
+  const lastSixDigits = now.toString().slice(-6); // Gets the last 6 digits as a string
+  return parseInt(lastSixDigits, 10); // Converts it back to an integer
+}
+
+async function sendEmail(res, email, username, numbers) {
+  // Configuración del correo
+  const mailOptions = {
+    from: process.env.EMAIL_USER, 
+    to: email,
+    subject: 'Hello ' + username + ' this is the wiqen1b team', 
+    text: 'We see that you have requested a password change.\n' +
+          'Please introduce the code: ' + numbers + '. You have around 10 minutes to change your password \n' +
+          'In case you have not requested a password change forget this email existance',
+  };
+
+  try {
+    // Envía el correo
+    await transporter.sendMail(mailOptions);
+    res.send('Email sent successfully');
+  } catch (error) {
+    res.status(500).send('Error sending email');
+  }
 }
 
 module.exports = server

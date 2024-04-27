@@ -129,9 +129,9 @@ public class QuestionGenerator {
 	}
 
 	private long getSampleSize(int amount) {
-		long value = amount * 10;
-		if(value<1000)
-			return 1000;
+		long value = amount * 2;
+		if(value>500)
+			return 500;
 		return value;
 	}
 

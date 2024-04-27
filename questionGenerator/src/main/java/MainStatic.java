@@ -7,7 +7,7 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.repository.QuestionRepository;
 
-public class StaticMain {
+public class MainStatic {
 
     public static void main(String[] args) {
 		QuestionGenerator qg = QuestionGenerator.getInstance();
@@ -27,12 +27,6 @@ public class StaticMain {
 	
 	private static void run(QuestionGenerator qg, QuestionType type, int numberOfQuestions){
 			List<Question> questions = qg.generateQuestions(type, numberOfQuestions);
-			for(int i=0; i<questions.size(); i++) {
-				Question question = questions.get(i);
-				question.setNumber(i);
-				System.out.println(question.getJSON().toString());
-			}
-			System.out.println();
 			QuestionRepository.getInstance().insert(questions.stream().map(q -> q.getJSON().toString()).toList());
 	}
 }

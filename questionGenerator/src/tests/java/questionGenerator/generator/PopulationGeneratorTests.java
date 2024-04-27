@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,10 +20,10 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class DirectorGeneratorTests {
+public class PopulationGeneratorTests {
 	
 	private QuestionGenerator qg = QuestionGenerator.getInstance();
-	private List<Question> questions = qg.generateQuestions(QuestionType.DIRECTOR, 3);
+	private List<Question> questions = qg.generateQuestions(QuestionType.POPULATION, 3);
 
 	@Test
 	@Order(1)
@@ -72,12 +72,12 @@ public class DirectorGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().startsWith("Who's the director of the "));
+			assertTrue(q.getQuestion().startsWith("What's the population of "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
 	}
-
-    @Test
+	
+	@Test
 	@Order(6)
 	public void QuestionInTheJSONIsTheExpectedOne() {
 		for(Question q : questions) {

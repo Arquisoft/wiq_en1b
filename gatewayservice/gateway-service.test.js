@@ -2,6 +2,7 @@ const request = require('supertest');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const app = require('./gateway-service'); 
+const nodemailer = require('nodemailer');
 
 afterAll(async () => {
     app.close();
@@ -11,8 +12,6 @@ afterAll(async () => {
 jest.mock('jsonwebtoken');
 
 jest.mock('axios');
-
-
 
 describe('Gateway Service with mocked micro services', () => {
 
@@ -24,6 +23,10 @@ describe('Gateway Service with mocked micro services', () => {
       return Promise.resolve({ data: { username: 'newuser' } });
     } else if(url.endsWith('/record')){
       return Promise.resolve({data : {user:'testuser'}})
+    } else if(url.endsWith('/forgetPassword')){
+      return Promise.resolve({data : { token: 'mockedToken', username : 'testuser', email:"example@example.com"}})
+    } else if(url.endsWith('/changePassword')){
+      return Promise.resolve({data : {token: 'mockedToken', username : 'testuser', email:"example@example.com"}})
     } 
   });
 
@@ -59,6 +62,14 @@ describe('Gateway Service with mocked micro services', () => {
     // Assume the token is valid and return the payload
     callback(null, "decoded");
   });
+
+
+  //Mock nodemailer
+  jest.mock('nodemailer', () => ({
+    createTransport: jest.fn().mockReturnValue({
+      sendMail: jest.fn(),
+    }),
+  }));
 
   // Test /login endpoint
   it('should forward login request to auth service', async () => {
@@ -145,6 +156,42 @@ describe('Gateway Service with mocked micro services', () => {
       checkRecord(response);
     
   });
+
+  //Test /forgetPassword
+  it('should forward the request and send an email', async () => {
+    const response = await request(app)
+      .post('/forgetPassword')
+      .send({ email: 'example@example.com', username: 'testuser'});
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toBe('Email sent successfully');
+  })
+
+  //Test tokenFromCode/:code
+  it('should find a token', async () => {
+    //First generate the code:token
+
+    const fixedTimestamp = 1683078000000;
+    jest.spyOn(Date, 'now').mockReturnValue(fixedTimestamp);
+
+    await request(app)
+      .post('/forgetPassword')
+      .send({ email: 'example@example.com', username: 'testuser'});
+    const response = await request(app).get('/tokenFromCode/000000');
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty('token', "mockedToken");
+  })
+
+  //Test /changePassword
+  it('should forward the request', async () => {
+    const response = await request(app)
+    .post('/changePassword')
+    .send({ username: 'testuser', password: 'newpassword' })
+    .set('token', 'valorDelToken');
+  
+    expect(response.statusCode).toBe(200);
+    expect(response.body.username).toBe('testuser');
+  })
 
 });
 

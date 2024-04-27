@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,11 +20,11 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class VideogameCountryGeneratorTests {
-
-	private QuestionGenerator qg = QuestionGenerator.getInstance();
-	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_COUNTRY, 3);
+public class LanguageGeneratorTests {
 	
+	private QuestionGenerator qg = QuestionGenerator.getInstance();
+	private List<Question> questions = qg.generateQuestions(QuestionType.LANGUAGE, 3);
+
 	@Test
 	@Order(1)
 	public void AmountOfQuestions() {
@@ -72,10 +72,9 @@ public class VideogameCountryGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().startsWith("Which country is the videogame "));
-			assertTrue(q.getQuestion().endsWith(" from?"));
+			assertTrue(q.getQuestion().startsWith("What's the official language of "));
+			assertTrue(q.getQuestion().endsWith("?"));
 		}
-		
 	}
 	
 	@Test
