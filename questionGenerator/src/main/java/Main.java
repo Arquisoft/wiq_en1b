@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import main.java.questionGenerator.QuestionGenerator;
@@ -44,18 +45,18 @@ public class Main {
 		List<Question> questions = new ArrayList<Question>();
 		for(String lang : languages) {
 			qg.setLanguageCode(lang);
-			for(QuestionType type: types)
+			for(QuestionType type: types){
+				System.out.println(String.format("Starting Type: %s Language: %s at: %s", type, lang, new Date()));
 				questions.addAll(run(qg, type, NUMBER_OF_QUESTIONS));
+				System.out.println(String.format("Type: %s Language: %s Finished", type, lang));
+			}
+				
 		}
 		return questions;
 	}
 	
 	private static List<Question> run(QuestionGenerator qg, QuestionType type, int numberOfQuestions) {
 		List<Question> questions = qg.generateQuestions(type, numberOfQuestions);
-		for(int i=0; i<questions.size(); i++) {
-			Question question = questions.get(i);
-			question.setNumber(i);
-		}
 		return questions;
 	}
 

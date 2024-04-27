@@ -7,7 +7,7 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 import main.java.questionGenerator.repository.QuestionRepository;
 
-public class StaticMain {
+public class MainStatic {
 
     public static void main(String[] args) {
 		QuestionGenerator qg = QuestionGenerator.getInstance();

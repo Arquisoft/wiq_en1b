@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

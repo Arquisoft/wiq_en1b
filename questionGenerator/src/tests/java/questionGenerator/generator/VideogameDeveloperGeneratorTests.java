@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,11 +20,11 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CapitalGeneratorTests {
-	
-	private QuestionGenerator qg = QuestionGenerator.getInstance();
-	private List<Question> questions = qg.generateQuestions(QuestionType.CAPITAL, 3);
+public class VideogameDeveloperGeneratorTests {
 
+	private QuestionGenerator qg = QuestionGenerator.getInstance();
+	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_DEVELOPER, 3);
+	
 	@Test
 	@Order(1)
 	public void AmountOfQuestions() {
@@ -72,9 +72,10 @@ public class CapitalGeneratorTests {
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().startsWith("What's the capital of "));
+			assertTrue(q.getQuestion().startsWith("Who were the developers of the videogame "));
 			assertTrue(q.getQuestion().endsWith("?"));
 		}
+		
 	}
 	
 	@Test

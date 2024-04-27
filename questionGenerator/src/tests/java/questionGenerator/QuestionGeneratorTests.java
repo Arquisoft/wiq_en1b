@@ -1,4 +1,4 @@
-package test.java.questionGenerator;
+package tests.java.questionGenerator;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +22,8 @@ public class QuestionGeneratorTests {
 
     private QuestionGenerator qg = QuestionGenerator.getInstance();
 
-    private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.SIZE, QuestionType.LANGUAGE};
+    private static QuestionType[] types = {QuestionType.POPULATION, QuestionType.CAPITAL, QuestionType.POPULATION, 
+		QuestionType.SIZE, QuestionType.HEAD_OF_GOVERMENT};
 
     @Test
 	void testGenerateQuestionsEnglish() {

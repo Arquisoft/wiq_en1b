@@ -1,4 +1,4 @@
-package test.java.questionGenerator.generator;
+package tests.java.questionGenerator.generator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,11 +20,11 @@ import main.java.questionGenerator.question.Question;
 import main.java.questionGenerator.question.QuestionType;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class HeadOfGovernmentGeneratorTest {
-	
-	private QuestionGenerator qg = QuestionGenerator.getInstance();
-	private List<Question> questions = qg.generateQuestions(QuestionType.HEAD_OF_GOVERMENT, 3);
+public class VideogameCountryGeneratorTests {
 
+	private QuestionGenerator qg = QuestionGenerator.getInstance();
+	private List<Question> questions = qg.generateQuestions(QuestionType.VIDEOGAME_COUNTRY, 3);
+	
 	@Test
 	@Order(1)
 	public void AmountOfQuestions() {
@@ -67,17 +67,17 @@ public class HeadOfGovernmentGeneratorTest {
 			assertEquals(q.getAnswers().size(), answers.size());
 		}
 	}
-
+	
 	@Test
 	@Order(5)
 	public void TheQuestionFollowsTheExpectedMessage() {
 		for(Question q : questions) {
-			assertTrue(q.getQuestion().startsWith("Who's the current head of the government of "));
-			assertTrue(q.getQuestion().endsWith("?"));
+			assertTrue(q.getQuestion().startsWith("Which country is the videogame "));
+			assertTrue(q.getQuestion().endsWith(" from?"));
 		}
 		
 	}
-
+	
 	@Test
 	@Order(6)
 	public void QuestionInTheJSONIsTheExpectedOne() {

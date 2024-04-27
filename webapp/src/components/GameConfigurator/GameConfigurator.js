@@ -51,9 +51,7 @@ function GameConfigurator(){
         />
         <br></br>
         <ButtonCustomized t={t} handleClick={handleClick}/>
-        <br></br>
         <hr className="hr-style"></hr>
-        <br></br>
         <h2>{t("gameConfigurator.competi_game")}</h2>
         <p>{t("gameConfigurator.rules_competi")}</p>
         {/* Botones para jugar un juego personalizado o competitivo */}
