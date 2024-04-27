@@ -32,7 +32,8 @@ function App() {
     <Router>
         <div style={{ position: 'relative', minHeight: '100vh' }}>
           <Navbar style={{ width: '100%' }} /> 
-        <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px' }}>
+
+          <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px', paddingBottom : '64px' }}>
 
             <Routes>
               <Route path="/" element={<Navigate to="/home" />} /> 
@@ -49,7 +50,9 @@ function App() {
               <Route path="/restorePassword" element={<ForgetPassword />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
+            
           </Container>
+
           <Footer style={{ width: '100%' }} /> 
 
         </div>

@@ -115,6 +115,15 @@
     margin: 0.5em;
   }
 
+  .user-button{
+    margin-right: 10px;
+    box-shadow: 0 0 10px black;
+    cursor:pointer;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0.5em;
+  }
+
   .right-nav{
     display: flex;
   }
