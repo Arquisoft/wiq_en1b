@@ -9,15 +9,15 @@ const { register, login, logout } = require("../utils");
 let page;
 let browser;
 
-const email = "testUser1@example.com";
-const username = "testUser1"
+const email = "testUserCompetitiveGame@example.com";
+const username = "testUserCompetitiveGame"
 const password = "testUserPassword"
 
 defineFeature(feature, test => {
   
   beforeAll(async () => {
       browser = await puppeteer.launch({
-        headless: "new",
+        headless: false,
         slowMo: 40,
         defaultViewport: { width: 1920, height: 1080 },
         args: ['--window-size=1920,1080']

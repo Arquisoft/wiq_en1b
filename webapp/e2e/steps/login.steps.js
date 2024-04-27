@@ -9,8 +9,8 @@ const { register, login, logout } = require("../utils");
 let page;
 let browser;
 
-const email = "testUser1@example.com";
-const username = "testUser1"
+const email = "testUserLogin@example.com";
+const username = "testUserLogin"
 const password = "testUserPassword"
 
 defineFeature(feature, test => {
@@ -26,7 +26,7 @@ beforeAll(async () => {
 page = await browser.newPage();
 setDefaultOptions({ timeout: 10000 });
 await register(page, email, username, password);
-
+await logout(page);
 },60000);
 
 
@@ -40,17 +40,17 @@ await register(page, email, username, password);
     });
   }, 60000);
 
-  // test('Failed login', ({ given,when, then }) => {
-  //   given('I am on the login page', async () => {
-  //     await page.goto('http://localhost:3000/login'); 
-  //   });
-  //   when('I try to login', async () => {
-  //       await login(page, email, "lau", "123");
-  //   });
-  //   then('I am in /login', async () => {
-  //     await expect(page).toMatchElement('.general');
-  //   }, 60000);
-  // });
+   test('Failed login', ({ given,when, then }) => {
+     given('I am on the login page', async () => {
+       await page.goto('http://localhost:3000/login'); 
+     });
+     when('I try to login', async () => {
+         await login(page, email, "lau", "123");
+     });
+     then('I am in /login', async () => {
+       await expect(page).toMatchElement('.general');
+     }, 60000);
+   });
   
   
 
