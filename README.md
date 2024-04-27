@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_en1b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_en1b)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_en1b&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_en1b)
 
-<b>To access the game simply follow the link [here](http://wiqen1b.serveminecraft.net:3000)</b><br>
+<b>To access the game simply follow the link [here](http://wiqen1b.serveminecraft.net)</b><br>
 The documentation of the system can be found [here](https://arquisoft.github.io/wiq_en1b/)<br>
 And the API documentation can be seen [here](http://wiqen1b.serveminecraft.net:8000/api-doc/)<br>
 

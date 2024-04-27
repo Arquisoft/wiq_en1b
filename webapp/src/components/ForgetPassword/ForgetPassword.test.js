@@ -9,7 +9,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import userEvent from '@testing-library/user-event';
 import Cookies from 'js-cookie';
-
+import ForgetPasswordFunctions from './ForgetPasswordFunctions';
 i18en.use(initReactI18next).init({
     resources: {},
     lng: 'en',
@@ -23,6 +23,7 @@ const mockAxios = new MockAdapter(axios);
 const code = 111111
 const token = "mockedToken"
 
+jest.mock('axios');
 describe('ForgetPassword Component', () => {
   test('renders Ask Email component', async () => {
     act( () => {
@@ -75,7 +76,57 @@ describe('ForgetPassword Component', () => {
   });
 
 
+  describe('ForgetPasswordFunctions', () => {
+    let forgetPasswordFunctions;
+  
+    beforeEach(() => {
+      forgetPasswordFunctions = new ForgetPasswordFunctions();
+    });
+  
+    describe('sendEmail', () => {
+      it('should send email and return true on success', async () => {
+        axios.post.mockResolvedValue({ data: true });
+        const result = await forgetPasswordFunctions.sendEmail('test@example.com', 'testuser');
+        expect(result).toBe(true);
+      });
+  
+      it('should throw error on failure', async () => {
+        axios.post.mockRejectedValue(new Error('Failed to send email'));
+        await expect(forgetPasswordFunctions.sendEmail('test@example.com', 'testuser')).rejects.toThrow('Failed to send email');
+      });
+    });
+  
+    describe('tokenFromCode', () => {
+      it('should get token from code and set it', async () => {
+        const token = 'testToken';
+        axios.get.mockResolvedValue({ data: { token } });
+        await forgetPasswordFunctions.tokenFromCode('testCode');
+        expect(forgetPasswordFunctions.token).toBe(token);
+      });
+  
+      it('should throw error on failure', async () => {
+        axios.get.mockRejectedValue(new Error('Failed to get token'));
+        await expect(forgetPasswordFunctions.tokenFromCode('testCode')).rejects.toThrow('Failed to get token');
+      });
+    });
+  
+    describe('changePassword', () => {
+      it('should change password', async () => {
+        const response = { data: 'Password changed successfully' };
+        axios.post.mockResolvedValue(response);
+        const result = await forgetPasswordFunctions.changePassword('test@example.com', 'testuser', 'newpassword', 'newpassword');
+        expect(result).toEqual(response);
+      });
+  
+      it('should throw error on failure', async () => {
+        axios.post.mockRejectedValue(new Error('Failed to change password'));
+        await expect(forgetPasswordFunctions.changePassword('test@example.com', 'testuser', 'newpassword', 'newpassword')).rejects.toThrow('Failed to change password');
+      });
+    });
+  });
 });
+
+
 
 async function insertEmail(email, username) {
   const emailInput = screen.getByPlaceholderText(/addUser.email_placeholder/i);
