@@ -1,5 +1,13 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const jwt = require('jsonwebtoken');
+
+// Mock the `jsonwebtoken` module
+jest.mock('jsonwebtoken', () => ({
+  sign: jest.fn(),
+}));
+const expectedToken = "mockedToken"
+jwt.sign.mockReturnValue(expectedToken);
 
 let mongoServer;
 let app;
@@ -32,7 +40,7 @@ afterEach(async () => {
   };
 })
 
-describe('User Service', () => {
+describe('User Service /adduser', () => {
   it('should add a new user on POST /adduser', async () => {
     const response = await request(app).post('/adduser').send(newUser);
     expect(response.status).toBe(200);
@@ -46,11 +54,11 @@ describe('User Service', () => {
   });
 
   it('Should not register user /adduser', async () => {
-  newUser.email = 'example2@example.com';
+    newUser.email = 'example2@example.com';
 
-  const response = await request(app).post('/adduser').send(newUser);
-  expect(response.status).toBe(400);
-  expect(response.body).toHaveProperty('error', 'Username already in use');
+    const response = await request(app).post('/adduser').send(newUser);
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'Username already in use');
   });
 
   it('Should not register user /adduser', async () => {
@@ -59,7 +67,7 @@ describe('User Service', () => {
     const response = await request(app).post('/adduser').send(newUser);
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('error', 'Email already in use');
-    });
+  });
   
 });
 
@@ -111,3 +119,46 @@ function setPassword(newPassword){
   newUser.password = newPassword;
   newUser.repeatPassword = newPassword;
 }
+
+
+describe('User service /forgetPassword', () => {
+  it('should return a token when given good credentials', async () => {
+    const response = await request(app).post('/forgetPassword').send({email:newUser.email, username:newUser.username});
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('token', expectedToken);
+  })
+
+  it('should show missing field email', async () => {
+    const response = await request(app).post('/forgetPassword').send({username:newUser.username});
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'Missing required field: email');
+  })
+
+  it('should show no user found', async () => {
+    const response = await request(app).post('/forgetPassword').send({email: "add" + newUser.email, username:newUser.username});
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'No user found, review credentials');
+  })
+})
+
+describe('User service /changePassword', () => {
+  it('should return a token when given good credentials', async () => {
+    setPassword('123456789')
+    const response = await request(app).post('/changePassword').send(newUser);
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('token', expectedToken);
+  })
+
+  it('should show missing field email', async () => {
+    const response = await request(app).post('/changePassword').send({username:newUser.username});
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'Missing required field: email');
+  })
+
+  it('should show no user found', async () => {
+    newUser.email = "add" + newUser.email;
+    const response = await request(app).post('/changePassword').send(newUser);
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'No user found, review credentials');
+  })
+})
