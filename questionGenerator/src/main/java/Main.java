@@ -12,9 +12,9 @@ public class Main {
 	
 	private static QuestionGenerator qg = QuestionGenerator.getInstance();
 	
-	 private static final long TIME_SKIP = 18000000; //5 hours
+	// private static final long TIME_SKIP = 18000000; //5 hours
 	// private static final long TIME_SKIP = 43200000; //12 hours
-	//private static final long TIME_SKIP = 1000; //1 minute
+	private static final long TIME_SKIP = 1000; //1 minute
 	
 
 	private static String[] languages = {"en", "es", "tr"};

@@ -6,10 +6,43 @@
       profiles: ["dev", "prod"]
       volumes:
         - mongodb_data:/data/db
+        - ./scripts/rs-init.sh:/scripts/rs-init.sh
+        - ./scripts/init.js:/scripts/init.js
       ports:
         - "27017:27017"
       networks:
         - mynetwork
+      depends_on:
+        - mongodb2
+        - mongodb3
+      links:
+        - mongodb2
+        - mongodb3
+      entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
+
+    mongodb2:
+      container_name: mongodb2-${teamname:-defaultASW}
+      image: mongo
+      profiles: ["dev", "prod"]
+      volumes:
+        - mongodb_data:/data/db
+      ports:
+        - "27018:27017"
+      networks:
+        - mynetwork
+      entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
+
+    mongodb3:
+      container_name: mongodb3-${teamname:-defaultASW}
+      image: mongo
+      profiles: ["dev", "prod"]
+      volumes:
+        - mongodb_data:/data/db
+      ports:
+        - "27019:27017"
+      networks:
+        - mynetwork
+      entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
 
     questionGenerator:
       container_name: questionGenerator-${teamname:-defaultASW}
