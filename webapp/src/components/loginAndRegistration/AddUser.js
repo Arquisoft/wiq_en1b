@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
 import Cookies from 'js-cookie';
 
-import { manageError } from "../../utils/manageError";
+import { manageError, validateEmail, validateUsername, validatePasswords } from "../../utils/utils";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -23,46 +23,16 @@ const AddUser = () => {
   const [passwordStrengthText, setPasswordStrengthText] = useState('');
   const [submitErrors, setSubmitErrors] = useState([]);
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const newSubmitErrors = []; 
     
     //Validations
-
-    if(!validateEmail(email)){
-      //User put a wrong format email
-      newSubmitErrors.push("addUser.error_wrong_email_format")
-    }
-
-    if(password !== repeatPassword){
-      //User put the same password
-      newSubmitErrors.push("addUser.error_passwords_no_match");
-    }
-    if(/\s/.test(password)){
-      //User put spaces in password
-      newSubmitErrors.push("addUser.error_password_spaces");
-    }
-    if(password.length < 8){
-      //Password too short
-      newSubmitErrors.push("addUser.error_password_minimum_length");
-    }
-
-    if(password.length > 64){
-      //Password too long
-      newSubmitErrors.push("addUser.error_password_maximum_length");
-    } 
-
-    if(/\s/.test(username)){
-      //Spaces in username
-      newSubmitErrors.push("addUser.error_username_spaces");
-    }
+    validateEmail(newSubmitErrors, email);
+    validateUsername(newSubmitErrors, username);
+    validatePasswords(newSubmitErrors, password, repeatPassword);
+    
 
     setSubmitErrors(newSubmitErrors);
 

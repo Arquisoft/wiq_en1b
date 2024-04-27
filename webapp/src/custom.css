@@ -1679,13 +1679,13 @@ input[type="text"] {
 
 
 /*Forget-Password*/
-.password {
+.code {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.password input {
+.code input {
   width: 30px;
   height: 40px;
   text-align: center;
@@ -1695,4 +1695,11 @@ input[type="text"] {
   font-size: 20px;
   color: white;
   outline: none;
+}
+
+.codeGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
