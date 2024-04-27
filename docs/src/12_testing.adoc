@@ -4,6 +4,17 @@ ifndef::imagesdir[:imagesdir: ../images]
 == Testing
 Here lies a detailed description of some of the test of the application.
 
+=== Jest tests
+These tests are used to check that all what must be rendered in a component, it is really rendered.
+There must be one jest test for each React component. If there is a React component named Login.js, its should be named Login.tests.js.
+As many times, to test one component we need others, we must to mock the responses from Gateway, using axios. 
+
+=== End-to-End tests
+End-to-End tests are commonly known as e2e tests and are used to simulate the user interaction with the application from start to finish, 
+validating its overall functionality.
+They are composed of two files: the "file.feature" which has written the steps that are specified in the other file "file.steps.js". They 
+follow the convention of "Given-When-Then" and were done using Puppeter and Cucumber
+
 === Generator tests
 For the generator some unitary tests were developed. There are two different types.
 
