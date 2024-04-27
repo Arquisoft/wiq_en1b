@@ -2,6 +2,9 @@ import React,{ useEffect }  from 'react';
 import QuestionView from './components/questionView/QuestionView';
 import GameMenu from './components/GameMenu/GameMenu';
 import Navbar from './components/fragments/NavBar';
+import Footer from './components/fragments/Footer';
+import About from './components/fragments/About';
+
 import ErrorPage from './components/fragments/ErrorPage';
 import Home from './components/Home/Home';
 import Login from './components/loginAndRegistration/Login';
@@ -28,7 +31,8 @@ function App() {
     <Router>
         <div style={{ position: 'relative', minHeight: '100vh' }}>
           <Navbar style={{ width: '100%' }} /> 
-          <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px' }}>
+        <Container component="main" className="main" maxWidth="lg" style={{ paddingTop: '64px' }}>
+
             <Routes>
               <Route path="/" element={<Navigate to="/home" />} /> 
               <Route path="/home" element={isLoggedIn ? <GameMenu /> : <Home />} />
@@ -40,10 +44,14 @@ function App() {
               <Route path="/historical" element={isLoggedIn ? <HistoricalView /> : <Login />} />
               <Route path="/configurator" element={isLoggedIn ? <GameConfigurator /> : <Login />}/>
               <Route path="/ranking" element={isLoggedIn ? <RankingView /> : <Login />} />
+              <Route path="/about" element={<About /> } />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
+          <Footer style={{ width: '100%' }} /> 
+
         </div>
+
     </Router>
   );
 }
