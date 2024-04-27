@@ -13,4 +13,3 @@ Feature: Home page functionality
     Given I am on the home page
     When I click on the toggle button to open and then I click it to close 
     Then The text container should be visible
-
