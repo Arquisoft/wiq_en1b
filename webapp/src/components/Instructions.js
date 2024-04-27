@@ -35,8 +35,34 @@ function Instructions() {
                     <li>
                     {t("instructions.how_to_play_p4")}
                     </li>
+                    <li>
+                    {t("instructions.how_to_play_p5")}
+                    </li>
             </ul>
-      </article>   
+      </article>
+      <article>
+            <ul className='ins_ul'><p>{t("instructions.personalization")}</p>
+                    <li>
+                    {t("instructions.personalization_p1")}
+                    </li>
+                    <li>
+                    {t("instructions.personalization_p2")}
+                    </li>
+            </ul>
+      </article>
+      <article>
+            <ul className='ins_ul'><p>{t("instructions.guest")}</p>
+                    <li>
+                    {t("instructions.guest_p1")}
+                    </li>
+                    <li>
+                    {t("instructions.guest_p2")}
+                    </li>
+                    <li>
+                    {t("instructions.guest_p3")}
+                    </li>
+            </ul>
+      </article>
       <article>
       <ul className='ins_ul'><p>{t("instructions.scoring")}</p><li>
       {t("instructions.scoring_p1")}</li>
