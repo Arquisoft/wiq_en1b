@@ -22,7 +22,7 @@ export default function GameMenu() {
   
   function ButtonNewGame({ t }) {
     return (
-      <Link className="linkButton" to="/configurator">
+      <Link className="linkButton"  to="/configurator">
         <h3>{t("gameMenu.new_game_button")}</h3>
       </Link>
     );
@@ -30,7 +30,7 @@ export default function GameMenu() {
 
   function ButtonRanking({ t }) {
     return (
-      <Link className="linkButton"  to="/ranking">
+      <Link className="linkButton" id="ranking" to="/ranking">
         <h3>{t("gameMenu.view_ranking")}</h3>
         
       </Link>
