@@ -1,42 +1,53 @@
 import React from 'react';
-import { render , screen, waitFor, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // Importa para extender expect
-import { act } from 'react-dom/test-utils';
-import EnterCode from './EnterCode';
-import i18en from 'i18next';
-import { initReactI18next } from 'react-i18next';
-i18en.use(initReactI18next).init({
-    resources: {},
-    lng: 'en',
-    interpolation:{
-        escapeValue: false,
-    }
-});
-global.i18en = i18en;
-describe('EnterCode component', () => {
-  it('renders six input fields correctly',async () => {
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect'; // Permite usar aserciones extendidas
+import EnterCode from './EnterCode'; // Ruta al componente
+
+// Mock de `useTranslation`
+jest.mock('react-i18next', () => ({
+  useTranslation: jest.fn().mockReturnValue({
+    t: (key) => key, // Simula la traducción devolviendo la clave
+  }),
+}));
+
+describe('EnterCode Component', () => {
+  it('should render correctly with six input fields', () => {
     const obtainCodeMock = jest.fn();
-    const showErrors = jest.fn();
-    act(()=>{
-        render(<EnterCode  t={i18en.t} obtainCode={obtainCodeMock} showErrors={showErrors}/>);
-    });
+    const showErrorsMock = jest.fn(); // Mock de función para mostrar errores
+
+    const { getAllByPlaceholderText, getByText } = render(
+      <EnterCode
+        t={(key) => key}
+        obtainCode={obtainCodeMock}
+        showErrors={showErrorsMock}
+      />
+    );
+
+    // Verificar que se rendericen seis campos de entrada
+    const inputFields = getAllByPlaceholderText('X');
+    expect(inputFields.length).toBe(6); // Espera seis campos de entrada
     
-    await waitFor(async () => await expect(screen.getByText(i18en.t("forgotPassword.enter_code")).toBeInTheDocument()));
-    expect(screen.getByText('X').toBeInTheDocument());
-    // Expect to find six elements with the class 'input'
-    //expect(inputFields.length).toBe(6);
+    // Verificar que el título y el botón de envío están presentes
+    expect(getByText('forgotPassword.enter_code')).toBeInTheDocument();
+    expect(getByText('forgotPassword.send_code')).toBeInTheDocument();
   });
- /*
-  it('calls obtainCode function when form is submitted', () => {
-   
+
+  it('should call obtainCode when the form is submitted', () => {
     const obtainCodeMock = jest.fn();
-    const showErrors = jest.fn();
-    const { getByText } = render(<EnterCode  t={i18en.t} obtainCode={obtainCodeMock} showErrors={showErrors}/>);
+    const showErrorsMock = jest.fn();
+    const { getByText } = render(
+      <EnterCode
+        t={(key) => key}
+        obtainCode={obtainCodeMock}
+        showErrors={showErrorsMock}
+      />
+    );
 
-    fireEvent.submit(getByText('Submit'));
+    // Simular el evento de envío del formulario
+    const form = getByText('forgotPassword.send_code').closest('form');
+    fireEvent.submit(form);
 
-    expect(obtainCodeMock).toHaveBeenCalledTimes(1);
+    // Verificar que `obtainCode` fue llamado al enviar el formulario
+    expect(obtainCodeMock).toHaveBeenCalled();
   });
-*/
-  // Add more tests as needed
 });
