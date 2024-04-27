@@ -258,4 +258,135 @@ describe('Gateway Service without mocked micro services', () => {
         expect(error.response.data.error).toBe('Invalid username or password');
       }
     });
+
+    it('should not forward adduser request and give 500', async () => {
+      try{
+        await request(app)
+        .post('/adduser')
+        .send({ username: 'testuser', password: 'testpassword' });
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward forgetPassword request and give 500', async () => {
+      try{
+        await request(app)
+        .post('/forgetPassword');
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward changePassword request and give 500', async () => {
+      try{
+        await request(app)
+        .post('/changePassword')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward questions request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/questions')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward questions request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/questions/es/1/CAPITAL')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward questions request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/questions/es/1')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward questions request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/questions/es')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward record request and give 500', async () => {
+      try{
+        await request(app)
+        .post('/record')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward record request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/record/ranking/top10')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward record request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/record/ranking/user')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
+
+    it('should not forward record request and give 500', async () => {
+      try{
+        await request(app)
+        .get('/record/user')
+        .set('token', 'valorDelToken');;
+
+      } catch(error){
+        expect(error.response.status).toBe(500);
+        expect(error.response.data.error).toBe('Internal server error');
+      }
+    });
 });
