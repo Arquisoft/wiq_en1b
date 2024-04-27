@@ -19,6 +19,10 @@ public abstract class AnswersAreEntitiesWithSubProperties extends AbstractAnswer
 		this.PROPERTY_TO_CHECK = propertyToCheck;
 	}
 
+	/* The value of the Snak is deprecated and no longer implemented or updated, but since we are simply 
+	* checking whether is null or not is not important
+	*/
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getRightAnswer(Map<String, List<Statement>> claims, String propertyId) throws Exception {
 		if(claims.get(propertyId)==null) {
@@ -31,6 +35,8 @@ public abstract class AnswersAreEntitiesWithSubProperties extends AbstractAnswer
 				for(Snak s : sg.getSnaks()) {
 					String value = getIdFromLink(s.getPropertyId().toString());
 					if(value.equals(PROPERTY_TO_CHECK)) {
+						if(s.getValue()==null)
+							return processRightAnswer(st);
 						valid = false;
 						break;
 					}

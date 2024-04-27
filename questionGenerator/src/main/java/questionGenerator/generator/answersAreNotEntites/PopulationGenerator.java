@@ -3,6 +3,7 @@ package main.java.questionGenerator.generator.answersAreNotEntites;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.wikidata.wdtk.datamodel.interfaces.Statement;
 import org.wikidata.wdtk.datamodel.interfaces.Value;
@@ -48,6 +49,24 @@ public class PopulationGenerator extends AnswersAreNotEntites {
 		List<String> result = new ArrayList<>();
 		for(String s :  original) {
 			result.add(String.valueOf((int) Float.parseFloat(s)));
+		}
+		return ensureAllAnswersAreDiferent(result);
+	}
+	
+	private List<String> ensureAllAnswersAreDiferent(List<String> answers){
+		List<String> result = new ArrayList<>();
+		for(String answer : answers) {
+			if(!result.contains(answer))
+				result.add(answer);
+			else {
+				Random rn = new Random();
+				while(result.contains(answer)) {
+					int realAnswer = Integer.parseInt(answer);
+					int half = realAnswer /2;
+					int newValue = rn.nextInt(half, realAnswer+half);
+					answer = String.valueOf(newValue);
+				}
+			}
 		}
 		return result;
 	}
