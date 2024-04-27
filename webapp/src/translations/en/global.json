@@ -129,7 +129,22 @@
       "error":{
         "error":"Error",
         "sorry":"We're sorry, this page does not exist. Don't be angry, I'm just a little cat."
-        }
+      },
+      "footer":{
+        "about": "About us",
+        "API": "API-Doc",
+        "ARC": "Arc42-Doc"
+      },
+      "about":{
+        "hello": "Hello there!",
+        "team": "We're the awesome bunch from en01b! We hope you like our game.",
+        "name1": "Mario Junquera Rojas",
+        "name2": "Lucia Ruiz Núñez",
+        "name3": "Daniel Sinne Argüelles",
+        "name4": "Jorge Cano Martínez",
+        "name5": "Ahmet Erdem Yabaci",
+        "name6": "Laura Gómez Menéndez"
+      }
 }
     
     

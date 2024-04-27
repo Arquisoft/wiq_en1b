@@ -18,7 +18,7 @@ global.i18en = i18en;
 describe('BackButtonToGameMenu component', () => {
 
     it('renders option to go back to the game menu', () => {
-        render(<MemoryRouter><BackButtonToGameMenu t={i18n.t} /></MemoryRouter>);
+        render(<MemoryRouter><BackButtonToGameMenu t={i18en.t} /></MemoryRouter>);
         const text = screen.getByText((content, element) => {
             const regex = new RegExp(i18en.t("gameMenu.back"));
             return regex.test(content);

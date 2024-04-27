@@ -130,7 +130,23 @@
       "num_games":"Juegos Competitivos",
       "search":"Buscar",
       "enter_username":"Inserta usuario..."
-    }
+    },
+    "footer":{
+        "about": "Sobre nosotros",
+        "API": "API-Doc",
+        "ARC": "Arc42-Doc"
+      },
+      
+      "about":{
+    "hello": "¡Hola!",
+    "team": "¡Somos el increíble grupo en01b! Esperamos que les guste nuestro juego.",
+    "name1": "Mario Junquera Rojas",
+    "name2": "Lucía Ruiz Núñez",
+    "name3": "Daniel Sinne Argüelles",
+    "name4": "Jorge Cano Martínez",
+    "name5": "Ahmet Erdem Yabacı",
+    "name6": "Laura Gómez Menéndez"
+}
     
   }
   
