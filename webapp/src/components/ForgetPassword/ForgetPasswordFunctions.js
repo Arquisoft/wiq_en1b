@@ -10,7 +10,7 @@ class ForgetPasswordFunctions{
     async sendEmail(email, username){
         try {
             const response = await axios.post(this.apiUrl + '/forgetPassword', { email, username});
-            return !!response.text;
+            return !!response.data;
         } catch (error) {
            throw new Error(error.message)
         }

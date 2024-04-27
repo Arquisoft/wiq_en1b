@@ -124,7 +124,8 @@
           "enter_email":"Enter email and username",
           "enter_password":"Enter new password",
           "enter_email_button": "Send email",
-          "send_code": "Send code"
+          "send_code": "Send code",
+          "enter_password_button":"Send password"
         }
 }
     

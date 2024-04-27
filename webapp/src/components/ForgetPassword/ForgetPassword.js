@@ -14,9 +14,9 @@ export default function ForgotPassword() {
   const [t] = useTranslation("global");
 
   // Component state variables
-  const [emailStatus, setEmailStatus] = useState("RECEIVED");
-  const [email, setEmail] = useState("dasf");
-  const [username, setUsername] = useState("fdafds");
+  const [emailStatus, setEmailStatus] = useState("ASK_EMAIL");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState({});
@@ -348,6 +348,8 @@ function RestorePassword({
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
       </div>
+      <button type="submit">{t("forgotPassword.enter_password_button")}</button>
+      <br />
     </form >
   );
 }

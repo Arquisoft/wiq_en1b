@@ -8,7 +8,7 @@ const fs = require("fs")
 const YAML = require('yaml')
 const jwt = require('jsonwebtoken');
 const app = express();
-const port = 8010;
+const port = 8000;
 //Setting up the email
 const nodemailer = require('nodemailer');
 
@@ -80,7 +80,6 @@ app.post('/forgetPassword', async (req, res) => {
 
 app.get('/tokenFromCode/:code', async (req, res) => {
   try {
-    console.log(forgetPasswords)
     var code = parseInt(req.params.code);
     if(forgetPasswords.has(code)){
       var token = forgetPasswords.get(code)
@@ -286,7 +285,6 @@ function validateUser(user){
 }
 
 function manageError(res, error){
-  console.log(error)
   if(error.response) //Some microservice responded with an error
     res.status(error.response.status).json({ error: error.response.data.error });
   else //Some other error
@@ -315,7 +313,6 @@ async function sendEmail(res, email, username, numbers) {
     await transporter.sendMail(mailOptions);
     res.send('Email sent successfully');
   } catch (error) {
-    console.error('Error sending email:', error);
     res.status(500).send('Error sending email');
   }
 }
