@@ -62,7 +62,7 @@ In any case the tree should include links to the scenarios of the following sect
 | The personal information of a user will only be viewable by him/her and user data must be stored securely.
 
 | Performance
-| The application must not have fast response times.
+| The application must have fast response times.
 
 | Robustness
 | The application must answer as expected under all conditions.
