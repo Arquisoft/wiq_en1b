@@ -84,6 +84,153 @@ paths:
                     type: string
                     description: Error information.
                     example: Internal Server Error
+  /forgetPassword:
+    post:
+      summary: Sends a forget password alert to the server
+      operationId: forgetPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+                  example: user@example.com
+                username:
+                  type: string
+                  description: User name
+                  example: student
+      responses:
+        '200':
+          description: Email sent successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Email sent successfully"                                     
+        '400':
+          description: Failed to find user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: No user found, review credentials
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: Internal Server Error
+  /tokenFromCode{code}:
+    get:
+      summary: Get a token from a 6 digit code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Code found returns token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          description: Invalid code
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Invalid code"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: Internal Server Error
+  /changePassword:
+    post:
+      summary: Changes the password of the authorized user
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+      operationId: changePassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+                  example: user@example.com
+                username:
+                  type: string
+                  description: User name
+                  example: student
+                password:
+                  type: string
+                  description: User password
+                  example: password123
+                repeatPassword:
+                  type: string
+                  description: Userpassword
+                  example: password123
+      responses:
+        '200':
+          description: Email sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'                                    
+        '400':
+          description: Failed to find user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: No user found, review credentials
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error information.
+                    example: Internal Server Error
   /login:
     post:
       summary: Log in to the system.

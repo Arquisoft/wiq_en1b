@@ -299,7 +299,6 @@ function getRandomSixDigitNumber() {
 }
 
 async function sendEmail(res, email, username, numbers) {
-  console.log(numbers)
   // Configuración del correo
   const mailOptions = {
     from: process.env.EMAIL_USER, // Remitente
