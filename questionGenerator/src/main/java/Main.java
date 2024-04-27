@@ -25,7 +25,7 @@ public class Main {
 		//, QuestionType.VIDEOGAME_DEVELOPER, QuestionType.VIDEOGAME_PUBLISHER, QuestionType.VIDEOGAME_GENRE, QuestionType.VIDEOGAME_COUNTRY};
 
  	//private static final int NUMBER_OF_QUESTIONS = 50;
-	private static final int NUMBER_OF_QUESTIONS = 100;
+	private static final int NUMBER_OF_QUESTIONS = 75;
 	//private static final int NUMBER_OF_QUESTIONS = 3;
 	//private static final int NUMBER_OF_QUESTIONS = 1;
 
