@@ -9,8 +9,8 @@ const { register, login, logout } = require("../utils");
 let page;
 let browser;
 
-const email = "testUser1@example.com";
-const username = "testUser1"
+const email = "testUserCompetitiveGame@example.com";
+const username = "testUserCompetitiveGame"
 const password = "testUserPassword"
 
 defineFeature(feature, test => {

@@ -30,12 +30,17 @@
         "how_to_play_p3": "Choose the correct answer from the options provided.",
         "how_to_play_p4": "Click or tap on your selected answer to submit it.",
         "scoring": "Scoring:",
-        "scoring_p1": "Each correct answer earns you x points.",
-        "scoring_p2": "Incorrect answers do not deduct points.",
+        "scoring_p1": "Each correct answer earns you 100 points.",
+        "scoring_p2": "Incorrect answers deduct 50 points.",
         "time_limit": "Time Limit:",
         "time_limit_p1": "Some game modes may have a time limit for answering each question. Be quick and accurate to maximize your score.",
         "have_fun": "Have Fun!:",
-        "have_fun_p1": "Enjoy the game and test your knowledge. Good luck!"
+        "have_fun_p1": "Enjoy the game and test your knowledge. Good luck!",
+        "voice": "Voice and Keyboard Accessibility",
+"voice_p1": "You have the option to listen to the question and the answer. By pressing a button, you can hear the question and then the answers with a number preceding each one.",
+"voice_p2": "By pressing a button, you can hear the question and then the answers with a number preceding each one.",
+"voice_p3": "This number is used to respond by pressing the corresponding number on the keyboard to the answer you choose.",
+"voice_p4": "Additionally, you can activate the voice by pressing the letter 's'."
     },
     "login": {
         "title": "Login",

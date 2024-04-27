@@ -58,5 +58,29 @@ defineFeature(feature, test => {
       await expect(page).toMatchElement('.GameConfiguratorDiv');
     });
   });
+  test('Ranking should go to ranking view', ({ given, when, then }) => {
+    given('I am on the game menu', async () => {
+      await page.goto('http://localhost:3000/menu'); 
+      await page.waitForSelector('.divMenu');
+    });
+    when('I click on Ranking', async () => {
+      await page.click('#ranking');
+    });
+    then('I should be in the ranking', async () => {
+      await expect(page).toMatchElement('.table');
+    });
+  });
+  test('View Historical Data should go to historical data', ({ given, when, then }) => {
+    given('I am on the game menu', async () => {
+      await page.goto('http://localhost:3000/menu'); 
+      await page.waitForSelector('.divMenu');
+    });
+    when('I click on View Historical Data', async () => {
+      await page.click('#historical');
+    });
+    then('I should be in the historical data', async () => {
+      await expect(page).toMatchElement('.globalHistoricalView');
+    });
+  });
 
 });
