@@ -50,6 +50,22 @@ function Instructions() {
           {t("instructions.time_limit_p1")}
               </li></ul>
           </article>
+          <article>
+            <ul className='ins_ul'><p>{t("instructions.voice")}</p>
+              <li>
+              {t("instructions.voice_p1")}
+              </li>
+              <li>
+              {t("instructions.voice_p2")}
+              </li>
+              <li>
+              {t("instructions.voice_p3")}
+              </li>
+              <li>
+              {t("instructions.voice_p4")}
+              </li>
+            </ul>
+            </article>
             <article>
             <ul className='ins_ul'><p>{t("instructions.have_fun")}</p>
               <li>
@@ -57,7 +73,7 @@ function Instructions() {
               </li>
             </ul>
             </article>
-           
+            
       </section>
  
     </div>

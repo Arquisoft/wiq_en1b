@@ -30,7 +30,7 @@ function GameConfigurator(){
         <h1>{t("gameConfigurator.game_config")}</h1>
         <h2>{t("gameConfigurator.custo_game")}</h2>
         <ButtonRandomizeCustom t={t} handleClick={handleClickRandomize} />
-        <label for="select">{t("gameConfigurator.type_quest")}</label>
+        <label htmlFor="select">{t("gameConfigurator.type_quest")}</label>
         <select id="select" className="select-style" value={tipoPregunta} onChange={(e) => setTipoPregunta(e.target.value)}>
           <option value="ALL">{t("gameConfigurator.option_all")}</option>
           <option value="POPULATION">{t("gameConfigurator.option_population")}</option>
@@ -52,7 +52,7 @@ function GameConfigurator(){
         <br></br>
         <ButtonCustomized t={t} handleClick={handleClick}/>
         <br></br>
-        <hr class="hr-style"></hr>
+        <hr className="hr-style"></hr>
         <br></br>
         <h2>{t("gameConfigurator.competi_game")}</h2>
         <p>{t("gameConfigurator.rules_competi")}</p>

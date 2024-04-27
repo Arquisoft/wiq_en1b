@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import "../../custom.css";
@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [t, i18n] = useTranslation("global");
   const [anchorLanguage, setAnchorLanguage] = useState(null);
   const [anchorUser, setAnchorUser] = useState(null);
@@ -41,16 +42,21 @@ function Navbar() {
     handleLanguageMenuClose();
   };
 
+  const isQuestionsPage = location.pathname === '/questions';
+
   return (
     <div className="navbar-container">
       <div className='left-nav'>
-      <Profile />
-      <Link to="/home" className="home-button">
-      <h1 className='navbar-text'>{t("navBar.title")}</h1>
-      </Link>
+        <Profile />
+        <Link to="/home" className="home-button">
+          <h1 className='navbar-text'>{t("navBar.title")}</h1>
+        </Link>
       </div>
       <div className='right-nav'>
-        <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
+        {/* If /questions, disable button*/}
+        {!isQuestionsPage && (
+          <button className="language-button" onClick={handleLanguageMenuOpen}>{t("navBar.language")}</button>
+        )}
         <Menu
           anchorEl={anchorLanguage}
           open={Boolean(anchorLanguage)}
@@ -65,18 +71,17 @@ function Navbar() {
 
         {Cookies.get('user') ? (
           <>
-          <button className="user-button" onClick={handleUserMenuOpen}>{ JSON.parse(Cookies.get('user')).username}</button>
-          <Menu
-            anchorEl={anchorUser}
-            open={Boolean(anchorUser)}
-            onClose={handleUserMenuClose}
-            disableAutoFocusItem
-          >
-            <MenuItem id="logout" onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
-          </Menu>
+            <button className="user-button" onClick={handleUserMenuOpen}>{ JSON.parse(Cookies.get('user')).username}</button>
+            <Menu
+              anchorEl={anchorUser}
+              open={Boolean(anchorUser)}
+              onClose={handleUserMenuClose}
+              disableAutoFocusItem
+            >
+              <MenuItem id="logout" onClick={() => removeCookie()}> {t("navBar.logout")}</MenuItem>
+            </Menu>
           </>
         ) : null}
-        
       </div>
     </div>
   );
