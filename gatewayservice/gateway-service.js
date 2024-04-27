@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: "wiqen1b@gmail.com",
-    pass: "akskfqgakjvcswyg ",
+    pass: "akskfqgakjvcswyg",
   },
 });
 
@@ -80,6 +80,7 @@ app.post('/forgetPassword', async (req, res) => {
 
 app.get('/tokenFromCode/:code', async (req, res) => {
   try {
+    console.log(forgetPasswords)
     var code = parseInt(req.params.code);
     if(forgetPasswords.has(code)){
       var token = forgetPasswords.get(code)
@@ -301,9 +302,9 @@ function getRandomSixDigitNumber() {
 async function sendEmail(res, email, username, numbers) {
   // Configuración del correo
   const mailOptions = {
-    from: process.env.EMAIL_USER, // Remitente
-    to: email, // Destinatario
-    subject: 'Hello ' + username + ' this is the wiqen1b team', // Asunto
+    from: process.env.EMAIL_USER, 
+    to: email,
+    subject: 'Hello ' + username + ' this is the wiqen1b team', 
     text: 'We see that you have requested a password change.\n' +
           'Please introduce the code: ' + numbers + '. You have around 10 minutes to change your password \n' +
           'In case you have not requested a password change forget this email existance',
