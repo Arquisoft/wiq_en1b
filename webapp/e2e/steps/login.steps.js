@@ -30,13 +30,14 @@ await logout(page);
 },60000);
 
 
-   test('Login', ({ given,when, then }) => {
+   test('Login', ({ given, then }) => {
     given('I login a user', async () => {
       await login(page, username, password);
 
     });
     then('I am in /menu', async () => {
       await expect(page).toMatchElement('.divMenu');
+      await logout(page);
     });
   }, 60000);
 
@@ -45,10 +46,15 @@ await logout(page);
        await page.goto('http://localhost:3000/login'); 
      });
      when('I try to login', async () => {
-         await login(page, email, "lau", "123");
+      await page.goto('http://localhost:3000/login'); 
+      await page.waitForSelector('.general');
+  
+      await page.type('input[type="text"]', 'lau');
+      await page.type('input[type="password"]', '123');
+      await page.click('button[type="submit"]');
      });
      then('I am in /login', async () => {
-       await expect(page).toMatchElement('.general');
+       await expect(page).toMatchElement('.title-login');
      }, 60000);
    });
   
