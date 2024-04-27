@@ -1,132 +1,142 @@
-
 {
-  "home":{
-  "welcome":"WIQ'a hoş geldiniz!",
-  "how_to_play":"Nasıl Oynanır?",
-  "login":"Giriş Yap",
-  "register":"Hesabınız yok mu? Buradan kaydolun.",
-  "language":"Dil İngilizce olarak değiştirildi",
-  "msg1":"Bilgi yarışmasına hoş geldiniz! Zihninizin sınanmasına ve becerilerinizi sergilemenize hazır olun. Bu heyecan verici oyunda, çeşitli konulardaki bilginizi test edecek bir dizi soruyla karşılaşacaksınız.",
-  "msg2":"Öyleyse ileri gidin, soruların ustası olduğunuzu kanıtlayın! Meydan okumayı kabul etmeye hazır mısınız?",
-  "clickOpen":"Devam etmek için tıklayın",
-  "clickClose":"Kapatmak için tıklayın",
-  "game":"Misafir olarak oyna"
+  "home": {
+    "welcome": "WIQ'a hoş geldiniz!",
+    "how_to_play": "Nasıl Oynanır?",
+    "login": "Giriş Yap",
+    "register": "Hesabınız yok mu? Buradan kaydolun.",
+    "language": "Dil İngilizce olarak değiştirildi",
+    "msg1": "Bilgi meydan okumasına hoş geldiniz! Zihninizin sınırlarını test etmeye ve becerilerinizi göstermeye hazırlanın. Bu heyecan verici oyun, çeşitli konulardaki bilginizi test eden bir dizi soruyla karşılaşmanızı sağlayacak.",
+    "msg2": "Öyleyse devam edin, soruların ustası olduğunuzu kanıtlayın! Meydana mı çıkmaya hazır mısınız?",
+    "clickOpen": "Devam etmek için tıklayın",
+    "clickClose": "Kapatmak için tıklayın",
+    "game":"Misafir olarak oyna"
   },
-  "navBar":{
-  "title":"Bil ve Kazan!",
-  "en":"İngilizce",
-  "es":"İspanyolca",
-  "tk":"Türkçe",
-  "language":"Dil",
-  "logout":"Çıkış Yap"
+  "navBar": {
+    "title": "Bil ve Kazan!",
+    "en": "İngilizce",
+    "es": "İspanyolca",
+    "tk": "Türkçe",
+    "language": "Dil",
+    "logout":"Çıkış Yap"
   },
-  "instructions":{
-  "title":"WIQ Talimatları",
-  "objective":"Hedef:",
-  "objective_p1":"Oyunun amacı, mümkün olduğunca çok soruyu doğru cevaplamaktır.",
-  "how_to_play":"Nasıl Oynanır:",
-  "how_to_play_p1":"Oyun bir dizi sorudan oluşur.",
-  "how_to_play_p2":"Her soruyu dikkatlice okuyun.",
-  "how_to_play_p3":"Sağlanan seçeneklerden doğru cevabı seçin.",
-  "how_to_play_p4":"Seçtiğiniz cevabı göndermek için üzerine tıklayın veya dokunun.",
-  "how_to_play_p5":"Uygulamaya kayıtlıysanız, 'Rekabetçi' modunun sıralamasında ve ilk 10 oyuncusunda pozisyonunuzu görebileceksiniz.",
-  "guest":"Misafir olarak oyna:",
-  "guest_p1":"'Misafir' modunda kayıt olmadan oynayabilirsiniz.",
-  "guest_p2":"Sonucunuzun herhangi bir sıralamada görünmeyeceğini ve bir geçmişinizin olmayacağını unutmayın.",
-  "guest_p3":"Bu özelliklerden yararlanmak istiyorsanız lütfen kaydolun.",
-  "personalization":"Oyunu Özelleştir:",
-  "personalization_p1":"Karşılaşacağınız soru türünü ve cevaplayacağınız soru sayısını seçebilirsiniz.",
-  "personalization_p2":"10 saniyeniz olacak ve farklı türlerden 5 sorunun olduğu rekabetçi modu oynayabilirsiniz.",
-  "scoring":"Puanlama:",
-  "scoring_p1":"Her doğru cevap size 100 puan kazandırır.",
-  "scoring_p2":"Yanlış cevaplar 50 puan düşürür.",
-  "time_limit":"Zaman Sınırı:",
-  "time_limit_p1":"Bazı oyun modlarında her soruya cevap vermek için bir zaman sınırı olabilir. Puanınızı maksimuma çıkarmak için hızlı ve doğru olun.",
-  "have_fun":"Keyfini Çıkarın!:",
-  "have_fun_p1":"Oyunun tadını çıkarın ve bilginizi test edin. İyi şanslar!",
-  "voice":"Ses ve Klavye Erişilebilirliği:",
-  "voice_p1":"Soruyu ve cevabı dinleme seçeneğiniz vardır. Bir düğmeye basarak soruyu ve ardından her birinin önünde bir numara olan cevapları duyabilirsiniz.",
-  "voice_p2":"Bir düğmeye basarak soruyu ve ardından her birinin önünde bir numara olan cevapları duyabilirsiniz.",
-  "voice_p3":"Bu numara, seçtiğiniz cevaba karşılık gelen klavyede ilgili numarayı basarak yanıt vermek için kullanılır.",
-  "voice_p4":"Ek olarak, 's' harfine basarak sesi etkinleştirebilirsiniz."
+  "instructions": {
+    "title": "WIQ Talimatları",
+    "objective": "Amaç:",
+    "objective_p1": "Oyunun amacı, mümkün olduğunca çok soruyu doğru cevaplamaktır.",
+    "how_to_play": "Nasıl Oynanır:",
+    "how_to_play_p1": "Oyun, bir dizi sorudan oluşur.",
+    "how_to_play_p2": "Her soruyu dikkatlice okuyun.",
+    "how_to_play_p3": "Sağlanan seçeneklerden doğru cevabı seçin.",
+    "how_to_play_p4": "Seçtiğiniz cevabı göndermek için tıklayın veya dokunun.",
+    "how_to_play_p5": "Uygulamaya kayıtlıysanız, 'Rekabetçi' moddaki sıranızı ve en iyi 10 oyuncuyu görebilirsiniz.",
+    "guest": "Misafir olarak oyna:",
+    "guest_p1": "Misafir olarak kaydolmadan oynayabilirsiniz.",
+    "guest_p2": "Sonuçlarınızın hiçbir sıralamada görünmeyeceğini ve oyun geçmişinizin olmayacağını unutmayın.",
+    "guest_p3": "Bu özelliklerin tadını çıkarmak istiyorsanız kaydolun.",
+    "personalization": "Oyunu Kişiselleştirin:",
+    "personalization_p1": "Karşılaşacağınız soru türünü ve cevaplayacağınız soru sayısını seçebilirsiniz.",
+    "personalization_p2": "Rekabetçi modda, cevaplamak için 10 saniyeniz olacak ve farklı türlerden 5 soru alacaksınız.",
+    "scoring": "Puanlama:",
+    "scoring_p1": "Her doğru cevap size 100 puan kazandırır.",
+    "scoring_p2": "Yanlış cevaplar 50 puanı düşürür.",
+    "time_limit": "Zaman Sınırı:",
+    "time_limit_p1": "Bazı oyun modlarında her soruya cevap vermek için bir zaman sınırı olabilir. Puanınızı maksimize etmek için hızlı ve doğru olun.",
+    "have_fun": "Keyfini Çıkarın!",
+    "have_fun_p1": "Oyunun tadını çıkarın ve bilginizi test edin. İyi şanslar!",
+    "voice": "Ses ve Klavye Erişimi:",
+    "voice_p1": "Soruyu ve cevabı dinleme seçeneğiniz vardır. Bir düğmeye basarak soruyu ve ardından cevapları bir numara ile dinleyebilirsiniz.",
+    "voice_p2": "Bir düğmeye basarak soruyu ve ardından cevapları bir numara ile dinleyebilirsiniz.",
+    "voice_p3": "Bu numara, istediğiniz cevaba klavyeden yanıt vermek için ilgili numarayı basmanızı sağlar.",
+    "voice_p4": "Ayrıca, 's' harfine basarak sesi etkinleştirebilirsiniz."
   },
-  "login":{
-  "title":"Giriş",
-  "username_placeholder":"Kullanıcı Adı veya E-posta",
-  "password_placeholder":"Şifre",
-  "remember_me":"Beni hatırla",
-  "forgot_password":"Şifrenizi mi unuttunuz?",
-  "login_button":"Giriş Yap",
-  "register_link":"Hesabınız yok mu? Buradan kaydolun."
+  "login": {
+    "title": "Giriş Yap",
+    "username_placeholder": "Kullanıcı Adı veya E-posta",
+    "password_placeholder": "Şifre",
+    "remember_me": "Beni Hatırla",
+    "forgot_password": "Şifrenizi mi unuttunuz?",
+    "login_button": "Giriş Yap",
+    "forget_pass":"Şifrenizi mi unuttunuz? Sıfırlayalım.",
+    "register_link": "Hesabınız yok mu? Buradan kaydolun."
   },
-  "addUser":{
-  "title":"Kayıt Ol",
-  "username_placeholder":"Kullanıcı Adı",
-  "password_placeholder":"Şifre",
-  "repeat_password_placeholder":"Şifreyi Tekrar Girin",
-  "register_button":"Kaydol",
-  "login_link":"Hesabınız var mı? Buradan giriş yapın.",
-  "email_placeholder":"E-posta",
-  "very_weak_password":"Çok zayıf şifre",
-  "weak_password":"Zayıf şifre",
-  "good_password":"İyi şifre",
-  "strong_password":"Güçlü şifre",
-  "error_passwords_no_match":"Şifreler uyuşmuyor",
-  "error_password_spaces":"Şifre boşluk içeremez",
-  "error_username_spaces":"Kullanıcı adı boşluk içeremez",
-  "error_password_minimum_length":"Şifre en az 8 karakter uzunluğunda olmalıdır",
-  "error_password_maximum_length":"Şifre en fazla 64 karakter uzunluğunda olabilir",
-  "error_username_in_use":"Kullanıcı adı zaten kullanımda",
-  "error_wrong_email_format":"Yanlış e-posta formatı (user@example.com)"
+  "addUser": {
+    "title": "Kayıt Ol",
+    "username_placeholder": "Kullanıcı Adı",
+    "password_placeholder": "Şifre",
+    "repeat_password_placeholder": "Şifreyi Tekrar Girin",
+    "register_button": "Kaydol",
+    "login_link": "Zaten bir hesabınız mı var? Buradan giriş yapın.",
+    "email_placeholder" : "E-posta",
+    "very_weak_password": "Çok Zayıf Şifre",
+    "weak_password": "Zayıf Şifre",
+    "good_password": "İyi Şifre",
+    "strong_password": "Güçlü Şifre",
+    "error_passwords_no_match": "Şifreler eşleşmiyor",
+    "error_password_spaces": "Şifre boşluk içeremez",
+    "error_username_spaces": "Kullanıcı adı boşluk içeremez",
+    "error_password_minimum_length": "Şifre en az 8 karakter olmalıdır",
+    "error_password_maximum_length": "Şifre en fazla 64 karakter olmalıdır",
+    "error_username_in_use": "Kullanıcı adı zaten kullanılıyor",
+    "error_wrong_email_format": "Yanlış e-posta biçimi (user@example.com)"
   },
-  "gameMenu":{
-  "history_button":"Geçmiş Verileri Görüntüle",
-  "new_game_button":"Yeni Oyun Oluştur",
-  "view_ranking":"Sıralama",
-  "title":"Oyun Menüsü",
-  "back":"Geri"
+  "gameMenu": {
+    "history_button": "Geçmişi Görüntüle",
+    "new_game_button": "Yeni Oyun Oluştur",
+    "view_ranking": "Sıralama",
+    "title": "Oyun Menüsü",
+    "back": "Geri"
   },
-  "questionView":{
-  "seconds":"saniye",
-  "question_counter":"Soru numarası ",
-  "end_countdown":"Süre doldu!",
-  "finished_game":"Oyun bitti!",
-  "point":"Puan",
-  "no_questions_message":"Lütfen biraz bekleyin"
+  "questionView": {
+    "seconds": "saniye",
+    "question_counter": "Soru numarası ",
+    "end_countdown": "Zaman doldu!",
+    "finished_game": "Oyun bitti!",
+    "point": "Puan",
+    "no_questions_message": "Lütfen biraz bekleyin"
   },
-  "historicalView":{
-  "game":"Oyun",
-  "points":"puan",
-  "no_games_played":"Henüz oyun oynanmamış"
+  "historicalView": {
+    "game": "Oyun",
+    "points": "puan",
+    "no_games_played": "Henüz oyun oynamadınız"
   },
-  "gameConfigurator":{
-  "game_config":"Oyun yapılandırması",
-  "type_quest":"Soru Türü: ",
-  "num_quest":"Soru Sayısı: ",
-  "play_custom":"Özelleştirilmiş Oyunu Oyna",
-  "rules_competi":"Tüm türlerdeki sorularla ve 5 adetle oyna",
-  "play_competi":"Rekabetçi Oyunu Oyna",
-  "option_all":"Hepsi",
-  "option_population":"Nüfus",
-  "option_capital":"Başkent",
-  "option_language":"Dil",
-  "option_size":"Boyut",
-  "option_head_of_goverment":"Hükümet Başkanı",
-  "custo_game":"Özel oyun oluştur",
-  "competi_game":"Rekabetçi Oyna",
-  "randomize":"Parametreleri Rastgeleleştir"
+  "gameConfigurator": {
+    "game_config": "Oyun yapılandırması",
+    "type_quest": "Soru Türü: ",
+    "num_quest": "Soru Sayısı: ",
+    "play_custom": "Özel Oyun Oyna",
+    "rules_competi": "Tüm türlerde ve 5 adet soru ile oynayın",
+    "play_competi": "Rekabetçi Oyun Oyna",
+    "option_all": "Tümü",
+    "option_population": "Nüfus",
+    "option_capital": "Başkent",
+    "option_language": "Dil",
+    "option_size": "Boyut",
+    "option_head_of_goverment":"Hükümet Başkanı",
+    "custo_game": "Özel oyun oluştur",
+    "competi_game": "Rekabetçi oyun oyna",
+    "randomize": "Parametreleri Rastgele Yap"
   },
-  "ranking":{
-  "ranking":"Sıralama",
-  "position":"Pozisyon",
-  "username":"Kullanıcı Adı",
-  "points":"Puanlar",
-  "num_games":"Rekabetçi oyunlar",
-  "search":"Ara",
-  "enter_username":"Kullanıcı Adını Girin..."
+  "ranking": {
+    "ranking": "Sıralama",
+    "position": "Pozisyon",
+    "username": "Kullanıcı Adı",
+    "points": "Puanlar",
+    "num_games": "Rekabetçi oyunlar",
+    "search": "Ara",
+    "enter_username": "Kullanıcı adını girin..."
   },
-  "error":{
-  "error":"Hata",
-  "sorry":"Üzgünüz, bu sayfa mevcut değil. Kızma, ben sadece küçük bir kediğim."
+  "error": {
+    "error": "Hata",
+    "sorry": "Üzgünüz, bu sayfa mevcut değil. Kızma, sadece küçük bir kedicik olduğumu unutma."
+  },
+  "forgotPassword": {
+    "sending_title": "E-postanızı kontrol edin",
+    "sending_paragraph": "Şifrenizi yeniden ayarlamak için kaydolduğunuz e-postaya 6 haneli bir kod gönderdik",
+    "enter_code": "E-postanıza gönderilen 6 haneli kodu girin",
+    "enter_email": "E-posta ve kullanıcı adını girin",
+    "enter_password":"Yeni şifreyi girin",
+    "enter_email_button": "E-posta Gönder",
+    "send_code": "Kodu Gönder",
+    "enter_password_button":"Şifre Gönder"
   }
-  }
+}

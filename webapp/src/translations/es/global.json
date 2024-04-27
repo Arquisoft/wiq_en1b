@@ -136,8 +136,11 @@
       "sending_title":"Revisa tu email",
       "sending_paragraph":"Para poder reestablecer tu email hemos enviado al email con el que te registraste un código de 6 cifras",
       "enter_code":"Introduce el código de 6 cifras enviado a tu email",
-      "enter_email":"Introduce Email y password"
-
+      "enter_email":"Introduce Email y password",
+      "enter_password":"Introduce la nueva contraseña",
+      "enter_email_button": "Enviar Email",
+      "send_code": "Enviar Código",
+      "enter_password_button":"Enviar contraseña"
     }
     
   }
