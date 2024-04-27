@@ -29,7 +29,6 @@ public class MainStatic {
 			List<Question> questions = qg.generateQuestions(type, numberOfQuestions);
 			for(int i=0; i<questions.size(); i++) {
 				Question question = questions.get(i);
-				question.setNumber(i);
 				System.out.println(question.getJSON().toString());
 			}
 			System.out.println();

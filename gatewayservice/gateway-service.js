@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
-const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8011';
+const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
 const questionServiceUrl = process.env.QUESTION_SERVICE_URL || 'http://localhost:8003';
 const recordServiceUrl = process.env.RECORD_SERVICE_URL || 'http://localhost:8004';
 
