@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
 import Cookies from 'js-cookie';
+import InputEmailAndUsername from './InputEmailAndUsername'
 
 import { manageError, validateEmail, validateUsername, validatePasswords } from "../../utils/utils";
 
@@ -95,30 +96,7 @@ const AddUser = () => {
       <div className="card">
         <div className="card2">
           <form className="form" onSubmit={handleSubmit}>
-            <h1>{t("addUser.title")}</h1>
-            {showErrors()}
-            <div className="input-box">
-              <p>{t("addUser.email_placeholder")}: </p>
-              <input
-                name="email"
-                type="text"
-                placeholder={t("addUser.email_placeholder")}
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="input-box">
-              <p>{t("addUser.username_placeholder")}: </p>
-              <input
-                name="username"
-                type="text"
-                placeholder={t("addUser.username_placeholder")}
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
+            < InputEmailAndUsername title={"addUser.title"} email={email} setEmail={setEmail} username={username} setUsername={setUsername} showErrors={showErrors} t={t}/>
             <div className="input-box-password-register">
               <p>{t("addUser.password_placeholder")}: </p>
               <input
