@@ -138,9 +138,8 @@
     "enter_email_button": "E-posta Gönder",
     "send_code": "Kodu Gönder",
     "enter_password_button":"Şifre Gönder"
-  }
-}
-,
+  
+},
   "footer":{
     "about": "Hakkımızda",
     "API": "API Belgeleri",
@@ -156,4 +155,5 @@
     "name5": "Ahmet Erdem Yabacı",
     "name6": "Laura Gómez Menéndez"
 }
-  }
+}
+  
