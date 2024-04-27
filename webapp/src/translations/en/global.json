@@ -44,6 +44,7 @@
         "remember_me": "Remember me",
         "forgot_password": "Forgot password?",
         "login_button": "Login",
+        "forget_pass":"Have you forgotten your password? Let's restore it.",
         "register_link": "Don't you have an account? Register here."
     },
       "addUser": {
@@ -115,6 +116,13 @@
       "error":{
         "error":"Error",
         "sorry":"We're sorry, this page does not exist. Don't be angry, I'm just a little cat."
+        },
+        "forgotPassword":{
+          "sending_title":"Check your email",
+          "sending_paragraph":"In order to restore your password we are sending an email with a code of 6 digits",
+          "enter_code":"Enter code of 6 digits that was sent via email",
+          "enter_email":"Enter email and password"
+
         }
 }
     

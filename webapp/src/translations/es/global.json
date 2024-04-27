@@ -47,6 +47,7 @@
         "remember_me": "Recordarme",
         "forgot_password": "¿Olvidaste tu contraseña?",
         "login_button": "Iniciar sesión",
+        "forget_pass":"¿Has olvidado tu contraseña? Restaurémosla.",
         "register_link": "¿No tienes una cuenta? Regístrate aquí."
       },
     
@@ -117,6 +118,13 @@
       "num_games":"Juegos Competitivos",
       "search":"Buscar",
       "enter_username":"Inserta usuario..."
+    } ,
+    "forgotPassword":{
+      "sending_title":"Revisa tu email",
+      "sending_paragraph":"Para poder reestablecer tu email hemos enviado al email con el que te registraste un código de 6 cifras",
+      "enter_code":"Introduce el código de 6 cifras enviado a tu email",
+      "enter_email":"Introduce Email y password"
+
     }
     
   }

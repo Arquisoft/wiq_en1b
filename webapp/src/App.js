@@ -40,6 +40,7 @@ function App() {
               <Route path="/historical" element={isLoggedIn ? <HistoricalView /> : <Login />} />
               <Route path="/configurator" element={isLoggedIn ? <GameConfigurator /> : <Login />}/>
               <Route path="/ranking" element={isLoggedIn ? <RankingView /> : <Login />} />
+              <Route path="/restorePassword" element={<ForgetPassword />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Container>
