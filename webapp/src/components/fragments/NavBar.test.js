@@ -18,12 +18,15 @@ Cookies.set('user', JSON.stringify({ username: 'dummy' }))
 
 describe('NavBar fragment', () => {
 
-    it('shows the user name',async () => {
+    it('shows the user name and can log out',async () => {
         render(<MemoryRouter><Navbar style={{ width: '100%' }} /></MemoryRouter>);
         const text2 = await screen.findByText('dummy')
         expect(text2).toBeInTheDocument();
-        // Wait for questions to load
         
+        fireEvent.click(screen.getByText('dummy'));
+        expect(screen.getByText('navBar.logout')).toBeInTheDocument();
+        fireEvent.click(screen.getByText('navBar.logout'));
+        expect(screen.queryByText('dummy')).not.toBeInTheDocument();
     });
 
     test('Navbar renders correctly', async () => {
