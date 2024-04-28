@@ -66,6 +66,8 @@ describe('RestorePassword Component', () => {
     const passwordInput = container.querySelector(`input[name="password"]`);
     fireEvent.change(passwordInput, { target: { value: 'newPassword' } });
 
+    const rPasswordInput = container.querySelector(`input[name="repeat_password"]`);
+    fireEvent.change(rPasswordInput, { target: { value: 'newPassword' } });
     // Ensure handlePasswordChange was called with the correct argument
     expect(mockHandlePasswordChange).toHaveBeenCalledWith(expect.any(Object)); // Expecting event object
   });
