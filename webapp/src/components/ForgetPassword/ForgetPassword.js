@@ -7,6 +7,10 @@ import zxcvbn from "zxcvbn";
 import { useNavigate } from "react-router-dom";
 
 import { validateEmail, validatePasswords, validateUsername } from "../../utils/utils";
+import AskEmailUsername from "./AskEmailUsername";
+import PendingComponent from "./PendingComponent";
+import EnterCode from "./EnterCode";
+import RestorePassword from "./RestorePassword";
 
 const forgetPasswordFunctions = new ForgetPasswordFunctions();
 export default function ForgotPassword() {
@@ -217,139 +221,5 @@ export default function ForgotPassword() {
         </div>
       </div>
     </div>
-  );
-}
-
-// Sub-components used in the main component
-function AskEmailUsername({ email, setEmail, username, setUsername, t, handleSubmit, showErrors }) {
-  return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h1>{t("forgotPassword.enter_email")}</h1>
-      {showErrors()}
-      <div className="input-box">
-        <p>{t("addUser.email_placeholder")}: </p>
-        <input
-          name="email"
-          type="text"
-          placeholder={t("addUser.email_placeholder")}
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="input-box">
-        <p>{t("addUser.username_placeholder")}: </p>
-        <input
-          name="username"
-          type="text"
-          placeholder={t("addUser.username_placeholder")}
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <button type="submit">{t("forgotPassword.enter_email_button")}</button>
-      <br />
-    </form>
-  );
-}
-
-function PendingComponent({ t }) {
-  return (
-    <div className="form">
-      <h2>{t("forgotPassword.sending_title")}</h2>
-      <p>{t("forgotPassword.sending_paragraph")}</p>
-    </div>
-  );
-}
-
-function EnterCode({ t, obtainCode, showErrors }) {
-  return (
-    <div className="code">
-      <form className="form" onSubmit={obtainCode}>
-        <h1>{t("forgotPassword.enter_code")}</h1>
-        {showErrors()}
-        <div className="codeGrid">
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-          <input maxLength="1" className="input" type="text" placeholder="X"/>
-        </div>
-        <button type="submit">{t("forgotPassword.send_code")}</button>
-        <br />
-      </form>
-    </div>
-  );
-}
-
-function RestorePassword({
-  email,
-  username,
-  passwordStrength,
-  passwordStrengthText,
-  newPassword,
-  handlePasswordChange,
-  repeatPassword,
-  setRepeatPassword,
-  handleSubmit,
-  t,
-  showErrors
-}) {
-  return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h1>{t("forgotPassword.enter_password")}</h1>
-      {showErrors()}
-      <div className="input-box">
-        <p>{t("addUser.email_placeholder")}: </p>
-        <input
-          name="email"
-          type="text"
-          required
-          value={email}
-          readOnly
-        />
-      </div>
-      <div className="input-box">
-        <p>{t("addUser.username_placeholder")}: </p>
-        <input
-          name="username"
-          type="text"
-          required
-          value={username}
-          readOnly
-        />
-      </div>
-      <div className="input-box-password-register">
-        <p>{t("addUser.password_placeholder")}: </p>
-        <input
-          name="password"
-          type="password"
-          required
-          value={newPassword}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div className="password-strength-meter">
-        <span>{t(passwordStrengthText)}</span>
-        <progress
-          value={passwordStrength ? passwordStrength.score : 0}
-          max="4"
-        />
-      </div>
-      <div className="input-box">
-        <p>{t("addUser.repeat_password_placeholder")}: </p>
-        <input
-          name="repeat_password"
-          type="password"
-          required
-          value={repeatPassword}
-          onChange={(e) => setRepeatPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">{t("forgotPassword.enter_password_button")}</button>
-      <br />
-    </form >
   );
 }

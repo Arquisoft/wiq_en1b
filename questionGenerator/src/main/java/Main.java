@@ -13,9 +13,9 @@ public class Main {
 	
 	private static QuestionGenerator qg = QuestionGenerator.getInstance();
 	
-	 private static final long TIME_SKIP = 18000000; //5 hours
+	// private static final long TIME_SKIP = 18000000; //5 hours
 	// private static final long TIME_SKIP = 43200000; //12 hours
-	//private static final long TIME_SKIP = 1000; //1 minute
+	private static final long TIME_SKIP = 10000; //10 minutes
 	
 
 	private static String[] languages = {"en", "es", "tr"};
@@ -32,10 +32,12 @@ public class Main {
 	public static void main(String[] args) {
 		List<String> questions = generate().stream().map(q -> q.getJSON().toString()).toList();
 		while(true) {
+			long timeStart = System.currentTimeMillis();
 			QuestionRepository.getInstance().populate(questions);
 			questions = generate().stream().map(q -> q.getJSON().toString()).toList();
+			long timeFinish = System.currentTimeMillis();
 			try {
-				Thread.sleep(TIME_SKIP);
+				Thread.sleep(TIME_SKIP - (timeFinish - timeStart));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
