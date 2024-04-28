@@ -48,7 +48,7 @@ export default function RestorePassword({
         <div className="password-strength-meter">
           <span>{t(passwordStrengthText)}</span>
           <progress
-            value={passwordStrength ? passwordStrength.score : 0}
+            value={passwordStrength.scope ?? 0}
             max="4"
           />
         </div>
