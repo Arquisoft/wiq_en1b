@@ -1,6 +1,7 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const jwt = require('jsonwebtoken');
+const User = require('./user-model');
 
 // Mock the `jsonwebtoken` module
 jest.mock('jsonwebtoken', () => ({
@@ -68,6 +69,24 @@ describe('User Service /adduser', () => {
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('error', 'Email already in use');
   });
+
+  it('Should not register user /adduser', async () => {
+
+    var newUser4 = {
+      email: 'example4@example.com',
+      username: 'testuser4',
+      password: 'testpassword',
+      repeatPassword: 'testpassword'
+    };
+
+    var newUser4DB = new User(newUser4);
+    await newUser4DB.save();
+
+
+    const response = await request(app).post('/adduser').send(newUser);
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('error', 'Username already in use');
+  })
   
 });
 
