@@ -130,6 +130,18 @@ describe('ForgetPassword Component', () => {
         await expect(forgetPasswordFunctions.changePassword('test@example.com', 'testuser', 'newpassword', 'newpassword')).rejects.toThrow('Failed to change password');
       });
     });
+
+    describe('checkUrl', () => {
+      it('should have base url', async () => {
+        expect(forgetPasswordFunctions.apiUrl).toEqual('http://localhost:8000');
+      });
+  
+      it('should have env variable url', async () => {
+        process.env.REACT_APP_API_ENDPOINT = 'test';
+        forgetPasswordFunctions = new ForgetPasswordFunctions();
+        expect(forgetPasswordFunctions.apiUrl).toEqual('test');
+      });
+    });
   });
 });
 

@@ -66,4 +66,14 @@ describe('QuestionGenerator', () => {
     expect(questions.length).toBe(1);
     expect(questions[0].question).toBe("What is the population of Oviedo?");
   });
+
+  it('should have the base url', () => {
+    expect(questionGenerator.apiUrl).toEqual('http://localhost:8000/questions')
+  })
+
+  it('should not have the base url', () => {
+    process.env.REACT_APP_API_ENDPOINT = 'test';
+    questionGenerator = new QuestionGenerator();
+    expect(questionGenerator.apiUrl).toEqual('test/questions')
+  })
 });
