@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <title>Template</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -140,7 +140,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,7 +162,6 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
-body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -328,7 +327,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -519,7 +518,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_technical_debts">11.2. Technical debts</a></li>
 </ul>
 </li>
-<li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-testing">12. Testing</a>
+<ul class="sectlevel2">
+<li><a href="#_jest_tests">12.1. Jest tests</a></li>
+<li><a href="#_end_to_end_tests">12.2. End-to-End tests</a></li>
+<li><a href="#_generator_tests">12.3. Generator tests</a></li>
+<li><a href="#_load_testing">12.4. Load testing</a></li>
+</ul>
+</li>
+<li><a href="#section-glossary">13. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -1095,40 +1102,44 @@ Refer to details in the following sections.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>ReactJS</strong> : A JavaScript library that facilitates the creation of interactive grafical interfaces.</p>
-</li>
-<li>
-<p><strong>Sass</strong> : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance. (Not used)</p>
-</li>
-<li>
-<p><strong>TypeScript</strong> : A superset of JavaScript that adds various features that can resolve code errors before running the actual code. (Not used)</p>
-</li>
-<li>
-<p><strong>SpringBoot</strong> : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process. (Not used)</p>
-</li>
-<li>
-<p><strong>Wikidata Toolkit</strong> : Wikidata Toolkit is a Java library for accessing Wikidata and other Wikibase installations. It can be used to create bots, to perform data extraction tasks (e.g., convert all data in Wikidata to a new format), and to do large-scale analyses that are too complex for using a simple SPARQL query service.</p>
-</li>
-<li>
-<p><strong>Docker</strong> : Docker provides tools and a runtime environment to manage these containers efficiently, allowing developers to build, ship, and run applications consistently across different environments.</p>
-</li>
-<li>
-<p><strong>MySql</strong> : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data. (Not used)</p>
-</li>
-<li>
-<p><strong>Mongo DB</strong> : MongoDB is a popular open-source NoSQL database management system that stores data flexible, JSON-like documents with dynamic schemas.</p>
-</li>
-<li>
-<p><strong>Express</strong> : Express is a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications.</p>
+<p><strong>Java</strong> : Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is known for its portability, security features, and wide range of applications, from mobile to enterprise systems.</p>
 </li>
 <li>
 <p><strong>Nodejs</strong> : Node.js is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside of a web browser, allowing developers to build scalable network applications.</p>
 </li>
 <li>
-<p><strong>Java</strong> : Java is a high-level, object-oriented programming language developed by Sun Microsystems. It is known for its portability, security features, and wide range of applications, from mobile to enterprise systems.</p>
+<p><strong>ReactJS</strong> : A JavaScript library that facilitates the creation of interactive grafical interfaces.</p>
 </li>
 <li>
-<p><strong>TO BE ORGANIZED</strong></p>
+<p><strong>Wikidata Toolkit</strong> : Wikidata Toolkit is a Java library for accessing Wikidata and other Wikibase installations. It can be used to create bots, to perform data extraction tasks (e.g., convert all data in Wikidata to a new format), and to do large-scale analyses that are too complex for using a simple SPARQL query service.</p>
+</li>
+<li>
+<p><strong>Express</strong> : Express is a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications.</p>
+</li>
+<li>
+<p><strong>Mongo DB</strong> : MongoDB is a popular open-source NoSQL database management system that stores data flexible, JSON-like documents with dynamic schemas.</p>
+</li>
+<li>
+<p><strong>Docker</strong> : Docker provides tools and a runtime environment to manage these containers efficiently, allowing developers to build, ship, and run applications consistently across different environments.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">This decisions were eventually discarded </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sass</strong> : A scripting language that is compiled into CSS. It extends CSS by providing several mechanisms such as variables, nested rules, mixins, functions, and inheritance.</p>
+</li>
+<li>
+<p><strong>TypeScript</strong> : A superset of JavaScript that adds various features that can resolve code errors before running the actual code.</p>
+</li>
+<li>
+<p><strong>SpringBoot</strong> : An extension of the Spring framework for creating Java applications. SpringBoot offers many preconfigurations that accelerate the code production process.</p>
+</li>
+<li>
+<p><strong>MySql</strong> : MySQL is an open-source relational database management system that uses SQL for managing and manipulating data.</p>
 </li>
 </ul>
 </div>
@@ -1602,7 +1613,7 @@ when your infrastructure is more complex.</p>
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="./images/infrastructure.png.png" alt="infrastructure" width="1283" height="973">
+<img src="./images/infrastructure.png.png" alt="infrastructure" width="1028" height="623">
 </div>
 </div>
 </div>
@@ -1722,7 +1733,7 @@ on this list.</p>
 <h4 id="_domain_model">8.1.1. Domain model</h4>
 <div class="imageblock">
 <div class="content">
-<img src="./images/domain-model.png.png" alt="domain model" width="574" height="1042">
+<img src="./images/domain-model.png.png" alt="domain model" width="1067" height="638">
 </div>
 </div>
 </div>
@@ -1985,7 +1996,7 @@ concrete and measurable.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application must not have fast response times.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must have fast response times.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Robustness</p></td>
@@ -2129,7 +2140,96 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
+<h2 id="section-testing">12. Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here lies a detailed description of some of the test of the application.</p>
+</div>
+<div class="sect2">
+<h3 id="_jest_tests">12.1. Jest tests</h3>
+<div class="paragraph">
+<p>These tests are used to check that all what must be rendered in a component, it is really rendered.
+There must be one jest test for each React component. If there is a React component named Login.js, its should be named Login.tests.js.
+As many times, to test one component we need others, we must to mock the responses from Gateway, using axios.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_end_to_end_tests">12.2. End-to-End tests</h3>
+<div class="paragraph">
+<p>End-to-End tests are commonly known as e2e tests and are used to simulate the user interaction with the application from start to finish,
+validating its overall functionality.
+They are composed of two files: the "file.feature" which has written the steps that are specified in the other file "file.steps.js". They
+follow the convention of "Given-When-Then" and were done using Puppeter and Cucumber</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generator_tests">12.3. Generator tests</h3>
+<div class="paragraph">
+<p>For the generator some unitary tests were developed. There are two different types.</p>
+</div>
+<div class="sect3">
+<h4 id="_question_tests">12.3.1. Question tests</h4>
+<div class="paragraph">
+<p>This ones are designed to test that the questions work perfectly. This does not test whether the questions are generated properly, for that is the resposability of other tests.
+They do not require to access Wikidata, since they are testing the most internal parts of our application.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_generator_tests_2">12.3.2. Generator tests</h4>
+<div class="paragraph">
+<p>This tests are designed to test each one of the specific generators (for example, CapitalGenerator, VideogameDeveloperGenerator, DirectorGenerator, etc). As opposed to the question tests, this are focused on the correct access to Wikidata and generation of the questions.
+They do require to access Wikidata, since they test how our application generates the questions, which are obtained from Wikidata.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_load_testing">12.4. Load testing</h3>
+<div class="paragraph">
+<p>For load testing two different kind of test were designed. The first ones were based on the pressencce of a high number of users, across a "long" period of time.
+On the other hand, the second ones were though with the idea of a big number of users arriving almost simmultaniously.</p>
+</div>
+<div class="paragraph">
+<p>The first ones were designed to test the application under "normal" circunstances, while the second ones were designed with an unexpected user peak in mind.</p>
+</div>
+<div class="sect3">
+<h4 id="_constant_traffic_tests">12.4.1. Constant traffic tests</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>600 users playing as guests</strong>: Arriving in batches of 10 users per second over 60 seconds. &#8594; <a href="https://github.com/Arquisoft/wiq_en1b/files/15139283/600peopleresult.pdf">Result PDF</a></p>
+</li>
+<li>
+<p><strong>1200 users playing as guests</strong>: Arriving in batches of 20 users per second over 60 seconds. &#8594; <a href="https://github.com/Arquisoft/wiq_en1b/files/15139356/1200peopleresult.pdf">Result PDF</a></p>
+</li>
+<li>
+<p><strong>20 users playing normally</strong>: Arriving in batches of 2 users per second over 10 seconds. They log in, play and check the results. &#8594; <a href="https://github.com/Arquisoft/wiq_en1b/files/15139376/login.pdf">Result PDF</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_burst_traffic_tests">12.4.2. Burst traffic tests</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>2400 users playing as guests</strong>: Arriving in batches of 200 people per second over 12 seconds. &#8594; <a href="https://github.com/Arquisoft/wiq_en1b/files/15139644/burstguest.pdf">Result PDF</a></p>
+</li>
+<li>
+<p><strong>1200 users playing normally</strong>: Arriving in batches of 100 people per second over 12 seconds. They log in, play and check the results. &#8594; <a href="https://github.com/Arquisoft/wiq_en1b/files/15139645/burstlogin.pdf">Result PDF</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As we can see, in the first kind of testing, the percentage of successful requests is between 99 and 100%. However things change when moving into the second kind, with a success rate of 91% for the ones playing as a guest and 82% for the ones logging in.
+Despite not being such great numbers as the other ones, this still represent a lot of successes under a very stresfull situation for our application.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-glossary">13. Glossary</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -2211,7 +2311,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <div id="footer">
 <div id="footer-text">
 Version 8.2 EN<br>
-Last updated 2024-01-29 11:47:55 +0100
+Last updated 2024-04-27 22:37:12 +0200
 </div>
 </div>
 </body>
