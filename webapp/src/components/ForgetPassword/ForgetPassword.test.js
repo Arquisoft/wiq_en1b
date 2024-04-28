@@ -59,8 +59,15 @@ describe('ForgetPassword Component', () => {
     
     act(async ()=>{
         await waitFor(async () => expect(screen.getByText(i18en.t("forgotPassword.enter_code")).toBeInTheDocument()));
+        
+        insertCode(['1', '1', '1', '1' ,'1' ,'1' ,'1'])
+        expect(screen.getByText("Netwok Error")).toBeInTheDocument()
+
         mockAxios.onGet('http://localhost:8000/tokenFromCode/' + code).reply(200, 
         {token: token});
+        insertCode(['1', '1', '1', '1' ,'1' ,'1'])
+        expect(screen.getByText("Fill the code")).toBeInTheDocument()
+
         insertCode(['1', '1', '1', '1' ,'1' ,'1' ,'1'])
         
         //llegamos al replace
@@ -142,12 +149,8 @@ async function insertEmail(email, username) {
 async function insertCode(code){
   const inputs = screen.getAllByPlaceholderText('X');
   // Introducir el mismo carácter en todos los inputs
-  userEvent.type(inputs[0], code[0]); 
-  userEvent.type(inputs[1], code[1]);
-  userEvent.type(inputs[2], code[2]);
-  userEvent.type(inputs[3], code[3]);
-  userEvent.type(inputs[4], code[4]);
-  userEvent.type(inputs[5], code[5]);
+  for(let i = 0; i < code.length; i++)
+    userEvent.type(inputs[i], code[i]); 
   // Simula un clic en el botón de submit
   fireEvent.click(screen.getByText(/"forgotPassword.send_code"/));
 }
