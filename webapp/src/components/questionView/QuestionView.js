@@ -30,8 +30,6 @@ function QuestionView({type= "COMPETITIVE", amount=5}){
                 points=0;
                 setnumQuestion(0);
             } catch (error) {
-                //Como hacer que funcione esto
-                console.log(error);
             }
             
         }
@@ -165,7 +163,6 @@ function QuestionComponent({questions, numQuestion, handleClick, t, points,  lan
                 window.speechSynthesis.speak(speech);
             })
             .catch(error => {
-                console.error("Error al obtener las voces para el idioma:", error);
             });
     }, [getVoicesForLanguage, language]);
 

@@ -20,7 +20,6 @@ export default function HistoricalView() {
           var recordsArray = jsonRecords.games;
           setRecords(recordsArray);
         } catch (error) {
-            console.log(error);
         }
   }
 
