@@ -4,9 +4,12 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_en1b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_en1b)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_wiq_en1b&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_wiq_en1b)
 
-<b>To access the game simply follow the link [here](http://wiqen1b.serveminecraft.net)</b><br>
-The documentation of the system can be found [here](https://arquisoft.github.io/wiq_en1b/)<br>
-And the API documentation can be seen [here](http://wiqen1b.serveminecraft.net:8000/api-doc/)<br>
+Welcome to the fastest of all the wiq applications thanks to the precomputing of questions and the most user friendly thanks to our [play as guest mode](http://wiqen1b.serveminecraft.net/questions)
+Also, this is a memory game, but if you have forgotten your password, [we can help you too](http://wiqen1b.serveminecraft.net/restorePassword)
+
+<b>To access the game simply follow the link [http://wiqen1b.serveminecraft.net](http://wiqen1b.serveminecraft.net)</b><br>
+The documentation of the system can be found [https://arquisoft.github.io/wiq_en1b/](https://arquisoft.github.io/wiq_en1b/)<br>
+And the API documentation can be seen [http://wiqen1b.serveminecraft.net:8000/api-doc/](http://wiqen1b.serveminecraft.net:8000/api-doc/)<br>
 
 ![wiq-icon-improved](https://github.com/Arquisoft/wiq_en1b/assets/124193979/cfa27b39-d039-4502-9299-da424cd04151)
 
