@@ -87,6 +87,9 @@ export default function ForgotPassword() {
         setErrors([error.message])
       }
     }
+    else{
+      setErrors("Fill the code")
+    }
 
   }
 
