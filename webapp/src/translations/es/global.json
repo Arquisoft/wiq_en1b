@@ -1,163 +1,158 @@
 {
-    "home": {
-        "welcome": "¡Bienvenido a WIQ!",
+  "home": {
+    "welcome": "¡Bienvenido a WIQ!",
     "how_to_play": "¿Cómo jugar?",
     "login": "Iniciar sesión",
     "register": "¿No tienes una cuenta? Regístrate aquí.",
     "language": "El idioma ha sido cambiado a español",
-    "msg1": "Bienvenido al desafío de conocimientos! Prepárate para poner a prueba tu mente y demostrar tus habilidades. En este emocionante juego, te enfrentarás a una serie de preguntas que pondrán a prueba tu conocimiento en una variedad de temas.",
+    "msg1": "¡Bienvenido al desafío de conocimiento! Prepárate para poner a prueba tu mente y demostrar tus habilidades. En este emocionante juego, te enfrentarás a una serie de preguntas que pondrán a prueba tu conocimiento en una variedad de temas.",
     "msg2": "¡Así que adelante, demuestra que eres el maestro de las preguntas! ¿Estás listo para aceptar el desafío?",
-    "clickOpen": "Haz click para continuar",
-    "clickClose": "Haz click para cerrar",
-    "game":"Juega como invitado"
-
-    },
-
-    "navBar": {
-        "title": "¡Saber y ganar!",
-        "en": "Inglés",
-        "es": "Español",
-        "tk": "Turco",
-        "language": "Idioma",
-        "logout":"Desconectarse"
-      },
-
-      "instructions": {
-        "title": "Instrucciones de WIQ",
-        "objective": "Objetivo:",
-        "objective_p1": "El objetivo del juego es responder tantas preguntas correctamente como sea posible.",
-        "how_to_play": "Cómo Jugar:",
-        "how_to_play_p1": "El juego consiste en una serie de preguntas.",
-        "how_to_play_p2": "Lee cada pregunta cuidadosamente.",
-        "how_to_play_p3": "Elige la respuesta correcta de las opciones proporcionadas.",
-        "how_to_play_p4": "Haz clic o toca tu respuesta seleccionada para enviarla.",
-        "how_to_play_p5": "Si estas registrado en la aplicación, podrás ver tu posición en el ranking y en el top 10 de jugadores del modo 'Competitivo'.",
-        "personalization": "Customiza el juego a tu gusto:",
-        "guest": "Juega como invitado:",
-        "guest_p1": "Puedes jugar sin registrarte en el modo 'Invitado'.",
-        "guest_p2": "Ten en cuenta que tu resultado no aparecerá en ningún ranking y no tendrás un historial de partidas.",
-        "guest_p3": "Si deseas disfrutar de estas funcionalidades, regístrate.",
-        "personalization_p1": "Puedes elegir el tipo de preguntas a las que te enfrentarás, así como la cantidad de preguntas a responder.",
-        "personalization_p2": "Puedes jugar el modo competitivo en el que el tendrás 10 segundos para responder y tendrás 5 preguntas de distintos tipos.",
-        "scoring": "Puntuación:",
-        "scoring_p1": "Cada respuesta correcta te otorga 100 puntos.",
-        "scoring_p2": "Las respuestas incorrectas restan 50 puntos.",
-        "time_limit": "Límite de Tiempo:",
-        "time_limit_p1": "Algunos modos de juego pueden tener un límite de tiempo para responder cada pregunta. Sé rápido y preciso para maximizar tu puntuación.",
-        "have_fun": "¡Diviértete!",
-        "have_fun_p1": "¡Disfruta del juego y pon a prueba tus conocimientos. Buena suerte!",
-        "voice": "Voz y accesibilidad por teclado:",
-        "voice_p1": "Tienes la opción de escuchar la pregunta y la respuesta. Pulsando un botón podrás escuchar la pregunta y seguidamente las respuestas con un número delante.",
-        "voice_p2": "Pulsando un botón podrás escuchar la pregunta y seguidamente las respuestas con un número delante.",
-        "voice_p3": "Este número sirve para responder pulsando por teclado el número correspondiente a la respuesta que desees.",
-        "voice_p4": "Además, podrás activar la voz pulsando la letra 's'."
-
-      },
-    "login": {
-        "title": "Inicio de sesión",
-        "username_placeholder": "Nombre de usuario o Correo Electrónico",
-        "password_placeholder": "Contraseña",
-        "remember_me": "Recordarme",
-        "forgot_password": "¿Olvidaste tu contraseña?",
-        "login_button": "Iniciar sesión",
-        "forget_pass":"¿Has olvidado tu contraseña? Restaurémosla.",
-        "register_link": "¿No tienes una cuenta? Regístrate aquí."
-      },
-    
-    "addUser": {
-          "title": "Registrar",
-          "username_placeholder": "Nombre de usuario",
-          "password_placeholder": "Contraseña",
-          "repeat_password_placeholder": "Repetir contraseña",
-          "register_button": "Registrarse",
-          "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
-          "email_placeholder" : "Correo electrónico",
-          "very_weak_password": "Contraseña muy débil",
-          "weak_password": "Contraseña débil",
-          "good_password": "Contraseña buena",
-          "strong_password": "Contraseña fuerte",
-          "error_passwords_no_match": "Las contraseñas no coinciden",
-          "error_password_spaces": "La contraseña no puede contener espacios",
-          "error_username_spaces": "El nombre de usuario no puede contener espacios",
-          "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres",
-          "error_password_maximum_length": "La contraseña no debe tener más de 64 caracteres",
-          "error_username_in_use": "Nombre de usuario no disponible"
-    },
-     "gameMenu":{
-      "history_button":"Ver Historial",
-      "new_game_button":"Crear nuevo juego",
-      "view_ranking":"Ranking",
-      "title":"Menú del Juego",
-      "back":"Atrás"
-    },"questionView":{
-      "seconds":"segundos",
-      "question_counter":"Pregunta nº ",
-      "end_countdown":"¡Se acabó el tiempo!",
-      "finished_game":"¡El juego se ha terminado!",
-      "point":"Puntos",
-      "no_questions_message":"Please wait a bit"
-    },
-    "historicalView":{
-      "game":"Partida",
-      "points":"puntos",
-      "no_games_played":"No has jugado todavía"
-    
+    "clickOpen": "Haz clic para continuar",
+    "clickClose": "Haz clic para cerrar",
+    "game": "Jugar como invitado"
   },
-  "error":{
-    "error":"Error",
-    "sorry":"Lo sentimos, esta página no existe. No te enfades, solo soy un gatito."
+
+  "navBar": {
+    "title": "¡Saber y ganar!",
+    "en": "Inglés",
+    "es": "Español",
+    "tk": "Turco",
+    "language": "Idioma",
+    "logout": "Cerrar sesión"
   },
-    "gameConfigurator":{
-      "game_config":"Configuración del Juego",
-      "type_quest":"Tipo de Pregunta : ",
-      "num_quest":"Número de Preguntas : ",
-      "play_custom":"Jugar personalizado",
-      "rules_competi":"Jugar con todo tipo de preguntas siendo estas 5",
-      "play_competi":"Jugar Competitivo",
-      "option_all":"Todas",
-      "option_population":"Población",
-      "option_capital":"Capital",
-      "option_language":"Lenguaje",
-      "option_size":"Extensión",
-      "custo_game":"Crea una partida personalizada",
-      "competi_game":"Juega en modo Competitivo",
-      "randomize":"Randomiza Parámetros"
-    },
-    "ranking":{
-      "ranking":"Ranking",
-      "position":"Posición",
-      "username":"Username",
-      "points":"Puntos",
-      "num_games":"Juegos Competitivos",
-      "search":"Buscar",
-      "enter_username":"Inserta usuario..."
-    } ,
-    "forgotPassword":{
-      "sending_title":"Revisa tu email",
-      "sending_paragraph":"Para poder reestablecer tu email hemos enviado al email con el que te registraste un código de 6 cifras",
-      "enter_code":"Introduce el código de 6 cifras enviado a tu email",
-      "enter_email":"Introduce Email y password",
-      "enter_password":"Introduce la nueva contraseña",
-      "enter_email_button": "Enviar Email",
-      "send_code": "Enviar Código",
-      "enter_password_button":"Enviar contraseña"
-    },
-    "footer":{
-        "about": "Sobre nosotros",
-        "API": "API-Doc",
-        "ARC": "Arc42-Doc"
-      },
-      
-      "about":{
+  "instructions": {
+    "title": "Instrucciones de WIQ",
+    "objective": "Objetivo:",
+    "objective_p1": "El objetivo del juego es responder tantas preguntas correctamente como sea posible.",
+    "how_to_play": "Cómo Jugar:",
+    "how_to_play_p1": "El juego consiste en una serie de preguntas.",
+    "how_to_play_p2": "Lee cada pregunta cuidadosamente.",
+    "how_to_play_p3": "Elige la respuesta correcta de entre las opciones proporcionadas.",
+    "how_to_play_p4": "Haz clic o toca tu respuesta seleccionada para enviarla.",
+    "how_to_play_p5": "Si estás registrado en la aplicación, podrás ver tu posición en la clasificación y en los 10 mejores jugadores del modo 'Competitivo'.",
+    "guest": "Jugar como invitado:",
+    "guest_p1": "Puedes jugar sin registrarte en el modo 'Invitado'.",
+    "guest_p2": "Ten en cuenta que tu resultado no aparecerá en ningún ranking, y no tendrás un registro histórico.",
+    "guest_p3": "Si deseas disfrutar de estas funciones, por favor regístrate.",
+    "personalization": "Personaliza el juego:",
+    "personalization_p1": "Puedes elegir el tipo de preguntas que enfrentarás, así como la cantidad de preguntas para responder.",
+    "personalization_p2": "Puedes jugar en el modo competitivo donde tendrás 10 segundos para responder 5 preguntas de diferentes tipos.",
+    "scoring": "Puntuación:",
+    "scoring_p1": "Cada respuesta correcta te otorga 100 puntos.",
+    "scoring_p2": "Las respuestas incorrectas restan 50 puntos.",
+    "time_limit": "Límite de Tiempo:",
+    "time_limit_p1": "Algunos modos de juego pueden tener un límite de tiempo para responder cada pregunta. Sé rápido y preciso para maximizar tu puntuación.",
+    "have_fun": "¡Diviértete!:",
+    "have_fun_p1": "Disfruta del juego y pon a prueba tus conocimientos. ¡Buena suerte!",
+    "voice": "Accesibilidad por Voz y Teclado:",
+    "voice_p1": "Tienes la opción de escuchar la pregunta y la respuesta. Al presionar un botón, puedes escuchar la pregunta y luego las respuestas con un número que las precede.",
+    "voice_p2": "Al presionar un botón, puedes escuchar la pregunta y luego las respuestas con un número que las precede.",
+    "voice_p3": "Este número se utiliza para responder presionando el número correspondiente en el teclado a la respuesta que elijas.",
+    "voice_p4": "Además, puedes activar la voz presionando la letra 's'."
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "username_placeholder": "Nombre de usuario o correo electrónico",
+    "password_placeholder": "Contraseña",
+    "remember_me": "Recordarme",
+    "forgot_password": "¿Olvidaste la contraseña?",
+    "login_button": "Iniciar sesión",
+    "forget_pass": "¿Has olvidado tu contraseña? Vamos a restaurarla.",
+    "register_link": "¿No tienes una cuenta? Regístrate aquí."
+  },
+  "addUser": {
+    "title": "Registro",
+    "username_placeholder": "Nombre de usuario",
+    "password_placeholder": "Contraseña",
+    "repeat_password_placeholder": "Repetir contraseña",
+    "register_button": "Registrarse",
+    "login_link": "¿Ya tienes una cuenta? Inicia sesión aquí.",
+    "email_placeholder": "Correo electrónico",
+    "very_weak_password": "Contraseña muy débil",
+    "weak_password": "Contraseña débil",
+    "good_password": "Contraseña buena",
+    "strong_password": "Contraseña fuerte",
+    "error_passwords_no_match": "Las contraseñas no coinciden",
+    "error_password_spaces": "La contraseña no puede contener espacios",
+    "error_username_spaces": "El nombre de usuario no puede contener espacios",
+    "error_password_minimum_length": "La contraseña debe tener al menos 8 caracteres de longitud",
+    "error_password_maximum_length": "La contraseña no puede tener más de 64 caracteres de longitud",
+    "error_username_in_use": "Nombre de usuario ya en uso",
+    "error_wrong_email_format": "Formato de correo electrónico incorrecto (usuario@ejemplo.com)"
+  },
+  "gameMenu": {
+    "history_button": "Ver datos históricos",
+    "new_game_button": "Crear nuevo juego",
+    "view_ranking": "Clasificación",
+    "title": "Menú del Juego",
+    "back": "Atrás"
+  },
+  "questionView": {
+    "seconds": "segundos",
+    "question_counter": "Número de pregunta ",
+    "end_countdown": "¡Se acabó el tiempo!",
+    "finished_game": "¡El juego ha terminado!",
+    "point": "Puntos",
+    "no_questions_message": "Por favor, espera un momento"
+  },
+  "historicalView": {
+    "game": "Juego",
+    "points": "puntos",
+    "no_games_played": "Aún no se han jugado juegos"
+  },
+  "gameConfigurator": {
+    "game_config": "Configuración del juego",
+    "type_quest": "Tipo de pregunta: ",
+    "num_quest": "Número de preguntas: ",
+    "play_custom": "Jugar Juego Personalizado",
+    "rules_competi": "Jugar con todos los tipos de preguntas y una cantidad de 5",
+    "play_competi": "Jugar Juego Competitivo",
+    "option_all": "Todos",
+    "option_population": "Población",
+    "option_capital": "Capital",
+    "option_language": "Idioma",
+    "option_size": "Tamaño",
+    "option_head_of_goverment": "Jefe de Gobierno",
+    "custo_game": "Crear juego personalizado",
+    "competi_game": "Jugar Competitivo",
+    "randomize": "Aleatorizar Parámetros"
+  },
+  "ranking": {
+    "ranking": "Clasificación",
+    "position": "Posición",
+    "username": "Nombre de usuario",
+    "points": "Puntos",
+    "num_games": "Juegos competitivos",
+    "search": "Buscar",
+    "enter_username": "Introduce el nombre de usuario..."
+  },
+  "error": {
+    "error": "Error",
+    "sorry": "Lo sentimos, esta página no existe. No te enfades, solo soy un pequeño gato."
+  },
+  "forgotPassword": {
+    "sending_title": "Verifica tu correo electrónico",
+    "sending_paragraph": "Para restaurar tu contraseña estamos enviando un correo electrónico con un código de 6 dígitos.",
+    "enter_code": "Introduce el código de 6 dígitos que se envió por correo electrónico",
+    "enter_email": "Introduce el correo electrónico y el nombre de usuario",
+    "enter_password": "Introduce una nueva contraseña",
+    "enter_email_button": "Enviar correo electrónico",
+    "send_code": "Enviar código",
+    "enter_password_button": "Enviar contraseña"
+  },
+  "footer": {
+    "about": "Sobre nosotros",
+    "API": "Documentación de la API",
+    "ARC": "Documentación de Arc42"
+  },
+  "about": {
     "hello": "¡Hola!",
-    "team": "¡Somos el increíble grupo en01b! Esperamos que les guste nuestro juego.",
+    "team": "¡Somos el increíble grupo de en01b! Esperamos que te guste nuestro juego.",
     "name1": "Mario Junquera Rojas",
     "name2": "Lucía Ruiz Núñez",
     "name3": "Daniel Sinne Argüelles",
     "name4": "Jorge Cano Martínez",
     "name5": "Ahmet Erdem Yabaci",
     "name6": "Laura Gómez Menéndez"
-}
-    
   }
-  
+}
