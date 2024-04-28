@@ -33,7 +33,7 @@ describe('<AddUser />', () => {
 
   });
 
-  const fillFormAndSubmit = (email, username, password, repeatPassword) => {
+  const fillForm = (email, username, password, repeatPassword) => {
     const emailInput = screen.getByPlaceholderText('addUser.email_placeholder');
     fireEvent.change(emailInput, { target: { value: email } });
 
@@ -45,6 +45,10 @@ describe('<AddUser />', () => {
 
     const repeatPasswordInput = screen.getByPlaceholderText('addUser.repeat_password_placeholder');
     fireEvent.change(repeatPasswordInput, { target: { value: repeatPassword } });
+  };
+
+  const fillFormAndSubmit = (email, username, password, repeatPassword) => {
+    fillForm(email, username, password, repeatPassword)
 
     const submitButton = screen.getByText('addUser.register_button');
     fireEvent.click(submitButton);
@@ -70,7 +74,7 @@ describe('<AddUser />', () => {
     fillFormAndSubmit('user@example.com', 'username', '01234567890123456789012345678901234567890123456789012345678901234', '01234567890123456789012345678901234567890123456789012345678901234');
     expect(screen.getByText('addUser.error_password_maximum_length')).toBeInTheDocument();
     //Username with spaces
-    fillFormAndSubmit('user@example.com', 'user name', '12345678', '12345678');
+    fillFormAndSubmit('user@example.com', 'user name', 'NvtL+k?qg953tD8', 'NvtL+k?qg953tD8');
     expect(screen.getByText('addUser.error_username_spaces')).toBeInTheDocument();
 
     //Show various errors
@@ -86,6 +90,23 @@ describe('<AddUser />', () => {
     });
     expect(axios.post).toHaveBeenCalledWith(expect.any(String), { email: 'user@example.com' ,username: 'existing_user', password: '12345678', repeatPassword: "12345678" });
   });
+
+  test('displays correct password strength messages', () => {
+    fillForm('user@example.com', 'user name', '123456', '123456');
+    expect(screen.getByText(/addUser.very_weak_password/)).toBeInTheDocument();
+
+    fillForm('user@example.com', 'user name', 'Mario12@@', 'Mario12@@');
+    expect(screen.getByText(/addUser.weak_password/)).toBeInTheDocument();
+
+    fillForm('user@example.com', 'user name', 'NvtL+k?qg9', 'NvtL+k?qg9');
+    expect(screen.getByText(/addUser.good_password/)).toBeInTheDocument();
+
+    fillForm('user@example.com', 'user name', 'NvtL+k?qg953tD8', 'NvtL+k?qg953tD8');
+    expect(screen.getByText(/addUser.strong_password/)).toBeInTheDocument();
+
+    fillForm('user@example.com', 'user name', '', '');
+    expect(screen.getByText(/addUser.very_weak_password/)).toBeInTheDocument();
+  })
 
 });
 
