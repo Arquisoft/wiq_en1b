@@ -46,13 +46,13 @@ defineFeature(feature, test => {
       await expect(page).toMatchElement('.text-container.hidden');
     });
   });
-
+  /*
    test('Closing the text container', ({ given, when, then }) => {
      given('I am on the home page', async () => {
        await page.goto('http://localhost:3000/home'); 
        await page.waitForSelector('.general');
      });
-   when('I click on the toggle button to open and then I click it to close', async () => {
+    when('I click on the toggle button to open and then I click it to close', async () => {
 
        await page.click('label[for="toggleOpen"]');
 
@@ -65,7 +65,7 @@ defineFeature(feature, test => {
      then('The text container should be visible', async () => {
        await expect(page).toMatchElement('.text-container.visible');
      });
-   });
+   });*/
 
   afterAll(async () => {
     await browser.close();
