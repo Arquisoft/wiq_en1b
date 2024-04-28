@@ -74,7 +74,20 @@ describe('ForgetPassword Component', () => {
         await waitFor(async () => expect(screen.getByText(i18en.t("forgotPassword.enter_password")).toBeInTheDocument()));
         
         mockAxios.onPost('http://localhost:8000/changePassword').reply(200, { token: token, username: username});
-        await insertPassword('123456789', '123456789')
+
+        fillPassword('123456', '123456')
+        expect(screen.getByText(/addUser.very_weak_password/)).toBeInTheDocument();
+
+        fillPassword('Mario12@@', 'Mario12@@')
+        expect(screen.getByText(/addUser.weak_password/)).toBeInTheDocument();
+
+        fillPassword('NvtL+k?qg9', 'NvtL+k?qg9')
+        expect(screen.getByText(/addUser.good_password/)).toBeInTheDocument();
+
+        fillPassword('NvtL+k?qg953tD8', 'NvtL+k?qg953tD8') 
+        expect(screen.getByText(/addUser.strong_password/)).toBeInTheDocument();
+
+        await insertPassword('NvtL+k?qg953tD8', 'NvtL+k?qg953tD8')
         //me redirigen a game Menu
         await waitFor(async () => expect(screen.getByText(i18en.t('gameMenu.title')).toBeInTheDocument()));
         //la cookie queda bien seteada
@@ -168,12 +181,16 @@ async function insertCode(code){
 }
 
 async function insertPassword(password, repeatPassword) {
+  fillPassword(password, repeatPassword)
+  const submitButton = screen.getByText(/forgotPassword.enter_password_button/i); // Ajusta el texto según el texto real del botón
+  userEvent.click(submitButton);
+}
+
+function fillPassword(password, repeatPassword) {
   const passwordInput = screen.getByPlaceholderText(/addUser.password_placeholder/i);
   const passwordRepeatInput = screen.getByPlaceholderText(/addUser.repeat_password_placeholder/i);
 
   expect(screen.getByText(/addUser.email_placeholder/)).toBeInTheDocument();
   userEvent.type(passwordInput, password);
   userEvent.type(passwordRepeatInput, repeatPassword);
-  const submitButton = screen.getByText(/forgotPassword.enter_password_button/i); // Ajusta el texto según el texto real del botón
-  userEvent.click(submitButton);
 }
