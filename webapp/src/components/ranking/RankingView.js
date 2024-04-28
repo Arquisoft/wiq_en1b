@@ -24,7 +24,6 @@ const RankingView = () => {
       var myrank = await retriever.getUser(cookie.username, cookie.token);
       setMyRankingData(myrank);
     } catch (error) {
-      console.log(error);
     }
   }
   const handleSearch = async (e) => {
@@ -34,7 +33,6 @@ const RankingView = () => {
         const rank = await retriever.getUser(searchTerm, cookie.token);
         setMyRankingData(rank);
       } catch (error) {
-        console.log(error);
       }
     }
     
