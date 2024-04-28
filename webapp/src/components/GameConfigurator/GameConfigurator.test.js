@@ -48,4 +48,25 @@ it('renders option to play Competitive game', () => {
     expect(text).toBeInTheDocument();
 });
 
+it('should set random values for type and number of questions when randomize button is clicked', () => {
+  const { getByText, getByRole } = render(<Router><GameConfigurator /></Router>);
+
+  // Encuentra el botón de randomize
+  const randomizeButton = getByText('gameConfigurator.randomize');
+
+  // Simula el clic en el botón de randomize
+  fireEvent.click(randomizeButton);
+
+  // Verifica que el tipo de pregunta sea uno de los valores esperados
+  const select = getByRole('combobox'); // Localiza el campo de selección
+  const validOptions = ['ALL', 'POPULATION', 'CAPITAL', 'LANGUAGE', 'SIZE', 'HEAD_OF_GOVERMENT'];
+  expect(validOptions).toContain(select.value); // Verifica que el valor esté en las opciones válidas
+
+  // Verifica que el número de preguntas esté entre 1 y 20
+  const numberInput = getByRole('spinbutton'); // Localiza el spinner
+  const numQuestions = parseInt(numberInput.value, 10);
+  expect(numQuestions).toBeGreaterThanOrEqual(1);
+  expect(numQuestions).toBeLessThanOrEqual(20);
+});
+
 });
