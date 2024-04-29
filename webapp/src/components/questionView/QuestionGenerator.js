@@ -9,7 +9,10 @@ class QuestionGenerator{
     }
 
     async generateQuestions(lang, type, amount, token) {     
-        
+        if(amount < 1)
+            amount = 1;
+        if(amount > 20)
+            amount = 20;
         try {
             let response;
             if(type==="COMPETITIVE"){

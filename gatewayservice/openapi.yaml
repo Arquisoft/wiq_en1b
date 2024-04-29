@@ -303,7 +303,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [es, en, tk]
+            enum: [es, en, tr]
           description: Language code for filtering questions    
       responses:
         '200':
@@ -337,7 +337,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [es, en, tk]
+            enum: [es, en, tr]
           description: Language code for filtering questions
         - name: amount
           in: path
@@ -379,7 +379,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: ["es", "en", "tk"]
+            enum: ["es", "en", "tr"]
           description: Language code for filtering questions
         - name: amount
           in: path
