@@ -43,3 +43,19 @@ The first ones were designed to test the application under "normal" circunstance
 
 As we can see, in the first kind of testing, the percentage of successful requests is between 99 and 100%. However things change when moving into the second kind, with a success rate of 91% for the ones playing as a guest and 82% for the ones logging in. 
 Despite not being such great numbers as the other ones, this still represent a lot of successes under a very stresfull situation for our application.
+
+=== Usability testing
+
+==== Analytical information
+After performing test with various people from various age groups we were able to extract information about the times they apent in the application. As we can see, the ones below 20 years of age perform much better than expected, while the ones between 40 to 60 years performed worse.
+The surprisingly good performance of the first age group might be because of the colourful and very graphical navigability of the application, which allow them to grasp every component and their inner workings really quickly. 
+While this same thing might have been the bane of the older age groups, since they struggle more with the navigability and where trying to read more instead of focusing on the icons.
+
+image::12-usability-graph-01.png["Average response times by age group"]
+
+We can also see in which parts of the application they have spent the longest. We can see how it's pretty evenly distributted. This should come as a surprise, considering that they did play a competitive game (which are pretty short).
+This is thanks to the more speedy users, which brought the average down quite significally. Since the difference between one user and another are very small in the duration of the games, but massive in the logging and set up.
+
+image::12-usability-graph-02.png["Average time spent on each part of the application"]
+
+A potential problem could have been the small sample size, so further tests are recommended, with a similar amount of users in each age group.
